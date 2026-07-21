@@ -1,16 +1,18 @@
 # Arabidopsis thaliana Spaceflight Tropism Recognition System
 
-A FAIR-compliant computational pipeline for recognizing and classifying tropism responses in *Arabidopsis thaliana* under spaceflight conditions, integrating bulk transcriptomics from NASA OSDR and NCBI GEO with a single-cell developmental atlas foundation model.
+A FAIR-compliant computational pipeline for recognizing and classifying tropism responses in *Arabidopsis thaliana* under spaceflight conditions, integrating bulk transcriptomics from NASA OSDR and[...]
 
 ## Overview
 
+![Plant Spaceflight Response Analysis Pipeline](Plant_Spaceflight_Response_Analysis_Pipeline.png)
+
 This repository contains a complete end-to-end pipeline that:
 
-1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1190 samples) and NCBI GEO (6 tropism-focused series, 147 samples), totaling 1337 samples across gravitropism, phototropism, mechanotropism, and hydrotropism conditions.
+1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1190 samples) and NCBI GEO (6 tropism-focused series, 147 samples), totaling 1337 samples across g[...]
 
-2. **Integrates the Salk Institute Arabidopsis Developmental Atlas** (GSE226097; 432,919 nuclei, 183 clusters, 10 developmental stages) as a foundation model with a custom variational auto-decoder (PhysioSpace-like stimuli auto-decoder) for cell-type deconvolution of bulk samples.
+2. **Integrates the Salk Institute Arabidopsis Developmental Atlas** (GSE226097; 432,919 nuclei, 183 clusters, 10 developmental stages) as a foundation model with a custom variational auto-decoder[...]
 
-3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with nested cross-validation.
+3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with nes[...]
 
 4. **Visualizes results** using ggPlantMap tissue projections, KEGG pathway networks (tidygraph/ggraph), heatmaps, volcano plots, and forest plots.
 
@@ -78,7 +80,7 @@ This repository contains a complete end-to-end pipeline that:
 ## Methods Summary
 
 ### Data Acquisition
-- **OSDR**: Metadata via `https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`; count matrices via direct file download from `https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/download`
+- **OSDR**: Metadata via `https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`; count matrices via direct file download from `https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/down[...]
 - **GEO**: Series metadata via GEOquery; supplementary files via HTTPS mirror of FTP
 - **Tropism labeling**: Heuristic inference from tissue type, hardware (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides
 
@@ -117,10 +119,10 @@ This repository contains a complete end-to-end pipeline that:
 
 1. **No GPU**: Auto-decoder trained on CPU with 60k-cell subsample (covers all 183 clusters); full 432k atlas used for signature matrix and deconvolution
 2. **OSDR API timeouts**: Large studies (OSD-37, OSD-38, OSD-480) time out on `/v2/query/data/` endpoint; count matrices obtained via direct file download
-3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics (reference-signature-only fallback)
+3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics[...]
 4. **Metadata matching**: 124/398 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
 5. **ggkegg/SBGNview unavailable**: Rgraphviz system dependency failed; KEGG pathway network rendered with tidygraph/ggraph + org.At.tair.db annotations instead
-6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC=0.919) is the more meaningful result
+6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC=0.[...]
 
 ## Reproduction
 
