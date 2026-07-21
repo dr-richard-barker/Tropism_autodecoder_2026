@@ -1,0 +1,20 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Richard Barker and contributors.
+
+This work — comprising the source code, harmonized data, results, figures, and
+manuscript in this repository — is licensed under the Creative Commons
+Attribution 4.0 International License. You are free to share and adapt the
+material for any purpose, even commercially, provided you give appropriate
+credit, provide a link to the license, and indicate if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+------------------------------------------------------------------------------
+Third-party data attribution
+------------------------------------------------------------------------------
+Input transcriptomics are derived from the NASA Open Science Data Repository
+(OSDR / GeneLab, https://osdr.nasa.gov, NASA Open Data policy) and NCBI GEO
+(https://www.ncbi.nlm.nih.gov/geo/). The single-cell foundation model uses the
+Salk Arabidopsis Developmental Atlas (GEO GSE226097). Please cite the original
+accessions when using this pipeline.
