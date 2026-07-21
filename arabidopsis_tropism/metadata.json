@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": "Phylo Biomni",
+  "publicationYear": 2026,
+  "identifier": {
+    "identifier": "10.5281/zenodo.arabidopsis-tropism",
+    "identifierType": "DOI"
+  },
+  "creators": [
+    {
+      "name": "Barker, Richard",
+      "nameType": "Personal",
+      "givenName": "Richard",
+      "familyName": "Barker",
+      "affiliation": []
+    },
+    {
+      "name": "Phylo Biomni",
+      "nameType": "Organizational"
+    }
+  ],
+  "titles": [
+    {
+      "title": "Arabidopsis thaliana Spaceflight Tropism Recognition System: A FAIR-Compliant Pipeline Integrating Bulk Transcriptomics with a Single-Cell Developmental Atlas Foundation Model",
+      "titleType": null
+    }
+  ],
+  "descriptions": [
+    {
+      "description": "A complete computational pipeline for recognizing and classifying tropism responses (gravitropism, phototropism, mechanotropism, hydrotropism) in Arabidopsis thaliana under spaceflight conditions. The pipeline integrates 1,337 bulk RNA-seq and microarray samples from NASA GeneLab OSDR (24 studies) and NCBI GEO (6 series) with the Salk Institute Arabidopsis Developmental Atlas (432,919 nuclei, 183 clusters) as a foundation model. A custom variational auto-decoder (32-dimensional latent space) enables cell-type deconvolution of bulk samples. Differential expression (DESeq2), random-effects meta-analysis (DerSimonian-Laird), and elastic-net classification (AUC=0.919 for Flight vs Ground Control) identify spaceflight-responsive genes and cell types. Results are visualized using ggPlantMap tissue projections, KEGG pathway networks, and standard bioinformatics plots.",
+      "descriptionType": "Abstract"
+    }
+  ],
+  "resourceType": {
+    "resourceTypeGeneral": "Software",
+    "resourceType": "Computational Pipeline"
+  },
+  "subjects": [
+    {"subject": "Arabidopsis thaliana"},
+    {"subject": "spaceflight"},
+    {"subject": "tropism"},
+    {"subject": "gravitropism"},
+    {"subject": "phototropism"},
+    {"subject": "single-cell atlas"},
+    {"subject": "cell-type deconvolution"},
+    {"subject": "variational auto-encoder"},
+    {"subject": "differential expression"},
+    {"subject": "meta-analysis"},
+    {"subject": "NASA GeneLab"},
+    {"subject": "GEO"},
+    {"subject": "FAIR principles"},
+    {"subject": "ggPlantMap"},
+    {"subject": "KEGG pathways"}
+  ],
+  "contributors": [
+    {
+      "name": "NASA GeneLab",
+      "contributorType": "DataProvider"
+    },
+    {
+      "name": "NCBI Gene Expression Omnibus",
+      "contributorType": "DataProvider"
+    },
+    {
+      "name": "Salk Institute for Biological Studies",
+      "contributorType": "DataProvider"
+    }
+  ],
+  "dates": [
+    {
+      "date": "2026-07-20",
+      "dateType": "Created"
+    },
+    {
+      "date": "2026-07-20",
+      "dateType": "Issued"
+    }
+  ],
+  "language": "eng",
+  "rights": [
+    {
+      "rights": "Creative Commons Attribution 4.0 International",
+      "rightsURI": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsIdentifier": "CC-BY-4.0"
+    }
+  ],
+  "sizes": [
+    "13 figures (SVG + PNG)",
+    "7 result tables (TSV/CSV)",
+    "6 analysis scripts (Python + R)",
+    "1 harmonized metadata file (1337 samples)"
+  ],
+  "formats": [
+    "text/csv",
+    "text/tab-separated-values",
+    "image/svg+xml",
+    "image/png",
+    "text/x-python",
+    "text/x-r",
+    "application/yaml",
+    "text/markdown",
+    "application/json"
+  ],
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "GSE226097",
+      "relatedIdentifierType": "GEO",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-37",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-38",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-120",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-193",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-217",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-321",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "OSD-427",
+      "relatedIdentifierType": "OSDR",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "GSE143760",
+      "relatedIdentifierType": "GEO",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "GSE97258",
+      "relatedIdentifierType": "GEO",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "GSE225299",
+      "relatedIdentifierType": "GEO",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "GSE8300",
+      "relatedIdentifierType": "GEO",
+      "relationType": "IsDerivedFrom"
+    }
+  ],
+  "version": "1.0.0"
+}
