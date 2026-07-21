@@ -1,0 +1,38 @@
+# CUDA-enabled image for full-atlas auto-decoder training.
+# Build:  docker build -f Dockerfile.gpu -t arabidopsis-tropism-gpu .
+# Run:    docker run --gpus all -v /path/to/workspace:/mnt/shared-workspace \
+#           arabidopsis-tropism-gpu \
+#           --atlas-dir /mnt/shared-workspace/autodecoder \
+#           --sig-matrix /mnt/shared-workspace/processed/cell_type_signatures.csv \
+#           --in-memory --epochs 40
+# Requires the NVIDIA Container Toolkit on the host (for --gpus).
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+LABEL maintainer="Richard Barker"
+LABEL description="Arabidopsis tropism auto-decoder — full-atlas GPU training"
+LABEL version="1.1-gpu"
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential ca-certificates curl git \
+    libxml2-dev libcurl4-openssl-dev libssl-dev graphviz libgraphviz-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Miniforge (conda + mamba)
+RUN curl -fsSL https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -o /tmp/mf.sh \
+    && bash /tmp/mf.sh -b -p /opt/conda && rm /tmp/mf.sh
+ENV PATH=/opt/conda/bin:$PATH
+
+COPY environment.gpu.yml /opt/arabidopsis-tropism/environment.gpu.yml
+WORKDIR /opt/arabidopsis-tropism
+RUN mamba env create -f environment.gpu.yml && mamba clean -a -y
+
+# ggPlantmap (used by the viz step)
+RUN conda run -n arabidopsis-tropism-gpu Rscript -e \
+    'remotes::install_github("leonardojo/ggPlantmap", upgrade="never")' || true
+
+COPY Code/ /opt/arabidopsis-tropism/Code/
+
+ENV PATH=/opt/conda/envs/arabidopsis-tropism-gpu/bin:$PATH
+ENTRYPOINT ["python", "/opt/arabidopsis-tropism/Code/train_autodecoder_gpu.py"]
+CMD ["--help"]

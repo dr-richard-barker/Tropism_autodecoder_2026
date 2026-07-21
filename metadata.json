@@ -74,6 +74,10 @@
     {
       "date": "2026-07-20",
       "dateType": "Issued"
+    },
+    {
+      "date": "2026-07-21",
+      "dateType": "Updated"
     }
   ],
   "language": "eng",
@@ -163,5 +167,5 @@
       "relationType": "IsDerivedFrom"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

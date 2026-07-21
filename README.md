@@ -16,6 +16,16 @@ This repository contains a complete end-to-end pipeline that:
 
 4. **Visualizes results** using ggPlantMap tissue projections, KEGG pathway networks (tidygraph/ggraph), heatmaps, volcano plots, and forest plots.
 
+## Web Tool
+
+An interactive, browser-based companion tool lets reviewers and readers upload their own *Arabidopsis* expression matrix (`.csv`/`.txt`) and receive a publication-ready figure panel and auto-generated legend that decode four tropism signatures — gravitropism, phototropism, thigmotropism (touch), and hydrotropism. It runs entirely client-side (no server; uploaded data never leaves the browser) and is served from `docs/` via GitHub Pages.
+
+- **Live URL** (after enabling **Settings → Pages → Deploy from branch → `main` / `/docs`**): `https://dr-richard-barker.github.io/Tropism_autodecoder_2026/`
+- **Method (Phase 1)**: rank-based single-sample enrichment (singscore) against curated, literature-verified tropism marker gene sets. These are marker-enrichment scores, **not** the auto-decoder output.
+- **Planned (Phase 2)**: load exported model artifacts (signature matrix, 32-dim stimulus codes, classifier coefficients) to reproduce the manuscript's cell-type deconvolution and Flight-vs-Ground-Control classifier directly in the browser.
+
+See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (including a Phase 3 orthology network for non-*Arabidopsis* data).
+
 ## Repository Structure
 
 ```
@@ -26,7 +36,9 @@ This repository contains a complete end-to-end pipeline that:
 │   ├── meta_classifier.py         # Meta-analysis & tropism classifier
 │   ├── run_de.R                   # DESeq2 differential expression
 │   ├── visualization.R            # Main visualization suite
-│   └── viz_ggplantmap.R           # ggPlantMap tissue projections
+│   ├── viz_ggplantmap.R           # ggPlantMap tissue projections
+│   ├── train_autodecoder_gpu.py   # GPU / full-atlas auto-decoder training (v1.1.0)
+│   └── export_atlas.R             # Atlas extraction for training (full or stratified subsample)
 ├── Data/                          # Harmonized input data
 │   └── harmonized_metadata.tsv    # 1337 samples × 19 metadata fields
 ├── Results/                       # Analysis outputs
@@ -53,9 +65,17 @@ This repository contains a complete end-to-end pipeline that:
 │   └── dataset_summary.*          # Dataset composition summary
 ├── Manuscript/                    # Scientific manuscript
 │   └── manuscript.md
+├── docs/                          # Interactive web tool (GitHub Pages) — see "Web Tool" above
+│   ├── index.html                 # Upload-and-decode tool + landing page
+│   └── assets/                    # app.js, style.css, signatures.js, sample_data.csv
 ├── environment.yml                # Conda environment specification
+├── environment.gpu.yml            # CUDA conda environment (full-atlas GPU training)
 ├── Dockerfile                     # Containerized reproduction
+├── Dockerfile.gpu                 # CUDA container (full-atlas GPU training)
+├── GPU_TRAINING_PLAN.md           # Plan for full-atlas GPU retraining
+├── WEB_TOOL_PLAN.md               # Plan for the interactive web tool
 ├── metadata.json                  # DataCite 4.x metadata
+├── CHANGELOG.md                   # Version history (1.0.0 → 1.1.0)
 └── README.md                      # This file
 ```
 
@@ -117,7 +137,7 @@ This repository contains a complete end-to-end pipeline that:
 
 ## Limitations
 
-1. **No GPU**: Auto-decoder trained on CPU with 60k-cell subsample (covers all 183 clusters); full 432k atlas used for signature matrix and deconvolution
+1. **Auto-decoder training scale (v1.0.0 model)**: The published auto-decoder was trained on CPU with a 60,792-cell stratified subsample (covering all 183 clusters); the full 432k atlas was already used for the signature matrix and deconvolution. A GPU-enabled, full-atlas retraining workflow is now provided (`Code/export_atlas.R`, `Code/train_autodecoder_gpu.py`, `environment.gpu.yml`, `Dockerfile.gpu`); the full 432,919-nucleus retrain is planned for v1.1.0 and has **not yet** superseded the v1.0.0 model.
 2. **OSDR API timeouts**: Large studies (OSD-37, OSD-38, OSD-480) time out on `/v2/query/data/` endpoint; count matrices obtained via direct file download
 3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics[...]
 4. **Metadata matching**: 124/398 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)

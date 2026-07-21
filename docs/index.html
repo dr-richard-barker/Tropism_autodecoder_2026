@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tropism Autodecoder — decode Arabidopsis tropism signatures</title>
+  <meta name="description" content="Upload an Arabidopsis thaliana expression matrix and get a publication-ready figure panel and legend decoding gravitropism, phototropism, thigmotropism and hydrotropism signatures. Runs entirely in your browser.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#tool">Skip to the tool</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="bar" aria-hidden="true"></div>
+    <h1>Tropism Autodecoder</h1>
+    <p class="subtitle">Decode <em>Arabidopsis thaliana</em> tropism signatures from your own transcriptomic data — in the browser, nothing uploaded.</p>
+    <p class="meta">
+      Companion tool for <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026">Tropism_autodecoder_2026</a>
+      (Barker, 2026) · <a href="#about">About the method</a> · <a href="#tool">Launch the tool ↓</a>
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="intro">
+    <p class="lede">
+      Plants read directional cues — gravity, light, touch, water — and grow accordingly. This tool takes an
+      <em>Arabidopsis</em> gene-expression table (<code>.csv</code> or <code>.txt</code>) and returns a
+      <strong>publication-ready figure panel</strong> and a <strong>matching figure legend</strong> that score four
+      tropism signatures across your samples. Everything runs client-side: your data never leaves your computer.
+    </p>
+    <div class="grid4" style="margin-top:18px">
+      <div class="card"><h3>Gravitropism</h3><p>Gravity sensing &amp; auxin transport — PIN2, PIN3, PIN7, AUX1, LAZY1.</p></div>
+      <div class="card"><h3>Phototropism</h3><p>Blue-light directed growth — PHOT1, PHOT2, NPH3, RPT2, PKS1.</p></div>
+      <div class="card"><h3>Thigmotropism</h3><p>Touch / mechanostimulation — TCH1–4, MSL10.</p></div>
+      <div class="card"><h3>Hydrotropism</h3><p>Water-seeking — MIZ1, GNOM/MIZ2 (low-coverage set).</p></div>
+    </div>
+  </section>
+
+  <!-- ================= TOOL ================= -->
+  <section id="tool">
+    <h2>Analyse your data</h2>
+    <div class="tool">
+      <div id="drop">
+        <p><strong>Drop a <code>.csv</code> / <code>.tsv</code> / <code>.txt</code> expression matrix here</strong></p>
+        <p>Genes in rows (AGI locus IDs like <code>AT1G70940</code>, or symbols like <code>PIN2</code>), samples in columns.
+           Raw counts, TPM/FPKM or normalized values all work — scoring is rank-based.</p>
+        <p style="margin-top:14px">
+          <label class="file-label" for="file">Choose a file…</label>
+          <input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain">
+        </p>
+      </div>
+
+      <div class="controls">
+        <button class="btn secondary" id="example-btn">Load synthetic example</button>
+        <span class="field">
+          <label for="fig-number">Figure #</label>
+          <input type="text" id="fig-number" value="1" inputmode="numeric" aria-label="Figure number for the legend">
+        </span>
+        <span style="font-size:14px;color:#333">Run date: <span id="run-date">—</span></span>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite">No file loaded yet. Upload a matrix or load the synthetic example.</div>
+
+      <div id="results" hidden>
+        <h3>Figure</h3>
+        <div id="figure" role="img" aria-label="Generated tropism signature figure"></div>
+
+        <div class="downloads">
+          <button class="btn" id="dl-svg">Download figure (SVG)</button>
+          <button class="btn" id="dl-png">Download figure (PNG)</button>
+          <button class="btn secondary" id="dl-csv">Download scores (CSV)</button>
+          <button class="btn secondary" id="dl-legend">Download legend (Markdown)</button>
+        </div>
+
+        <div class="legend-box">
+          <h3>Figure legend (auto-generated)</h3>
+          <p id="legend"></p>
+        </div>
+      </div>
+    </div>
+
+    <p class="callout" style="margin-top:16px">
+      <strong>What this reports.</strong> Phase-1 scores are transparent, rank-based <em>marker enrichment</em>
+      (singscore) against curated, literature-verified tropism gene sets. They describe relative signature activity
+      within your samples. They are <em>not</em> the manuscript's variational auto-decoder / cell-type deconvolution
+      output — that parity ships in Phase 2 (see below). The synthetic example is illustrative, not experimental data.
+    </p>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <h2>How the decoding works</h2>
+    <ol>
+      <li>Your matrix is parsed (delimiter and orientation auto-detected) and gene IDs are normalized (AGI loci; symbols resolved via an alias table; transcript suffixes like <code>.1</code> stripped).</li>
+      <li>Within each sample, genes are rank-ordered by expression.</li>
+      <li>For each tropism signature, a <strong>singscore</strong> is computed: the mean rank of that signature's detected genes, rescaled against the theoretical rank range for a set of that size, and centered to <strong>[−1, +1]</strong>. Positive (red) = coordinately high expression; negative (blue) = low.</li>
+      <li>Results render as a composed figure — <strong>(A)</strong> a sample × tropism heatmap on a red–white–blue scale, <strong>(B)</strong> mean scores, <strong>(C)</strong> signature coverage — plus a Methods-style legend you can paste into a manuscript.</li>
+    </ol>
+    <p>Rank-based scoring is scale-invariant, needs no training and no reference cohort, and every value on screen is reproducible from your file alone. Method reference: Foroutan <em>et al.</em>, <em>BMC Bioinformatics</em> 19:404 (2018), "Single sample scoring of molecular phenotypes" (singscore).</p>
+
+    <details>
+      <summary>Signature gene sets (AGI loci verified against TAIR / primary literature)</summary>
+      <table class="spec">
+        <tr><th>Tropism</th><th>Genes (symbol → AGI)</th></tr>
+        <tr><td>Gravitropism</td><td>PIN2 (AT5G57090), PIN3 (AT1G70940), PIN7 (AT1G23080), AUX1 (AT2G38120), LAZY1 (AT5G14090)</td></tr>
+        <tr><td>Phototropism</td><td>PHOT1 (AT3G45780), PHOT2 (AT5G58140), NPH3 (AT5G64330), RPT2 (AT2G30520), PKS1 (AT2G02950)</td></tr>
+        <tr><td>Thigmotropism</td><td>TCH1 (AT5G37780), TCH2 (AT5G37770), TCH3 (AT2G41100), TCH4 (AT5G57560), MSL10 (AT5G12080)</td></tr>
+        <tr><td>Hydrotropism</td><td>MIZ1 (AT2G41660), GNOM/MIZ2 (AT1G13980) — low coverage</td></tr>
+      </table>
+    </details>
+
+    <details>
+      <summary>Input format details</summary>
+      <p>First column = gene IDs; header row = sample names; remaining cells = numeric expression. The transposed layout (samples in rows) is detected automatically. Delimiters <code>,</code>, tab and <code>;</code> are supported.</p>
+      <pre>gene,Sample_1,Sample_2,Sample_3
+AT1G70940,182.4,95.1,210.0
+AT5G57090,88.7,140.2,76.5
+AT3G45780,12.0,240.5,9.8
+...</pre>
+    </details>
+
+    <details>
+      <summary>Planned upgrades (Phase 2 &amp; 3)</summary>
+      <p><strong>Phase 2 — full pipeline parity.</strong> Export the pipeline's model artifacts (4000-HVG × 183-cluster signature matrix, 32-dim stimulus codes, elastic-net classifier coefficients, meta-analysis flight-signature genes) as static files; the browser re-runs the same NNLS deconvolution → stimulus projection → linear classifier, returning the paper's cell-type fractions, stimulus scores and Flight-vs-Ground probability (AUC 0.919) on your data.</p>
+      <p><strong>Phase 3 — orthology network.</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table, then score with the same engine — with mapping-coverage reporting.</p>
+    </details>
+  </section>
+
+  <section id="about-study">
+    <h2>About the study</h2>
+    <p>The Tropism Autodecoder integrates 1,337 bulk RNA-seq samples from NASA GeneLab OSDR and NCBI GEO with the
+      Salk Institute <em>Arabidopsis</em> Developmental Atlas (432,919 nuclei, 183 cell-type clusters) as a foundation
+      model, using a 32-dimensional variational auto-decoder for cell-type deconvolution, DESeq2 differential
+      expression, DerSimonian-Laird meta-analysis, and elastic-net classification.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">1,337</div><div class="l">samples harmonized</div></div>
+      <div class="stat"><div class="n">16,002</div><div class="l">sig. genes (padj&lt;0.05)</div></div>
+      <div class="stat"><div class="n">0.919</div><div class="l">Flight vs GC AUC</div></div>
+      <div class="stat"><div class="n">183</div><div class="l">atlas cell-type clusters</div></div>
+    </div>
+    <p style="margin-top:14px"><em>Values above are reported in the manuscript and repository README (Barker, 2026).</em></p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Tropism Autodecoder web tool v1.0.0.</strong> Client-side; your data stays in your browser.
+       Source &amp; pipeline: <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026">github.com/dr-richard-barker/Tropism_autodecoder_2026</a>.</p>
+    <p>Data &amp; pipeline © Richard Barker, released under CC BY 4.0. Please cite the manuscript and the original data
+       sources (NASA OSDR, NCBI GEO, Salk Atlas GSE226097).</p>
+  </div>
+</footer>
+
+<script src="assets/signatures.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
