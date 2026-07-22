@@ -106,10 +106,9 @@ if (length(missing) > 0) {
   rownames(pad) <- missing
   expr <- rbind(expr, pad)
 }
-expr <- as.matrix(expr[hvgs, , drop = FALSE])                 # dense, genes x cells, HVG order
-storage.mode(expr) <- "double"
-n_genes <- nrow(expr); n_cells <- ncol(expr)
-cat(sprintf("Exporting %d genes x %d cells (%.1f GB float64)\n",
+expr <- expr[hvgs, , drop = FALSE]                            # keep SPARSE (HVG rows, sel cells)
+n_genes <- length(hvgs); n_cells <- ncol(expr)
+cat(sprintf("Exporting %d genes x %d cells (%.1f GB float64); densifying per chunk to bound memory.\n",
             n_genes, n_cells, n_genes * n_cells * 8 / 1e9))
 
 # --- metadata aligned to expr columns ---
@@ -126,7 +125,8 @@ con <- file(file.path(OUT_DIR, "expr_sub.bin"), "wb")
 chunk <- 5000L
 for (start in seq(1L, n_cells, by = chunk)) {
   end <- min(start + chunk - 1L, n_cells)
-  writeBin(as.double(expr[, start:end]), con)                 # column-major within the chunk
+  block <- as.matrix(expr[, start:end, drop = FALSE])         # densify ONLY this chunk (~160 MB)
+  writeBin(as.double(block), con)                             # column-major within the chunk
   cat(sprintf("  wrote cells %d-%d\r", start, end))
 }
 close(con); cat("\n")
