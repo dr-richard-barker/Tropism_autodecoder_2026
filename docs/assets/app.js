@@ -370,11 +370,27 @@ function runAnalysis(text, name) {
   }
 }
 
+function currentMethod() {
+  const el = document.querySelector('input[name="method"]:checked');
+  return el ? el.value : "phase1";
+}
+
 function renderResults() {
   const figNumber = document.getElementById("fig-number").value || "1";
-  const svg = buildFigureSVG(figNumber);
+  let svg, legend, csv;
+  if (currentMethod() === "phase2" && window.PHASE2 && PHASE2.ready) {
+    const res = PHASE2.run(APP.matrix);          // real deconvolution + classifier
+    svg = PHASE2.buildFigureSVG(res, figNumber);
+    legend = PHASE2.buildLegend(res, figNumber);
+    csv = PHASE2.scoresCSV(res);
+  } else {
+    svg = buildFigureSVG(figNumber);             // Phase 1 marker enrichment
+    legend = buildLegend(figNumber);
+    csv = scoresToCSV();
+  }
+  APP.active = { svg, legend, csv };
   document.getElementById("figure").innerHTML = svg;
-  document.getElementById("legend").textContent = buildLegend(figNumber);
+  document.getElementById("legend").textContent = legend;
   document.getElementById("results").hidden = false;
   document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -414,23 +430,26 @@ function init() {
   });
 
   document.getElementById("dl-svg").addEventListener("click", () => {
-    download("tropism_figure.svg", buildFigureSVG(document.getElementById("fig-number").value || "1"),
-             "image/svg+xml");
+    if (APP.active) download("tropism_figure.svg", APP.active.svg, "image/svg+xml");
   });
   document.getElementById("dl-png").addEventListener("click", () => {
-    svgToPng(buildFigureSVG(document.getElementById("fig-number").value || "1"), 2, (blob) => {
+    if (!APP.active) return;
+    svgToPng(APP.active.svg, 2, (blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a"); a.href = url; a.download = "tropism_figure.png";
       document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     });
   });
   document.getElementById("dl-csv").addEventListener("click", () => {
-    download("tropism_scores.csv", scoresToCSV(), "text/csv");
+    if (APP.active) download("tropism_scores.csv", APP.active.csv, "text/csv");
   });
   document.getElementById("dl-legend").addEventListener("click", () => {
-    download("tropism_legend.md", buildLegend(document.getElementById("fig-number").value || "1"),
-             "text/markdown");
+    if (APP.active) download("tropism_legend.md", APP.active.legend, "text/markdown");
   });
+
+  // Re-render when the analysis method toggle changes.
+  document.querySelectorAll('input[name="method"]').forEach((r) =>
+    r.addEventListener("change", () => { if (APP.matrix) renderResults(); }));
 }
 
 if (typeof document !== "undefined") {

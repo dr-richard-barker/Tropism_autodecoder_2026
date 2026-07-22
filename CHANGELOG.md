@@ -28,6 +28,11 @@ but has not yet been run, so all v1.0.0 results (including Flight-vs-GC AUC = 0.
   - `environment.gpu.yml`, `Dockerfile.gpu` — CUDA 12.1 environment and container.
   - `GPU_TRAINING_PLAN.md` — plan, compute/memory estimates, run recipe, and acceptance criteria.
 - **`CHANGELOG.md`** — this file.
+- **Web tool Phase 2 plumbing** — `docs/assets/model.js` reproduces the pipeline's inference in-browser
+  (NNLS deconvolution → stimulus projection → elastic-net Flight-vs-GC classifier); `Code/export_web_artifacts.py`
+  exports the model bundle to `docs/assets/model/`; `meta_classifier.py` now also dumps `classifier_params.json`
+  (coefficients + intercept + scaler). A method toggle activates Phase 2 automatically once artifacts are present;
+  it ships gated (`manifest.phase2_ready: false`) so the live tool stays on Phase 1 until they're exported.
 
 ### Changed
 - **README**: added a "Web Tool" section; listed the new scripts and files in the repository

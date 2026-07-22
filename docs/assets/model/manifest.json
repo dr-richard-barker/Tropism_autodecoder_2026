@@ -1,0 +1,11 @@
+{
+  "version": "0-pending",
+  "phase2_ready": false,
+  "present": {
+    "signature_matrix": false,
+    "stimulus_codes": false,
+    "classifier": false,
+    "flight_signature_genes": false
+  },
+  "note": "Phase 2 model artifacts are not yet exported. Run Code/export_web_artifacts.py on the pipeline outputs (cell_type_signatures.csv, cluster_stimulus_codes.json, classifier_params.json) to populate this directory with signature_matrix.bin, signature_index.json, stimulus_codes.json, and classifier.json, then redeploy Pages. The web tool detects phase2_ready and enables the full auto-decoder method automatically."
+}

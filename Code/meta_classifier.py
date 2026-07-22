@@ -271,6 +271,26 @@ if len(y_cond) > 20 and len(np.unique(y_cond)) == 2:
     print(f"\nTop 10 features for Flight vs GC:")
     print(importance.head(10).to_string())
 
+    # Export the FULL fitted classifier for the web tool (Phase 2 artifact).
+    # The feature-importance CSV above omits the intercept and the StandardScaler
+    # parameters, so it alone cannot reproduce predictions — dump everything here.
+    with open(f'{OUT_DIR}/classifier_params.json', 'w') as f:
+        json.dump({
+            'target': 'flight_vs_gc',
+            'classes': clf.classes_.tolist(),
+            'positive_class': str(clf.classes_[1]),   # coef_[0] is for classes_[1]
+            'feature_names': feature_cols,             # 183 fractions (sig order) + stim_dim_0..31
+            'coef': clf.coef_[0].tolist(),
+            'intercept': float(clf.intercept_[0]),
+            'scaler_mean': scaler.mean_.tolist(),
+            'scaler_scale': scaler.scale_.tolist(),
+            'l1_ratio': 0.5, 'C': 1.0,
+            'n_train': int(len(y_cond)),
+            'cv_auc_mean': float(cv_scores.mean()), 'cv_auc_std': float(cv_scores.std()),
+        }, f, indent=2)
+    print(f"Wrote classifier_params.json ({len(feature_cols)} features, "
+          f"positive class = {clf.classes_[1]})")
+
 # Classifier 2: Tropism type (multiclass)
 print("\n--- Tropism type classifier ---")
 # Filter to tropism types with enough samples

@@ -110,6 +110,13 @@ input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
   border: 1.5px solid var(--fg); border-radius: 5px;
 }
 
+.method-choice { margin-top: 16px; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.method-choice legend { font-weight: 600; padding: 0 6px; }
+.method-choice label { display: block; margin: 4px 0; cursor: pointer; }
+.method-choice input[disabled] + span, .method-choice label:has(input[disabled]) { color: #888; }
+.method-choice .muted { color: #555; }
+p.muted { color: #555; }
+
 .status { margin-top: 14px; padding: 10px 12px; border-radius: 6px; font-size: 15px; border: 1.5px solid var(--line); }
 .status.ok { border-color: var(--blue); background: var(--blue-pale); }
 .status.warn { border-color: var(--red); background: var(--red-pale); }

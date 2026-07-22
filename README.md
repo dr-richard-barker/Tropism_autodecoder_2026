@@ -22,7 +22,7 @@ An interactive, browser-based companion tool lets reviewers and readers upload t
 
 - **Live URL** (after enabling **Settings → Pages → Deploy from branch → `main` / `/docs`**): `https://dr-richard-barker.github.io/Tropism_autodecoder_2026/`
 - **Method (Phase 1)**: rank-based single-sample enrichment (singscore) against curated, literature-verified tropism marker gene sets. These are marker-enrichment scores, **not** the auto-decoder output.
-- **Planned (Phase 2)**: load exported model artifacts (signature matrix, 32-dim stimulus codes, classifier coefficients) to reproduce the manuscript's cell-type deconvolution and Flight-vs-Ground-Control classifier directly in the browser.
+- **Phase 2 (wired, artifacts pending)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability directly in the page. It activates automatically once `Code/export_web_artifacts.py` populates `docs/assets/model/` (signature matrix, stimulus codes, classifier params) — until then the tool stays on Phase 1.
 
 See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (including a Phase 3 orthology network for non-*Arabidopsis* data).
 
@@ -38,7 +38,8 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   ├── visualization.R            # Main visualization suite
 │   ├── viz_ggplantmap.R           # ggPlantMap tissue projections
 │   ├── train_autodecoder_gpu.py   # GPU / full-atlas auto-decoder training (v1.1.0)
-│   └── export_atlas.R             # Atlas extraction for training (full or stratified subsample)
+│   ├── export_atlas.R             # Atlas extraction for training (full or stratified subsample)
+│   └── export_web_artifacts.py    # Export Phase-2 model bundle for the web tool
 ├── Data/                          # Harmonized input data
 │   └── harmonized_metadata.tsv    # 1337 samples × 19 metadata fields
 ├── Results/                       # Analysis outputs
@@ -67,7 +68,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   └── manuscript.md
 ├── docs/                          # Interactive web tool (GitHub Pages) — see "Web Tool" above
 │   ├── index.html                 # Upload-and-decode tool + landing page
-│   └── assets/                    # app.js, style.css, signatures.js, sample_data.csv
+│   └── assets/                    # app.js, model.js (Phase 2), style.css, signatures.js, sample_data.csv, model/
 ├── environment.yml                # Conda environment specification
 ├── environment.gpu.yml            # CUDA conda environment (full-atlas GPU training)
 ├── Dockerfile                     # Containerized reproduction
