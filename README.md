@@ -71,6 +71,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   └── assets/                    # app.js, model.js (Phase 2), style.css, signatures.js, sample_data.csv, model/
 ├── environment.yml                # Conda environment specification
 ├── environment.gpu.yml            # CUDA conda environment (full-atlas GPU training)
+├── environment.mps.yml            # Apple Silicon / Metal (MPS) conda environment
 ├── Dockerfile                     # Containerized reproduction
 ├── Dockerfile.gpu                 # CUDA container (full-atlas GPU training)
 ├── GPU_TRAINING_PLAN.md           # Plan for full-atlas GPU retraining

@@ -201,7 +201,7 @@ def main():
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--latent-dim", type=int, default=32)
     p.add_argument("--hidden-dim", type=int, default=512)
-    p.add_argument("--accelerator", default="auto", choices=["auto", "gpu", "cpu"])
+    p.add_argument("--accelerator", default="auto", choices=["auto", "gpu", "mps", "cpu"])
     p.add_argument("--devices", default="auto")
     p.add_argument("--precision", default="bf16-mixed",
                    choices=["bf16-mixed", "16-mixed", "32-true", "32"])
@@ -224,19 +224,27 @@ def main():
     os.makedirs(args.out_dir, exist_ok=True)
     os.makedirs(args.ckpt_dir, exist_ok=True)
 
-    # --- device resolution + precision guard ---
+    # --- device resolution + precision guard (CUDA, Apple MPS, or CPU) ---
+    mps_ok = getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available()
     accelerator = args.accelerator
     if accelerator == "auto":
-        accelerator = "gpu" if torch.cuda.is_available() else "cpu"
+        accelerator = "gpu" if torch.cuda.is_available() else ("mps" if mps_ok else "cpu")
     precision = args.precision
-    if accelerator == "gpu" and precision == "bf16-mixed" and not torch.cuda.is_bf16_supported():
-        precision = "16-mixed"
-        print("[precision] bf16 unsupported on this GPU -> falling back to 16-mixed")
-    if accelerator == "cpu":
-        precision = "32-true"
-    if torch.cuda.is_available():
+    if accelerator == "gpu":
+        if precision == "bf16-mixed" and not torch.cuda.is_bf16_supported():
+            precision = "16-mixed"
+            print("[precision] bf16 unsupported on this GPU -> falling back to 16-mixed")
         print(f"[device] CUDA: {torch.cuda.get_device_name(0)} "
               f"({torch.cuda.get_device_properties(0).total_memory/1e9:.1f} GB)")
+    elif accelerator == "mps":
+        # Apple Metal: bf16 autocast isn't supported; default to full precision.
+        if precision == "bf16-mixed":
+            precision = "32-true"
+            print("[precision] Apple MPS -> 32-true (bf16 not supported on Metal)")
+        print("[device] Apple GPU (MPS / Metal). Tip: use --in-memory (avoids memmap in "
+              "DataLoader workers); --num-workers 0 is safest on macOS.")
+    else:  # cpu
+        precision = "32-true"
     print(f"[device] accelerator={accelerator} devices={args.devices} precision={precision}")
 
     # --- reference / signature matrix ---
@@ -373,7 +381,8 @@ def main():
 
     # --- atlas-wide latent embeddings (batched on device) ---
     print("\n=== Computing atlas latent embeddings ===")
-    device = torch.device("cuda" if (accelerator == "gpu" and torch.cuda.is_available()) else "cpu")
+    device = torch.device("cuda" if (accelerator == "gpu" and torch.cuda.is_available())
+                          else "mps" if accelerator == "mps" else "cpu")
     model.to(device).eval()
     all_ds = AtlasDataset(source, np.arange(n_cells), cluster_idx, organ_idx, stage_idx, **common)
     all_loader = DataLoader(all_ds, batch_size=max(1024, args.batch_size),
