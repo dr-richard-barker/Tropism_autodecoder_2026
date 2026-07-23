@@ -97,8 +97,11 @@ if (N_CELLS <= 0 || N_CELLS >= length(all_cells)) {
 expr <- tryCatch(
   GetAssayData(atlas, assay = ASSAY, layer = LAYER),          # Seurat v5
   error = function(e) GetAssayData(atlas, assay = ASSAY, slot = LAYER))  # v4 fallback
-expr <- expr[, sel_cells, drop = FALSE]
 
+# Subset to the HVG ROWS FIRST (e.g. 27522 -> 4000) *before* any column op. A
+# character-indexed column reorder on the full-gene matrix can transiently blow
+# past available RAM (hit R's 24 GB vector cap on the 432k atlas); doing rows
+# first keeps every subsequent op on the small 4000-row matrix.
 missing <- setdiff(hvgs, rownames(expr))
 if (length(missing) > 0) {
   cat(sprintf("WARNING: %d signature HVGs absent from atlas; filling with 0.\n", length(missing)))
@@ -106,7 +109,10 @@ if (length(missing) > 0) {
   rownames(pad) <- missing
   expr <- rbind(expr, pad)
 }
-expr <- expr[hvgs, , drop = FALSE]                            # keep SPARSE (HVG rows, sel cells)
+expr <- expr[hvgs, , drop = FALSE]                            # 4000 x n_cells sparse
+# Select cells: a no-op reorder in full mode (skip it), a real subset otherwise.
+if (!identical(as.character(sel_cells), colnames(expr)))
+  expr <- expr[, sel_cells, drop = FALSE]
 n_genes <- length(hvgs); n_cells <- ncol(expr)
 cat(sprintf("Exporting %d genes x %d cells (%.1f GB float64); densifying per chunk to bound memory.\n",
             n_genes, n_cells, n_genes * n_cells * 8 / 1e9))
