@@ -19,11 +19,23 @@ from sklearn.decomposition import PCA
 import warnings
 warnings.filterwarnings('ignore')
 
-# Paths
-ATLAS_DIR = '/mnt/shared-workspace/autodecoder'
-PROC_DIR = '/mnt/shared-workspace/processed'
-DE_DIR = f'{PROC_DIR}/de_results'
-OUT_DIR = f'{PROC_DIR}/projection'
+# Paths (override via CLI flags or env vars; defaults are repo-relative)
+import argparse
+_ap = argparse.ArgumentParser(description="Bulk deconvolution & stimulus projection onto the atlas.")
+_ap.add_argument('--atlas-dir', default=os.environ.get('ATLAS_DIR', 'bulk/autodecoder'),
+                 help='dir with model_encodings.json, cluster_stimulus_codes.json, hvgs.txt')
+_ap.add_argument('--proc-dir', default=os.environ.get('PROC_DIR', 'bulk/processed'),
+                 help='dir with cell_type_signatures.csv, cluster_summary.csv')
+_ap.add_argument('--de-dir', default=os.environ.get('DE_DIR', 'bulk/de_results'))
+_ap.add_argument('--out-dir', default=os.environ.get('OUT_DIR', 'bulk/projection'))
+_ap.add_argument('--geo-dir', default=os.environ.get('GEO_DIR', 'bulk/raw_geo'),
+                 help='dir with GSE*/GSE*_counts.csv (optional GEO datasets)')
+_args, _ = _ap.parse_known_args()
+ATLAS_DIR = _args.atlas_dir
+PROC_DIR = _args.proc_dir
+DE_DIR = _args.de_dir
+OUT_DIR = _args.out_dir
+GEO_DIR = _args.geo_dir
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ---- Load auto-decoder artifacts ----
@@ -70,7 +82,7 @@ def load_geo_counts():
     """Load GEO count matrices."""
     geo_data = {}
     # GSE143760 (phototropism) - featureCounts
-    fpath = '/mnt/shared-workspace/raw_geo/GSE143760/GSE143760_counts.csv'
+    fpath = f'{GEO_DIR}/GSE143760/GSE143760_counts.csv'
     if os.path.exists(fpath):
         df = pd.read_csv(fpath, index_col=0)
         df = df.apply(pd.to_numeric, errors='coerce').fillna(0)
@@ -79,7 +91,7 @@ def load_geo_counts():
         geo_data['GSE143760'] = np.log1p(cpm).replace([np.inf, -np.inf], 0).fillna(0)
         print(f"  GSE143760: {df.shape}")
     # GSE225299 (mechanotropism) - pseudo-bulk from scRNA-seq
-    fpath = '/mnt/shared-workspace/raw_geo/GSE225299/GSE225299_pseudobulk_counts.csv'
+    fpath = f'{GEO_DIR}/GSE225299/GSE225299_pseudobulk_counts.csv'
     if os.path.exists(fpath):
         df = pd.read_csv(fpath)
         if 'gene' in df.columns:

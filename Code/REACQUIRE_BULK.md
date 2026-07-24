@@ -37,20 +37,23 @@ writing `OSD-<id>_counts_for_de.csv` + `OSD-<id>_conditions.csv`.
 
 ## 3. Differential expression
 ```bash
-Rscript Code/run_de.R      # point DE_DIR at bulk/de_results
+Rscript Code/run_de.R bulk/de_results      # or set the DE_DIR env var
 ```
 Per-study DESeq2 (Flight vs Ground Control) → `*_de_results.tsv` + `*_normalized_counts.csv`.
 
 ## 4. Deconvolution onto the retrained atlas
 ```bash
-python Code/project_bulk.py   # point ATLAS_DIR/PROC_DIR/DE_DIR at your local outputs
+python Code/project_bulk.py --atlas-dir autodecoder --proc-dir . \
+       --de-dir bulk/de_results --out-dir bulk/projection
 ```
-NNLS of each sample onto `cell_type_signatures.csv` → 183 cell-type fractions, then
-`fractions · cluster_stimulus_codes` → 32 stimulus scores.
+NNLS of each sample onto `cell_type_signatures.csv` (in `--proc-dir`) → 183 cell-type fractions,
+then `fractions · cluster_stimulus_codes` → 32 stimulus scores. (`--geo-dir` optionally adds the GEO
+count matrices.)
 
 ## 5. Classifier + meta-analysis
 ```bash
-python Code/meta_classifier.py   # writes classifier_params.json (coef + intercept + scaler)
+python Code/meta_classifier.py --meta Data/harmonized_metadata.tsv \
+       --de-dir bulk/de_results --proj-dir bulk/projection --out-dir bulk/classifier
 ```
 Elastic-net logistic on [183 fractions + 32 stim], nested 5-fold CV → `classifier_params.json`.
 
@@ -69,5 +72,6 @@ Full-auto-decoder (Phase 2) method activates automatically.
 ## Scope notes
 - Only **OSDR RNA-seq** studies are included in the classifier re-fit (matches the original 124
   Flight/GC samples matched by GSM). GEO series and microarray studies are not yet folded in.
-- `run_de.R`, `project_bulk.py`, and `meta_classifier.py` currently carry absolute workspace paths at
-  the top — set them to your local directories (or the values shown above) before running.
+- `run_de.R`, `project_bulk.py`, and `meta_classifier.py` take their paths from CLI flags / env vars
+  (shown above); no in-file editing needed. `build_signature_matrix.R` and `export_atlas.R` still use
+  top-of-file path constants — set those two before running.

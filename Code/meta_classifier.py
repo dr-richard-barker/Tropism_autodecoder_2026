@@ -21,15 +21,22 @@ from sklearn.utils.class_weight import compute_class_weight
 import warnings
 warnings.filterwarnings('ignore')
 
-PROC_DIR = '/mnt/shared-workspace/processed'
-DE_DIR = f'{PROC_DIR}/de_results'
-PROJ_DIR = f'{PROC_DIR}/projection'
-OUT_DIR = f'{PROC_DIR}/classifier'
+import argparse
+_ap = argparse.ArgumentParser(description="Meta-analysis + Flight-vs-GC / tropism classifier.")
+_ap.add_argument('--meta', default=os.environ.get('META', 'Data/harmonized_metadata.tsv'))
+_ap.add_argument('--de-dir', default=os.environ.get('DE_DIR', 'bulk/de_results'))
+_ap.add_argument('--proj-dir', default=os.environ.get('PROJ_DIR', 'bulk/projection'))
+_ap.add_argument('--out-dir', default=os.environ.get('OUT_DIR', 'bulk/classifier'))
+_args, _ = _ap.parse_known_args()
+META = _args.meta
+DE_DIR = _args.de_dir
+PROJ_DIR = _args.proj_dir
+OUT_DIR = _args.out_dir
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ---- Load harmonized metadata ----
 print("=== Loading metadata ===")
-meta = pd.read_csv('/mnt/shared-workspace/processed/harmonized_metadata.tsv', sep='\t')
+meta = pd.read_csv(META, sep='\t')
 print(f"Metadata: {meta.shape}")
 print(f"Tropism distribution:\n{meta['tropism_type'].value_counts()}")
 print(f"\nCondition distribution:\n{meta['spaceflight_condition'].value_counts()}")

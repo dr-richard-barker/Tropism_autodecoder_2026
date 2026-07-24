@@ -1,12 +1,13 @@
 #!/usr/bin/env Rscript
 # Subsystem 4: Run DESeq2 on each OSDR RNA-seq study
-.libPaths(c("/workspace/.Rlib", .libPaths()))
+# Usage: Rscript Code/run_de.R [DE_DIR]   (or set the DE_DIR env var; default: bulk/de_results)
 suppressPackageStartupMessages({
   library(DESeq2)
   library(data.table)
 })
 
-DE_DIR <- "/mnt/shared-workspace/processed/de_results"
+.args <- commandArgs(trailingOnly = TRUE)
+DE_DIR <- if (length(.args) >= 1) .args[[1]] else Sys.getenv("DE_DIR", "bulk/de_results")
 dir.create(DE_DIR, showWarnings = FALSE, recursive = TRUE)
 
 count_files <- list.files(DE_DIR, pattern="_counts_for_de.csv$", full.names=TRUE)
