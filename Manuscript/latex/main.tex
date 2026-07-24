@@ -336,6 +336,24 @@ hardware, missions, timepoints) across the 11 studies. This heterogeneity is bot
 challenge (reducing power) and an opportunity (capturing generalizable vs
 condition-specific responses).
 
+Beyond classification, the value of projecting bulk samples onto a single-cell
+developmental atlas is that it re-frames the spaceflight response in terms of
+\textit{which} cell types carry it. The significant cell-type shifts we detect ---
+concentrated in silique, stem and late-seedling identities --- point to reproductive
+and vascular-differentiation programmes as focal points of the flight response, and
+the ggPlantMap tissue projections render this anatomically rather than leaving it as a
+gene list. This is a step from cataloguing \textit{what} changes toward localising
+\textit{where} altered tropic signalling is perceived --- the more actionable question
+for engineering plant growth off-Earth.
+
+The stimulus auto-decoder is deliberately reusable: once trained on the atlas, its
+32-dimensional latent codes score any new bulk transcriptome without re-training,
+giving a common coordinate system in which heterogeneous OSDR studies --- different
+tissues, ecotypes, hardware and missions --- can be compared. As the spaceflight
+corpus grows, this foundation-model framing should become more useful, precisely
+because it factors shared cell-type and stimulus structure out of the study-specific
+noise that inflates meta-analysis heterogeneity.
+
 \subsection{Limitations}
 \begin{enumerate}
   \item \textbf{GPU unavailability:} the auto-decoder was trained on CPU with a
@@ -355,6 +373,17 @@ condition-specific responses).
     Rgraphviz dependency failure; KEGG pathway networks were rendered with
     tidygraph/ggraph instead.
 \end{enumerate}
+
+\subsection{Outlook}
+The limitations above also chart the roadmap. Re-training the auto-decoder on the full
+432{,}919-nucleus atlas with GPU acceleration, and incorporating dedicated hydro-,
+thigmo- and chemotropism transcriptomes as they accumulate, would let the tropism
+classifier learn signal rather than the tissue and hardware confounds that currently
+inflate its accuracy. Because the stimulus codes are reusable, each new OSDR spaceflight
+study can then be scored against the same atlas without re-training, turning the pipeline
+into a growing, comparable reference for where and how plants perceive the orbital
+environment; direct single-cell spaceflight transcriptomics, when available, would let
+the deconvolution be validated against ground truth rather than inferred.
 
 \backmatter
 
