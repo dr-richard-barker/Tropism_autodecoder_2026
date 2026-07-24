@@ -33,6 +33,10 @@ but has not yet been run, so all v1.0.0 results (including Flight-vs-GC AUC = 0.
   exports the model bundle to `docs/assets/model/`; `meta_classifier.py` now also dumps `classifier_params.json`
   (coefficients + intercept + scaler). A method toggle activates Phase 2 automatically once artifacts are present;
   it ships gated (`manifest.phase2_ready: false`) so the live tool stays on Phase 1 until they're exported.
+- **Phase 2 activated (full-atlas):** the auto-decoder was retrained on all 432,919 nuclei (GSE226097, Apple MPS),
+  bulk OSDR RNA-seq (14 studies) was re-acquired + re-run through DESeq2 → NNLS deconvolution → elastic-net classifier
+  (AUC 0.915 ± 0.043), and the exported bundle in `docs/assets/model/` (`manifest.phase2_ready: true`) now powers the
+  live Phase 2 method — real cell-type deconvolution, stimulus projection, and Flight-vs-GC probability in the browser.
 
 ### Changed
 - **README**: added a "Web Tool" section; listed the new scripts and files in the repository

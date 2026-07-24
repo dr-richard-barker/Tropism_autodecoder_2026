@@ -1,11 +1,30 @@
 {
-  "version": "0-pending",
-  "phase2_ready": false,
-  "present": {
-    "signature_matrix": false,
-    "stimulus_codes": false,
-    "classifier": false,
-    "flight_signature_genes": false
+  "version": "2.0.0-fullatlas",
+  "created": "",
+  "files": {
+    "signature_matrix": "signature_matrix.bin",
+    "signature_index": "signature_index.json",
+    "stimulus_codes": "stimulus_codes.json",
+    "classifier": "classifier.json",
+    "flight_signature_genes": "flight_signature_genes.json"
   },
-  "note": "Phase 2 model artifacts are not yet exported. Run Code/export_web_artifacts.py on the pipeline outputs (cell_type_signatures.csv, cluster_stimulus_codes.json, classifier_params.json) to populate this directory with signature_matrix.bin, signature_index.json, stimulus_codes.json, and classifier.json, then redeploy Pages. The web tool detects phase2_ready and enables the full auto-decoder method automatically."
+  "shapes": {
+    "signature_matrix": [
+      4000,
+      183
+    ],
+    "stimulus_codes": [
+      183,
+      32
+    ],
+    "classifier_features": 215,
+    "flight_signature_genes": 300
+  },
+  "present": {
+    "signature_matrix": true,
+    "stimulus_codes": true,
+    "classifier": true,
+    "flight_signature_genes": true
+  },
+  "phase2_ready": true
 }
