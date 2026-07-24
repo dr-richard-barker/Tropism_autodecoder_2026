@@ -39,7 +39,11 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   ├── viz_ggplantmap.R           # ggPlantMap tissue projections
 │   ├── train_autodecoder_gpu.py   # GPU / full-atlas auto-decoder training (v1.1.0)
 │   ├── export_atlas.R             # Atlas extraction for training (full or stratified subsample)
-│   └── export_web_artifacts.py    # Export Phase-2 model bundle for the web tool
+│   ├── build_signature_matrix.R   # 4000-HVG × 183-cluster signature matrix from GSE226097
+│   ├── fetch_osdr_counts.py       # Re-acquire bulk raw counts from OSDR (reproducibility)
+│   ├── build_de_inputs.py         # Build DESeq2 inputs (counts + conditions) from OSDR + metadata
+│   ├── export_web_artifacts.py    # Export Phase-2 model bundle for the web tool
+│   └── REACQUIRE_BULK.md          # End-to-end reproduce-from-public-data workflow
 ├── Data/                          # Harmonized input data
 │   └── harmonized_metadata.tsv    # 1337 samples × 19 metadata fields
 ├── Results/                       # Analysis outputs
