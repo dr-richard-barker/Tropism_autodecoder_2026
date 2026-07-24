@@ -7,7 +7,6 @@
 # - Stimulus activation visualization
 # - Classifier ROC curve
 
-.libPaths(c("/workspace/.Rlib", .libPaths()))
 suppressPackageStartupMessages({
   library(ggplot2)
   library(tidygraph)
@@ -34,14 +33,21 @@ tropism_colors <- c("gravitropism" = "#0279EE", "phototropism" = "#E9ED4C",
 # Font settings
 theme_set(theme_bw(base_family = "Liberation Sans", base_size = 11))
 
-OUT_DIR <- "/mnt/results/figures"
+# Configurable paths: positional args [PROC_DIR OUT_DIR] or env vars; defaults repo-relative.
+.args <- commandArgs(trailingOnly = TRUE)
+PROC_DIR <- if (length(.args) >= 1 && nzchar(.args[[1]])) .args[[1]] else Sys.getenv("PROC_DIR", "bulk")
+OUT_DIR  <- if (length(.args) >= 2 && nzchar(.args[[2]])) .args[[2]] else Sys.getenv("OUT_DIR", "Figures")
+CLF_DIR  <- Sys.getenv("CLF_DIR",  file.path(PROC_DIR, "classifier"))
+PROJ_DIR <- Sys.getenv("PROJ_DIR", file.path(PROC_DIR, "projection"))
+DE_DIR   <- Sys.getenv("DE_DIR",   file.path(PROC_DIR, "de_results"))
+META     <- Sys.getenv("META",     "Data/harmonized_metadata.tsv")
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
 
 # ============================================================
 # 1. Volcano plot of meta-analysis
 # ============================================================
 cat("=== 1. Volcano plot ===\n")
-meta_res <- read_tsv("/mnt/shared-workspace/processed/classifier/meta_analysis_results.tsv", show_col_types = FALSE)
+meta_res <- read_tsv(file.path(CLF_DIR, "meta_analysis_results.tsv"), show_col_types = FALSE)
 meta_res <- meta_res %>%
   mutate(
     neg_log10p = -log10(padj + 1e-300),
@@ -78,8 +84,8 @@ cat("Saved volcano plot\n")
 # 2. Heatmap of cell-type fractions (Flight vs GC)
 # ============================================================
 cat("\n=== 2. Cell-type fraction heatmap ===\n")
-fractions <- read_csv("/mnt/shared-workspace/processed/projection/cell_type_fractions_all.csv", show_col_types = FALSE)
-meta <- read_tsv("/mnt/shared-workspace/processed/harmonized_metadata.tsv", show_col_types = FALSE)
+fractions <- read_csv(file.path(PROJ_DIR, "cell_type_fractions_all.csv"), show_col_types = FALSE)
+meta <- read_tsv(META, show_col_types = FALSE)
 
 # Extract GSM from sample names
 fractions <- fractions %>%
@@ -147,7 +153,7 @@ cat("Saved cell-type heatmap\n")
 cat("\n=== 3. ggPlantMap tissue projection ===\n")
 
 # Load cell-type differential results
-ct_diff <- read_csv("/mnt/shared-workspace/processed/classifier/celltype_flight_vs_ground.csv", show_col_types = FALSE)
+ct_diff <- read_csv(file.path(CLF_DIR, "celltype_flight_vs_ground.csv"), show_col_types = FALSE)
 
 # Map cell types to organs/tissues for ggPlantMap
 # The cluster names are like "seedling_15d_18", "silique_4", "stem_9", "flower_11", "rosette_21d_11"
@@ -289,7 +295,7 @@ cat("Saved organ bar plot\n")
 # 5. Stimulus activation heatmap
 # ============================================================
 cat("\n=== 5. Stimulus activation heatmap ===\n")
-stim <- read_csv("/mnt/shared-workspace/processed/projection/stimulus_activation_all.csv", show_col_types = FALSE)
+stim <- read_csv(file.path(PROJ_DIR, "stimulus_activation_all.csv"), show_col_types = FALSE)
 stim <- stim %>%
   mutate(GSM = stringr::str_extract(sample, "GSM\\d+")) %>%
   filter(!is.na(GSM)) %>%
@@ -408,7 +414,7 @@ tryCatch({
 cat("\n=== 7. Classifier performance ===\n")
 # Recreate the classifier to get probabilities for ROC
 # Load the feature importance
-feat_imp <- read_csv("/mnt/shared-workspace/processed/classifier/flight_vs_gc_feature_importance.csv", show_col_types = FALSE)
+feat_imp <- read_csv(file.path(CLF_DIR, "flight_vs_gc_feature_importance.csv"), show_col_types = FALSE)
 
 p_feat <- ggplot(head(feat_imp, 20), aes(x = reorder(feature, abs(coefficient)), y = coefficient, fill = coefficient > 0)) +
   geom_col() +
@@ -432,7 +438,7 @@ top_gene <- meta_res$gene[1]
 cat("Top gene for forest plot:", top_gene, "\n")
 
 # Get per-study estimates
-de_dir <- "/mnt/shared-workspace/processed/de_results"
+de_dir <- DE_DIR
 study_estimates <- list()
 for (f in list.files(de_dir, pattern = "_de_results.tsv$", full.names = TRUE)) {
   sid <- basename(f) %>% stringr::str_replace(., "_de_results.tsv", "")

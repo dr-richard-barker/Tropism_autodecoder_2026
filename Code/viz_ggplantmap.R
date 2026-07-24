@@ -1,6 +1,5 @@
 #!/usr/bin/env Rscript
 # Standalone ggPlantMap tissue projection figures
-.libPaths(c("/workspace/.Rlib", .libPaths()))
 suppressPackageStartupMessages({
   library(ggPlantmap)
   library(ggplot2)
@@ -8,11 +7,15 @@ suppressPackageStartupMessages({
   library(readr)
 })
 
-OUT_DIR <- "/mnt/results/figures"
+# Configurable paths: positional args [PROC_DIR OUT_DIR] or env vars; defaults repo-relative.
+.args <- commandArgs(trailingOnly = TRUE)
+PROC_DIR <- if (length(.args) >= 1 && nzchar(.args[[1]])) .args[[1]] else Sys.getenv("PROC_DIR", "bulk")
+OUT_DIR  <- if (length(.args) >= 2 && nzchar(.args[[2]])) .args[[2]] else Sys.getenv("OUT_DIR", "Figures")
+CLF_DIR  <- Sys.getenv("CLF_DIR", file.path(PROC_DIR, "classifier"))
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
 
 # Load cell-type differential results
-ct_diff <- read_csv("/mnt/shared-workspace/processed/classifier/celltype_flight_vs_ground.csv", show_col_types = FALSE)
+ct_diff <- read_csv(file.path(CLF_DIR, "celltype_flight_vs_ground.csv"), show_col_types = FALSE)
 ct_diff <- ct_diff %>%
   mutate(
     organ = sub("_.*", "", cell_type),

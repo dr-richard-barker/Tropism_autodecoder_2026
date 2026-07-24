@@ -69,6 +69,14 @@ python Code/export_web_artifacts.py \
 Writes `manifest.phase2_ready: true`; commit `docs/assets/model/` and redeploy Pages — the tool's
 Full-auto-decoder (Phase 2) method activates automatically.
 
+## 7. (optional) Re-render the figures
+```bash
+Rscript Code/visualization.R  bulk Figures    # [PROC_DIR OUT_DIR]  (or set env vars)
+Rscript Code/viz_ggplantmap.R bulk Figures
+```
+Regenerates the volcano/heatmap/forest/KEGG and ggPlantMap panels from the reacquired
+`bulk/` outputs into `Figures/`.
+
 ## Scope notes
 - Only **OSDR RNA-seq** studies are included in the classifier re-fit (matches the original 124
   Flight/GC samples matched by GSM). GEO series and microarray studies are not yet folded in.
