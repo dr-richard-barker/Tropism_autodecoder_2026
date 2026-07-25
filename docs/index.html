@@ -142,7 +142,7 @@ AT3G45780,12.0,240.5,9.8
     <details>
       <summary>Method roadmap (Phase 2 live · Phase 3 planned)</summary>
       <p><strong>✓ Phase 2 — full pipeline parity (live).</strong> The auto-decoder was retrained on the complete 432,919-nucleus atlas (GSE226097) and the bulk OSDR RNA-seq was re-acquired and re-run through DESeq2 → NNLS deconvolution → elastic-net classifier. The model artifacts (4000-HVG × 183-cluster signature matrix, 32-dim stimulus codes, classifier coefficients, flight-signature genes) ship in <code>docs/assets/model/</code>, and the browser re-runs the same NNLS deconvolution → stimulus projection → linear classifier, returning cell-type fractions, stimulus scores and a Flight-vs-Ground-Control probability (AUC ≈ 0.915) on your data. Select <em>Full auto-decoder</em> above to use it.</p>
-      <p><strong>Phase 3 — orthology network (planned).</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table, then score with the same engine — with mapping-coverage reporting.</p>
+      <p><strong>Phase 3 — cross-species functional conservation (scoped).</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table and score with the same engine, then reveal — for the conserved orthologs of the altered signature — which protein <em>functional regions</em> (Pfam/InterPro domains) and molecular functions are perturbed across species (human, mouse, fly, worm). Scope in <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026/blob/main/docs/PHASE3_PLAN.md">PHASE3_PLAN.md</a>.</p>
     </details>
   </section>
 
