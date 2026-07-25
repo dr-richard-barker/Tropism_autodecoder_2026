@@ -22,7 +22,7 @@ An interactive, browser-based companion tool lets reviewers and readers upload t
 
 - **Live URL** (after enabling **Settings → Pages → Deploy from branch → `main` / `/docs`**): `https://dr-richard-barker.github.io/Tropism_autodecoder_2026/`
 - **Method (Phase 1)**: rank-based single-sample enrichment (singscore) against curated, literature-verified tropism marker gene sets. These are marker-enrichment scores, **not** the auto-decoder output.
-- **Phase 2 (wired, artifacts pending)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability directly in the page. It activates automatically once `Code/export_web_artifacts.py` populates `docs/assets/model/` (signature matrix, stimulus codes, classifier params) — until then the tool stays on Phase 1.
+- **Phase 2 (live)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability (AUC ≈ 0.915) directly in the page, using the full-atlas retrained model artifacts in `docs/assets/model/`. Select the **Full auto-decoder** method in the tool to use it.
 
 See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (including a Phase 3 orthology network for non-*Arabidopsis* data).
 

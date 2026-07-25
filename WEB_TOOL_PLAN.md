@@ -21,7 +21,7 @@ A single public URL (GitHub Pages) that a peer reviewer can open with no install
 - [x] "Load example" button produces a working figure in one click (bundled synthetic demo matrix, clearly labelled synthetic).
 - [x] White background, black text, red–white–blue (RdBu) diverging data scale; WCAG-AA contrast; keyboard navigable.
 - [x] Every number on screen is traceable to a transparent, documented method — no hidden or fabricated statistics.
-- [ ] (Phase 2) Full parity with the manuscript auto-decoder via exported model artifacts.
+- [x] (Phase 2 — DONE 2026-07) Full parity with the manuscript auto-decoder via exported model artifacts — live at `docs/assets/model/` (full-atlas retrain; Flight-vs-GC AUC ≈ 0.915).
 
 ---
 
@@ -90,7 +90,13 @@ No cell-type deconvolution, no 32-dim stimulus projection, no flight/ground clas
 
 ---
 
-## 5. Phase 2 — parity with the manuscript pipeline (artifact export)
+## 5. Phase 2 — parity with the manuscript pipeline (artifact export) — ✅ COMPLETED (2026-07)
+
+**Status: live.** The auto-decoder was retrained on the full 432,919-nucleus atlas (GSE226097), the bulk
+OSDR RNA-seq was re-acquired and re-run (DESeq2 → NNLS deconvolution → elastic-net classifier, AUC ≈ 0.915),
+and the artifact bundle now ships in `docs/assets/model/` (`manifest.phase2_ready: true`, version
+`2.0.0-fullatlas`). The tool's **Full auto-decoder** method is enabled on the live site. See
+`Code/REACQUIRE_BULK.md` for the reproduce-from-public-data workflow. Original design notes follow.
 
 To reproduce the manuscript's *inference* in-browser, export these static artifacts from the pipeline into `docs/assets/model/`:
 

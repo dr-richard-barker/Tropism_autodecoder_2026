@@ -93,10 +93,12 @@
     </div>
 
     <p class="callout" style="margin-top:16px">
-      <strong>What this reports.</strong> Phase-1 scores are transparent, rank-based <em>marker enrichment</em>
-      (singscore) against curated, literature-verified tropism gene sets. They describe relative signature activity
-      within your samples. They are <em>not</em> the manuscript's variational auto-decoder / cell-type deconvolution
-      output — that parity ships in Phase 2 (see below). The synthetic example is illustrative, not experimental data.
+      <strong>Two methods (toggle above).</strong> <em>Phase 1 — Curated markers</em> (default) gives transparent,
+      rank-based marker enrichment (singscore) against curated, literature-verified tropism gene sets — relative
+      signature activity within your samples. <em>Phase 2 — Full auto-decoder</em> (now live) reproduces the
+      manuscript pipeline in your browser: NNLS cell-type deconvolution onto the full 432,919-nucleus atlas
+      signature matrix, stimulus-code projection, and the elastic-net Flight-vs-Ground-Control classifier
+      (AUC ≈ 0.915). The synthetic example is illustrative, not experimental data.
     </p>
   </section>
 
@@ -133,9 +135,9 @@ AT3G45780,12.0,240.5,9.8
     </details>
 
     <details>
-      <summary>Planned upgrades (Phase 2 &amp; 3)</summary>
-      <p><strong>Phase 2 — full pipeline parity.</strong> Export the pipeline's model artifacts (4000-HVG × 183-cluster signature matrix, 32-dim stimulus codes, elastic-net classifier coefficients, meta-analysis flight-signature genes) as static files; the browser re-runs the same NNLS deconvolution → stimulus projection → linear classifier, returning the paper's cell-type fractions, stimulus scores and Flight-vs-Ground probability (AUC 0.919) on your data.</p>
-      <p><strong>Phase 3 — orthology network.</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table, then score with the same engine — with mapping-coverage reporting.</p>
+      <summary>Method roadmap (Phase 2 live · Phase 3 planned)</summary>
+      <p><strong>✓ Phase 2 — full pipeline parity (live).</strong> The auto-decoder was retrained on the complete 432,919-nucleus atlas (GSE226097) and the bulk OSDR RNA-seq was re-acquired and re-run through DESeq2 → NNLS deconvolution → elastic-net classifier. The model artifacts (4000-HVG × 183-cluster signature matrix, 32-dim stimulus codes, classifier coefficients, flight-signature genes) ship in <code>docs/assets/model/</code>, and the browser re-runs the same NNLS deconvolution → stimulus projection → linear classifier, returning cell-type fractions, stimulus scores and a Flight-vs-Ground-Control probability (AUC ≈ 0.915) on your data. Select <em>Full auto-decoder</em> above to use it.</p>
+      <p><strong>Phase 3 — orthology network (planned).</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table, then score with the same engine — with mapping-coverage reporting.</p>
     </details>
   </section>
 
