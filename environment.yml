@@ -39,6 +39,3 @@ dependencies:
   - bioconductor-scran>=1.30
   - bioconductor-scater>=1.30
   - bioconductor-annotationdbi>=1.64
-  # pip packages
-  - pip:
-    - biomni.tool

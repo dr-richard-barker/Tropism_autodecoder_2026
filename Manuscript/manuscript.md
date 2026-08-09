@@ -2,10 +2,9 @@
 
 ## Authors
 
-Richard Barker¹, Phylo Biomni²
+Richard Barker¹
 
 ¹ Independent researcher
-² Phylo Biomni
 
 ## Abstract
 

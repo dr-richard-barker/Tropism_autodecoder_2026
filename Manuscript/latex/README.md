@@ -26,9 +26,7 @@ latex/
 
 - [ ] **Not yet compile-tested** — authored without a local TeX install; build
       once on Overleaf and fix any stragglers.
-- [ ] **Authorship** — the source lists "Phylo Biomni" as an author; npj/Nature
-      policy does **not** permit AI tools as authors. Confirm the author list,
-      ORCID(s), and affiliation (flagged with `% TODO` in `main.tex`).
+- [x] **Authorship** — confirmed and corrected (removed AI tool "Phylo Biomni" as author).
 - [ ] **References** — transcribed from the manuscript; several lack
       volume/pages/DOI (marked `% TODO` in `references.bib`). Complete them.
 - [ ] **Figures** — repo PNGs. For final submission npj prefers vector (PDF/EPS)

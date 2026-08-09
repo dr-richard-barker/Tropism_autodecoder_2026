@@ -27,10 +27,7 @@
 \title{Arabidopsis thaliana Spaceflight Tropism Recognition: Integrating Bulk Transcriptomics with a Single-Cell Developmental Atlas Foundation Model}
 
 \author[1,*]{Richard Barker}
-\author[2]{Phylo Biomni}
-
 \affil[1]{Independent Researcher}
-\affil[2]{Phylo Biomni}
 
 \begin{abstract}
 Plants perceive and respond to multiple directional stimuli (tropisms) that guide growth and development. Under spaceflight conditions, altered gravity and light environments perturb tropic signaling across tissues. We present a FAIR-compliant computational pipeline that systematically integrates 1,337 \Arabidopsis spaceflight transcriptomic samples from NASA GeneLab OSDR and NCBI GEO using a custom variational auto-decoder trained on the Salk single-cell developmental atlas (432,919 nuclei, 183 clusters). Our approach: (1) deconvolves 398 bulk transcriptomes onto 183 cell types, generating 32-dimensional stimulus activation scores; (2) performs random-effects meta-analysis across 11 spaceflight studies (26,402 genes, 16,002 significant at padj $<$ 0.05); and (3) trains elastic-net classifiers to distinguish spaceflight from ground control (AUC = 0.919 $\pm$ 0.047) and classify tropism type. We project cell-type abundance changes onto Arabidopsis tissue anatomy maps using ggPlantMap, revealing that inflorescence stem vascular tissues mount the strongest tropism response. Three cell types showed significant changes (stem\_9, seed\_425d\_7, silique\_20; padj $<$ 0.05). This multi-scale integration of bulk transcriptomics, single-cell deconvolution, and tissue projection provides a powerful framework for understanding how cell types coordinate spaceflight tropism responses across organs. All code, results, and an interactive web tool are available at \url{https://github.com/dr-richard-barker/Tropism_autodecoder_2026}.

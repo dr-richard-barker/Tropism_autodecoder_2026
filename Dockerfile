@@ -1,6 +1,6 @@
 FROM condaforge/mambaforge:latest
 
-LABEL maintainer="Phylo Biomni"
+LABEL maintainer="Richard Barker <dr.richard.barker@gmail.com>"
 LABEL description="Arabidopsis thaliana spaceflight tropism recognition pipeline"
 LABEL version="1.0"
 

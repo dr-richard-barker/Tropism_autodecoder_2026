@@ -1,6 +1,6 @@
 {
   "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": "Phylo Biomni",
+  "publisher": "Richard Barker",
   "publicationYear": 2026,
   "identifier": {
     "identifier": "10.5281/zenodo.arabidopsis-tropism",
@@ -13,10 +13,6 @@
       "givenName": "Richard",
       "familyName": "Barker",
       "affiliation": []
-    },
-    {
-      "name": "Phylo Biomni",
-      "nameType": "Organizational"
     }
   ],
   "titles": [
