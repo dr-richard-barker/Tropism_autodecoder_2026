@@ -1,0 +1,94 @@
+{
+  "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42); fixed C=1.0, l1_ratio=0.5, class_weight=balanced",
+  "versions": {
+    "sklearn": "1.6.1",
+    "numpy": "2.0.2",
+    "pandas": "2.3.3"
+  },
+  "flight_vs_gc": {
+    "n": 124,
+    "n_flight": 62,
+    "n_ground": 62,
+    "fold_auc": [
+      0.9615384615384616,
+      0.967948717948718,
+      0.8397435897435896,
+      0.8974358974358976,
+      0.9305555555555555
+    ],
+    "auc_mean": 0.9194444444444445,
+    "auc_std": 0.047084243638156525,
+    "accuracy": 0.8467741935483871,
+    "report": {
+      "Ground Control": {
+        "precision": 0.8412698412698413,
+        "recall": 0.8548387096774194,
+        "f1-score": 0.848,
+        "support": 62.0
+      },
+      "Space Flight": {
+        "precision": 0.8524590163934426,
+        "recall": 0.8387096774193549,
+        "f1-score": 0.8455284552845529,
+        "support": 62.0
+      },
+      "accuracy": 0.8467741935483871,
+      "macro avg": {
+        "precision": 0.8468644288316419,
+        "recall": 0.8467741935483871,
+        "f1-score": 0.8467642276422764,
+        "support": 124.0
+      },
+      "weighted avg": {
+        "precision": 0.8468644288316419,
+        "recall": 0.8467741935483871,
+        "f1-score": 0.8467642276422764,
+        "support": 124.0
+      }
+    }
+  },
+  "tropism_type": {
+    "classes": {
+      "phototropism": 80,
+      "gravitropism": 44
+    },
+    "fold_f1_macro": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "f1_macro_mean": 1.0,
+    "f1_macro_std": 0.0,
+    "accuracy": 1.0,
+    "report": {
+      "gravitropism": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 44.0
+      },
+      "phototropism": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 80.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 124.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 124.0
+      }
+    },
+    "confusion_matrix": "tropism_confusion_matrix.csv"
+  }
+}

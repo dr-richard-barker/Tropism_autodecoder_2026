@@ -5,30 +5,38 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
-Corrections from an evidence check of the repository (28 Oct 2026). Re-running the pipeline is still to do.
+Corrections from an evidence check of the repository (28 Oct 2026). `Results/PROVENANCE.md` says where each
+result file now comes from.
 
 ### Fixed
-- **Meta-analysis τ²** (`Code/meta_classifier.py`): the DerSimonian–Laird between-study variance was divided by
-  Σw too many times, so it came out too small by a factor of Σw and random-effects p-values were far too small.
-  The fixed function matches `metafor::rma(method = "DL")` on test inputs. `Results/meta_analysis_results.tsv`,
-  the volcano plot and the "16,002 significant genes" still come from the old code (README, Limitation 7).
+- **Meta-analysis** (`Code/meta_classifier.py`): the DerSimonian–Laird τ² was too small by a factor of Σw, and
+  p-values were computed as `1 − cdf`, which underflows to 0. Both are fixed; the function matches
+  `metafor::rma(method = "DL")`. Re-run on DESeq2 results for the same 11 studies from OSDR counts re-acquired in
+  July 2026 (the v1.0.0 per-study tables were not retained): 26,527 genes tested, **248 significant** (was 16,002).
+  The volcano, forest and KEGG figures, the web tool's `flight_signature_genes.json` (now padj < 0.05 only, 215
+  genes from the 14-study retrain inputs) and all manuscripts follow.
+- **Classifier metrics recorded**: re-running `Code/meta_classifier.py` on the committed v1.0.0 projection tables
+  reproduces AUC 0.919 ± 0.047, accuracy 0.85 and tropism F1 1.000; the script now writes
+  `classifier_metrics.json`, and `tropism_confusion_matrix.csv` (80 phototropism, 44 gravitropism) is committed.
+  The cross-validation is stratified 5-fold with fixed hyperparameters, not nested; the text now says so.
+- **Full-atlas training log** committed (`Results/autodecoder_fullatlas_training_log.csv`).
+- **ggPlantMap scripts** no longer add random jitter per region; the text now reports organ-level differences only.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
-  hybridization series, not Arabidopsis. The dataset is now 1,253 samples (63 from 5 GEO series); counts in the
-  README, manuscripts and `metadata.json` follow. It was not among the 398 deconvolved samples.
-- **Citations** (`Manuscript/latex/references.bib`, `Manuscript/main.tex`, `Manuscript/manuscript.md`), checked
-  against CrossRef: Toyota & Gilroy is 2013, *Am J Bot* 100:111–125; CIBERSORTx is Newman et al. 2019,
-  *Nat Biotechnol* 37:773–782; PhysioSpace is Lenz et al. 2013, *PLoS ONE* 8:e77627 (the "Schiller 2021"
-  entry matched no paper); the ggPlantmap title and pages are corrected (*J Exp Bot* 75:5366–5376).
-- **`Manuscript/main.tex`**: GSE111555 (a human exercise study) replaced by GSE115554; spaceflight / ground
-  control counts and the top classifier features now match the data.
+  hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
+- **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
+  PhysioSpace = Lenz et al. 2013 (the "Schiller 2021" entry matched no paper); ggPlantmap title and pages.
+- **`Manuscript/main.tex`**: GSE111555 (a human exercise study) replaced by GSE115554; counts, classifier
+  features, tropism class sizes and the classifier method (scikit-learn, not glmnet; no inner CV) now match the
+  code and data.
 - **`metadata.json`**: the identifier `10.5281/zenodo.arabidopsis-tropism` resolved nowhere; it is now the
   placeholder `10.5281/zenodo.XXXXXXX` until a Zenodo DOI is minted.
-- `seed_425d_7` flight difference is +0.04 % (`Results/celltype_flight_vs_ground.csv`), not +0.05 %.
-- `Figures/dataset_summary` subtitle is computed from the metadata instead of typed in.
+- `seed_425d_7` flight difference is +0.04 %; figure subtitles are computed, not typed.
 
-### Marked TODO
-- AUC 0.919 ± 0.047, 85 % accuracy, tropism F1 1.000 and the auto-decoder metrics have no committed output
-  (README, Limitation 8). The ggPlantMap maps add random jitter per region (README, Limitation 9).
+### Still TODO
+- v1.0.0 auto-decoder metrics (val_loss 0.4300 etc.) have no surviving log (README, Limitation 8).
+- The committed `Figures/ggplantmap_*` images are still the jittered renders; re-render with
+  `Code/viz_ggplantmap.R` once the ggPlantmap package is installed (README, Limitation 9).
+- Deposit the re-acquired DESeq2 tables on Zenodo with the other retrain artefacts.
 
 ## [1.1.0] — 2026-07-21
 

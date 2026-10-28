@@ -18,7 +18,7 @@
       32
     ],
     "classifier_features": 215,
-    "flight_signature_genes": 300
+    "flight_signature_genes": 215
   },
   "present": {
     "signature_matrix": true,

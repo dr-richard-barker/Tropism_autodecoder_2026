@@ -42,10 +42,10 @@ Confirmed by inspecting the live repo (`main`):
 
 | Asset | Use to the web tool |
 |---|---|
-| `README.md`, `Manuscript/manuscript.md` | Framing, four tropism definitions, headline metrics (AUC 0.919 and 16,002 sig. genes, both TODO: README, Limitations 7–8; stem padj=0.003) shown on the landing page. |
+| `README.md`, `Manuscript/manuscript.md` | Framing, four tropism definitions, headline metrics (AUC 0.919; 248 sig. genes after the 28 Oct 2026 meta-analysis correction, README Limitation 7; stem padj=0.003) shown on the landing page. |
 | `Results/flight_vs_gc_feature_importance.csv` | Real elastic-net feature coefficients (cell-type clusters + `stim_dim_*`). Basis for the Phase-2 classifier and for the "what the model keys on" explainer. |
 | `Results/celltype_flight_vs_ground.csv` | Real per-cell-type flight-vs-ground differences (stem_9, seed_425d_7, silique_20 significant). Basis for Phase-2 tissue projection. |
-| `Results/meta_analysis_results.tsv` (26,402 genes) | Source of the real **flight-response gene signature** to add as a fifth panel in Phase 2 (export top BH-significant genes as a static list). |
+| `Results/meta_analysis_results.tsv` (26,527 genes; corrected 28 Oct 2026) | Source of the real **flight-response gene signature** to add as a fifth panel in Phase 2 (export top BH-significant genes as a static list). |
 | `metadata.json` | DataCite citation block (title, creator Richard Barker, CC-BY-4.0, DOI placeholder). |
 
 The web tool reuses these rather than inventing content, consistent with the project's "ground all docs in real content" rule.
@@ -104,7 +104,7 @@ To reproduce the manuscript's *inference* in-browser, export these static artifa
 |---|---|---|---|
 | `signature_matrix.csv` | 4000 HVG × 183 clusters | atlas preprocessing | NNLS cell-type deconvolution of an uploaded bulk profile |
 | `stimulus_codes.csv` | 183 clusters × 32 dims | `train_autodecoder.py` | stimulus-activation projection (weighted avg of per-cluster codes) |
-| `classifier_coefficients.json` | features → weights + intercept | `meta_classifier.py` | Flight-vs-GC score (the v1.0.0 model; its AUC 0.919 is a TODO, README Limitation 8) reproduced as a dot product |
+| `classifier_coefficients.json` | features → weights + intercept | `meta_classifier.py` | Flight-vs-GC score (the v1.0.0 model; AUC 0.919 in `Results/classifier_metrics.json`) reproduced as a dot product |
 | `flight_signature_genes.json` | top BH-sig genes + log2FC | `meta_classifier.py` meta-analysis | fifth "spaceflight response" panel |
 | `gene_index.json` | HVG AGI order | atlas preprocessing | align uploaded genes to the signature matrix |
 

@@ -95,7 +95,7 @@ Downstream (unchanged) after retraining: re-run `project_bulk.py`, `meta_classif
 - [ ] Re-run downstream: **Flight-vs-GC AUC ≥ 0.919** (should hold or improve); regenerate figures.
 - [ ] Update README Limitation #1 to reflect full-atlas GPU training; bump `metadata.json` version.
 
-TODO: the 0.919 AUC and 0.140 val_recon baselines above have no committed output (README, Limitation 8).
+The 0.919 AUC baseline is recorded in `Results/classifier_metrics.json`; the 0.140 val_recon baseline (v1.0.0 draft) has no committed log [TODO; README, Limitation 8].
 
 ## 6. Reproducibility & caveats
 

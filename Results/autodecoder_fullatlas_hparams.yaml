@@ -1,0 +1,8 @@
+epochs: 40
+hidden_dim: 512
+latent_dim: 32
+lr: 0.001
+n_clusters: 183
+n_genes: 4000
+n_organs: 12
+n_stages: 10
