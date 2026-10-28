@@ -6,8 +6,10 @@ All notable changes to this project are documented here. Format follows
 ## [1.1.0] — 2026-07-21
 
 Tooling release: adds an interactive web tool and a GPU / full-atlas training workflow.
-**The published auto-decoder model is unchanged** — the full 432,919-nucleus retrain is prepared
-but has not yet been run, so all v1.0.0 results (including Flight-vs-GC AUC = 0.919) still stand.
+**The published auto-decoder model is unchanged.** At release the full 432,919-nucleus retrain was prepared
+but not run. It was run by 2026-07-23 (commits 4d85728 and 7dc04df; "Phase 2 activated" below): the re-fit Flight-vs-GC classifier gives
+AUC 0.915 ± 0.043 on 124 OSDR RNA-seq samples (`docs/assets/model/classifier.json`), against 0.919 ± 0.047 for
+v1.0.0. The manuscript, the `Results/` tables and the figures still report v1.0.0.
 
 ### Added
 - **Interactive web tool** (`docs/`, GitHub Pages) — upload an *Arabidopsis* expression matrix
@@ -45,8 +47,8 @@ but has not yet been run, so all v1.0.0 results (including Flight-vs-GC AUC = 0.
 - **`metadata.json`**: `version` 1.0.0 → 1.1.0; added an `Updated` date (2026-07-21).
 
 ### Notes
-- Limitation #1 remains open until the full-atlas GPU retrain is executed; update it (and confirm
-  AUC ≥ 0.919) once results exist.
+- Limitation #1 was updated after the full-atlas GPU retrain ran (2026-07-23). The re-fit AUC, 0.915 ± 0.043,
+  is below the ≥ 0.919 target in `GPU_TRAINING_PLAN.md` §5.
 
 ## [1.0.0] — 2026-07-20
 - Initial release: end-to-end FAIR pipeline integrating 1,337 bulk transcriptomic samples with the

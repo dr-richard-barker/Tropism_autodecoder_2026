@@ -99,7 +99,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 | DE studies (DESeq2) | 11 |
 | Meta-analysis genes | 26,402 |
 | Meta-analysis significant (padj<0.05) | 16,002 |
-| Flight vs GC classifier AUC | 0.919 ± 0.047 |
+| Flight vs GC classifier AUC | 0.919 ± 0.047 (v1.0.0, as in the manuscript); 0.915 ± 0.043 after the full-atlas retrain (Limitation 1) |
 | Tropism classifier F1 | 1.000 (gravitropism vs phototropism) |
 | Significant cell-type differences | 3 (stem_9, seed_425d_7, silique_20) |
 
@@ -133,7 +133,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 - **Meta-analysis**: DerSimonian-Laird random-effects on log2FC_shrunk, BH correction
 
 ### Classification
-- **Flight vs GC**: Elastic-net logistic regression, nested 5-fold CV, AUC=0.919
+- **Flight vs GC**: Elastic-net logistic regression, nested 5-fold CV, AUC=0.919 (v1.0.0); 0.915 ± 0.043 after the full-atlas retrain
 - **Tropism type**: Multinomial elastic-net, F1=1.0 (gravitropism vs phototropism)
 
 ### Visualization
@@ -148,7 +148,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics (reference-signature-only fallback)
 4. **Metadata matching**: 124/398 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
 5. **ggkegg/SBGNview unavailable**: Rgraphviz system dependency failed; KEGG pathway network rendered with tidygraph/ggraph + org.At.tair.db annotations instead
-6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC=0.919) is the more meaningful result
+6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC 0.919 in v1.0.0; 0.915 after the full-atlas retrain) is the more meaningful result
 
 ## Reproduction
 
