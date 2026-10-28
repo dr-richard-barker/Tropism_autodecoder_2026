@@ -190,7 +190,7 @@ print(organ_diff)
 # zero-width range paints every region the midpoint colour (same as Code/viz_ggplantmap.R).
 fill_lim <- max(abs(organ_diff$mean_diff[organ_diff$organ %in% c("root", "leaf", "stem")]))
 organ_subtitle <- function(d, clusters) {
-  sprintf("Mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+  sprintf("Flight vs GC, mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
 }
 
 # Create ggPlantMap visualization for root (most relevant for gravitropism)
@@ -218,7 +218,7 @@ tryCatch({
   p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                          midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-    labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
+    labs(title = "Root tip: organ-level cell-type abundance difference",
          subtitle = organ_subtitle(root_data, "seedling")) +
     theme(legend.position = "right")
 
@@ -244,7 +244,7 @@ tryCatch({
   p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                          midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-    labs(title = "3-week rosette: Tropism signaling projection",
+    labs(title = "3-week rosette: organ-level cell-type abundance difference",
          subtitle = organ_subtitle(leaf_data, "rosette")) +
     theme(legend.position = "right")
 
@@ -270,7 +270,7 @@ tryCatch({
   p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                          midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-    labs(title = "Shoot apex: Tropism signaling integration",
+    labs(title = "Shoot apex: organ-level cell-type abundance difference",
          subtitle = organ_subtitle(stem_data, "stem")) +
     theme(legend.position = "right")
 

@@ -143,7 +143,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 - **Tropism type**: Multinomial elastic-net, F1=1.0 (gravitropism vs phototropism)
 
 ### Visualization
-- **ggPlantMap**: Tissue-level projection of cell-type abundance changes onto Arabidopsis anatomy maps (root tip, rosette, shoot apex, leaf, stem)
+- **ggPlantMap**: Organ-level projection of cell-type abundance changes onto Arabidopsis anatomy maps (root tip, rosette, shoot apex, leaf, stem)
 - **KEGG pathway network**: tidygraph/ggraph network of pathways sharing DE genes
 - **Standard plots**: Volcano, heatmap, forest, bar plot, feature importance
 

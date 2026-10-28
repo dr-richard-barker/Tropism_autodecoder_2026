@@ -656,8 +656,8 @@
 <text x='383.26' y='249.61' style='font-size: 8.80px; font-family: "Arial";' textLength='24.70px' lengthAdjust='spacingAndGlyphs'>0e+00</text>
 <text x='383.26' y='228.63' style='font-size: 8.80px; font-family: "Arial";' textLength='22.48px' lengthAdjust='spacingAndGlyphs'>3e-04</text>
 <text x='383.26' y='207.64' style='font-size: 8.80px; font-family: "Arial";' textLength='22.48px' lengthAdjust='spacingAndGlyphs'>6e-04</text>
-<text x='167.33' y='31.05' style='font-size: 11.00px; font-family: "Arial";' textLength='299.52px' lengthAdjust='spacingAndGlyphs'>Mean of 16 stem clusters: +6.2e-04, the same in every region</text>
-<text x='167.33' y='14.93' style='font-size: 13.20px; font-family: "Arial";' textLength='248.34px' lengthAdjust='spacingAndGlyphs'>Inflorescence stem: Gravitropism signaling</text>
+<text x='167.33' y='31.05' style='font-size: 11.00px; font-family: "Arial";' textLength='366.17px' lengthAdjust='spacingAndGlyphs'>Flight vs GC, mean of 16 stem clusters: +6.2e-04, the same in every region</text>
+<text x='167.33' y='14.93' style='font-size: 13.20px; font-family: "Arial";' textLength='366.06px' lengthAdjust='spacingAndGlyphs'>Inflorescence stem: organ-level cell-type abundance difference</text>
 </g>
 </g>
 </svg>

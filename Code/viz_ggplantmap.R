@@ -38,7 +38,7 @@ ct_diff <- ct_diff %>%
 organ_mean <- ct_diff %>% group_by(organ) %>% summarize(mean_diff = mean(mean_diff))
 fill_lim <- max(abs(organ_mean$mean_diff[organ_mean$organ %in% c("root", "leaf", "stem")]))
 organ_subtitle <- function(d, clusters) {
-  sprintf("Mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+  sprintf("Flight vs GC, mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
 }
 
 # ---- Root tip cross-section ----
@@ -58,7 +58,7 @@ root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
 p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                        midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-  labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
+  labs(title = "Root tip: organ-level cell-type abundance difference",
        subtitle = organ_subtitle(root_data, "seedling")) +
   theme(legend.position = "right")
 
@@ -83,7 +83,7 @@ rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.nam
 p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                        midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-  labs(title = "3-week rosette: Tropism signaling projection",
+  labs(title = "3-week rosette: organ-level cell-type abundance difference",
        subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
@@ -108,7 +108,7 @@ apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
 p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                        midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-  labs(title = "Shoot apex: Tropism signaling integration",
+  labs(title = "Shoot apex: organ-level cell-type abundance difference",
        subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 
@@ -132,7 +132,7 @@ leaf_cs_quant <- leaf_cs_map %>% dplyr::left_join(leaf_values2, by = "ROI.name")
 p_leaf_cs <- ggPlantmap::ggPlantmap.heatmap(leaf_cs_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                        midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-  labs(title = "Leaf cross-section: Phototropism signaling",
+  labs(title = "Leaf cross-section: organ-level cell-type abundance difference",
        subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
@@ -156,7 +156,7 @@ stem_map_quant <- stem_map %>% dplyr::left_join(stem_values, by = "ROI.name")
 p_stem <- ggPlantmap::ggPlantmap.heatmap(stem_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
                        midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
-  labs(title = "Inflorescence stem: Gravitropism signaling",
+  labs(title = "Inflorescence stem: organ-level cell-type abundance difference",
        subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 

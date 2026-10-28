@@ -343,11 +343,13 @@ Beyond classification, the value of projecting bulk samples onto a single-cell
 developmental atlas is that it re-frames the spaceflight response in terms of
 \textit{which} cell types carry it. The significant cell-type shifts we detect ---
 concentrated in silique, stem and late-seedling identities --- point to reproductive
-and vascular-differentiation programmes as focal points of the flight response, and
-the ggPlantMap tissue projections render this anatomically rather than leaving it as a
-gene list. This is a step from cataloguing \textit{what} changes toward localising
-\textit{where} altered tropic signalling is perceived --- the more actionable question
-for engineering plant growth off-Earth.
+and vascular-differentiation programmes as focal points of the flight response. The
+ggPlantMap maps show these shifts only at organ level: each map carries one organ's mean
+cell-type abundance difference, because the atlas clusters are not yet mapped to
+anatomical regions. A cluster \(\rightarrow\) region mapping would be the step from
+cataloguing \textit{what} changes toward localising \textit{where} in the plant the
+flight response sits --- the more actionable question for engineering plant growth
+off-Earth.
 
 The stimulus auto-decoder is deliberately reusable: once trained on the atlas, its
 32-dimensional latent codes score any new bulk transcriptome without re-training,

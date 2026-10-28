@@ -23,7 +23,8 @@ result file now comes from.
 - **ggPlantMap maps** redrawn without the random per-region jitter: every region of a map has its organ's mean
   difference, on one colour scale (±6.2 × 10⁻⁴) shared by all five maps, and each subtitle states that value.
   (A colour scale fitted to a map's single value would paint every region the midpoint colour.) The text
-  reports organ-level differences only.
+  reports organ-level differences only; the map titles and the Discussion no longer claim tropism signalling
+  or say where in the plant it is perceived.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
