@@ -76,9 +76,11 @@ def random_effects_meta(effect_sizes, variances):
     Q = np.sum(w_fe * (effect_sizes - mu_fe) ** 2)
     df = len(effect_sizes) - 1
 
-    # Between-study variance (tau^2)
+    # Between-study variance (tau^2), DerSimonian-Laird: (Q - df) / (sum(w) - sum(w^2) / sum(w)).
+    # Before 28 Oct 2026 this line divided by (sum(w)^2 - sum(w^2)), which made tau^2 too small by a
+    # factor of sum(w); Results/meta_analysis_results.tsv was produced with that error (README, Limitations).
     if Q > df:
-        tau2 = (Q - df) / np.sum(w_fe) * (np.sum(w_fe) / (np.sum(w_fe) ** 2 - np.sum(w_fe ** 2)))
+        tau2 = (Q - df) / (np.sum(w_fe) - np.sum(w_fe ** 2) / np.sum(w_fe))
     else:
         tau2 = 0.0
 

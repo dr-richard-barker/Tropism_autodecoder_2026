@@ -204,6 +204,7 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(root_data$mean_diff), length(roi_names))
   )
+  # TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
   root_values$value <- root_values$value + rnorm(length(roi_names), 0, sd(root_data$mean_diff)/2 + 0.001)
 
   root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
@@ -231,6 +232,7 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(leaf_data$mean_diff), length(roi_names))
   )
+  # TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
   leaf_values$value <- leaf_values$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
   rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.name")
@@ -258,6 +260,7 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(stem_data$mean_diff), length(roi_names))
   )
+  # TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
   apex_values$value <- apex_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
   apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
@@ -422,6 +425,7 @@ p_feat <- ggplot(head(feat_imp, 20), aes(x = reorder(feature, abs(coefficient)),
   scale_fill_manual(values = c(`TRUE` = "#FF9400", `FALSE` = "#0279EE"), name = "Direction", labels = c("GC-enriched", "Flight-enriched")) +
   labs(x = "Feature", y = "Elastic-net coefficient",
        title = "Top 20 features: Flight vs Ground Control classifier",
+       # TODO: this AUC is typed in; meta_classifier.py prints it but saves no metrics file (README, Limitation 8).
        subtitle = "AUC = 0.919 ± 0.047 (nested 5-fold CV)") +
   theme(legend.position = "bottom")
 
@@ -486,7 +490,7 @@ p_summary <- ggplot(tropism_summary, aes(x = tropism_type, y = n, fill = spacefl
   scale_fill_manual(values = flight_gc_colors) +
   labs(x = "Tropism type", y = "Number of samples",
        title = "Arabidopsis spaceflight transcriptomics dataset",
-       subtitle = "1337 samples from OSDR + GEO") +
+       subtitle = sprintf("%d samples from OSDR + GEO", nrow(meta))) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   facet_wrap(~assay_type)
 

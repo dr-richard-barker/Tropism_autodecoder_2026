@@ -3,6 +3,33 @@
 All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/); this project uses semantic versioning.
 
+## [Unreleased]
+
+Corrections from an evidence check of the repository (28 Oct 2026). Re-running the pipeline is still to do.
+
+### Fixed
+- **Meta-analysis τ²** (`Code/meta_classifier.py`): the DerSimonian–Laird between-study variance was divided by
+  Σw too many times, so it came out too small by a factor of Σw and random-effects p-values were far too small.
+  The fixed function matches `metafor::rma(method = "DL")` on test inputs. `Results/meta_analysis_results.tsv`,
+  the volcano plot and the "16,002 significant genes" still come from the old code (README, Limitation 7).
+- **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
+  hybridization series, not Arabidopsis. The dataset is now 1,253 samples (63 from 5 GEO series); counts in the
+  README, manuscripts and `metadata.json` follow. It was not among the 398 deconvolved samples.
+- **Citations** (`Manuscript/latex/references.bib`, `Manuscript/main.tex`, `Manuscript/manuscript.md`), checked
+  against CrossRef: Toyota & Gilroy is 2013, *Am J Bot* 100:111–125; CIBERSORTx is Newman et al. 2019,
+  *Nat Biotechnol* 37:773–782; PhysioSpace is Lenz et al. 2013, *PLoS ONE* 8:e77627 (the "Schiller 2021"
+  entry matched no paper); the ggPlantmap title and pages are corrected (*J Exp Bot* 75:5366–5376).
+- **`Manuscript/main.tex`**: GSE111555 (a human exercise study) replaced by GSE115554; spaceflight / ground
+  control counts and the top classifier features now match the data.
+- **`metadata.json`**: the identifier `10.5281/zenodo.arabidopsis-tropism` resolved nowhere; it is now the
+  placeholder `10.5281/zenodo.XXXXXXX` until a Zenodo DOI is minted.
+- `seed_425d_7` flight difference is +0.04 % (`Results/celltype_flight_vs_ground.csv`), not +0.05 %.
+- `Figures/dataset_summary` subtitle is computed from the metadata instead of typed in.
+
+### Marked TODO
+- AUC 0.919 ± 0.047, 85 % accuracy, tropism F1 1.000 and the auto-decoder metrics have no committed output
+  (README, Limitation 8). The ggPlantMap maps add random jitter per region (README, Limitation 9).
+
 ## [1.1.0] — 2026-07-21
 
 Tooling release: adds an interactive web tool and a GPU / full-atlas training workflow.

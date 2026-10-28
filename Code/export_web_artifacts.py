@@ -5,7 +5,7 @@ export_web_artifacts.py — assemble the Phase-2 model bundle for the web tool.
 Reads the pipeline's model artifacts and writes browser-ready files into
 docs/assets/model/, so the web tool can reproduce the manuscript's cell-type
 deconvolution (NNLS onto the signature matrix), stimulus-code projection, and
-the Flight-vs-Ground-Control elastic-net classifier (nested-CV AUC 0.919)
+the Flight-vs-Ground-Control elastic-net classifier (its nested-CV AUC is written to classifier.json)
 entirely client-side.
 
 Run this AFTER the pipeline (or the full-atlas GPU retrain) has produced:

@@ -3,7 +3,7 @@
   "publisher": "Richard Barker",
   "publicationYear": 2026,
   "identifier": {
-    "identifier": "10.5281/zenodo.arabidopsis-tropism",
+    "identifier": "10.5281/zenodo.XXXXXXX",
     "identifierType": "DOI"
   },
   "creators": [
@@ -23,7 +23,7 @@
   ],
   "descriptions": [
     {
-      "description": "A complete computational pipeline for recognizing and classifying tropism responses (gravitropism, phototropism, mechanotropism, hydrotropism) in Arabidopsis thaliana under spaceflight conditions. The pipeline integrates 1,337 bulk RNA-seq and microarray samples from NASA GeneLab OSDR (24 studies) and NCBI GEO (6 series) with the Salk Institute Arabidopsis Developmental Atlas (432,919 nuclei, 183 clusters) as a foundation model. A custom variational auto-decoder (32-dimensional latent space) enables cell-type deconvolution of bulk samples. Differential expression (DESeq2), random-effects meta-analysis (DerSimonian-Laird), and elastic-net classification (AUC=0.919 for Flight vs Ground Control) identify spaceflight-responsive genes and cell types. Results are visualized using ggPlantMap tissue projections, KEGG pathway networks, and standard bioinformatics plots.",
+      "description": "A complete computational pipeline for recognizing and classifying tropism responses (gravitropism, phototropism, mechanotropism, hydrotropism) in Arabidopsis thaliana under spaceflight conditions. The pipeline integrates 1,253 bulk RNA-seq and microarray samples from NASA GeneLab OSDR (24 studies) and NCBI GEO (5 series) with the Salk Institute Arabidopsis Developmental Atlas (432,919 nuclei, 183 clusters) as a foundation model. A custom variational auto-decoder (32-dimensional latent space) enables cell-type deconvolution of bulk samples. Differential expression (DESeq2), random-effects meta-analysis (DerSimonian-Laird), and elastic-net classification (Flight vs Ground Control AUC 0.919 in v1.0.0, TODO: not recorded in a committed output; 0.915 after the full-atlas retrain) identify spaceflight-responsive genes and cell types. Results are visualized using ggPlantMap tissue projections, KEGG pathway networks, and standard bioinformatics plots.",
       "descriptionType": "Abstract"
     }
   ],
@@ -88,7 +88,7 @@
     "13 figures (SVG + PNG)",
     "7 result tables (TSV/CSV)",
     "6 analysis scripts (Python + R)",
-    "1 harmonized metadata file (1337 samples)"
+    "1 harmonized metadata file (1253 samples)"
   ],
   "formats": [
     "text/csv",
@@ -154,11 +154,6 @@
     },
     {
       "relatedIdentifier": "GSE225299",
-      "relatedIdentifierType": "GEO",
-      "relationType": "IsDerivedFrom"
-    },
-    {
-      "relatedIdentifier": "GSE8300",
       "relatedIdentifierType": "GEO",
       "relationType": "IsDerivedFrom"
     }

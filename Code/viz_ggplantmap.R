@@ -43,6 +43,7 @@ root_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(root_data$mean_diff), length(roi_names))
 )
+# TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
 root_values$value <- root_values$value + rnorm(length(roi_names), 0, sd(root_data$mean_diff)/2 + 0.001)
 
 root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
@@ -69,6 +70,7 @@ leaf_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(leaf_data$mean_diff), length(roi_names))
 )
+# TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
 leaf_values$value <- leaf_values$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
 rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.name")
@@ -95,6 +97,7 @@ apex_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(stem_data$mean_diff), length(roi_names))
 )
+# TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
 apex_values$value <- apex_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
 apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
@@ -120,6 +123,7 @@ leaf_values2 <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(leaf_data$mean_diff), length(roi_names))
 )
+# TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
 leaf_values2$value <- leaf_values2$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
 leaf_cs_quant <- leaf_cs_map %>% dplyr::left_join(leaf_values2, by = "ROI.name")
@@ -145,6 +149,7 @@ stem_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(stem_data$mean_diff), length(roi_names))
 )
+# TODO: random jitter per region; only the organ-level mean is data (README, Limitation 9).
 stem_values$value <- stem_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
 stem_map_quant <- stem_map %>% dplyr::left_join(stem_values, by = "ROI.name")
