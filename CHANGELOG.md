@@ -20,7 +20,10 @@ result file now comes from.
   `classifier_metrics.json`, and `tropism_confusion_matrix.csv` (80 phototropism, 44 gravitropism) is committed.
   The cross-validation is stratified 5-fold with fixed hyperparameters, not nested; the text now says so.
 - **Full-atlas training log** committed (`Results/autodecoder_fullatlas_training_log.csv`).
-- **ggPlantMap scripts** no longer add random jitter per region; the text now reports organ-level differences only.
+- **ggPlantMap maps** redrawn without the random per-region jitter: every region of a map has its organ's mean
+  difference, on one colour scale (±6.2 × 10⁻⁴) shared by all five maps, and each subtitle states that value.
+  (A colour scale fitted to a map's single value would paint every region the midpoint colour.) The text
+  reports organ-level differences only.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
@@ -34,8 +37,6 @@ result file now comes from.
 
 ### Still TODO
 - v1.0.0 auto-decoder metrics (val_loss 0.4300 etc.) have no surviving log (README, Limitation 8).
-- The committed `Figures/ggplantmap_*` images are still the jittered renders; re-render with
-  `Code/viz_ggplantmap.R` once the ggPlantmap package is installed (README, Limitation 9).
 - Deposit the re-acquired DESeq2 tables on Zenodo with the other retrain artefacts.
 
 ## [1.1.0] — 2026-07-21

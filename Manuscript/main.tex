@@ -185,7 +185,7 @@ Three cell types showed significant abundance differences between spaceflight an
 
 \subsection*{Tissue Projection}
 
-The cell-type results have no cell-type $\rightarrow$ anatomical-region mapping, so each ggPlantMap map (figure \ref{fig:ggplantmap}) can only show one value per organ: the mean flight $-$ ground difference of that organ's cell types. By organ, this was largest for stem ($+6.2\times10^{-4}$; stem\_9 padj = 0.003), then silique ($+2.7\times10^{-4}$; silique\_20 padj = 0.030), flower ($+1.0\times10^{-4}$), seed ($+0.4\times10^{-4}$; seed\_425d\_7 padj = 0.027), leaf/rosette clusters ($-0.8\times10^{-4}$) and root/seedling clusters ($-3.0\times10^{-4}$); no leaf, root or flower cell type reached padj $< 0.05$. Region-level patterns in earlier versions of these maps came from random jitter added per region and are withdrawn. \textbf{[TODO: the maps shown are still the jittered renders; re-render with \texttt{Code/viz\_ggplantmap.R}, which no longer adds jitter, once the ggPlantmap package is installed]}
+The cell-type results have no cell-type $\rightarrow$ anatomical-region mapping, so each ggPlantMap map (figure \ref{fig:ggplantmap}) can only show one value per organ: the mean flight $-$ ground difference of that organ's cell types. By organ, this was largest for stem ($+6.2\times10^{-4}$; stem\_9 padj = 0.003), then silique ($+2.7\times10^{-4}$; silique\_20 padj = 0.030), flower ($+1.0\times10^{-4}$), seed ($+0.4\times10^{-4}$; seed\_425d\_7 padj = 0.027), leaf/rosette clusters ($-0.8\times10^{-4}$) and root/seedling clusters ($-3.0\times10^{-4}$); no leaf, root or flower cell type reached padj $< 0.05$. Region-level patterns in earlier versions of these maps came from random jitter added per region and are withdrawn.
 
 \section*{Discussion}
 
@@ -327,7 +327,7 @@ Elastic-net regression coefficients for top 20 features (cell types and stimulus
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
-  \includegraphics[width=\textwidth]{../Figures/ggplantmap_shoot apex_projection.png}
+  \includegraphics[width=\textwidth]{../Figures/ggplantmap_shootapex_projection.png}
   \caption{Shoot apex}
 \end{subfigure}
 \\
@@ -340,8 +340,7 @@ Elastic-net regression coefficients for top 20 features (cell types and stimulus
   \includegraphics[width=\textwidth]{../Figures/ggplantmap_stem_crosssection.png}
   \caption{Stem cross-section}
 \end{subfigure}
-\caption{\textbf{ggPlantMap Tissue Projections of Cell-Type Spaceflight Response.} \textbf{TODO:} these renders still include random per-region jitter; only each organ's mean is data (see text).
-Organ-level cell-type abundance differences (flight $-$ ground) drawn on \Arabidopsis anatomy maps. Warm colours indicate higher abundance in flight; cool colours, lower.
+\caption{\textbf{ggPlantMap Tissue Projections of Cell-Type Spaceflight Response.} Organ-level cell-type abundance differences (flight $-$ ground) drawn on \Arabidopsis anatomy maps: each map shows one organ's mean (see text), on a colour scale shared by all maps (root tip: seedling clusters; shoot apex and stem: stem clusters; rosette: rosette clusters). Warm colours indicate higher abundance in flight; cool colours, lower.
 }\label{fig:ggplantmap}
 \end{figure}
 

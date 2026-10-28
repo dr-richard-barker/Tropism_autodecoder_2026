@@ -305,7 +305,6 @@ then silique (\(+2.7\times10^{-4}\); silique\_20 \(p_{\mathrm{adj}} = 0.030\)), 
 (\(+0.4\times10^{-4}\); seed\_425d\_7 \(p_{\mathrm{adj}} = 0.027\)), leaf/rosette clusters (\(-0.8\times10^{-4}\)) and
 root/seedling clusters (\(-3.0\times10^{-4}\)); no leaf, root or flower cell type reached \(p_{\mathrm{adj}} < 0.05\).
 Region-level patterns in earlier versions of these maps came from random jitter added per region and are withdrawn.
-\textbf{[TODO: the maps shown are still the jittered renders; re-render with \texttt{Code/viz\_ggplantmap.R}, which no longer adds jitter, once the ggPlantmap package is installed]}
 
 \begin{figure}[htbp]
 \centering
@@ -314,9 +313,10 @@ Region-level patterns in earlier versions of these maps came from random jitter 
 \includegraphics[width=0.32\textwidth]{ggplantmap_shootapex_projection.png}\\[1ex]
 \includegraphics[width=0.32\textwidth]{ggplantmap_leaf_crosssection.png}\hfill
 \includegraphics[width=0.32\textwidth]{ggplantmap_stem_crosssection.png}
-\caption{\textbf{ggPlantMap tissue projections.} \textbf{TODO:} these renders still include random per-region jitter; only each organ's mean is data (see text). Cell-type abundance differences
-(Flight vs Ground Control) projected onto Arabidopsis anatomy: root tip, rosette,
-shoot apex, leaf cross-section, and inflorescence stem cross-section.}
+\caption{\textbf{ggPlantMap tissue projections.} Each map shows one value: the mean flight \(-\) ground
+cell-type abundance difference of one organ's clusters (see text), on a colour scale shared by all five maps.
+Root tip: seedling clusters; rosette and leaf cross-section: rosette clusters; shoot apex and inflorescence
+stem cross-section: stem clusters. Warm colours indicate higher abundance in flight; cool colours, lower.}
 \label{fig:ggplantmap}
 \end{figure}
 

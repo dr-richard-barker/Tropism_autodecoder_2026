@@ -33,6 +33,14 @@ ct_diff <- ct_diff %>%
 # Every ROI of a map takes its organ's mean difference: the data are per cell type, and there is no
 # cell type -> ROI mapping yet. (Before 28 Oct 2026 random jitter was added per ROI; it is gone.)
 
+# One colour scale for all five maps, symmetric about 0. With one value per map, a scale fitted to each
+# map's own range has zero width and paints every region the midpoint colour, whatever the sign.
+organ_mean <- ct_diff %>% group_by(organ) %>% summarize(mean_diff = mean(mean_diff))
+fill_lim <- max(abs(organ_mean$mean_diff[organ_mean$organ %in% c("root", "leaf", "stem")]))
+organ_subtitle <- function(d, clusters) {
+  sprintf("Mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+}
+
 # ---- Root tip cross-section ----
 cat("=== Root tip ===\n")
 root_map <- ggPlantmap::ggPm.At.roottip.crosssection
@@ -49,9 +57,9 @@ root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
 
 p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
   labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
-       subtitle = "Projected from auto-decoder deconvolution") +
+       subtitle = organ_subtitle(root_data, "seedling")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_root_projection.svg"), p_root, width = 8, height = 6)
@@ -74,9 +82,9 @@ rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.nam
 
 p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
   labs(title = "3-week rosette: Tropism signaling projection",
-       subtitle = "Phototropism-relevant tissue map") +
+       subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_rosette_projection.svg"), p_leaf, width = 8, height = 6)
@@ -99,9 +107,9 @@ apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
 
 p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
   labs(title = "Shoot apex: Tropism signaling integration",
-       subtitle = "Gravitropism and phototropism convergence zone") +
+       subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_shootapex_projection.svg"), p_apex, width = 8, height = 6)
@@ -123,9 +131,9 @@ leaf_cs_quant <- leaf_cs_map %>% dplyr::left_join(leaf_values2, by = "ROI.name")
 
 p_leaf_cs <- ggPlantmap::ggPlantmap.heatmap(leaf_cs_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
   labs(title = "Leaf cross-section: Phototropism signaling",
-       subtitle = "Palisade and spongy mesophyll response") +
+       subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_leaf_crosssection.svg"), p_leaf_cs, width = 8, height = 6)
@@ -147,9 +155,9 @@ stem_map_quant <- stem_map %>% dplyr::left_join(stem_values, by = "ROI.name")
 
 p_stem <- ggPlantmap::ggPlantmap.heatmap(stem_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
   labs(title = "Inflorescence stem: Gravitropism signaling",
-       subtitle = "Vascular tissue response to altered gravity") +
+       subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_stem_crosssection.svg"), p_stem, width = 8, height = 6)

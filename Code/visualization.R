@@ -186,6 +186,13 @@ organ_diff <- ct_diff %>%
 cat("Organ-level differences:\n")
 print(organ_diff)
 
+# One colour scale for all maps, symmetric about 0: each map has one value, and a scale fitted to that
+# zero-width range paints every region the midpoint colour (same as Code/viz_ggplantmap.R).
+fill_lim <- max(abs(organ_diff$mean_diff[organ_diff$organ %in% c("root", "leaf", "stem")]))
+organ_subtitle <- function(d, clusters) {
+  sprintf("Mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+}
+
 # Create ggPlantMap visualization for root (most relevant for gravitropism)
 # Map cell-type differences onto root tissue map
 tryCatch({
@@ -210,9 +217,9 @@ tryCatch({
 
   p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
     labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
-         subtitle = "Projected from auto-decoder deconvolution") +
+         subtitle = organ_subtitle(root_data, "seedling")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_root_projection.svg"), p_root, width = 8, height = 6)
@@ -236,9 +243,9 @@ tryCatch({
 
   p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
     labs(title = "3-week rosette: Tropism signaling projection",
-         subtitle = "Phototropism-relevant tissue map") +
+         subtitle = organ_subtitle(leaf_data, "rosette")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_rosette_projection.svg"), p_leaf, width = 8, height = 6)
@@ -262,9 +269,9 @@ tryCatch({
 
   p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
     labs(title = "Shoot apex: Tropism signaling integration",
-         subtitle = "Gravitropism and phototropism convergence zone") +
+         subtitle = organ_subtitle(stem_data, "stem")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_shootapex_projection.svg"), p_apex, width = 8, height = 6)
