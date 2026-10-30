@@ -87,7 +87,7 @@
   "sizes": [
     "13 figures (SVG + PNG)",
     "10 result tables (TSV/CSV) and 3 JSON/YAML records, listed in Results/PROVENANCE.md",
-    "6 analysis scripts (Python + R)",
+    "12 analysis scripts (7 Python, 5 R)",
     "1 harmonized metadata file (1,205 rows, 1,163 distinct samples)"
   ],
   "formats": [

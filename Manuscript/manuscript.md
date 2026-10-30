@@ -28,7 +28,7 @@ Here we present a complete pipeline that: (1) systematically acquires and harmon
 
 **GEO**: We identified 5 tropism-focused GEO series: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). (GSE8300, listed here before 28 Oct 2026, is a *Haemophilus influenzae* genomic hybridization series; its 84 rows were removed from `Data/harmonized_metadata.tsv`.) Supplementary files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
-**Harmonization**: All samples were annotated with tropism type (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition (Space Flight, Ground Control), assay type, tissue, and hardware. Tropism labels were inferred heuristically from tissue type, hardware configuration (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides.
+**Harmonization**: Samples were annotated with tropism type (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition (Space Flight, Ground Control), assay type and, where the source gives it, hardware (135 samples have none; OSDR rows have no tissue entry). Tropism labels were inferred heuristically from tissue type, hardware configuration (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides.
 
 ### Foundation Model: Salk Arabidopsis Developmental Atlas
 
@@ -53,7 +53,7 @@ The trained model produces per-cluster "stimulus codes" — 32-dimensional vecto
 
 ### Bulk Deconvolution
 
-We deconvolved 398 bulk samples (11 OSDR RNA-seq studies + 2 GEO datasets) onto the 183 atlas cell types using three methods:
+We deconvolved 398 bulk expression entries (397 samples and one parsing artefact; see Results) (11 OSDR RNA-seq studies + 2 GEO datasets) onto the 183 atlas cell types using three methods:
 
 1. **Auto-decoder stimulus codes (primary)**: Non-negative least squares (NNLS) fitting of bulk expression onto the signature matrix yields cell-type fractions, which are then used to weight the per-cluster stimulus codes, producing sample-level stimulus activation scores (32 dimensions).
 
@@ -83,7 +83,7 @@ We trained an elastic-net logistic regression classifier to distinguish:
 
 ### Dataset Composition
 
-The harmonized dataset comprises 1,163 distinct samples: 1,100 from OSDR and 63 from GEO. Tropism distribution: gravitropism (901), phototropism (198), gravitropism+phototropism (46), mechanotropism (12), hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control. Assay types: 1,004 RNA-seq, 159 microarray. The metadata has 1,205 rows because 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as gravitropism+phototropism.
+The harmonized dataset comprises 1,163 distinct samples: 1,100 from OSDR and 63 from GEO. Tropism distribution: gravitropism (901), phototropism (198), gravitropism+phototropism (46), mechanotropism (12), hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control. Assay types: 1,046 RNA-seq (12 of them pseudo-bulk from single-cell RNA-seq, GSE225299), 117 microarray. The metadata has 1,205 rows because 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as gravitropism+phototropism.
 
 ### Auto-decoder Performance
 
@@ -125,9 +125,9 @@ The meta-analysis found 248 significant genes out of 26,527, with high heterogen
 
 2. **Tropism data asymmetry**: Gravitropism and phototropism dominate the dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are underrepresented. Chemotropism and oxytropism have no dedicated Arabidopsis transcriptomics data.
 
-3. **Metadata matching**: Only 124/398 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set.
+3. **Metadata matching**: Only 124 of the 397 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set.
 
-4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects study/hardware confounding (one study per tropism class) rather than tropism-specific transcriptional signatures.
+4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects study/hardware confounding (gravitropism from one study, phototropism from two others) rather than tropism-specific transcriptional signatures.
 
 5. **Pathway visualization**: ggkegg and SBGNview were unavailable due to Rgraphviz dependency failure; KEGG pathway networks were rendered with tidygraph/ggraph instead.
 

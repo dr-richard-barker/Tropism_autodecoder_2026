@@ -93,9 +93,10 @@ obtained through direct file download.
 files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq
 data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
-\textbf{Harmonization:} All samples were annotated with tropism type
+\textbf{Harmonization:} Samples were annotated with tropism type
 (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition
-(Space Flight, Ground Control), assay type, tissue, and hardware. Tropism labels
+(Space Flight, Ground Control), assay type and, where the source gives it, hardware
+(135 samples have none; OSDR rows have no tissue entry). Tropism labels
 were inferred heuristically from tissue type, hardware configuration (EMCS \(\to\)
 gravitropism, Veggie/LED \(\to\) phototropism), light regime, and study-specific
 overrides.
@@ -134,7 +135,8 @@ stimulus codes serve as the bridge between the single-cell atlas and bulk
 deconvolution.
 
 \subsection{Bulk deconvolution}
-We deconvolved 398 bulk samples (11 OSDR RNA-seq studies + 2 GEO datasets) onto
+We deconvolved 398 bulk expression entries (397 samples and one parsing
+artefact; see Results) (11 OSDR RNA-seq studies + 2 GEO datasets) onto
 the 183 atlas cell types using three methods: (1) \textbf{Auto-decoder stimulus
 codes (primary):} non-negative least squares (NNLS) fitting of bulk expression
 onto the signature matrix yields cell-type fractions, which are then used to
@@ -178,7 +180,8 @@ The harmonized dataset comprises 1{,}163 distinct samples: 1{,}100 from OSDR and
 from GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (901),
 phototropism (198), gravitropism+phototropism (46), mechanotropism (12),
 hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control.
-Assay types: 1{,}004 RNA-seq, 159 microarray. The metadata has 1{,}205 rows because
+Assay types: 1{,}046 RNA-seq (12 of them pseudo-bulk from single-cell
+RNA-seq, GSE225299), 117 microarray. The metadata has 1{,}205 rows because
 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of
 them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted
 as gravitropism+phototropism. (GSE8300, listed in earlier versions, is a
@@ -188,8 +191,8 @@ on 28 Oct 2026, and 48 exact duplicate rows on 30 Oct 2026.)
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{dataset_summary.png}
-\caption{\textbf{Dataset composition.} Harmonized dataset of 1{,}163 distinct samples by source
-(OSDR, GEO), tropism type, spaceflight condition, and assay type.}
+\caption{\textbf{Dataset composition.} Harmonized dataset of 1{,}163 distinct samples by tropism
+type, spaceflight condition and assay type.}
 \label{fig:dataset}
 \end{figure}
 
@@ -212,16 +215,16 @@ silique\_6 (8.9\%).
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{heatmap_celltype_fractions.png}
-\caption{\textbf{Cell-type fraction heatmap.} Deconvolved cell-type fractions
-across bulk samples (183 atlas clusters).}
+\caption{\textbf{Cell-type fraction heatmap.} Column z-scores of the deconvolved fractions
+for the 160 samples matched to labels by GSM, showing the 30 most variable of the 183 atlas clusters.}
 \label{fig:celltype}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{heatmap_stimulus_activation.png}
-\caption{\textbf{Stimulus activation heatmap.} Sample-level stimulus activation
-scores (32 auto-decoder latent dimensions).}
+\caption{\textbf{Stimulus activation heatmap.} Stimulus activation scores (32 auto-decoder
+latent dimensions, column z-scores) for the 160 GSM-matched samples.}
 \label{fig:stimulus}
 \end{figure}
 
@@ -375,12 +378,11 @@ noise that inflates meta-analysis heterogeneity.
     dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are
     underrepresented. Chemotropism and oxytropism have no dedicated Arabidopsis
     transcriptomics data.
-  \item \textbf{Metadata matching:} only 124/398 deconvolved samples could be
+  \item \textbf{Metadata matching:} only 124 of the 397 deconvolved samples could be
     matched to tropism labels via GSM identifiers, limiting the classifier training
     set.
   \item \textbf{Tropism classifier confounding:} the perfect F1 \(= 1.0\) for
-    gravitropism vs phototropism reflects study/hardware confounding (one study per
-    tropism class) rather than
+    gravitropism vs phototropism reflects study/hardware confounding (gravitropism from one study, phototropism from two others) rather than
     tropism-specific transcriptional signatures.
   \item \textbf{Pathway visualization:} ggkegg and SBGNview were unavailable due to
     Rgraphviz dependency failure; KEGG pathway networks were rendered with
@@ -394,7 +396,7 @@ noise that inflates meta-analysis heterogeneity.
 The limitations above also chart the roadmap. Re-training the auto-decoder on the full
 432{,}919-nucleus atlas with GPU acceleration, and incorporating dedicated hydro-,
 thigmo- and chemotropism transcriptomes as they accumulate, would let the tropism
-classifier learn signal rather than the tissue and hardware confounds that currently
+classifier learn signal rather than the study and hardware confounds that currently
 inflate its accuracy. Because the stimulus codes are reusable, each new OSDR spaceflight
 study can then be scored against the same atlas without re-training, turning the pipeline
 into a growing, comparable reference for where and how plants perceive the orbital

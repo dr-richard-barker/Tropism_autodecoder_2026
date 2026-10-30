@@ -48,14 +48,26 @@ result file now comes from.
 - **Full-atlas retrain**: the best checkpoint is epoch 5 counted from 0 (val_loss 0.3738981, val_kld 0.207),
   not epoch 3 (0.3738992, val_kld 0.201). The standalone `Manuscript/main.tex` also gave silique_20 as
   padj 0.048 and −0.8 %; the data give 0.030 and +0.7 %.
+- **GEO assay types**: GEO lists GSE97258, GSE143760 and GSE225299 as "expression profiling by high throughput
+  sequencing" (GSE225299 is single-cell, used as pseudo-bulk), but the metadata called all 42 of their samples
+  microarray; they are now RNA-seq. Only GSE3847 is a microarray series.
+- **Methods and captions checked against code and figures** (mostly the standalone `Manuscript/main.tex`): the
+  OSDR study lists named 21 studies that are not in the data (now the 24 that are); the schema listed fields
+  that do not exist (now the 19 real columns); "glmnet" removed (the classifier is scikit-learn); the
+  ggPlantMap method claimed a curated cell-type → ROI mapping; KEGG used padj < 0.05 and |log2FC| > 1 (58
+  genes) at 150 dpi, and its hubs are ath01110 and ath01100, not ath04075 and ath00710; the heatmap captions
+  now give 160 GSM-matched samples, the 30 most variable clusters and z-scores; GEO series 5, not 6; the
+  confounding is by study and hardware, not tissue; README no longer says the CV is nested; `metadata.json`
+  lists 12 scripts; Methods say 397 deconvolved samples; `docs/assets/model/README.md` no longer says the
+  directory ships empty.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series, leaving 1,253 metadata rows (63 from 5 GEO series).
 - **Duplicate metadata rows**: 48 rows of `Data/harmonized_metadata.tsv` were exact copies (OSD-120 36, OSD-121
   12) and are removed, leaving 1,205 rows. 42 samples are listed under two OSDR studies (OSD-218/OSD-219,
   OSD-147/OSD-205), so the dataset is **1,163 distinct samples** (was reported as 1,253): OSDR 1,100, GEO 63;
   gravitropism 901, phototropism 198, both 46 (10 samples are annotated gravitropism in OSD-147 and
-  phototropism in OSD-205), mechanotropism 12, hydrotropism 6; 787 flight, 376 ground; 1,004 RNA-seq, 159
-  microarray. DE, the classifier and deconvolution are unaffected: they read count-matrix columns or match
+  phototropism in OSD-205), mechanotropism 12, hydrotropism 6; 787 flight, 376 ground; 1,046 RNA-seq, 117
+  microarray (after the assay fix below). DE, the classifier and deconvolution are unaffected: they read count-matrix columns or match
   by GSM. `Figures/dataset_summary` counts distinct samples.
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
   PhysioSpace = Lenz et al. 2013 (the "Schiller 2021" entry matched no paper); ggPlantmap title and pages.

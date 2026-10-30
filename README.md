@@ -12,7 +12,7 @@ This repository contains a complete end-to-end pipeline that:
 
 2. **Integrates the Salk Institute Arabidopsis Developmental Atlas** (GSE226097; 432,919 nuclei, 183 clusters, 10 developmental stages) as a foundation model with a custom variational auto-decoder (PhysioSpace-like stimuli auto-decoder) for cell-type deconvolution of bulk samples.
 
-3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with nested cross-validation.
+3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with stratified 5-fold cross-validation (fixed hyperparameters, not nested).
 
 4. **Visualizes results** using ggPlantMap tissue projections (organ level; Limitation 9), KEGG pathway networks (tidygraph/ggraph), heatmaps, volcano plots, and forest plots.
 
@@ -48,8 +48,8 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   └── harmonized_metadata.tsv    # 1,205 rows (1,163 distinct samples) × 19 metadata fields
 ├── Results/                       # Analysis outputs
 │   ├── meta_analysis_results.tsv  # 26,527 genes, random-effects meta-analysis (corrected 28 Oct 2026)
-│   ├── cell_type_fractions_all.csv # 398 samples × 183 cell-type fractions
-│   ├── stimulus_activation_all.csv # 398 samples × 32 stimulus dimensions
+│   ├── cell_type_fractions_all.csv # 398 entries (397 samples + 1 parsing artefact) × 183 cell-type fractions
+│   ├── stimulus_activation_all.csv # 398 entries (397 samples + 1 parsing artefact) × 32 stimulus dimensions
 │   ├── flight_vs_gc_feature_importance.csv
 │   ├── celltype_flight_vs_ground.csv
 │   ├── de_analysis_summary.tsv
@@ -97,7 +97,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 |--------|-------|
 | Total samples harmonized | 1,163 distinct samples in 1,205 metadata rows: 42 samples are listed under two OSDR studies. GSE8300 (a *H. influenzae* series, 28 Oct 2026) and 48 exact duplicate rows (30 Oct 2026) were removed |
 | OSDR studies | 24 (18 RNA-seq + 6 microarray) |
-| GEO series | 6 |
+| GEO series | 5 |
 | Atlas cells (foundation model) | 432,919 |
 | Atlas clusters | 183 |
 | Auto-decoder latent dimensions | 32 |
@@ -152,7 +152,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 1. **Auto-decoder training scale**: The v1.0.0 auto-decoder was trained on CPU with a 60,792-cell stratified subsample (all 183 clusters); the full 432k atlas was already used for the signature matrix and deconvolution. The full-atlas GPU retrain has since been **completed** (2026-07): rebuilt entirely from the public atlas (GSE226097 `global_integration_221009.rds`), the auto-decoder was retrained on all **432,919 nuclei** via `Code/export_atlas.R` → `Code/train_autodecoder_gpu.py` (Apple MPS, ~3.4 min), improving validation loss to **0.3739** (vs 0.4300 for the 60k draft; reconstruction ≈ unchanged). The **Flight-vs-Ground-Control classifier has since been regenerated** on the retrained atlas: the bulk OSDR RNA-seq counts (14 studies) were re-acquired directly from OSDR, re-run through DESeq2 → NNLS deconvolution → elastic-net classifier, reproducing **AUC 0.915 ± 0.043** (vs 0.919 for v1.0.0) on 124 matched Flight/GC samples. These retrained artifacts power the web tool's **Phase 2** (`docs/assets/model/`). Remaining v1.0.0 caveat: the static `Results/` tables and published figures in this release have not been re-rendered, and GEO/microarray studies were not part of the classifier re-fit. Large retrain artifacts (embeddings, checkpoint, `expr_sub.bin`) are archived separately (Zenodo), not in git.
 2. **OSDR API timeouts**: Large studies (OSD-37, OSD-38, OSD-480) time out on `/v2/query/data/` endpoint; count matrices obtained via direct file download
 3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics (reference-signature-only fallback)
-4. **Metadata matching**: 124/398 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
+4. **Metadata matching**: 124 of the 397 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
 5. **ggkegg/SBGNview unavailable**: Rgraphviz system dependency failed; KEGG pathway network rendered with tidygraph/ggraph + org.At.tair.db annotations instead
 6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects study/hardware confounding (all 44 gravitropism samples are OSD-321, BRIC-PDFU; all 80 phototropism samples are OSD-193 and OSD-427, Veggie; all seedlings) rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC 0.919 in v1.0.0; 0.915 after the full-atlas retrain) is the more meaningful result
 7. **Meta-analysis (corrected 28 Oct 2026)**: the DerSimonian–Laird τ² in `Code/meta_classifier.py` was too small by a factor of Σw (the sum of the fixed-effect weights), and p-values were computed as `1 − cdf`, which underflows to 0. Both are fixed; the function matches `metafor::rma(method = "DL")`. The v1.0.0 per-study DESeq2 tables were not retained, so the meta-analysis was re-run on DESeq2 results from OSDR counts re-acquired in July 2026 for the same 11 studies (`Code/REACQUIRE_BULK.md` steps 1–3; `Results/de_analysis_summary.tsv`). Result: 26,527 genes tested and 248 significant (padj < 0.05), where v1.0.0 reported 26,402 and 16,002. The volcano, forest and KEGG figures are re-rendered from it. With the old code the same re-acquired inputs give 15,926 significant genes, so almost all of the change is the correction. The re-acquired DESeq2 tables (20 MB) are not in git [TODO: deposit them on Zenodo with the other retrain artefacts].
