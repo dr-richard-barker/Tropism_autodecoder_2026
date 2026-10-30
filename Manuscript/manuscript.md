@@ -91,7 +91,7 @@ The auto-decoder converged at epoch 5 (val_loss = 0.4300, val_recon = 0.140, val
 
 ### Bulk Deconvolution
 
-All 398 bulk samples were successfully deconvolved onto the 183 atlas cell types. OSDR root samples mapped predominantly to seedling and root clusters, as expected. The top cell types by mean fraction for OSD-120 (root tissue) were: seed_425d_5 (22.0%), seedling_15d_18 (12.9%), seedling_15d_15 (11.4%), silique_4 (9.0%), silique_6 (8.9%).
+Of the 398 deconvolved entries, one (GSE143760 `gene.1`) is a parsing artefact with every fraction zero; the other 397 are bulk samples. The atlas has no root clusters, and root samples did not map mainly to seedling clusters: averaged over the 42 OSDR root samples (OSD-120, OSD-217), silique clusters hold 36% of the fraction, seedling clusters 32% and seed clusters 21%. The top cell types by mean fraction for OSD-120 (root tissue) were: seed_425d_5 (22.0%), seedling_15d_18 (12.9%), seedling_15d_15 (11.4%), silique_4 (9.0%), silique_6 (8.9%).
 
 ### Meta-analysis
 
@@ -115,7 +115,7 @@ The cell-type results have no cell-type → anatomical-region mapping, so each g
 
 This pipeline demonstrates the value of integrating bulk transcriptomics with single-cell atlas foundation models for spaceflight biology. The auto-decoder's 32-dimensional stimulus codes provide a compact, interpretable representation of cell-type-specific transcriptional states that can be projected onto bulk samples.
 
-The Flight vs Ground Control classifier (AUC = 0.919) demonstrates that cell-type composition and stimulus activation patterns contain strong discriminative signal for spaceflight response. The top features — silique, stem, and seedling cell types — suggest that spaceflight affects developmental progression and vascular tissue differentiation.
+The Flight vs Ground Control classifier (AUC = 0.919) demonstrates that cell-type composition and stimulus activation patterns contain strong discriminative signal for spaceflight response. Its largest coefficients are on silique, stem and seedling clusters (silique_20, stem_9, seedling_9d_18); which tissues these clusters are is not annotated here.
 
 The meta-analysis found 248 significant genes out of 26,527, with high heterogeneity (median I² = 88%) reflecting the diversity of experimental conditions (different tissues, ecotypes, hardware, missions, timepoints) across the 11 studies. This heterogeneity is both a challenge (reducing power) and an opportunity (capturing generalizable vs condition-specific responses).
 
@@ -130,6 +130,8 @@ The meta-analysis found 248 significant genes out of 26,527, with high heterogen
 4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than tropism-specific transcriptional signatures.
 
 5. **Pathway visualization**: ggkegg and SBGNview were unavailable due to Rgraphviz dependency failure; KEGG pathway networks were rendered with tidygraph/ggraph instead.
+
+6. **No root clusters in the atlas**: root bulk samples are decomposed onto seedling, seed and silique clusters (silique 36%, seedling 32%, seed 21% for the 42 root samples), so a root sample's cluster fractions are not its tissue composition.
 
 ## Data and Code Availability
 

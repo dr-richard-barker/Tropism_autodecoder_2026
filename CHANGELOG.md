@@ -31,6 +31,16 @@ result file now comes from.
   text now gives organ means. The bar-plot captions list the six organs the plot shows, ordered by magnitude,
   with no error bars (the plot has none). The abstracts no longer say the deconvolution recovers
   "tissue-level tropism signatures".
+- **Discussion** (LaTeX and md): no cluster in the repository is annotated as vascular, so the classifier's top
+  features and the significant shifts no longer "suggest vascular tissue differentiation". The three
+  significant shifts are stem_9, seed_425d_7 and silique_20 (seed, not "late-seedling" as written).
+- **Deconvolution results** (all three manuscripts, README): "all 398 samples successfully deconvolved" counted
+  a parsing artefact (GSE143760 `gene.1`, every fraction zero); 397 are samples. The atlas has no root clusters,
+  and root samples map mostly to silique (36 %), seedling (32 %) and seed (21 %) clusters, so "root samples mapped
+  predominantly to seedling and root clusters, as expected" is withdrawn and a limitation added. The standalone
+  `Manuscript/main.tex` also named "columella clusters" (there are none), silique samples (none were
+  deconvolved) and fraction ranges that do not recompute; that paragraph is rewritten from
+  `Results/cell_type_fractions_all.csv`.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;

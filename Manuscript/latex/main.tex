@@ -198,9 +198,10 @@ with mean 0.003, indicating well-regularized representations. \textbf{[TODO: no 
 codes were extracted for all 183 clusters.
 
 \subsection{Bulk deconvolution}
-All 398 bulk samples were successfully deconvolved onto the 183 atlas cell types
-(Fig.~\ref{fig:celltype}, Fig.~\ref{fig:stimulus}). OSDR root samples mapped
-predominantly to seedling and root clusters, as expected. The top cell types by
+Of the 398 deconvolved entries, one (GSE143760 \texttt{gene.1}) is a parsing artefact
+with every fraction zero; the other 397 are bulk samples (Fig.~\ref{fig:celltype},
+Fig.~\ref{fig:stimulus}). The atlas has no root clusters, and root samples did not map
+mainly to seedling clusters: averaged over the 42 OSDR root samples (OSD-120, OSD-217), silique clusters hold 36\% of the fraction, seedling clusters 32\% and seed clusters 21\%. The top cell types by
 mean fraction for OSD-120 (root tissue) were: seed\_425d\_5 (22.0\%),
 seedling\_15d\_18 (12.9\%), seedling\_15d\_15 (11.4\%), silique\_4 (9.0\%),
 silique\_6 (8.9\%).
@@ -333,9 +334,9 @@ cell-type-specific transcriptional states that can be projected onto bulk sample
 
 The Flight vs Ground Control classifier (AUC \(= 0.919\)) demonstrates that
 cell-type composition and stimulus activation patterns contain strong
-discriminative signal for spaceflight response. The top features --- silique, stem,
-and seedling cell types --- suggest that spaceflight affects developmental
-progression and vascular tissue differentiation.
+discriminative signal for spaceflight response. Its largest coefficients are on silique,
+stem and seedling clusters (silique\_20, stem\_9, seedling\_9d\_18); which tissues these
+clusters are is not annotated here.
 
 The meta-analysis found 248 significant genes out of 26{,}527, with high heterogeneity (median \(I^2 = 88\%\)),
 reflecting the diversity of experimental conditions (different tissues, ecotypes,
@@ -345,9 +346,8 @@ condition-specific responses).
 
 Beyond classification, the value of projecting bulk samples onto a single-cell
 developmental atlas is that it re-frames the spaceflight response in terms of
-\textit{which} cell types carry it. The significant cell-type shifts we detect ---
-concentrated in silique, stem and late-seedling identities --- point to reproductive
-and vascular-differentiation programmes as focal points of the flight response. The
+\textit{which} cell types carry it. The three significant cell-type shifts we detect are
+single clusters from stem, seed and silique (stem\_9, seed\_425d\_7, silique\_20). The
 ggPlantMap maps show these shifts only at organ level: each map carries one organ's mean
 cell-type abundance difference, because the atlas clusters are not yet mapped to
 anatomical regions. A cluster \(\rightarrow\) region mapping would be the step from
@@ -381,6 +381,9 @@ noise that inflates meta-analysis heterogeneity.
   \item \textbf{Pathway visualization:} ggkegg and SBGNview were unavailable due to
     Rgraphviz dependency failure; KEGG pathway networks were rendered with
     tidygraph/ggraph instead.
+  \item \textbf{No root clusters in the atlas:} root bulk samples are decomposed onto
+    seedling, seed and silique clusters (silique 36\%, seedling 32\%, seed 21\% for the
+    42 root samples), so a root sample's cluster fractions are not its tissue composition.
 \end{enumerate}
 
 \subsection{Outlook}
