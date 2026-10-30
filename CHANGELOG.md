@@ -18,7 +18,8 @@ result file now comes from.
 - **Classifier metrics recorded**: re-running `Code/meta_classifier.py` on the committed v1.0.0 projection tables
   reproduces AUC 0.919 ± 0.047, accuracy 0.85 and tropism F1 1.000; the script now writes
   `classifier_metrics.json`, and `tropism_confusion_matrix.csv` (80 phototropism, 44 gravitropism) is committed.
-  The cross-validation is stratified 5-fold with fixed hyperparameters, not nested; the text now says so.
+  The cross-validation is stratified 5-fold with fixed hyperparameters, not nested; the text and the web
+  tool's figure captions now say so, and the web page labels its 0.919 headline as the v1.0.0 model's.
 - **Full-atlas training log** committed (`Results/autodecoder_fullatlas_training_log.csv`).
 - **ggPlantMap maps** redrawn without the random per-region jitter: every region of a map has its organ's mean
   difference, on one colour scale (±6.2 × 10⁻⁴) shared by all five maps, and each subtitle states that value.

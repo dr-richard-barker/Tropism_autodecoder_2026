@@ -240,7 +240,7 @@
     s += `<text x="24" y="56" font-size="12" fill="#000">Arabidopsis thaliana — ${nS} sample${nS === 1 ? "" : "s"}, ${res.nCommon} signature genes matched${res.doLog ? " (log1p applied)" : ""}. NNLS deconvolution onto the 183-cluster atlas signature; elastic-net classifier.</text>`;
 
     // Panel A: Flight probability bars
-    s += `<text x="24" y="${pAtop - 16}" font-size="14" font-weight="700" fill="#000">A  P(Space Flight) — elastic-net classifier${res.auc ? ` (nested-CV AUC ${res.auc.toFixed(3)})` : ""}</text>`;
+    s += `<text x="24" y="${pAtop - 16}" font-size="14" font-weight="700" fill="#000">A  P(Space Flight) — elastic-net classifier${res.auc ? ` (5-fold CV AUC ${res.auc.toFixed(3)})` : ""}</text>`;
     const barX = padL, barW = 480, halfX = barX + barW * 0.5;
     res.samples.forEach((name, si) => {
       const y = pAtop + si * rowH, p = res.flightProb[si];
@@ -298,7 +298,7 @@
     const pc = PHASE2.model.clf.positive_class || "Space Flight";
     return [
       `**Figure ${figNumber}. Auto-decoder deconvolution and spaceflight classification of ${res.samples.length} Arabidopsis thaliana sample(s).**`,
-      `(**A**) Probability of ${pc} from the elastic-net logistic classifier${res.auc ? ` (nested 5-fold CV AUC = ${res.auc.toFixed(3)})` : ""}, computed on 183 cell-type fractions + ${res.stim[0].length} stimulus-activation scores. (**B**) Top cell-type fractions from non-negative least-squares (NNLS) deconvolution of each sample onto the 183-cluster Salk atlas signature matrix. (**C**) Stimulus activation = fractions weighted by the auto-decoder's per-cluster latent codes; shown per-column z-scaled (RdBu).`,
+      `(**A**) Probability of ${pc} from the elastic-net logistic classifier${res.auc ? ` (stratified 5-fold CV AUC = ${res.auc.toFixed(3)}, fixed hyperparameters, not nested)` : ""}, computed on 183 cell-type fractions + ${res.stim[0].length} stimulus-activation scores. (**B**) Top cell-type fractions from non-negative least-squares (NNLS) deconvolution of each sample onto the 183-cluster Salk atlas signature matrix. (**C**) Stimulus activation = fractions weighted by the auto-decoder's per-cluster latent codes; shown per-column z-scaled (RdBu).`,
       `Method: this reproduces the manuscript pipeline's inference in the browser — NNLS onto the signature matrix (as in project_bulk.py), stimulus-code projection, then StandardScaler + elastic-net logistic regression (as in meta_classifier.py). ${res.nCommon} of the model's signature genes were detected in the uploaded matrix${res.doLog ? "; values were log1p-transformed to match the log-normalized reference" : ""}.`,
       `Note: for faithful probabilities, provide normalized bulk expression (e.g. DESeq2-normalized or CPM/TPM); NNLS fidelity depends on signature-gene coverage. Model artifacts: ${res.version || "exported bundle"}.`,
     ].join("\n\n");
