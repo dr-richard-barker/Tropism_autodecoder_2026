@@ -8,7 +8,7 @@ A FAIR-compliant computational pipeline for recognizing and classifying tropism 
 
 This repository contains a complete end-to-end pipeline that:
 
-1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1190 samples) and NCBI GEO (5 tropism-focused series, 63 samples), totaling 1253 samples across gravitropism, phototropism, mechanotropism, and hydrotropism conditions.
+1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1,100 samples) and NCBI GEO (5 tropism-focused series, 63 samples), totaling 1,163 distinct samples across gravitropism, phototropism, mechanotropism, and hydrotropism conditions.
 
 2. **Integrates the Salk Institute Arabidopsis Developmental Atlas** (GSE226097; 432,919 nuclei, 183 clusters, 10 developmental stages) as a foundation model with a custom variational auto-decoder (PhysioSpace-like stimuli auto-decoder) for cell-type deconvolution of bulk samples.
 
@@ -45,7 +45,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   ├── export_web_artifacts.py    # Export Phase-2 model bundle for the web tool
 │   └── REACQUIRE_BULK.md          # End-to-end reproduce-from-public-data workflow
 ├── Data/                          # Harmonized input data
-│   └── harmonized_metadata.tsv    # 1253 samples × 19 metadata fields
+│   └── harmonized_metadata.tsv    # 1,205 rows (1,163 distinct samples) × 19 metadata fields
 ├── Results/                       # Analysis outputs
 │   ├── meta_analysis_results.tsv  # 26,527 genes, random-effects meta-analysis (corrected 28 Oct 2026)
 │   ├── cell_type_fractions_all.csv # 398 samples × 183 cell-type fractions
@@ -95,7 +95,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 
 | Metric | Value |
 |--------|-------|
-| Total samples harmonized | 1,253 (GSE8300, a *H. influenzae* series, removed 28 Oct 2026) |
+| Total samples harmonized | 1,163 distinct samples in 1,205 metadata rows: 42 samples are listed under two OSDR studies. GSE8300 (a *H. influenzae* series, 28 Oct 2026) and 48 exact duplicate rows (30 Oct 2026) were removed |
 | OSDR studies | 24 (18 RNA-seq + 6 microarray) |
 | GEO series | 6 |
 | Atlas cells (foundation model) | 432,919 |

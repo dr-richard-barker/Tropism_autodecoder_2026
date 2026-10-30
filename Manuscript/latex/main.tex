@@ -24,7 +24,7 @@ single-cell developmental atlas foundation model}
 that guide growth and development. Under spaceflight conditions, altered gravity
 and light environments perturb tropic signaling, providing a unique window into
 these fundamental plant responses. We present a FAIR-compliant computational
-pipeline that integrates 1{,}253 bulk transcriptomic samples from NASA GeneLab
+pipeline that integrates 1{,}163 bulk transcriptomic samples from NASA GeneLab
 OSDR and NCBI GEO with the Salk Institute Arabidopsis Developmental Atlas
 (432{,}919 nuclei, 183 cell-type clusters) as a foundation model. A custom
 variational auto-decoder (32-dimensional latent space) enables cell-type
@@ -83,7 +83,7 @@ results using ggPlantMap tissue projections and KEGG pathway networks.
 \subsection{Data acquisition}
 \textbf{OSDR:} We queried the NASA GeneLab OSDR metadata API to identify all
 \textit{Arabidopsis thaliana} transcriptomics studies, yielding 24 studies (18
-RNA-seq, 6 microarray) with 1{,}190 samples. Count matrices were downloaded via
+RNA-seq, 6 microarray) with 1{,}100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via
 direct file access. Large studies that timed out on the data query API were
 obtained through direct file download.
 
@@ -174,18 +174,21 @@ fractions, stimulus activation), forest plot (top gene across studies), bar plot
 \section{Results}\label{sec:results}
 
 \subsection{Dataset composition}
-The harmonized dataset comprises 1{,}253 samples: 1{,}190 from OSDR and 63 from
-GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (959),
-phototropism (240), gravitropism+phototropism (36), mechanotropism (12),
-hydrotropism (6). Spaceflight conditions: 832 Space Flight, 421 Ground Control.
-Assay types: 1{,}072 RNA-seq, 181 microarray. (GSE8300, listed in earlier
-versions, is a \textit{Haemophilus influenzae} genomic hybridization series; its
-84 rows were removed from the harmonized metadata on 28 Oct 2026.)
+The harmonized dataset comprises 1{,}163 distinct samples: 1{,}100 from OSDR and 63
+from GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (901),
+phototropism (198), gravitropism+phototropism (46), mechanotropism (12),
+hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control.
+Assay types: 1{,}004 RNA-seq, 159 microarray. The metadata has 1{,}205 rows because
+42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of
+them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted
+as gravitropism+phototropism. (GSE8300, listed in earlier versions, is a
+\textit{Haemophilus influenzae} genomic hybridization series; its 84 rows were removed
+on 28 Oct 2026, and 48 exact duplicate rows on 30 Oct 2026.)
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{dataset_summary.png}
-\caption{\textbf{Dataset composition.} Harmonized 1{,}253-sample dataset by source
+\caption{\textbf{Dataset composition.} Harmonized dataset of 1{,}163 distinct samples by source
 (OSDR, GEO), tropism type, spaceflight condition, and assay type.}
 \label{fig:dataset}
 \end{figure}

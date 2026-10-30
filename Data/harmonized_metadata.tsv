@@ -89,54 +89,6 @@ Atha_Ws_root_GC_Alight_Rep3_GSM2493764_Day13	OSDR	OSD-120	Arabidopsis thaliana		
 Atha_Ws_root_GC_dark_Rep1_GSM2493771_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
 Atha_Ws_root_GC_dark_Rep2_GSM2493772_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
 Atha_Ws_root_GC_dark_Rep3_GSM2493773_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep1_GSM2493783_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep2_GSM2493784_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep3_GSM2493785_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep1_GSM2493792_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep2_GSM2493793_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep3_GSM2493794_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep1_GSM2493765_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep2_GSM2493766_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep3_GSM2493767_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep1_GSM2493774_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep2_GSM2493775_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep3_GSM2493776_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep1_GSM2493777_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep2_GSM2493778_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep3_GSM2493779_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep1_GSM2493786_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep2_GSM2493787_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep3_GSM2493788_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep1_GSM2493759_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep2_GSM2493760_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep3_GSM2493761_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep1_GSM2493768_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep2_GSM2493769_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep3_GSM2493770_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep1_GSM2493780_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep2_GSM2493781_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep3_GSM2493782_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep1_GSM2493789_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep2_GSM2493790_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep3_GSM2493791_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep1_GSM2493762_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep2_GSM2493763_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep3_GSM2493764_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep1_GSM2493771_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep2_GSM2493772_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep3_GSM2493773_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_GC_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_GC_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
 Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
 Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
 Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		

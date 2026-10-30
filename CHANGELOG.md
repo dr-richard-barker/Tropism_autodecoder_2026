@@ -42,7 +42,14 @@ result file now comes from.
   deconvolved) and fraction ranges that do not recompute; that paragraph is rewritten from
   `Results/cell_type_fractions_all.csv`.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
-  hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
+  hybridization series, leaving 1,253 metadata rows (63 from 5 GEO series).
+- **Duplicate metadata rows**: 48 rows of `Data/harmonized_metadata.tsv` were exact copies (OSD-120 36, OSD-121
+  12) and are removed, leaving 1,205 rows. 42 samples are listed under two OSDR studies (OSD-218/OSD-219,
+  OSD-147/OSD-205), so the dataset is **1,163 distinct samples** (was reported as 1,253): OSDR 1,100, GEO 63;
+  gravitropism 901, phototropism 198, both 46 (10 samples are annotated gravitropism in OSD-147 and
+  phototropism in OSD-205), mechanotropism 12, hydrotropism 6; 787 flight, 376 ground; 1,004 RNA-seq, 159
+  microarray. DE, the classifier and deconvolution are unaffected: they read count-matrix columns or match
+  by GSM. `Figures/dataset_summary` counts distinct samples.
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
   PhysioSpace = Lenz et al. 2013 (the "Schiller 2021" entry matched no paper); ggPlantmap title and pages.
 - **`Manuscript/main.tex`**: GSE111555 (a human exercise study) replaced by GSE115554; counts, classifier

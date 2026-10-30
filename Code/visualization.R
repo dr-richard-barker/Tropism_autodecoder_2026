@@ -484,7 +484,14 @@ if (nrow(est_df) >= 2) {
 # 9. Tropism data summary
 # ============================================================
 cat("\n=== 9. Data summary ===\n")
-tropism_summary <- meta %>%
+# One row per sample: 42 samples are listed under two OSDR studies (OSD-218/219, OSD-147/205). A sample annotated
+# with different tropisms in its two studies counts as gravitropism;phototropism.
+samples <- meta %>%
+  distinct() %>%
+  group_by(sample_id) %>%
+  summarize(tropism_type = paste(sort(unique(unlist(strsplit(na.omit(tropism_type), ";")))), collapse = ";"),
+            spaceflight_condition = first(spaceflight_condition), assay_type = first(assay_type), .groups = "drop")
+tropism_summary <- samples %>%
   count(tropism_type, spaceflight_condition, assay_type) %>%
   arrange(desc(n))
 
@@ -493,7 +500,7 @@ p_summary <- ggplot(tropism_summary, aes(x = tropism_type, y = n, fill = spacefl
   scale_fill_manual(values = flight_gc_colors) +
   labs(x = "Tropism type", y = "Number of samples",
        title = "Arabidopsis spaceflight transcriptomics dataset",
-       subtitle = sprintf("%d samples from OSDR + GEO", nrow(meta))) +
+       subtitle = sprintf("%d distinct samples from OSDR + GEO", nrow(samples))) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   facet_wrap(~assay_type)
 
