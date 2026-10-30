@@ -178,7 +178,7 @@ organ_diff <- ct_diff %>%
   group_by(organ) %>%
   summarize(
     mean_diff = mean(mean_diff),
-    mean_padj = min(padj),
+    min_padj = min(padj),
     n_celltypes = n()
   ) %>%
   arrange(desc(abs(mean_diff)))

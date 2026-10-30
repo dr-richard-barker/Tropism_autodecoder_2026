@@ -28,7 +28,8 @@ pipeline that integrates 1{,}253 bulk transcriptomic samples from NASA GeneLab
 OSDR and NCBI GEO with the Salk Institute Arabidopsis Developmental Atlas
 (432{,}919 nuclei, 183 cell-type clusters) as a foundation model. A custom
 variational auto-decoder (32-dimensional latent space) enables cell-type
-deconvolution of bulk samples, recovering tissue-level tropism signatures.
+deconvolution of bulk samples into fractions of the 183 atlas clusters and stimulus
+activation scores.
 Differential expression analysis (DESeq2) across 11 spaceflight studies, combined
 with DerSimonian-Laird random-effects meta-analysis, identified 248
 genes that are significant across studies (\(p_{\mathrm{adj}} < 0.05\); 26{,}527 tested). An
@@ -274,15 +275,18 @@ Control); the subtitle AUC is read from \texttt{Results/classifier\_metrics.json
 Three cell types showed significant abundance differences between Space Flight and
 Ground Control (\(p_{\mathrm{adj}} < 0.05\)): stem\_9 (\(p_{\mathrm{adj}} = 0.003\),
 \(+1.2\%\) in flight), seed\_425d\_7 (\(p_{\mathrm{adj}} = 0.027\), \(+0.04\%\)),
-and silique\_20 (\(p_{\mathrm{adj}} = 0.030\), \(+0.7\%\)). At the organ level,
-stem tissues showed the most significant response (mean \(p_{\mathrm{adj}} =
-0.003\)), followed by seed (0.027) and silique (0.030) (Fig.~\ref{fig:organ}).
+and silique\_20 (\(p_{\mathrm{adj}} = 0.030\), \(+0.7\%\)). Averaged over each
+organ's clusters, the flight \(-\) ground difference was largest for stem
+(\(+6.2\times10^{-4}\)), then root/seedling clusters (\(-3.0\times10^{-4}\)) and silique
+(\(+2.7\times10^{-4}\)) (Fig.~\ref{fig:organ}); the three \(p_{\mathrm{adj}}\) values above are
+single clusters, not organ means.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{organ_level_diff_barplot.png}
 \caption{\textbf{Organ-level abundance differences} between Space Flight and Ground
-Control, ranked by significance.}
+Control: the mean flight \(-\) ground difference of each organ's clusters (root: seedling
+clusters; leaf: rosette clusters), ordered by magnitude.}
 \label{fig:organ}
 \end{figure}
 

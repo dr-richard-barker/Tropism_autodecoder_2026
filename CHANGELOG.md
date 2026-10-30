@@ -25,6 +25,11 @@ result file now comes from.
   (A colour scale fitted to a map's single value would paint every region the midpoint colour.) The text
   reports organ-level differences only; the map titles and the Discussion no longer claim tropism signalling
   or say where in the plant it is perceived.
+- **Organ-level results**: the 0.003 / 0.027 / 0.030 reported as organ "mean padj" are each organ's lowest
+  cluster padj (`Code/visualization.R` computed `min(padj)` under the name `mean_padj`, now `min_padj`); the
+  text now gives organ means. The bar-plot captions list the six organs the plot shows, ordered by magnitude,
+  with no error bars (the plot has none). The abstracts no longer say the deconvolution recovers
+  "tissue-level tropism signatures".
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series. The dataset is now 1,253 samples (63 from 5 GEO series).
 - **Citations** checked against CrossRef: Toyota & Gilroy 2013; CIBERSORTx = Newman et al. 2019 *Nat Biotechnol*;
