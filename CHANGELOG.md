@@ -41,6 +41,13 @@ result file now comes from.
   `Manuscript/main.tex` also named "columella clusters" (there are none), silique samples (none were
   deconvolved) and fraction ranges that do not recompute; that paragraph is rewritten from
   `Results/cell_type_fractions_all.csv`.
+- **Classifier confounding**: the manuscripts said gravitropism samples were root tissue in EMCS hardware and
+  phototropism samples shoot tissue under LED light. In the 124 classified samples, all 44 gravitropism samples
+  are OSD-321 (BRIC-PDFU) and all 80 phototropism samples OSD-193 and OSD-427 (Veggie), all seedlings: the
+  confounding is by study and hardware, and the text now says so.
+- **Full-atlas retrain**: the best checkpoint is epoch 5 counted from 0 (val_loss 0.3738981, val_kld 0.207),
+  not epoch 3 (0.3738992, val_kld 0.201). The standalone `Manuscript/main.tex` also gave silique_20 as
+  padj 0.048 and −0.8 %; the data give 0.030 and +0.7 %.
 - **GSE8300 removed** from `Data/harmonized_metadata.tsv`: GEO lists it as a *Haemophilus influenzae* genomic
   hybridization series, leaving 1,253 metadata rows (63 from 5 GEO series).
 - **Duplicate metadata rows**: 48 rows of `Data/harmonized_metadata.tsv` were exact copies (OSD-120 36, OSD-121

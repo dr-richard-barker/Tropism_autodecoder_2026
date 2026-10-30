@@ -197,7 +197,7 @@ on 28 Oct 2026, and 48 exact duplicate rows on 30 Oct 2026.)
 The auto-decoder converged at epoch 5 (val\_loss \(= 0.4300\), val\_recon \(=
 0.140\), val\_kld \(= 0.207\)). The auxiliary classifier predicted 181/183 clusters
 correctly. The 32-dimensional latent embeddings showed a range of \([-3.12, 3.19]\)
-with mean 0.003, indicating well-regularized representations. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss \(= 0.3739\) at epoch 3 (val\_recon \(= 0.139\), val\_kld \(= 0.201\); \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). Per-cluster stimulus
+with mean 0.003, indicating well-regularized representations. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss \(= 0.3739\) at epoch 5, counted from 0 (val\_recon \(= 0.139\), val\_kld \(= 0.207\); \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). Per-cluster stimulus
 codes were extracted for all 183 clusters.
 
 \subsection{Bulk deconvolution}
@@ -261,10 +261,10 @@ features were silique\_20 (coefficient \(= 1.75\)), stem\_9 (1.56), seedling\_9d
 stimulus dimensions 5 and 29 (Fig.~\ref{fig:featimp}). \textbf{Tropism type:} the
 multinomial classifier achieved F1 \(= 1.000\) for gravitropism vs phototropism (80 phototropism and 44
 gravitropism samples, all classified correctly; \texttt{Results/tropism\_confusion\_matrix.csv}),
-reflecting the strong tissue/hardware confounding between these conditions
-(gravitropism experiments predominantly use root tissue in EMCS hardware;
-phototropism experiments use shoot tissue with LED lighting). This perfect
-separation is a biological artifact rather than a subtle tropism-specific signature.
+reflecting confounding by study and hardware: every gravitropism sample comes from one
+study (OSD-321, BRIC-PDFU hardware) and every phototropism sample from two others
+(OSD-193 and OSD-427, Veggie hardware), all of them seedlings. This perfect
+separation is an artefact of the study design rather than a tropism-specific signature.
 
 \begin{figure}[htbp]
 \centering
@@ -379,7 +379,8 @@ noise that inflates meta-analysis heterogeneity.
     matched to tropism labels via GSM identifiers, limiting the classifier training
     set.
   \item \textbf{Tropism classifier confounding:} the perfect F1 \(= 1.0\) for
-    gravitropism vs phototropism reflects tissue/hardware confounding rather than
+    gravitropism vs phototropism reflects study/hardware confounding (one study per
+    tropism class) rather than
     tropism-specific transcriptional signatures.
   \item \textbf{Pathway visualization:} ggkegg and SBGNview were unavailable due to
     Rgraphviz dependency failure; KEGG pathway networks were rendered with

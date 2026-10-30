@@ -87,7 +87,7 @@ The harmonized dataset comprises 1,163 distinct samples: 1,100 from OSDR and 63 
 
 ### Auto-decoder Performance
 
-The auto-decoder converged at epoch 5 (val_loss = 0.4300, val_recon = 0.140, val_kld = 0.207). The auxiliary classifier predicted 181/183 clusters correctly. The 32-dimensional latent embeddings showed a range of [-3.12, 3.19] with mean 0.003, indicating well-regularized representations. [TODO: no committed training log records these v1.0.0 values (README, Limitation 8)] The full-atlas retrain (README, Limitation 1) has a committed log: best val_loss = 0.3739 at epoch 3 (val_recon = 0.139, val_kld = 0.201; `Results/autodecoder_fullatlas_training_log.csv`). Per-cluster stimulus codes were extracted for all 183 clusters.
+The auto-decoder converged at epoch 5 (val_loss = 0.4300, val_recon = 0.140, val_kld = 0.207). The auxiliary classifier predicted 181/183 clusters correctly. The 32-dimensional latent embeddings showed a range of [-3.12, 3.19] with mean 0.003, indicating well-regularized representations. [TODO: no committed training log records these v1.0.0 values (README, Limitation 8)] The full-atlas retrain (README, Limitation 1) has a committed log: best val_loss = 0.3739 at epoch 5, counted from 0 (val_recon = 0.139, val_kld = 0.207; `Results/autodecoder_fullatlas_training_log.csv`). Per-cluster stimulus codes were extracted for all 183 clusters.
 
 ### Bulk Deconvolution
 
@@ -101,7 +101,7 @@ Across 11 studies, 26,527 genes were tested in the random-effects meta-analysis,
 
 **Flight vs Ground Control**: The elastic-net classifier achieved AUC = 0.919 ± 0.047 (stratified 5-fold CV) with 85% accuracy (`Results/classifier_metrics.json`). The top discriminating features were silique_20 (coefficient = 1.75), stem_9 (1.56), seedling_9d_18 (-1.29), rosette_21d_11 (-1.19), and flower_11 (1.02), along with stimulus dimensions 5 and 29.
 
-**Tropism type**: The multinomial classifier achieved F1 = 1.000 for gravitropism vs phototropism (80 phototropism and 44 gravitropism samples, all classified correctly; `Results/tropism_confusion_matrix.csv`), reflecting the strong tissue/hardware confounding between these conditions (gravitropism experiments predominantly use root tissue in EMCS hardware; phototropism experiments use shoot tissue with LED lighting). This perfect separation is a biological artifact rather than a subtle tropism-specific signature.
+**Tropism type**: The multinomial classifier achieved F1 = 1.000 for gravitropism vs phototropism (80 phototropism and 44 gravitropism samples, all classified correctly; `Results/tropism_confusion_matrix.csv`), reflecting confounding by study and hardware: every gravitropism sample comes from one study (OSD-321, BRIC-PDFU hardware) and every phototropism sample from two others (OSD-193 and OSD-427, Veggie hardware), all of them seedlings. This perfect separation is an artefact of the design rather than a tropism-specific signature.
 
 ### Cell-Type-Specific Responses
 
@@ -127,7 +127,7 @@ The meta-analysis found 248 significant genes out of 26,527, with high heterogen
 
 3. **Metadata matching**: Only 124/398 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set.
 
-4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than tropism-specific transcriptional signatures.
+4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects study/hardware confounding (one study per tropism class) rather than tropism-specific transcriptional signatures.
 
 5. **Pathway visualization**: ggkegg and SBGNview were unavailable due to Rgraphviz dependency failure; KEGG pathway networks were rendered with tidygraph/ggraph instead.
 

@@ -156,7 +156,7 @@ The harmonized dataset comprises 1,163 distinct samples: 1,100 from \OSDR (18 RN
 
 \subsection*{Auto-decoder Performance}
 
-The auto-decoder converged at epoch 5 with val\_loss = 0.4300, val\_recon = 0.140, val\_kld = 0.207. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss = 0.3739 at epoch 3 (val\_recon = 0.139, val\_kld = 0.201; \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). The auxiliary classifier predicted 181/183 clusters correctly (98.9\% accuracy). The 32-dimensional latent embeddings showed meaningful separation by organ and developmental stage in PCA projection, suggesting the model captured interpretable axes of variation.
+The auto-decoder converged at epoch 5 with val\_loss = 0.4300, val\_recon = 0.140, val\_kld = 0.207. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss = 0.3739 at epoch 5, counted from 0 (val\_recon = 0.139, val\_kld = 0.207; \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). The auxiliary classifier predicted 181/183 clusters correctly (98.9\% accuracy). The 32-dimensional latent embeddings showed meaningful separation by organ and developmental stage in PCA projection, suggesting the model captured interpretable axes of variation.
 
 \subsection*{Bulk Deconvolution}
 
@@ -172,7 +172,7 @@ Across 11 studies, 26,527 genes were tested in random-effects meta-analysis, and
 The elastic-net classifier achieved AUC = 0.919 $\pm$ 0.047 (stratified 5-fold CV, $n=124$ matched samples) with 85\% accuracy (\texttt{Results/classifier\_metrics.json}). The top discriminating features were silique\_20 ($\beta = 1.75$), stem\_9 ($\beta = 1.56$) and seedling\_9d\_18 ($\beta = -1.29$) (\texttt{Results/flight\_vs\_gc\_feature\_importance.csv}). Feature importance plot provided in figure \ref{fig:classifier_fi}.
 
 \subsubsection*{Tropism Type}
-The multinomial classifier achieved F1 = 1.000 for gravitropism vs phototropism (80 phototropism and 44 gravitropism samples, all classified correctly; \texttt{Results/tropism\_confusion\_matrix.csv}), but this reflects strong tissue/hardware confounding: gravitropism experiments used EMCS hardware and root tissue, while phototropism used Veggie/LED and shoot tissue. The classifier learned experimental design rather than tropism-specific transcriptional signatures.
+The multinomial classifier achieved F1 = 1.000 for gravitropism vs phototropism (80 phototropism and 44 gravitropism samples, all classified correctly; \texttt{Results/tropism\_confusion\_matrix.csv}), but this reflects confounding by study and hardware: every gravitropism sample comes from one study (OSD-321, BRIC-PDFU hardware) and every phototropism sample from two others (OSD-193 and OSD-427, Veggie hardware), all of them seedlings. The classifier learned experimental design rather than tropism-specific transcriptional signatures.
 
 \subsection*{Cell-Type-Specific Responses}
 
@@ -180,7 +180,7 @@ Three cell types showed significant abundance differences between spaceflight an
 \begin{itemize}
   \item \textbf{stem\_9} (padj = 0.003): $+1.2\%$ mean fraction in flight samples
   \item \textbf{seed\_425d\_7} (padj = 0.027): $+0.04\%$ mean fraction in flight samples
-  \item \textbf{silique\_20} (padj = 0.048): $-0.8\%$ mean fraction in flight samples
+  \item \textbf{silique\_20} (padj = 0.030): $+0.7\%$ mean fraction in flight samples
 \end{itemize}
 
 \subsection*{Tissue Projection}
@@ -206,7 +206,7 @@ The perfect F1 = 1.0 for tropism-type classification between gravitropism and ph
   
   \item \textbf{Metadata Matching}: Only 124 of 398 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set and confounding analysis.
   
-  \item \textbf{Confounding}: The perfect tropism classifier F1 reflects tissue/hardware confounding rather than subtly differing tropism signatures, limiting biological interpretation.
+  \item \textbf{Confounding}: The perfect tropism classifier F1 reflects study/hardware confounding (one study per tropism class) rather than subtly differing tropism signatures, limiting biological interpretation.
   
   \item \textbf{No Root Clusters in the Atlas}: root bulk samples are decomposed onto seedling, seed and silique clusters (silique 36\%, seedling 32\%, seed 21\% for the 42 root samples), so a root sample's cluster fractions are not its tissue composition.
   
