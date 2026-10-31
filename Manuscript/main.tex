@@ -65,8 +65,8 @@ All 1,163 samples were annotated in a unified schema with 19 fields: sample\_id,
 The Salk atlas (GSE226097) comprises 432,919 nuclei profiled across 10 developmental stages (seedling to flower) using 10x Chromium and integrated via Harmony normalization. We used the Seurat v5 object provided by the authors. Key reference components:
 \begin{itemize}
   \item \textbf{Signature matrix}: 4,000 highly variable genes (HVGs) $\times$ 183 major cell-type clusters, using log-normalized expression per cluster.
-  \item \textbf{Cell-type markers}: Top 50 markers per cluster (9,150 total), identified via Wilcoxon rank-sum test against all other cells.
-  \item \textbf{Training subset}: 60,792 cells $\times$ 4,000 genes, stratified to cover all 183 clusters. Selected for auto-decoder training due to CPU-only availability.
+  \item \textbf{Cell-type markers}: Top 50 markers per cluster (9,150 total), identified via Wilcoxon rank-sum test against all other cells. \textbf{[TODO: no committed marker table or code]}
+  \item \textbf{Training subset}: 60,792 cells $\times$ 4,000 genes, stratified to cover all 183 clusters. Selected for auto-decoder training due to CPU-only availability. \textbf{[TODO: no committed record of this subsample]}
 \end{itemize}
 
 \subsection*{Custom Variational Auto-decoder}
@@ -91,7 +91,7 @@ where MSE$_{\text{recon}}$ is reconstruction loss, KL is Kullback--Leibler diver
   \item \textbf{Optimizer}: AdamW (lr = $1 \times 10^{-3}$, cosine annealing schedule)
   \item \textbf{Batch size}: 256
   \item \textbf{Epochs}: 40, with early stopping (patience = 8 epochs)
-  \item \textbf{Hardware}: CPU-only (no GPU available); 60,792-cell subsample
+  \item \textbf{Hardware}: CPU-only (no GPU available); 60,792-cell subsample \textbf{[TODO: no committed record]}
   \item \textbf{Best checkpoint}: Epoch 5 (val\_loss = 0.4300, val\_recon = 0.140, val\_kld = 0.207) \textbf{[TODO: no committed training log records the values in this paragraph]}
   \item \textbf{Auxiliary classifier accuracy}: 181/183 clusters predicted correctly \textbf{[TODO: no committed training log]}
 \end{itemize}
@@ -156,7 +156,7 @@ The harmonized dataset comprises 1,163 distinct samples: 1,100 from \OSDR (18 RN
 
 \subsection*{Auto-decoder Performance}
 
-The auto-decoder converged at epoch 5 with val\_loss = 0.4300, val\_recon = 0.140, val\_kld = 0.207. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss = 0.3739 at epoch 5, counted from 0 (val\_recon = 0.139, val\_kld = 0.207; \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). The auxiliary classifier predicted 181/183 clusters correctly (98.9\% accuracy). The 32-dimensional latent embeddings showed meaningful separation by organ and developmental stage in PCA projection, suggesting the model captured interpretable axes of variation.
+The auto-decoder converged at epoch 5 with val\_loss = 0.4300, val\_recon = 0.140, val\_kld = 0.207. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss = 0.3739 at epoch 5, counted from 0 (val\_recon = 0.139, val\_kld = 0.207; \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). The auxiliary classifier predicted 181/183 clusters correctly (98.9\% accuracy). The 32-dimensional latent embeddings showed meaningful separation by organ and developmental stage in PCA projection, suggesting the model captured interpretable axes of variation. \textbf{[TODO: no committed PCA output; README, Limitation 11]}
 
 \subsection*{Bulk Deconvolution}
 
@@ -210,7 +210,7 @@ The perfect F1 = 1.0 for tropism-type classification between gravitropism and ph
   
   \item \textbf{No Root Clusters in the Atlas}: root bulk samples are decomposed onto seedling, seed and silique clusters (silique 36\%, seedling 32\%, seed 21\% for the 42 root samples), so a root sample's cluster fractions are not its tissue composition.
   
-  \item \textbf{Pathway Visualization}: ggkegg and SBGNview were unavailable due to Rgraphviz system dependencies; \KEGG pathways were rendered with tidygraph/ggraph instead, limiting biological network interpretability.
+  \item \textbf{Pathway Visualization}: ggkegg and SBGNview were unavailable due to Rgraphviz system dependencies; \KEGG pathways were rendered with tidygraph/ggraph instead, limiting biological network interpretability. \textbf{[TODO: no committed log of this failure]}
 \end{enumerate}
 
 \subsection*{Future Directions}

@@ -85,7 +85,7 @@ results using ggPlantMap tissue projections and KEGG pathway networks.
 \textit{Arabidopsis thaliana} transcriptomics studies, yielding 24 studies (18
 RNA-seq, 6 microarray) with 1{,}100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via
 direct file access. Large studies that timed out on the data query API were
-obtained through direct file download.
+obtained through direct file download. \textbf{[TODO: no committed log of these timeouts; README, Limitation 11]}
 
 \textbf{GEO:} We identified 5 tropism-focused GEO series: GSE3847
 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299
@@ -99,7 +99,7 @@ data (12 samples) was aggregated to pseudo-bulk counts per sample.
 (135 samples have none; OSDR rows have no tissue entry). Tropism labels
 were inferred heuristically from tissue type, hardware configuration (EMCS \(\to\)
 gravitropism, Veggie/LED \(\to\) phototropism), light regime, and study-specific
-overrides.
+overrides. \textbf{[TODO: no committed code performs this labelling; README, Limitation 11]}
 
 \subsection{Foundation model: Salk Arabidopsis Developmental Atlas}
 The Salk atlas (GSE226097) contains 432{,}919 nuclei across 10 developmental
@@ -109,9 +109,10 @@ Harmony \cite{salk_atlas}. We loaded the Seurat v5 object and extracted:
   \item \textbf{Signature matrix:} 4{,}000 highly variable genes (HVGs) \(\times\)
     183 clusters, using log-normalized expression.
   \item \textbf{Cell-type markers:} Top 50 markers per cluster (9{,}150 total),
-    identified via Wilcoxon rank-sum test.
+    identified via Wilcoxon rank-sum test. \textbf{[TODO: no committed marker table or code]}
   \item \textbf{Per-cell HVG expression:} 60{,}792 cells \(\times\) 4{,}000 genes
     (stratified subsample covering all 183 clusters) for auto-decoder training.
+    \textbf{[TODO: no committed record of this subsample]}
 \end{itemize}
 
 \subsection{Custom variational auto-decoder}
@@ -168,7 +169,8 @@ tropism types with \(\geq 10\) matched samples).
 tissue anatomy maps (root tip cross-section, 3-week rosette, shoot apex, leaf
 cross-section, inflorescence stem cross-section). \textbf{KEGG pathway network:}
 pathways sharing differentially expressed genes, rendered as a tidygraph/ggraph
-network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure).
+network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure;
+\textbf{[TODO: no committed log of this failure]}).
 \textbf{Standard plots:} volcano plot (meta-analysis), heatmaps (cell-type
 fractions, stimulus activation), forest plot (top gene across studies), bar plot
 (organ-level differences), feature importance (classifier).
@@ -386,7 +388,7 @@ noise that inflates meta-analysis heterogeneity.
     tropism-specific transcriptional signatures.
   \item \textbf{Pathway visualization:} ggkegg and SBGNview were unavailable due to
     Rgraphviz dependency failure; KEGG pathway networks were rendered with
-    tidygraph/ggraph instead.
+    tidygraph/ggraph instead. \textbf{[TODO: no committed log of this failure]}
   \item \textbf{No root clusters in the atlas:} root bulk samples are decomposed onto
     seedling, seed and silique clusters (silique 36\%, seedling 32\%, seed 21\% for the
     42 root samples), so a root sample's cluster fractions are not its tissue composition.

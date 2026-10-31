@@ -14,7 +14,7 @@ result file now comes from.
   `metafor::rma(method = "DL")`. Re-run on DESeq2 results for the same 11 studies from OSDR counts re-acquired in
   July 2026 (the v1.0.0 per-study tables were not retained): 26,527 genes tested, **248 significant** (was 16,002).
   The volcano, forest and KEGG figures, the web tool's `flight_signature_genes.json` (now padj < 0.05 only, 215
-  genes from the 14-study retrain inputs) and all manuscripts follow.
+  genes from the retrain inputs) and all manuscripts follow.
 - **Classifier metrics recorded**: re-running `Code/meta_classifier.py` on the committed v1.0.0 projection tables
   reproduces AUC 0.919 ± 0.047, accuracy 0.85 and tropism F1 1.000; the script now writes
   `classifier_metrics.json`, and `tropism_confusion_matrix.csv` (80 phototropism, 44 gravitropism) is committed.
@@ -81,6 +81,10 @@ result file now comes from.
 ### Still TODO
 - v1.0.0 auto-decoder metrics (val_loss 0.4300 etc.) have no surviving log (README, Limitation 8).
 - Deposit the re-acquired DESeq2 tables on Zenodo with the other retrain artefacts.
+- Methods statements with no committed code, log or output are marked TODO (README, Limitation 11): the
+  tropism-labelling heuristic, the 50 markers per cluster, the 60,792-cell subsample, the retrain's run time and
+  study count, the OSDR API timeouts, the ggkegg failure, the PCA separation claim, and Phase 2 reproducing the
+  manuscript's fractions.
 
 ## [1.1.0] — 2026-07-21
 
@@ -115,7 +119,7 @@ v1.0.0. The manuscript, the `Results/` tables and the figures still report v1.0.
   (coefficients + intercept + scaler). A method toggle activates Phase 2 automatically once artifacts are present;
   it ships gated (`manifest.phase2_ready: false`) so the live tool stays on Phase 1 until they're exported.
 - **Phase 2 activated (full-atlas):** the auto-decoder was retrained on all 432,919 nuclei (GSE226097, Apple MPS),
-  bulk OSDR RNA-seq (14 studies) was re-acquired + re-run through DESeq2 → NNLS deconvolution → elastic-net classifier
+  bulk OSDR RNA-seq (14 studies [TODO: unrecorded; README, Limitation 11]) was re-acquired + re-run through DESeq2 → NNLS deconvolution → elastic-net classifier
   (AUC 0.915 ± 0.043), and the exported bundle in `docs/assets/model/` (`manifest.phase2_ready: true`) now powers the
   live Phase 2 method — real cell-type deconvolution, stimulus projection, and Flight-vs-GC probability in the browser.
 

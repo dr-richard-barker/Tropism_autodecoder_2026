@@ -24,19 +24,19 @@ Here we present a complete pipeline that: (1) systematically acquires and harmon
 
 ### Data Acquisition
 
-**OSDR**: We queried the NASA GeneLab OSDR metadata API (`https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`) to identify all Arabidopsis thaliana transcriptomics studies, yielding 24 studies (18 RNA-seq, 6 microarray) with 1,100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via direct file access (`https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/download`). Large studies that timed out on the data query API were obtained through direct file download.
+**OSDR**: We queried the NASA GeneLab OSDR metadata API (`https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`) to identify all Arabidopsis thaliana transcriptomics studies, yielding 24 studies (18 RNA-seq, 6 microarray) with 1,100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via direct file access (`https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/download`). Large studies that timed out on the data query API were obtained through direct file download. [TODO: no committed log of these timeouts; README, Limitation 11]
 
 **GEO**: We identified 5 tropism-focused GEO series: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). (GSE8300, listed here before 28 Oct 2026, is a *Haemophilus influenzae* genomic hybridization series; its 84 rows were removed from `Data/harmonized_metadata.tsv`.) Supplementary files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
-**Harmonization**: Samples were annotated with tropism type (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition (Space Flight, Ground Control), assay type and, where the source gives it, hardware (135 samples have none; OSDR rows have no tissue entry). Tropism labels were inferred heuristically from tissue type, hardware configuration (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides.
+**Harmonization**: Samples were annotated with tropism type (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition (Space Flight, Ground Control), assay type and, where the source gives it, hardware (135 samples have none; OSDR rows have no tissue entry). Tropism labels were inferred heuristically from tissue type, hardware configuration (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides. [TODO: no committed code performs this labelling; README, Limitation 11]
 
 ### Foundation Model: Salk Arabidopsis Developmental Atlas
 
 The Salk atlas (GSE226097) contains 432,919 nuclei across 10 developmental stages (seedling to flower), profiled with 10x Chromium and integrated using Harmony [3]. We loaded the Seurat v5 object and extracted:
 
 - **Signature matrix**: 4,000 highly variable genes (HVGs) × 183 clusters (orig.cluster), using log-normalized expression
-- **Cell-type markers**: Top 50 markers per cluster (9,150 total), identified via Wilcoxon rank-sum test
-- **Per-cell HVG expression**: 60,792 cells × 4,000 genes (stratified subsample covering all 183 clusters) for auto-decoder training
+- **Cell-type markers**: Top 50 markers per cluster (9,150 total), identified via Wilcoxon rank-sum test [TODO: no committed marker table or code]
+- **Per-cell HVG expression**: 60,792 cells × 4,000 genes (stratified subsample covering all 183 clusters) for auto-decoder training [TODO: no committed record of this subsample]
 
 ### Custom Variational Auto-decoder
 
@@ -76,7 +76,7 @@ We trained an elastic-net logistic regression classifier to distinguish:
 ### Visualization
 
 - **ggPlantMap**: Cell-type abundance differences projected onto Arabidopsis tissue anatomy maps (root tip cross-section, 3-week rosette, shoot apex, leaf cross-section, inflorescence stem cross-section) using the ggPlantmap.heatmap function.
-- **KEGG pathway network**: Pathways sharing differentially expressed genes, rendered as a tidygraph/ggraph network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure).
+- **KEGG pathway network**: Pathways sharing differentially expressed genes, rendered as a tidygraph/ggraph network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure; [TODO: no committed log of this failure]).
 - **Standard plots**: Volcano plot (meta-analysis), heatmaps (cell-type fractions, stimulus activation), forest plot (top gene across studies), bar plot (organ-level differences), feature importance (classifier).
 
 ## Results
@@ -129,7 +129,7 @@ The meta-analysis found 248 significant genes out of 26,527, with high heterogen
 
 4. **Tropism classifier confounding**: The perfect F1 = 1.0 for gravitropism vs phototropism reflects study/hardware confounding (gravitropism from one study, phototropism from two others) rather than tropism-specific transcriptional signatures.
 
-5. **Pathway visualization**: ggkegg and SBGNview were unavailable due to Rgraphviz dependency failure; KEGG pathway networks were rendered with tidygraph/ggraph instead.
+5. **Pathway visualization**: ggkegg and SBGNview were unavailable due to Rgraphviz dependency failure; KEGG pathway networks were rendered with tidygraph/ggraph instead. [TODO: no committed log of this failure]
 
 6. **No root clusters in the atlas**: root bulk samples are decomposed onto seedling, seed and silique clusters (silique 36%, seedling 32%, seed 21% for the 42 root samples), so a root sample's cluster fractions are not its tissue composition.
 
