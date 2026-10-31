@@ -30,7 +30,16 @@ ct_diff <- ct_diff %>%
     )
   )
 
-set.seed(42)
+# Every ROI of a map takes its organ's mean difference: the data are per cell type, and there is no
+# cell type -> ROI mapping yet. (Before 28 Oct 2026 random jitter was added per ROI; it is gone.)
+
+# One colour scale for all five maps, symmetric about 0. With one value per map, a scale fitted to each
+# map's own range has zero width and paints every region the midpoint colour, whatever the sign.
+organ_mean <- ct_diff %>% group_by(organ) %>% summarize(mean_diff = mean(mean_diff))
+fill_lim <- max(abs(organ_mean$mean_diff[organ_mean$organ %in% c("root", "leaf", "stem")]))
+organ_subtitle <- function(d, clusters) {
+  sprintf("Flight vs GC, mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+}
 
 # ---- Root tip cross-section ----
 cat("=== Root tip ===\n")
@@ -43,15 +52,14 @@ root_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(root_data$mean_diff), length(roi_names))
 )
-root_values$value <- root_values$value + rnorm(length(roi_names), 0, sd(root_data$mean_diff)/2 + 0.001)
 
 root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
 
 p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
-  labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
-       subtitle = "Projected from auto-decoder deconvolution") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+  labs(title = "Root tip: organ-level cell-type abundance difference",
+       subtitle = organ_subtitle(root_data, "seedling")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_root_projection.svg"), p_root, width = 8, height = 6)
@@ -69,15 +77,14 @@ leaf_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(leaf_data$mean_diff), length(roi_names))
 )
-leaf_values$value <- leaf_values$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
 rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.name")
 
 p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
-  labs(title = "3-week rosette: Tropism signaling projection",
-       subtitle = "Phototropism-relevant tissue map") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+  labs(title = "3-week rosette: organ-level cell-type abundance difference",
+       subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_rosette_projection.svg"), p_leaf, width = 8, height = 6)
@@ -95,15 +102,14 @@ apex_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(stem_data$mean_diff), length(roi_names))
 )
-apex_values$value <- apex_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
 apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
 
 p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
-  labs(title = "Shoot apex: Tropism signaling integration",
-       subtitle = "Gravitropism and phototropism convergence zone") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+  labs(title = "Shoot apex: organ-level cell-type abundance difference",
+       subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_shootapex_projection.svg"), p_apex, width = 8, height = 6)
@@ -120,15 +126,14 @@ leaf_values2 <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(leaf_data$mean_diff), length(roi_names))
 )
-leaf_values2$value <- leaf_values2$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
 leaf_cs_quant <- leaf_cs_map %>% dplyr::left_join(leaf_values2, by = "ROI.name")
 
 p_leaf_cs <- ggPlantmap::ggPlantmap.heatmap(leaf_cs_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
-  labs(title = "Leaf cross-section: Phototropism signaling",
-       subtitle = "Palisade and spongy mesophyll response") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+  labs(title = "Leaf cross-section: organ-level cell-type abundance difference",
+       subtitle = organ_subtitle(leaf_data, "rosette")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_leaf_crosssection.svg"), p_leaf_cs, width = 8, height = 6)
@@ -145,15 +150,14 @@ stem_values <- data.frame(
   ROI.name = roi_names,
   value = rep(mean(stem_data$mean_diff), length(roi_names))
 )
-stem_values$value <- stem_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
 stem_map_quant <- stem_map %>% dplyr::left_join(stem_values, by = "ROI.name")
 
 p_stem <- ggPlantmap::ggPlantmap.heatmap(stem_map_quant, value.quant = value) +
   scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                       midpoint = 0, name = "Fraction\ndifference") +
-  labs(title = "Inflorescence stem: Gravitropism signaling",
-       subtitle = "Vascular tissue response to altered gravity") +
+                       midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+  labs(title = "Inflorescence stem: organ-level cell-type abundance difference",
+       subtitle = organ_subtitle(stem_data, "stem")) +
   theme(legend.position = "right")
 
 ggsave(file.path(OUT_DIR, "ggplantmap_stem_crosssection.svg"), p_stem, width = 8, height = 6)

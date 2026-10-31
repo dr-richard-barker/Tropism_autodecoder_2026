@@ -24,11 +24,9 @@ latex/
 
 ## Status / TODO before submission
 
-- [ ] **Not yet compile-tested** — authored without a local TeX install; build
-      once on Overleaf and fix any stragglers.
+- [x] **Compile-tested** — builds with latexmk (pdflatex + BibTeX) without errors or BibTeX warnings (28 Oct 2026); CI also builds it.
 - [x] **Authorship** — confirmed and corrected (removed AI tool "Phylo Biomni" as author).
-- [ ] **References** — transcribed from the manuscript; several lack
-      volume/pages/DOI (marked `% TODO` in `references.bib`). Complete them.
+- [x] **References** — checked against CrossRef and completed with volume/pages/DOI (28 Oct 2026); four wrong entries corrected.
 - [ ] **Figures** — repo PNGs. For final submission npj prefers vector (PDF/EPS)
       or ≥300 dpi; swap files in `figures/` and paths resolve unchanged.
 

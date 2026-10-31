@@ -89,54 +89,6 @@ Atha_Ws_root_GC_Alight_Rep3_GSM2493764_Day13	OSDR	OSD-120	Arabidopsis thaliana		
 Atha_Ws_root_GC_dark_Rep1_GSM2493771_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
 Atha_Ws_root_GC_dark_Rep2_GSM2493772_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
 Atha_Ws_root_GC_dark_Rep3_GSM2493773_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep1_GSM2493783_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep2_GSM2493784_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_Alight_Rep3_GSM2493785_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep1_GSM2493792_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep2_GSM2493793_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_FLT_dark_Rep3_GSM2493794_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep1_GSM2493765_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep2_GSM2493766_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_Alight_Rep3_GSM2493767_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep1_GSM2493774_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep2_GSM2493775_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0-PhyD_root_GC_dark_Rep3_GSM2493776_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep1_GSM2493777_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep2_GSM2493778_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_Alight_Rep3_GSM2493779_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep1_GSM2493786_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep2_GSM2493787_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_FLT_dark_Rep3_GSM2493788_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep1_GSM2493759_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep2_GSM2493760_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_Alight_Rep3_GSM2493761_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep1_GSM2493768_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep2_GSM2493769_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Col-0_root_GC_dark_Rep3_GSM2493770_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep1_GSM2493780_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep2_GSM2493781_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_Alight_Rep3_GSM2493782_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep1_GSM2493789_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep2_GSM2493790_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_FLT_dark_Rep3_GSM2493791_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Space Flight			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep1_GSM2493762_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep2_GSM2493763_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_Alight_Rep3_GSM2493764_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep1_GSM2493771_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep2_GSM2493772_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ws_root_GC_dark_Rep3_GSM2493773_Day13	OSDR	OSD-120	Arabidopsis thaliana		root			Ground Control			gravitropism	petri dish				RNA-seq		/mnt/shared-workspace/raw_osdr/counts/OSD-120_unnormalized_counts.csv
-Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_GC_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
-Atha_Ler-0_sShoots_GC_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
-Atha_Ler-0_sShoots_GC_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Ground Control			gravitropism	Orbital Environmental Simulator (OES)				microarray		
 Atha_Ler-0_sShoots_FLT_Rep1	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
 Atha_Ler-0_sShoots_FLT_Rep2	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
 Atha_Ler-0_sShoots_FLT_Rep3	OSDR	OSD-121	Arabidopsis thaliana		shoot	Landsberg ecotype		Space Flight			gravitropism	BRIC-PDFU				microarray		
@@ -1204,132 +1156,48 @@ GSM87747	GEO	GSE3847	Arabidopsis thaliana	hypocotyl	hypocotyl			Ground Control	1
 GSM87748	GEO	GSE3847	Arabidopsis thaliana	hypocotyl	hypocotyl			Ground Control	1g		gravitropism					microarray		
 GSM87749	GEO	GSE3847	Arabidopsis thaliana	hypocotyl	hypocotyl			Ground Control	1g		gravitropism					microarray		
 GSM87750	GEO	GSE3847	Arabidopsis thaliana	hypocotyl	hypocotyl			Ground Control	1g		gravitropism					microarray		
-GSM201546	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201575	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201576	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201577	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201578	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201579	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201580	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201581	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201582	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201583	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201584	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201585	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201587	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201653	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201654	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201655	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201656	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201657	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201658	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201659	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201688	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201689	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201690	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201732	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201735	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201738	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201740	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201754	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201769	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201771	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201774	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201776	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201779	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201781	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201783	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201785	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201787	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201789	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201790	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201798	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201800	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201803	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201807	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201810	GEO	GSE8300	Arabidopsis thaliana	KW20	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201885	GEO	GSE8300	Arabidopsis thaliana	HK295	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201886	GEO	GSE8300	Arabidopsis thaliana	HK2111	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201963	GEO	GSE8300	Arabidopsis thaliana	HK389	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201964	GEO	GSE8300	Arabidopsis thaliana	HK635	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201965	GEO	GSE8300	Arabidopsis thaliana	HK367	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201968	GEO	GSE8300	Arabidopsis thaliana	HK2067	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201970	GEO	GSE8300	Arabidopsis thaliana	HK1219	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201974	GEO	GSE8300	Arabidopsis thaliana	HK368	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201976	GEO	GSE8300	Arabidopsis thaliana	HK715	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201977	GEO	GSE8300	Arabidopsis thaliana	HK61	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201978	GEO	GSE8300	Arabidopsis thaliana	HK1136	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201979	GEO	GSE8300	Arabidopsis thaliana	HK1220	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201980	GEO	GSE8300	Arabidopsis thaliana	HK1246	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201981	GEO	GSE8300	Arabidopsis thaliana	HK2111	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201982	GEO	GSE8300	Arabidopsis thaliana	HK1214	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201983	GEO	GSE8300	Arabidopsis thaliana	HK1212	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201984	GEO	GSE8300	Arabidopsis thaliana	HK1210	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201985	GEO	GSE8300	Arabidopsis thaliana	HK295	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201986	GEO	GSE8300	Arabidopsis thaliana	HK1240	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201987	GEO	GSE8300	Arabidopsis thaliana	HK1220	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201988	GEO	GSE8300	Arabidopsis thaliana	HK367	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201996	GEO	GSE8300	Arabidopsis thaliana	HK1214	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201997	GEO	GSE8300	Arabidopsis thaliana	HK2067	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201998	GEO	GSE8300	Arabidopsis thaliana	HK870	seedling			Ground Control	1g		gravitropism					microarray		
-GSM201999	GEO	GSE8300	Arabidopsis thaliana	HK870	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202000	GEO	GSE8300	Arabidopsis thaliana	HK1141	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202001	GEO	GSE8300	Arabidopsis thaliana	HK2122	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202113	GEO	GSE8300	Arabidopsis thaliana	HK635	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202115	GEO	GSE8300	Arabidopsis thaliana	HK389	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202134	GEO	GSE8300	Arabidopsis thaliana	HK1219	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202136	GEO	GSE8300	Arabidopsis thaliana	HK61	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202138	GEO	GSE8300	Arabidopsis thaliana	HK1136	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202139	GEO	GSE8300	Arabidopsis thaliana	HK1210	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202140	GEO	GSE8300	Arabidopsis thaliana	HK1212	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202142	GEO	GSE8300	Arabidopsis thaliana	HK715	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202143	GEO	GSE8300	Arabidopsis thaliana	HK2122	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202145	GEO	GSE8300	Arabidopsis thaliana	HK1246	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202177	GEO	GSE8300	Arabidopsis thaliana	HK1141	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202179	GEO	GSE8300	Arabidopsis thaliana	HK1240	seedling			Ground Control	1g		gravitropism					microarray		
-GSM202180	GEO	GSE8300	Arabidopsis thaliana	HK368	seedling			Ground Control	1g		gravitropism					microarray		
-GSM4274298	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274299	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274300	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274301	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274302	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274303	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274304	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274305	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274306	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274307	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274308	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274309	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274310	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274311	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274312	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274313	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274314	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274315	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274316	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274317	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274318	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274319	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274320	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM4274321	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					microarray		
-GSM2560250	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM2560251	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM2560252	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM2560253	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM2560254	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM2560255	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					microarray		
-GSM7043738	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043740	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043741	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043743	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043744	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043745	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043746	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043747	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043748	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043749	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043750	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
-GSM7043751	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					microarray		
+GSM4274298	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274299	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274300	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274301	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274302	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274303	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274304	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274305	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274306	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274307	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274308	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274309	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274310	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274311	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274312	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274313	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274314	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274315	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274316	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274317	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274318	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274319	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274320	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM4274321	GEO	GSE143760	Arabidopsis thaliana	Plant rosette	leaf			Ground Control	1g		phototropism					RNA-seq		
+GSM2560250	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM2560251	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM2560252	GEO	GSE97258	Arabidopsis thaliana	Control_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM2560253	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM2560254	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM2560255	GEO	GSE97258	Arabidopsis thaliana	IAA_root	root			Ground Control	1g		hydrotropism					RNA-seq		
+GSM7043738	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043740	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043741	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043743	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043744	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043745	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043746	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043747	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043748	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043749	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043750	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
+GSM7043751	GEO	GSE225299	Arabidopsis thaliana	Arabidopsis thaliana root	root			Ground Control	1g		mechanotropism					RNA-seq		
 GSM3181995	GEO	GSE115554	Arabidopsis thaliana	solid media plates; 24 hr light grown	root			Ground Control	1g		gravitropism					RNA-seq		
 GSM3181996	GEO	GSE115554	Arabidopsis thaliana	solid media plates; 24 hr light grown	root			Ground Control	1g		gravitropism					RNA-seq		
 GSM3181997	GEO	GSE115554	Arabidopsis thaliana	solid media plates; 24 hr light grown	root			Ground Control	1g		gravitropism					RNA-seq		

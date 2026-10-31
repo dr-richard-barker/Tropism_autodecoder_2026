@@ -4,8 +4,9 @@ This directory holds the exported model artifacts that let the web tool reproduc
 pipeline's inference in the browser (NNLS cell-type deconvolution → stimulus projection →
 Flight-vs-Ground-Control elastic-net classifier).
 
-**It ships empty** except for a stub `manifest.json` with `phase2_ready: false`, so the live tool
-stays on Phase 1 (curated markers) and shows "Phase 2 unavailable" until real artifacts are added.
+The artifacts from the full-atlas retrain are committed and `manifest.json` has `phase2_ready: true`,
+so the live tool offers Phase 2. Without them (an empty directory or `phase2_ready: false`) it stays
+on Phase 1 (curated markers) and shows "Phase 2 unavailable".
 
 ## To activate Phase 2
 

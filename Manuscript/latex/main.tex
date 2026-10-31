@@ -24,18 +24,18 @@ single-cell developmental atlas foundation model}
 that guide growth and development. Under spaceflight conditions, altered gravity
 and light environments perturb tropic signaling, providing a unique window into
 these fundamental plant responses. We present a FAIR-compliant computational
-pipeline that integrates 1{,}337 bulk transcriptomic samples from NASA GeneLab
+pipeline that integrates 1{,}163 bulk transcriptomic samples from NASA GeneLab
 OSDR and NCBI GEO with the Salk Institute Arabidopsis Developmental Atlas
 (432{,}919 nuclei, 183 cell-type clusters) as a foundation model. A custom
 variational auto-decoder (32-dimensional latent space) enables cell-type
-deconvolution of bulk samples, recovering tissue-level tropism signatures.
+deconvolution of bulk samples into fractions of the 183 atlas clusters and stimulus
+activation scores.
 Differential expression analysis (DESeq2) across 11 spaceflight studies, combined
-with DerSimonian-Laird random-effects meta-analysis, identified 16{,}002
-significantly differentially expressed genes (\(p_{\mathrm{adj}} < 0.05\)). An
+with DerSimonian-Laird random-effects meta-analysis, identified 248
+genes that are significant across studies (\(p_{\mathrm{adj}} < 0.05\); 26{,}527 tested). An
 elastic-net classifier achieved AUC \(= 0.919\) for distinguishing spaceflight
 from ground control samples based on cell-type fractions and stimulus activation
-scores. ggPlantMap tissue projections revealed organ-specific abundance changes,
-with stem tissues showing the most significant response (\(p_{\mathrm{adj}} =
+scores. Organ-level abundance changes were largest in stem, whose stem\_9 cluster showed the most significant response (\(p_{\mathrm{adj}} =
 0.003\)). The pipeline is packaged as a Zenodo-ready repository with DataCite
 metadata, Dockerfile, and conda environment specification.}
 
@@ -50,7 +50,7 @@ Tropisms --- directional growth responses to environmental stimuli --- are
 fundamental to plant development. Gravitropism (gravity sensing), phototropism
 (light-directed growth), thigmotropism (touch response), and hydrotropism
 (water-seeking) are mediated by distinct but overlapping signaling pathways
-\cite{toyota2022}. Spaceflight provides a unique experimental context where
+\cite{toyota2013}. Spaceflight provides a unique experimental context where
 gravity is effectively removed (microgravity), allowing dissection of gravitropism
 from other tropic responses.
 
@@ -64,7 +64,7 @@ Developmental Atlas providing a comprehensive reference of 432{,}919 nuclei acro
 10 developmental stages and 183 cell-type clusters \cite{salk_atlas}.
 
 Computational deconvolution methods, such as CIBERSORTx \cite{newman2019} and
-PhysioSpace \cite{schiller2021}, enable estimation of cell-type proportions from
+PhysioSpace \cite{lenz2013}, enable estimation of cell-type proportions from
 bulk transcriptomic data. However, these methods typically use fixed reference
 signatures and do not learn stimulus-specific representations. Variational
 auto-encoders (VAEs) offer a powerful framework for learning compact latent
@@ -83,22 +83,24 @@ results using ggPlantMap tissue projections and KEGG pathway networks.
 \subsection{Data acquisition}
 \textbf{OSDR:} We queried the NASA GeneLab OSDR metadata API to identify all
 \textit{Arabidopsis thaliana} transcriptomics studies, yielding 24 studies (18
-RNA-seq, 6 microarray) with 1{,}190 samples. Count matrices were downloaded via
+RNA-seq, 6 microarray) with 1{,}100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via
 direct file access. Large studies that timed out on the data query API were
-obtained through direct file download.
+obtained through direct file download. \textbf{[TODO: no committed log of these timeouts; README, Limitation 11]}
 
-\textbf{GEO:} We identified 6 tropism-focused GEO series: GSE3847 and GSE8300
+\textbf{GEO:} We identified 5 tropism-focused GEO series: GSE3847
 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299
-(mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). Supplementary
+(mechanotropism/RALF1 signaling), and GSE115554 (gravitropism).
+\textbf{[TODO: the GEO records of GSE97258, GSE115554 and GSE225299 describe no tropism; README, Limitation 12]} Supplementary
 files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq
 data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
-\textbf{Harmonization:} All samples were annotated with tropism type
+\textbf{Harmonization:} Samples were annotated with tropism type
 (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition
-(Space Flight, Ground Control), assay type, tissue, and hardware. Tropism labels
+(Space Flight, Ground Control), assay type and, where the source gives it, hardware
+(135 samples have none; OSDR rows have no tissue entry). Tropism labels
 were inferred heuristically from tissue type, hardware configuration (EMCS \(\to\)
 gravitropism, Veggie/LED \(\to\) phototropism), light regime, and study-specific
-overrides.
+overrides. \textbf{[TODO: no committed code performs this labelling; README, Limitation 11]}
 
 \subsection{Foundation model: Salk Arabidopsis Developmental Atlas}
 The Salk atlas (GSE226097) contains 432{,}919 nuclei across 10 developmental
@@ -108,9 +110,10 @@ Harmony \cite{salk_atlas}. We loaded the Seurat v5 object and extracted:
   \item \textbf{Signature matrix:} 4{,}000 highly variable genes (HVGs) \(\times\)
     183 clusters, using log-normalized expression.
   \item \textbf{Cell-type markers:} Top 50 markers per cluster (9{,}150 total),
-    identified via Wilcoxon rank-sum test.
+    identified via Wilcoxon rank-sum test. \textbf{[TODO: no committed marker table or code]}
   \item \textbf{Per-cell HVG expression:} 60{,}792 cells \(\times\) 4{,}000 genes
     (stratified subsample covering all 183 clusters) for auto-decoder training.
+    \textbf{[TODO: no committed record of this subsample]}
 \end{itemize}
 
 \subsection{Custom variational auto-decoder}
@@ -134,7 +137,8 @@ stimulus codes serve as the bridge between the single-cell atlas and bulk
 deconvolution.
 
 \subsection{Bulk deconvolution}
-We deconvolved 398 bulk samples (11 OSDR RNA-seq studies + 2 GEO datasets) onto
+We deconvolved 398 bulk expression entries (397 samples and one parsing
+artefact; see Results) (11 OSDR RNA-seq studies + 2 GEO datasets) onto
 the 183 atlas cell types using three methods: (1) \textbf{Auto-decoder stimulus
 codes (primary):} non-negative least squares (NNLS) fitting of bulk expression
 onto the signature matrix yields cell-type fractions, which are then used to
@@ -156,8 +160,8 @@ adjusted using the Benjamini-Hochberg procedure.
 \subsection{Tropism classifier}
 We trained an elastic-net logistic regression classifier to distinguish (1)
 \textbf{Space Flight vs Ground Control} (binary): features \(=\) 183 cell-type
-fractions \(+\) 32 stimulus activation scores (215 features total), nested 5-fold
-cross-validation (StratifiedKFold), class-weighted, \texttt{l1\_ratio} \(= 0.5\);
+fractions \(+\) 32 stimulus activation scores (215 features total), stratified 5-fold
+cross-validation (StratifiedKFold, shuffled, seed 42) with fixed hyperparameters (\(C = 1\), \texttt{l1\_ratio} \(= 0.5\); no inner tuning loop), class-weighted;
 and (2) \textbf{Tropism type} (multinomial): gravitropism vs phototropism (the two
 tropism types with \(\geq 10\) matched samples).
 
@@ -166,7 +170,8 @@ tropism types with \(\geq 10\) matched samples).
 tissue anatomy maps (root tip cross-section, 3-week rosette, shoot apex, leaf
 cross-section, inflorescence stem cross-section). \textbf{KEGG pathway network:}
 pathways sharing differentially expressed genes, rendered as a tidygraph/ggraph
-network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure).
+network (ggkegg/SBGNview unavailable due to Rgraphviz dependency failure;
+\textbf{[TODO: no committed log of this failure]}).
 \textbf{Standard plots:} volcano plot (meta-analysis), heatmaps (cell-type
 fractions, stimulus activation), forest plot (top gene across studies), bar plot
 (organ-level differences), feature importance (classifier).
@@ -174,17 +179,25 @@ fractions, stimulus activation), forest plot (top gene across studies), bar plot
 \section{Results}\label{sec:results}
 
 \subsection{Dataset composition}
-The harmonized dataset comprises 1{,}337 samples: 1{,}190 from OSDR and 147 from
-GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (1{,}043),
-phototropism (240), gravitropism+phototropism (36), mechanotropism (12),
-hydrotropism (6). Spaceflight conditions: 832 Space Flight, 505 Ground Control.
-Assay types: 1{,}072 RNA-seq, 265 microarray.
+The harmonized dataset comprises 1{,}163 distinct samples: 1{,}100 from OSDR and 63
+from GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (901),
+phototropism (198), gravitropism+phototropism (46), mechanotropism (12),
+hydrotropism (6). \textbf{[TODO: the hydrotropism and mechanotropism samples, and 6 of the gravitropism samples, carry GEO labels their records do not support; README, Limitation 12]}
+Spaceflight conditions: 787 Space Flight, 376 Ground Control.
+Assay types: 1{,}046 RNA-seq (12 of them pseudo-bulk from single-cell
+RNA-seq, GSE225299), 117 microarray. The metadata has 1{,}205 rows because
+42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of
+them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted
+as gravitropism+phototropism. (GSE8300, listed in earlier versions, is a
+\textit{Haemophilus influenzae} genomic hybridization series; its 84 rows were removed
+on 28 Oct 2026, and 48 exact duplicate rows on 30 Oct 2026.)
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{dataset_summary.png}
-\caption{\textbf{Dataset composition.} Harmonized 1{,}337-sample dataset by source
-(OSDR, GEO), tropism type, spaceflight condition, and assay type.}
+\caption{\textbf{Dataset composition.} Harmonized dataset of 1{,}163 distinct samples by tropism
+type, spaceflight condition and assay type. \textbf{[TODO: the hydrotropism, mechanotropism and 6
+gravitropism labels are not supported by their GEO records; README, Limitation 12]}}
 \label{fig:dataset}
 \end{figure}
 
@@ -192,13 +205,14 @@ Assay types: 1{,}072 RNA-seq, 265 microarray.
 The auto-decoder converged at epoch 5 (val\_loss \(= 0.4300\), val\_recon \(=
 0.140\), val\_kld \(= 0.207\)). The auxiliary classifier predicted 181/183 clusters
 correctly. The 32-dimensional latent embeddings showed a range of \([-3.12, 3.19]\)
-with mean 0.003, indicating well-regularized representations. Per-cluster stimulus
+with mean 0.003, indicating well-regularized representations. \textbf{[TODO: no committed training log records these v1.0.0 values]} The full-atlas retrain has a committed log: best val\_loss \(= 0.3739\) at epoch 5, counted from 0 (val\_recon \(= 0.139\), val\_kld \(= 0.207\); \texttt{Results/autodecoder\_fullatlas\_training\_log.csv}). Per-cluster stimulus
 codes were extracted for all 183 clusters.
 
 \subsection{Bulk deconvolution}
-All 398 bulk samples were successfully deconvolved onto the 183 atlas cell types
-(Fig.~\ref{fig:celltype}, Fig.~\ref{fig:stimulus}). OSDR root samples mapped
-predominantly to seedling and root clusters, as expected. The top cell types by
+Of the 398 deconvolved entries, one (GSE143760 \texttt{gene.1}) is a parsing artefact
+with every fraction zero; the other 397 are bulk samples (Fig.~\ref{fig:celltype},
+Fig.~\ref{fig:stimulus}). The atlas has no root clusters, and root samples did not map
+mainly to seedling clusters: averaged over the 42 OSDR root samples (OSD-120, OSD-217), silique clusters hold 36\% of the fraction, seedling clusters 32\% and seed clusters 21\%. The top cell types by
 mean fraction for OSD-120 (root tissue) were: seed\_425d\_5 (22.0\%),
 seedling\_15d\_18 (12.9\%), seedling\_15d\_15 (11.4\%), silique\_4 (9.0\%),
 silique\_6 (8.9\%).
@@ -206,32 +220,36 @@ silique\_6 (8.9\%).
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{heatmap_celltype_fractions.png}
-\caption{\textbf{Cell-type fraction heatmap.} Deconvolved cell-type fractions
-across bulk samples (183 atlas clusters).}
+\caption{\textbf{Cell-type fraction heatmap.} Column z-scores of the deconvolved fractions
+for the 160 samples matched to labels by GSM, showing the 30 most variable of the 183 atlas clusters.}
 \label{fig:celltype}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{heatmap_stimulus_activation.png}
-\caption{\textbf{Stimulus activation heatmap.} Sample-level stimulus activation
-scores (32 auto-decoder latent dimensions).}
+\caption{\textbf{Stimulus activation heatmap.} Stimulus activation scores (32 auto-decoder
+latent dimensions, column z-scores) for the 160 GSM-matched samples.}
 \label{fig:stimulus}
 \end{figure}
 
 \subsection{Meta-analysis}
-Across 11 studies, 26{,}402 genes were tested in the random-effects meta-analysis,
-with 16{,}002 reaching significance (\(p_{\mathrm{adj}} < 0.05\);
-Fig.~\ref{fig:volcano}). The top genes showed high heterogeneity (\(I^2 > 80\%\)),
-reflecting genuine biological variability across experimental conditions. The most
-significant genes included AT2G33330 (pooled log2FC \(= 0.77\)), AT2G33450 (pooled
-log2FC \(= 1.07\)), and AT2G35130 (pooled log2FC \(= 1.45\); Fig.~\ref{fig:forest}).
+Across 11 studies, 26{,}527 genes were tested in the random-effects meta-analysis,
+and 248 reached significance (\(p_{\mathrm{adj}} < 0.05\); Fig.~\ref{fig:volcano}): 38 up and 64
+down in flight at \(|\text{pooled log2FC}| > 0.5\). Between-study heterogeneity is high (median \(I^2 = 88\%\)
+across genes), so most per-study effects do not survive random-effects pooling. The most
+significant genes were AT1G66200 (pooled log2FC \(= -0.36\), \(p_{\mathrm{adj}} = 3\times10^{-15}\), \(I^2 = 0\%\);
+Fig.~\ref{fig:forest}), AT1G63570 (\(-1.43\), \(p_{\mathrm{adj}} = 2.6\times10^{-8}\)) and AT3G24518 (\(-0.41\),
+\(p_{\mathrm{adj}} = 4.8\times10^{-6}\)). Versions before 28 Oct 2026 reported 16{,}002 significant genes from code
+whose \(\tau^2\) was too small by a factor of \(\sum w\); the genes they listed as most significant (AT2G33330,
+AT2G33450, AT2G35130) have \(p_{\mathrm{adj}} \approx 0.7\). The per-study DESeq2 results were re-derived from OSDR
+counts re-acquired in July 2026 for the same 11 studies, because the v1.0.0 tables were not retained.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{volcano_meta_analysis.png}
 \caption{\textbf{Meta-analysis volcano plot.} Random-effects (DerSimonian-Laird)
-meta-analysis of shrunk log2FC across 11 spaceflight studies.}
+meta-analysis of shrunk log2FC across 11 spaceflight studies (26{,}527 genes; 248 with \(p_{\mathrm{adj}} < 0.05\)).}
 \label{fig:volcano}
 \end{figure}
 
@@ -245,38 +263,42 @@ studies, showing per-study effect sizes and the pooled estimate.}
 
 \subsection{Classifier performance}
 \textbf{Flight vs Ground Control:} the elastic-net classifier achieved AUC \(=
-0.919 \pm 0.047\) (nested 5-fold CV) with 85\% accuracy. The top discriminating
+0.919 \pm 0.047\) (stratified 5-fold CV) with 85\% accuracy (\texttt{Results/classifier\_metrics.json}). The top discriminating
 features were silique\_20 (coefficient \(= 1.75\)), stem\_9 (1.56), seedling\_9d\_18
 (\(-1.29\)), rosette\_21d\_11 (\(-1.19\)), and flower\_11 (1.02), along with
 stimulus dimensions 5 and 29 (Fig.~\ref{fig:featimp}). \textbf{Tropism type:} the
-multinomial classifier achieved F1 \(= 1.000\) for gravitropism vs phototropism,
-reflecting the strong tissue/hardware confounding between these conditions
-(gravitropism experiments predominantly use root tissue in EMCS hardware;
-phototropism experiments use shoot tissue with LED lighting). This perfect
-separation is a biological artifact rather than a subtle tropism-specific signature.
+multinomial classifier achieved F1 \(= 1.000\) for gravitropism vs phototropism (80 phototropism and 44
+gravitropism samples, all classified correctly; \texttt{Results/tropism\_confusion\_matrix.csv}),
+reflecting confounding by study and hardware: every gravitropism sample comes from one
+study (OSD-321, BRIC-PDFU hardware) and every phototropism sample from two others
+(OSD-193 and OSD-427, Veggie hardware), all of them seedlings. This perfect
+separation is an artefact of the study design rather than a tropism-specific signature.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{classifier_feature_importance.png}
 \caption{\textbf{Classifier feature importance.} Elastic-net coefficients for the
 top discriminating cell-type fractions and stimulus dimensions (Flight vs Ground
-Control).}
+Control); the subtitle AUC is read from \texttt{Results/classifier\_metrics.json}.}
 \label{fig:featimp}
 \end{figure}
 
 \subsection{Cell-type-specific responses}
 Three cell types showed significant abundance differences between Space Flight and
 Ground Control (\(p_{\mathrm{adj}} < 0.05\)): stem\_9 (\(p_{\mathrm{adj}} = 0.003\),
-\(+1.2\%\) in flight), seed\_425d\_7 (\(p_{\mathrm{adj}} = 0.027\), \(+0.05\%\)),
-and silique\_20 (\(p_{\mathrm{adj}} = 0.030\), \(+0.7\%\)). At the organ level,
-stem tissues showed the most significant response (mean \(p_{\mathrm{adj}} =
-0.003\)), followed by seed (0.027) and silique (0.030) (Fig.~\ref{fig:organ}).
+\(+1.2\%\) in flight), seed\_425d\_7 (\(p_{\mathrm{adj}} = 0.027\), \(+0.04\%\)),
+and silique\_20 (\(p_{\mathrm{adj}} = 0.030\), \(+0.7\%\)). Averaged over each
+organ's clusters, the flight \(-\) ground difference was largest for stem
+(\(+6.2\times10^{-4}\)), then root/seedling clusters (\(-3.0\times10^{-4}\)) and silique
+(\(+2.7\times10^{-4}\)) (Fig.~\ref{fig:organ}); the three \(p_{\mathrm{adj}}\) values above are
+single clusters, not organ means.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{organ_level_diff_barplot.png}
 \caption{\textbf{Organ-level abundance differences} between Space Flight and Ground
-Control, ranked by significance.}
+Control: the mean flight \(-\) ground difference of each organ's clusters (root: seedling
+clusters; leaf: rosette clusters), ordered by magnitude.}
 \label{fig:organ}
 \end{figure}
 
@@ -292,13 +314,13 @@ genes (tidygraph/ggraph rendering).}
 \end{figure}
 
 \subsection{Tissue projection}
-ggPlantMap projections visualized organ-level abundance changes onto Arabidopsis
-anatomy maps (Fig.~\ref{fig:ggplantmap}): the root tip columella and procambium
-showed elevated abundance in flight samples; rosette leaf ROIs showed minimal
-changes; shoot apex central and peripheral zones showed moderate changes; leaf
-vascular bundle regions showed slight elevation; and the inflorescence stem starch
-sheath and xylem showed the strongest response, consistent with gravitropism
-signaling in vascular tissues.
+The cell-type results have no cell-type \(\rightarrow\) anatomical-region mapping, so each ggPlantMap map
+(Fig.~\ref{fig:ggplantmap}) can only show one value per organ: the mean flight \(-\) ground difference of that
+organ's cell types. By organ, this was largest for stem (\(+6.2\times10^{-4}\); stem\_9 \(p_{\mathrm{adj}} = 0.003\)),
+then silique (\(+2.7\times10^{-4}\); silique\_20 \(p_{\mathrm{adj}} = 0.030\)), flower (\(+1.0\times10^{-4}\)), seed
+(\(+0.4\times10^{-4}\); seed\_425d\_7 \(p_{\mathrm{adj}} = 0.027\)), leaf/rosette clusters (\(-0.8\times10^{-4}\)) and
+root/seedling clusters (\(-3.0\times10^{-4}\)); no leaf, root or flower cell type reached \(p_{\mathrm{adj}} < 0.05\).
+Region-level patterns in earlier versions of these maps came from random jitter added per region and are withdrawn.
 
 \begin{figure}[htbp]
 \centering
@@ -307,9 +329,10 @@ signaling in vascular tissues.
 \includegraphics[width=0.32\textwidth]{ggplantmap_shootapex_projection.png}\\[1ex]
 \includegraphics[width=0.32\textwidth]{ggplantmap_leaf_crosssection.png}\hfill
 \includegraphics[width=0.32\textwidth]{ggplantmap_stem_crosssection.png}
-\caption{\textbf{ggPlantMap tissue projections.} Cell-type abundance differences
-(Flight vs Ground Control) projected onto Arabidopsis anatomy: root tip, rosette,
-shoot apex, leaf cross-section, and inflorescence stem cross-section.}
+\caption{\textbf{ggPlantMap tissue projections.} Each map shows one value: the mean flight \(-\) ground
+cell-type abundance difference of one organ's clusters (see text), on a colour scale shared by all five maps.
+Root tip: seedling clusters; rosette and leaf cross-section: rosette clusters; shoot apex and inflorescence
+stem cross-section: stem clusters. Warm colours indicate higher abundance in flight; cool colours, lower.}
 \label{fig:ggplantmap}
 \end{figure}
 
@@ -322,11 +345,11 @@ cell-type-specific transcriptional states that can be projected onto bulk sample
 
 The Flight vs Ground Control classifier (AUC \(= 0.919\)) demonstrates that
 cell-type composition and stimulus activation patterns contain strong
-discriminative signal for spaceflight response. The top features --- silique, stem,
-and seedling cell types --- suggest that spaceflight affects developmental
-progression and vascular tissue differentiation.
+discriminative signal for spaceflight response. Its largest coefficients are on silique,
+stem and seedling clusters (silique\_20, stem\_9, seedling\_9d\_18); which tissues these
+clusters are is not annotated here.
 
-The meta-analysis identified 16{,}002 significant genes with high heterogeneity,
+The meta-analysis found 248 significant genes out of 26{,}527, with high heterogeneity (median \(I^2 = 88\%\)),
 reflecting the diversity of experimental conditions (different tissues, ecotypes,
 hardware, missions, timepoints) across the 11 studies. This heterogeneity is both a
 challenge (reducing power) and an opportunity (capturing generalizable vs
@@ -334,13 +357,14 @@ condition-specific responses).
 
 Beyond classification, the value of projecting bulk samples onto a single-cell
 developmental atlas is that it re-frames the spaceflight response in terms of
-\textit{which} cell types carry it. The significant cell-type shifts we detect ---
-concentrated in silique, stem and late-seedling identities --- point to reproductive
-and vascular-differentiation programmes as focal points of the flight response, and
-the ggPlantMap tissue projections render this anatomically rather than leaving it as a
-gene list. This is a step from cataloguing \textit{what} changes toward localising
-\textit{where} altered tropic signalling is perceived --- the more actionable question
-for engineering plant growth off-Earth.
+\textit{which} cell types carry it. The three significant cell-type shifts we detect are
+single clusters from stem, seed and silique (stem\_9, seed\_425d\_7, silique\_20). The
+ggPlantMap maps show these shifts only at organ level: each map carries one organ's mean
+cell-type abundance difference, because the atlas clusters are not yet mapped to
+anatomical regions. A cluster \(\rightarrow\) region mapping would be the step from
+cataloguing \textit{what} changes toward localising \textit{where} in the plant the
+flight response sits --- the more actionable question for engineering plant growth
+off-Earth.
 
 The stimulus auto-decoder is deliberately reusable: once trained on the atlas, its
 32-dimensional latent codes score any new bulk transcriptome without re-training,
@@ -357,24 +381,27 @@ noise that inflates meta-analysis heterogeneity.
     with GPU acceleration could improve latent representations.
   \item \textbf{Tropism data asymmetry:} gravitropism and phototropism dominate the
     dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are
-    underrepresented. Chemotropism and oxytropism have no dedicated Arabidopsis
+    underrepresented \textbf{[TODO: labels not supported by the GEO records; README, Limitation 12]}. Chemotropism and oxytropism have no dedicated Arabidopsis
     transcriptomics data.
-  \item \textbf{Metadata matching:} only 124/398 deconvolved samples could be
+  \item \textbf{Metadata matching:} only 124 of the 397 deconvolved samples could be
     matched to tropism labels via GSM identifiers, limiting the classifier training
     set.
   \item \textbf{Tropism classifier confounding:} the perfect F1 \(= 1.0\) for
-    gravitropism vs phototropism reflects tissue/hardware confounding rather than
+    gravitropism vs phototropism reflects study/hardware confounding (gravitropism from one study, phototropism from two others) rather than
     tropism-specific transcriptional signatures.
   \item \textbf{Pathway visualization:} ggkegg and SBGNview were unavailable due to
     Rgraphviz dependency failure; KEGG pathway networks were rendered with
-    tidygraph/ggraph instead.
+    tidygraph/ggraph instead. \textbf{[TODO: no committed log of this failure]}
+  \item \textbf{No root clusters in the atlas:} root bulk samples are decomposed onto
+    seedling, seed and silique clusters (silique 36\%, seedling 32\%, seed 21\% for the
+    42 root samples), so a root sample's cluster fractions are not its tissue composition.
 \end{enumerate}
 
 \subsection{Outlook}
 The limitations above also chart the roadmap. Re-training the auto-decoder on the full
 432{,}919-nucleus atlas with GPU acceleration, and incorporating dedicated hydro-,
 thigmo- and chemotropism transcriptomes as they accumulate, would let the tropism
-classifier learn signal rather than the tissue and hardware confounds that currently
+classifier learn signal rather than the study and hardware confounds that currently
 inflate its accuracy. Because the stimulus codes are reusable, each new OSDR spaceflight
 study can then be scored against the same atlas without re-training, turning the pipeline
 into a growing, comparable reference for where and how plants perceive the orbital

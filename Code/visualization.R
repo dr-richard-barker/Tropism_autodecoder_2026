@@ -31,7 +31,7 @@ tropism_colors <- c("gravitropism" = "#0279EE", "phototropism" = "#E9ED4C",
                     "gravitropism;phototropism" = "#FF9400")
 
 # Font settings
-theme_set(theme_bw(base_family = "Liberation Sans", base_size = 11))
+theme_set(theme_bw(base_family = Sys.getenv("FIG_FONT", "Liberation Sans"), base_size = 11))
 
 # Configurable paths: positional args [PROC_DIR OUT_DIR] or env vars; defaults repo-relative.
 .args <- commandArgs(trailingOnly = TRUE)
@@ -72,7 +72,8 @@ p_volcano <- ggplot(meta_res, aes(x = pooled_log2FC, y = neg_log10p, color = sig
   geom_text(data = head(meta_res, 15), aes(label = label), size = 2.5, vjust = -0.5, color = "black") +
   labs(x = "Pooled log2 Fold Change (Flight vs Ground)", y = "-log10(adjusted p-value)",
        title = "Meta-analysis: Spaceflight vs Ground Control in Arabidopsis",
-       subtitle = paste0("26,402 genes across 11 studies (DerSimonian-Laird random effects)")) +
+       subtitle = sprintf("%s genes across %d studies (DerSimonian-Laird random effects)",
+                          format(nrow(meta_res), big.mark = ","), max(meta_res$n_studies))) +
   theme(legend.position = "bottom") +
   guides(color = guide_legend(override.aes = list(size = 3)))
 
@@ -177,13 +178,20 @@ organ_diff <- ct_diff %>%
   group_by(organ) %>%
   summarize(
     mean_diff = mean(mean_diff),
-    mean_padj = min(padj),
+    min_padj = min(padj),
     n_celltypes = n()
   ) %>%
   arrange(desc(abs(mean_diff)))
 
 cat("Organ-level differences:\n")
 print(organ_diff)
+
+# One colour scale for all maps, symmetric about 0: each map has one value, and a scale fitted to that
+# zero-width range paints every region the midpoint colour (same as Code/viz_ggplantmap.R).
+fill_lim <- max(abs(organ_diff$mean_diff[organ_diff$organ %in% c("root", "leaf", "stem")]))
+organ_subtitle <- function(d, clusters) {
+  sprintf("Flight vs GC, mean of %d %s clusters: %+.1e, the same in every region", nrow(d), clusters, mean(d$mean_diff))
+}
 
 # Create ggPlantMap visualization for root (most relevant for gravitropism)
 # Map cell-type differences onto root tissue map
@@ -204,15 +212,14 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(root_data$mean_diff), length(roi_names))
   )
-  root_values$value <- root_values$value + rnorm(length(roi_names), 0, sd(root_data$mean_diff)/2 + 0.001)
 
   root_map_quant <- root_map %>% dplyr::left_join(root_values, by = "ROI.name")
 
   p_root <- ggPlantmap::ggPlantmap.heatmap(root_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
-    labs(title = "Root tip: Cell-type abundance changes (Flight vs GC)",
-         subtitle = "Projected from auto-decoder deconvolution") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+    labs(title = "Root tip: organ-level cell-type abundance difference",
+         subtitle = organ_subtitle(root_data, "seedling")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_root_projection.svg"), p_root, width = 8, height = 6)
@@ -231,15 +238,14 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(leaf_data$mean_diff), length(roi_names))
   )
-  leaf_values$value <- leaf_values$value + rnorm(length(roi_names), 0, sd(leaf_data$mean_diff)/2 + 0.001)
 
   rosette_map_quant <- rosette_map %>% dplyr::left_join(leaf_values, by = "ROI.name")
 
   p_leaf <- ggPlantmap::ggPlantmap.heatmap(rosette_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
-    labs(title = "3-week rosette: Tropism signaling projection",
-         subtitle = "Phototropism-relevant tissue map") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+    labs(title = "3-week rosette: organ-level cell-type abundance difference",
+         subtitle = organ_subtitle(leaf_data, "rosette")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_rosette_projection.svg"), p_leaf, width = 8, height = 6)
@@ -258,15 +264,14 @@ tryCatch({
     ROI.name = roi_names,
     value = rep(mean(stem_data$mean_diff), length(roi_names))
   )
-  apex_values$value <- apex_values$value + rnorm(length(roi_names), 0, sd(stem_data$mean_diff)/2 + 0.001)
 
   apex_map_quant <- apex_map %>% dplyr::left_join(apex_values, by = "ROI.name")
 
   p_apex <- ggPlantmap::ggPlantmap.heatmap(apex_map_quant, value.quant = value) +
     scale_fill_gradient2(low = "#0279EE", mid = "#FAF9F3", high = "#FF9400",
-                         midpoint = 0, name = "Fraction\ndifference") +
-    labs(title = "Shoot apex: Tropism signaling integration",
-         subtitle = "Gravitropism and phototropism convergence zone") +
+                         midpoint = 0, limits = c(-fill_lim, fill_lim), name = "Fraction\ndifference") +
+    labs(title = "Shoot apex: organ-level cell-type abundance difference",
+         subtitle = organ_subtitle(stem_data, "stem")) +
     theme(legend.position = "right")
 
   ggsave(file.path(OUT_DIR, "ggplantmap_shootapex_projection.svg"), p_apex, width = 8, height = 6)
@@ -415,6 +420,7 @@ cat("\n=== 7. Classifier performance ===\n")
 # Recreate the classifier to get probabilities for ROC
 # Load the feature importance
 feat_imp <- read_csv(file.path(CLF_DIR, "flight_vs_gc_feature_importance.csv"), show_col_types = FALSE)
+clf_metrics <- jsonlite::fromJSON(file.path(CLF_DIR, "classifier_metrics.json"))  # written by meta_classifier.py
 
 p_feat <- ggplot(head(feat_imp, 20), aes(x = reorder(feature, abs(coefficient)), y = coefficient, fill = coefficient > 0)) +
   geom_col() +
@@ -422,7 +428,8 @@ p_feat <- ggplot(head(feat_imp, 20), aes(x = reorder(feature, abs(coefficient)),
   scale_fill_manual(values = c(`TRUE` = "#FF9400", `FALSE` = "#0279EE"), name = "Direction", labels = c("GC-enriched", "Flight-enriched")) +
   labs(x = "Feature", y = "Elastic-net coefficient",
        title = "Top 20 features: Flight vs Ground Control classifier",
-       subtitle = "AUC = 0.919 ± 0.047 (nested 5-fold CV)") +
+       subtitle = sprintf("AUC = %.3f ± %.3f (stratified 5-fold CV)", clf_metrics$flight_vs_gc$auc_mean,
+                          clf_metrics$flight_vs_gc$auc_std)) +
   theme(legend.position = "bottom")
 
 ggsave(file.path(OUT_DIR, "classifier_feature_importance.svg"), p_feat, width = 7, height = 6)
@@ -477,7 +484,14 @@ if (nrow(est_df) >= 2) {
 # 9. Tropism data summary
 # ============================================================
 cat("\n=== 9. Data summary ===\n")
-tropism_summary <- meta %>%
+# One row per sample: 42 samples are listed under two OSDR studies (OSD-218/219, OSD-147/205). A sample annotated
+# with different tropisms in its two studies counts as gravitropism;phototropism.
+samples <- meta %>%
+  distinct() %>%
+  group_by(sample_id) %>%
+  summarize(tropism_type = paste(sort(unique(unlist(strsplit(na.omit(tropism_type), ";")))), collapse = ";"),
+            spaceflight_condition = first(spaceflight_condition), assay_type = first(assay_type), .groups = "drop")
+tropism_summary <- samples %>%
   count(tropism_type, spaceflight_condition, assay_type) %>%
   arrange(desc(n))
 
@@ -486,7 +500,7 @@ p_summary <- ggplot(tropism_summary, aes(x = tropism_type, y = n, fill = spacefl
   scale_fill_manual(values = flight_gc_colors) +
   labs(x = "Tropism type", y = "Number of samples",
        title = "Arabidopsis spaceflight transcriptomics dataset",
-       subtitle = "1337 samples from OSDR + GEO") +
+       subtitle = sprintf("%d distinct samples from OSDR + GEO", nrow(samples))) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   facet_wrap(~assay_type)
 

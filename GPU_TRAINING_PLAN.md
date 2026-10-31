@@ -95,6 +95,8 @@ Downstream (unchanged) after retraining: re-run `project_bulk.py`, `meta_classif
 - [ ] Re-run downstream: **Flight-vs-GC AUC ≥ 0.919** (should hold or improve); regenerate figures.
 - [ ] Update README Limitation #1 to reflect full-atlas GPU training; bump `metadata.json` version.
 
+The 0.919 AUC baseline is recorded in `Results/classifier_metrics.json`; the 0.140 val_recon baseline (v1.0.0 draft) has no committed log [TODO; README, Limitation 8].
+
 ## 6. Reproducibility & caveats
 
 - `pl.seed_everything(seed, workers=True)` is set. GPU kernels are not bit-deterministic by default; for strict determinism add `torch.use_deterministic_algorithms(True)` and `CUBLAS_WORKSPACE_CONFIG=:4096:8` (small speed cost). Record the GPU model, driver, CUDA, and library versions alongside results.

@@ -4,12 +4,13 @@ Subsystem 4 (continued): Meta-analysis + Tropism classifier
 
 1. Meta-analysis: Random-effects meta-analysis (DerSimonian-Laird) on log2FC
    across all OSDR studies, stratified by tropism type.
-2. Tropism classifier: Elastic-net logistic regression with nested 5-fold CV
+2. Tropism classifier: Elastic-net logistic regression, stratified 5-fold CV (fixed C = 1,
+   l1_ratio = 0.5; there is no inner tuning loop, so this is not nested CV)
    to classify tropism type from cell-type fractions + stimulus activation.
 3. Cell-type-specific tropism scoring: Identify cell types whose abundance
    or stimulus activation differs between Flight and Ground Control.
 """
-import os, json, glob
+import os, json, glob, sklearn
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -76,9 +77,11 @@ def random_effects_meta(effect_sizes, variances):
     Q = np.sum(w_fe * (effect_sizes - mu_fe) ** 2)
     df = len(effect_sizes) - 1
 
-    # Between-study variance (tau^2)
+    # Between-study variance (tau^2), DerSimonian-Laird: (Q - df) / (sum(w) - sum(w^2) / sum(w)).
+    # Before 28 Oct 2026 this line divided by (sum(w)^2 - sum(w^2)), which made tau^2 too small by a
+    # factor of sum(w); Results/meta_analysis_results.tsv was produced with that error (README, Limitations).
     if Q > df:
-        tau2 = (Q - df) / np.sum(w_fe) * (np.sum(w_fe) / (np.sum(w_fe) ** 2 - np.sum(w_fe ** 2)))
+        tau2 = (Q - df) / (np.sum(w_fe) - np.sum(w_fe ** 2) / np.sum(w_fe))
     else:
         tau2 = 0.0
 
@@ -87,7 +90,7 @@ def random_effects_meta(effect_sizes, variances):
     mu_re = np.sum(w_re * effect_sizes) / np.sum(w_re)
     se_re = np.sqrt(1.0 / np.sum(w_re))
     z = mu_re / se_re
-    p = 2 * (1 - stats.norm.cdf(abs(z)))
+    p = 2 * stats.norm.sf(abs(z))   # sf, not 1 - cdf: 1 - cdf underflows to 0 for |z| > ~8
 
     # I^2
     I2 = max(0, (Q - df) / Q * 100) if Q > 0 else 0.0
@@ -242,6 +245,10 @@ y_condition = features['spaceflight_condition'].values
 
 print(f"X: {X.shape}, y_tropism: {len(y_tropism)}, y_condition: {len(y_condition)}")
 
+# Every reported classifier number is also written to classifier_metrics.json (before 28 Oct 2026 they were only printed).
+metrics = {'cv': 'StratifiedKFold(n_splits=5, shuffle=True, random_state=42); fixed C=1.0, l1_ratio=0.5, class_weight=balanced',
+           'versions': {'sklearn': sklearn.__version__, 'numpy': np.__version__, 'pandas': pd.__version__}}
+
 # Classifier 1: Flight vs Ground Control (binary)
 print("\n--- Flight vs Ground Control ---")
 # Filter to only Flight/Ground Control samples
@@ -254,7 +261,7 @@ if len(y_cond) > 20 and len(np.unique(y_cond)) == 2:
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_cond)
 
-    # Elastic-net logistic regression with nested CV
+    # Elastic-net logistic regression, stratified 5-fold CV (fixed hyperparameters)
     outer_cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     clf = LogisticRegression(
         penalty='elasticnet', solver='saga', max_iter=5000,
@@ -262,11 +269,15 @@ if len(y_cond) > 20 and len(np.unique(y_cond)) == 2:
     )
 
     cv_scores = cross_val_score(clf, X_scaled, y_cond, cv=outer_cv, scoring='roc_auc')
-    print(f"Nested CV AUC: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
+    print(f"5-fold CV AUC: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
 
     y_pred = cross_val_predict(clf, X_scaled, y_cond, cv=outer_cv)
     print(f"\nClassification report (Flight vs GC):")
     print(classification_report(y_cond, y_pred))
+    metrics['flight_vs_gc'] = {
+        'n': int(len(y_cond)), 'n_flight': int(sum(y_cond == 'Space Flight')), 'n_ground': int(sum(y_cond == 'Ground Control')),
+        'fold_auc': [float(s) for s in cv_scores], 'auc_mean': float(cv_scores.mean()), 'auc_std': float(cv_scores.std()),
+        'accuracy': float(np.mean(y_pred == y_cond)), 'report': classification_report(y_cond, y_pred, output_dict=True)}
 
     # Fit final model and get feature importance
     clf.fit(X_scaled, y_cond)
@@ -322,7 +333,7 @@ if len(y_trop) > 30 and len(valid_tropisms) >= 2:
     )
 
     cv_scores_t = cross_val_score(clf_t, X_scaled_t, y_trop, cv=outer_cv, scoring='f1_macro')
-    print(f"Nested CV F1-macro: {cv_scores_t.mean():.3f} ± {cv_scores_t.std():.3f}")
+    print(f"5-fold CV F1-macro: {cv_scores_t.mean():.3f} ± {cv_scores_t.std():.3f}")
 
     y_pred_t = cross_val_predict(clf_t, X_scaled_t, y_trop, cv=outer_cv)
     print(f"\nClassification report (tropism type):")
@@ -332,6 +343,11 @@ if len(y_trop) > 30 and len(valid_tropisms) >= 2:
     cm = confusion_matrix(y_trop, y_pred_t, labels=valid_tropisms)
     cm_df = pd.DataFrame(cm, index=valid_tropisms, columns=valid_tropisms)
     cm_df.to_csv(f'{OUT_DIR}/tropism_confusion_matrix.csv')
+    metrics['tropism_type'] = {
+        'classes': {c: int(sum(y_trop == c)) for c in valid_tropisms},
+        'fold_f1_macro': [float(s) for s in cv_scores_t], 'f1_macro_mean': float(cv_scores_t.mean()),
+        'f1_macro_std': float(cv_scores_t.std()), 'accuracy': float(np.mean(y_pred_t == y_trop)),
+        'report': classification_report(y_trop, y_pred_t, output_dict=True), 'confusion_matrix': 'tropism_confusion_matrix.csv'}
 
     # Fit final model
     clf_t.fit(X_scaled_t, y_trop)
@@ -388,4 +404,6 @@ if len(ct_diff_df) > 0:
     print(f"\nTop 10 differential cell types:")
     print(ct_diff_df[['cell_type','mean_flight','mean_ground','mean_diff','padj']].head(10).to_string())
 
+with open(f'{OUT_DIR}/classifier_metrics.json', 'w') as f:
+    json.dump(metrics, f, indent=2)
 print("\nDONE_CLASSIFIER")

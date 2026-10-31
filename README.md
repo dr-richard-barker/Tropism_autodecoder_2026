@@ -8,13 +8,13 @@ A FAIR-compliant computational pipeline for recognizing and classifying tropism 
 
 This repository contains a complete end-to-end pipeline that:
 
-1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1190 samples) and NCBI GEO (6 tropism-focused series, 147 samples), totaling 1337 samples across gravitropism, phototropism, mechanotropism, and hydrotropism conditions.
+1. **Ingests and harmonizes** bulk RNA-seq and microarray data from NASA GeneLab OSDR (24 studies, 1,100 samples) and NCBI GEO (5 tropism-focused series, 63 samples [TODO: three of the five GEO records describe no tropism; Limitation 12]), totaling 1,163 distinct samples across gravitropism, phototropism, mechanotropism, and hydrotropism conditions.
 
 2. **Integrates the Salk Institute Arabidopsis Developmental Atlas** (GSE226097; 432,919 nuclei, 183 clusters, 10 developmental stages) as a foundation model with a custom variational auto-decoder (PhysioSpace-like stimuli auto-decoder) for cell-type deconvolution of bulk samples.
 
-3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with nested cross-validation.
+3. **Performs differential expression** (DESeq2) and **random-effects meta-analysis** (DerSimonian-Laird) across 11 spaceflight studies, followed by **elastic-net tropism classification** with stratified 5-fold cross-validation (fixed hyperparameters, not nested).
 
-4. **Visualizes results** using ggPlantMap tissue projections, KEGG pathway networks (tidygraph/ggraph), heatmaps, volcano plots, and forest plots.
+4. **Visualizes results** using ggPlantMap tissue projections (organ level; Limitation 9), KEGG pathway networks (tidygraph/ggraph), heatmaps, volcano plots, and forest plots.
 
 ## Web Tool
 
@@ -22,7 +22,7 @@ An interactive, browser-based companion tool lets reviewers and readers upload t
 
 - **Live URL** (after enabling **Settings → Pages → Deploy from branch → `main` / `/docs`**): `https://dr-richard-barker.github.io/Tropism_autodecoder_2026/`
 - **Method (Phase 1)**: rank-based single-sample enrichment (singscore) against curated, literature-verified tropism marker gene sets. These are marker-enrichment scores, **not** the auto-decoder output.
-- **Phase 2 (live)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability (AUC ≈ 0.915) directly in the page, using the full-atlas retrained model artifacts in `docs/assets/model/`. Select the **Full auto-decoder** method in the tool to use it.
+- **Phase 2 (live)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability (AUC ≈ 0.915) directly in the page [TODO: no committed comparison with the manuscript's tables, which come from the v1.0.0 model; Limitation 11], using the full-atlas retrained model artifacts in `docs/assets/model/`. Select the **Full auto-decoder** method in the tool to use it.
 
 See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (including a Phase 3 orthology network for non-*Arabidopsis* data).
 
@@ -45,15 +45,21 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 │   ├── export_web_artifacts.py    # Export Phase-2 model bundle for the web tool
 │   └── REACQUIRE_BULK.md          # End-to-end reproduce-from-public-data workflow
 ├── Data/                          # Harmonized input data
-│   └── harmonized_metadata.tsv    # 1337 samples × 19 metadata fields
+│   └── harmonized_metadata.tsv    # 1,205 rows (1,163 distinct samples) × 19 metadata fields
 ├── Results/                       # Analysis outputs
-│   ├── meta_analysis_results.tsv  # 26,402 genes, random-effects meta-analysis
-│   ├── cell_type_fractions_all.csv # 398 samples × 183 cell-type fractions
-│   ├── stimulus_activation_all.csv # 398 samples × 32 stimulus dimensions
+│   ├── meta_analysis_results.tsv  # 26,527 genes, random-effects meta-analysis (corrected 28 Oct 2026)
+│   ├── cell_type_fractions_all.csv # 398 entries (397 samples + 1 parsing artefact) × 183 cell-type fractions
+│   ├── stimulus_activation_all.csv # 398 entries (397 samples + 1 parsing artefact) × 32 stimulus dimensions
 │   ├── flight_vs_gc_feature_importance.csv
 │   ├── celltype_flight_vs_ground.csv
 │   ├── de_analysis_summary.tsv
-│   └── physiospace_scores_all.csv
+│   ├── physiospace_scores_all.csv
+│   ├── classifier_metrics.json    # AUC, accuracy, F1 and per-fold scores (meta_classifier.py)
+│   ├── classifier_params.json     # fitted v1.0.0 Flight-vs-GC classifier
+│   ├── tropism_confusion_matrix.csv
+│   ├── tropism_gravitropism_feature_importance.csv
+│   ├── autodecoder_fullatlas_training_log.csv # full-atlas retrain (Lightning CSV log) + _hparams.yaml
+│   └── PROVENANCE.md              # which script and inputs produced each file
 ├── Figures/                       # Publication-ready figures (SVG + PNG)
 │   ├── volcano_meta_analysis.*    # Meta-analysis volcano plot
 │   ├── heatmap_celltype_fractions.* # Cell-type fraction heatmap
@@ -89,18 +95,18 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 
 | Metric | Value |
 |--------|-------|
-| Total samples harmonized | 1,337 |
+| Total samples harmonized | 1,163 distinct samples in 1,205 metadata rows: 42 samples are listed under two OSDR studies. GSE8300 (a *H. influenzae* series, 28 Oct 2026) and 48 exact duplicate rows (30 Oct 2026) were removed |
 | OSDR studies | 24 (18 RNA-seq + 6 microarray) |
-| GEO series | 6 |
+| GEO series | 5 |
 | Atlas cells (foundation model) | 432,919 |
 | Atlas clusters | 183 |
 | Auto-decoder latent dimensions | 32 |
-| Bulk samples deconvolved | 398 |
+| Bulk samples deconvolved | 398 entries: 397 samples and one parsing artefact (GSE143760 `gene.1`, every fraction zero) |
 | DE studies (DESeq2) | 11 |
-| Meta-analysis genes | 26,402 |
-| Meta-analysis significant (padj<0.05) | 16,002 |
-| Flight vs GC classifier AUC | 0.919 ± 0.047 |
-| Tropism classifier F1 | 1.000 (gravitropism vs phototropism) |
+| Meta-analysis genes | 26,527 |
+| Meta-analysis significant (padj<0.05) | 248 (16,002 before the τ² correction; Limitation 7) |
+| Flight vs GC classifier AUC | 0.919 ± 0.047 (v1.0.0, `Results/classifier_metrics.json`); 0.915 ± 0.043 after the full-atlas retrain (Limitation 1) |
+| Tropism classifier F1 | 1.000 (gravitropism vs phototropism; `Results/tropism_confusion_matrix.csv`) |
 | Significant cell-type differences | 3 (stem_9, seed_425d_7, silique_20) |
 
 ## Methods Summary
@@ -108,12 +114,12 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 ### Data Acquisition
 - **OSDR**: Metadata via `https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`; count matrices via direct file download from `https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/download`
 - **GEO**: Series metadata via GEOquery; supplementary files via HTTPS mirror of FTP
-- **Tropism labeling**: Heuristic inference from tissue type, hardware (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides
+- **Tropism labeling**: Heuristic inference from tissue type, hardware (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides [TODO: no committed labelling code; Limitation 11]
 
 ### Foundation Model
 - **Salk Arabidopsis Developmental Atlas** (GSE226097): Seurat v5 object with 432,919 nuclei across 10 developmental stages
 - **Signature matrix**: 4000 HVGs × 183 clusters, extracted from atlas RNA assay
-- **Cell-type markers**: Top 50 markers per cluster (9150 total)
+- **Cell-type markers**: Top 50 markers per cluster (9150 total) [TODO: no committed marker table or code; Limitation 11]
 
 ### Auto-decoder
 - **Architecture**: Conditional VAE (encoder: 4000→512→256, latent dim 32, decoder: 32+64 condition → 512 → 512 → 4000)
@@ -121,7 +127,7 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 - **Auxiliary head**: Cluster classification (cross-entropy)
 - **Loss**: MSE reconstruction + 0.5×KLD + 0.1×CE
 - **Training**: 40 epochs, batch 256, AdamW (lr=1e-3, cosine schedule), early stopping (patience 8), CPU
-- **Best model**: Epoch 5, val_loss=0.4300, val_recon=0.140, val_kld=0.207
+- **Best model**: Epoch 5, val_loss=0.4300, val_recon=0.140, val_kld=0.207 [TODO: no committed training log for this v1.0.0 run; Limitation 8]
 
 ### Deconvolution
 - **Primary**: NNLS fitting of bulk expression onto signature matrix → cell-type fractions → stimulus activation (weighted average of per-cluster stimulus codes)
@@ -133,22 +139,28 @@ See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (inc
 - **Meta-analysis**: DerSimonian-Laird random-effects on log2FC_shrunk, BH correction
 
 ### Classification
-- **Flight vs GC**: Elastic-net logistic regression, nested 5-fold CV, AUC=0.919
+- **Flight vs GC**: Elastic-net logistic regression, stratified 5-fold CV with fixed C = 1 and l1_ratio = 0.5 (not nested), AUC=0.919 (v1.0.0); 0.915 ± 0.043 after the full-atlas retrain
 - **Tropism type**: Multinomial elastic-net, F1=1.0 (gravitropism vs phototropism)
 
 ### Visualization
-- **ggPlantMap**: Tissue-level projection of cell-type abundance changes onto Arabidopsis anatomy maps (root tip, rosette, shoot apex, leaf, stem)
+- **ggPlantMap**: Organ-level projection of cell-type abundance changes onto Arabidopsis anatomy maps (root tip, rosette, shoot apex, leaf, stem)
 - **KEGG pathway network**: tidygraph/ggraph network of pathways sharing DE genes
 - **Standard plots**: Volcano, heatmap, forest, bar plot, feature importance
 
 ## Limitations
 
-1. **Auto-decoder training scale**: The v1.0.0 auto-decoder was trained on CPU with a 60,792-cell stratified subsample (all 183 clusters); the full 432k atlas was already used for the signature matrix and deconvolution. The full-atlas GPU retrain has since been **completed** (2026-07): rebuilt entirely from the public atlas (GSE226097 `global_integration_221009.rds`), the auto-decoder was retrained on all **432,919 nuclei** via `Code/export_atlas.R` → `Code/train_autodecoder_gpu.py` (Apple MPS, ~3.4 min), improving validation loss to **0.3739** (vs 0.4300 for the 60k draft; reconstruction ≈ unchanged). The **Flight-vs-Ground-Control classifier has since been regenerated** on the retrained atlas: the bulk OSDR RNA-seq counts (14 studies) were re-acquired directly from OSDR, re-run through DESeq2 → NNLS deconvolution → elastic-net classifier, reproducing **AUC 0.915 ± 0.043** (vs 0.919 for v1.0.0) on 124 matched Flight/GC samples. These retrained artifacts power the web tool's **Phase 2** (`docs/assets/model/`). Remaining v1.0.0 caveat: the static `Results/` tables and published figures in this release have not been re-rendered, and GEO/microarray studies were not part of the classifier re-fit. Large retrain artifacts (embeddings, checkpoint, `expr_sub.bin`) are archived separately (Zenodo), not in git.
-2. **OSDR API timeouts**: Large studies (OSD-37, OSD-38, OSD-480) time out on `/v2/query/data/` endpoint; count matrices obtained via direct file download
-3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples); chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics (reference-signature-only fallback)
-4. **Metadata matching**: 124/398 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
-5. **ggkegg/SBGNview unavailable**: Rgraphviz system dependency failed; KEGG pathway network rendered with tidygraph/ggraph + org.At.tair.db annotations instead
-6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects tissue/hardware confounding rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC=0.919) is the more meaningful result
+1. **Auto-decoder training scale**: The v1.0.0 auto-decoder was trained on CPU with a 60,792-cell stratified subsample (all 183 clusters) [TODO: no committed record of the subsample; Limitation 11]; the full 432k atlas was already used for the signature matrix and deconvolution. The full-atlas GPU retrain has since been **completed** (2026-07): rebuilt entirely from the public atlas (GSE226097 `global_integration_221009.rds`), the auto-decoder was retrained on all **432,919 nuclei** via `Code/export_atlas.R` → `Code/train_autodecoder_gpu.py` (Apple MPS, ~3.4 min [TODO: no timing log]), improving validation loss to **0.3739** (vs 0.4300 for the 60k draft; reconstruction ≈ unchanged). The **Flight-vs-Ground-Control classifier has since been regenerated** on the retrained atlas: the bulk OSDR RNA-seq counts (14 studies [TODO: unrecorded; `Code/fetch_osdr_counts.py` lists 15 and `Results/de_analysis_summary.tsv` has 11]) were re-acquired directly from OSDR, re-run through DESeq2 → NNLS deconvolution → elastic-net classifier, reproducing **AUC 0.915 ± 0.043** (vs 0.919 for v1.0.0) on 124 matched Flight/GC samples. These retrained artifacts power the web tool's **Phase 2** (`docs/assets/model/`). Remaining v1.0.0 caveat: the static `Results/` tables and published figures in this release have not been re-rendered, and GEO/microarray studies were not part of the classifier re-fit. Large retrain artifacts (embeddings, checkpoint, `expr_sub.bin`) are archived separately (Zenodo), not in git.
+2. **OSDR API timeouts**: Large studies (OSD-37, OSD-38, OSD-480) time out on `/v2/query/data/` endpoint; count matrices obtained via direct file download [TODO: no committed log of these timeouts]
+3. **Tropism data asymmetry**: Gravitropism/phototropism well-covered; hydrotropism (6 samples), mechanotropism (12 samples) [TODO: labels not supported by the GEO records; Limitation 12]; chemotropism/oxytropism have no dedicated Arabidopsis transcriptomics (reference-signature-only fallback)
+4. **Metadata matching**: 124 of the 397 deconvolved samples matched to tropism labels via GSM IDs (OSDR sample naming convention varies)
+5. **ggkegg/SBGNview unavailable**: Rgraphviz system dependency failed; KEGG pathway network rendered with tidygraph/ggraph + org.At.tair.db annotations instead [TODO: no committed log of this failure]
+6. **Tropism classifier**: Perfect F1=1.0 for gravitropism vs phototropism reflects study/hardware confounding (all 44 gravitropism samples are OSD-321, BRIC-PDFU; all 80 phototropism samples are OSD-193 and OSD-427, Veggie; all seedlings) rather than subtle tropism-specific signatures; the Flight vs GC classifier (AUC 0.919 in v1.0.0; 0.915 after the full-atlas retrain) is the more meaningful result
+7. **Meta-analysis (corrected 28 Oct 2026)**: the DerSimonian–Laird τ² in `Code/meta_classifier.py` was too small by a factor of Σw (the sum of the fixed-effect weights), and p-values were computed as `1 − cdf`, which underflows to 0. Both are fixed; the function matches `metafor::rma(method = "DL")`. The v1.0.0 per-study DESeq2 tables were not retained, so the meta-analysis was re-run on DESeq2 results from OSDR counts re-acquired in July 2026 for the same 11 studies (`Code/REACQUIRE_BULK.md` steps 1–3; `Results/de_analysis_summary.tsv`). Result: 26,527 genes tested and 248 significant (padj < 0.05), where v1.0.0 reported 26,402 and 16,002. The volcano, forest and KEGG figures are re-rendered from it. With the old code the same re-acquired inputs give 15,926 significant genes, so almost all of the change is the correction. The re-acquired DESeq2 tables (20 MB) are not in git [TODO: deposit them on Zenodo with the other retrain artefacts].
+8. **Auto-decoder v1.0.0 metrics (TODO)**: the v1.0.0 training metrics (val_loss 0.4300, val_recon 0.140, val_kld 0.207, 181/183 clusters, latent range) have no surviving log. The full-atlas retrain's log is committed (`Results/autodecoder_fullatlas_training_log.csv`, best val_loss 0.3739). The classifier metrics are recorded: re-running `Code/meta_classifier.py` on the committed v1.0.0 projection tables (`Results/cell_type_fractions_all.csv`, `Results/stimulus_activation_all.csv`) reproduces AUC 0.919 ± 0.047, 85 % accuracy and tropism F1 1.000, now written to `Results/classifier_metrics.json` and `Results/tropism_confusion_matrix.csv`. The CV is stratified 5-fold with fixed hyperparameters, not nested CV as earlier versions said.
+9. **ggPlantMap maps**: the cell-type results have no cell-type → region mapping, so a map can only show its organ's mean difference. Earlier versions added random jitter per region (`rnorm`); the scripts no longer do. The committed maps were redrawn on 28 Oct 2026: every region of a map has its organ's mean, on one colour scale shared by all five maps.
+10. **No root clusters in the atlas**: root bulk samples are decomposed onto seedling, seed and silique clusters (silique 36 %, seedling 32 %, seed 21 % for the 42 OSDR root samples, from `Results/cell_type_fractions_all.csv`), so a root sample's cluster fractions are not its tissue composition.
+11. **Methods statements with no committed record (TODO)**: these statements have no code, log or output in the repository, and are marked TODO where they appear. (a) The tropism-labelling heuristic: no labelling code is committed, and in `Data/harmonized_metadata.tsv` no OSDR row has a tissue or light-regime entry; each OSDR study has one label, and each hardware type maps to one label. (b) The top 50 markers per cluster (9,150, Wilcoxon). (c) The v1.0.0 60,792-cell subsample: the original extraction script (`fix_signatures.R`) was not committed, and `Code/export_atlas.R` is a reconstruction. (d) The retrain's ~3.4 min run time and its 14 re-acquired studies (`Code/fetch_osdr_counts.py` lists 15 by default; `Results/de_analysis_summary.tsv` has 11). (e) The OSDR API timeouts (Limitation 2) and the ggkegg/SBGNview failure (Limitation 5). (f) The PCA separation of the latent embeddings by organ and stage (standalone `Manuscript/main.tex`). (g) That Phase 2 reproduces the manuscript's cell-type fractions and stimulus scores: the web tool uses the full-atlas retrain, and the manuscript's tables come from the v1.0.0 model.
+12. **GEO tropism labels (TODO)**: three of the five GEO series carry a tropism label that their GEO records do not support; none of the three records names a tropism or applies a tropic stimulus. GSE97258 (labelled hydrotropism, 6 samples) compares roots with and without 6 h IAA. GSE115554 (labelled gravitropism, 6 samples) compares root-apex zones by RNA-seq and microarray, on vertical plates. GSE225299 (labelled mechanotropism, 12 samples) studies root penetration by PIF3 and FER (Col-0 and fer-4, mock and RALF1); its summary mentions mechanosensitive ion channels. All 6 hydrotropism and all 12 mechanotropism samples come from these series, as do 6 of the 901 gravitropism samples. The labels reach only the composition counts, `Figures/dataset_summary` and the text: DE, the classifier and the cell-type heatmap use OSDR samples only. They are kept until the basis for each is confirmed.
 
 ## Reproduction
 

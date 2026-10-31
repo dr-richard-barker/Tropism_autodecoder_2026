@@ -55,7 +55,8 @@ count matrices.)
 python Code/meta_classifier.py --meta Data/harmonized_metadata.tsv \
        --de-dir bulk/de_results --proj-dir bulk/projection --out-dir bulk/classifier
 ```
-Elastic-net logistic on [183 fractions + 32 stim], nested 5-fold CV → `classifier_params.json`.
+Elastic-net logistic on [183 fractions + 32 stim], stratified 5-fold CV with fixed hyperparameters → `classifier_params.json`,
+`classifier_metrics.json`, `tropism_confusion_matrix.csv`, and the meta-analysis table (DerSimonian–Laird τ² corrected 28 Oct 2026).
 
 ## 6. Export the web-tool Phase 2 bundle
 ```bash

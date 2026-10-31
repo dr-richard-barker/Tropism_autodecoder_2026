@@ -5,7 +5,7 @@ export_web_artifacts.py — assemble the Phase-2 model bundle for the web tool.
 Reads the pipeline's model artifacts and writes browser-ready files into
 docs/assets/model/, so the web tool can reproduce the manuscript's cell-type
 deconvolution (NNLS onto the signature matrix), stimulus-code projection, and
-the Flight-vs-Ground-Control elastic-net classifier (nested-CV AUC 0.919)
+the Flight-vs-Ground-Control elastic-net classifier (its 5-fold CV AUC is written to classifier.json)
 entirely client-side.
 
 Run this AFTER the pipeline (or the full-atlas GPU retrain) has produced:
@@ -19,7 +19,7 @@ Outputs (docs/assets/model/):
   signature_index.json      { genes:[...], clusters:[...], shape:[g,c] }
   stimulus_codes.json       { cluster: [32 floats] }  (copied)
   classifier.json           (copied classifier_params.json)
-  flight_signature_genes.json  top-N meta-analysis genes (optional panel)
+  flight_signature_genes.json  top-N meta-analysis genes with padj < 0.05 (optional panel)
   manifest.json             versions + shapes + presence flags (gates Phase 2 in the UI)
 """
 import os, json, argparse
@@ -86,7 +86,7 @@ def main():
         cols = {c.lower(): c for c in m.columns}
         gcol = cols.get("gene"); pcol = cols.get("padj"); fcol = cols.get("pooled_log2fc")
         if gcol and pcol:
-            top = m.sort_values(pcol).head(args.top_genes)
+            top = m[m[pcol] < 0.05].sort_values(pcol).head(args.top_genes)  # significant genes only
             recs = [{"gene": str(r[gcol]),
                      "log2FC": (float(r[fcol]) if fcol and pd.notna(r[fcol]) else None),
                      "padj": (float(r[pcol]) if pd.notna(r[pcol]) else None)}
