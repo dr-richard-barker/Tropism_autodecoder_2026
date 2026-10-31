@@ -55,7 +55,7 @@ Here we present a complete pipeline that: (1) systematically acquires and harmon
 We queried the NASA GeneLab \OSDR metadata API (\url{https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/}) to identify all \Arabidopsis thaliana transcriptomics studies. A total of 24 studies were identified: 18 RNA-seq (OSD-37, OSD-38, OSD-120, OSD-193, OSD-217, OSD-218, OSD-219, OSD-223, OSD-251, OSD-281, OSD-314, OSD-321, OSD-346, OSD-427, OSD-437, OSD-480, OSD-522, OSD-678) and 6 microarray (OSD-7, OSD-17, OSD-44, OSD-121, OSD-147, OSD-205). These studies comprise 1,100 distinct samples (42 of them listed under two studies), spanning gravitropism and phototropism experiments (the mechanotropism samples all come from \GEO).
 
 \subsubsection*{\GEO Supplementary Series}
-We identified 5 tropism-focused \GEO series not in \OSDR: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). These added 63 samples with dedicated tropism phenotyping. (Earlier versions also listed GSE8300, a \textit{Haemophilus influenzae} genomic hybridization series, and GSE111555, a human exercise study; neither is an \Arabidopsis tropism series.)
+We identified 5 tropism-focused \GEO series not in \OSDR: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). These added 63 samples with dedicated tropism phenotyping. \textbf{[TODO: the GEO records of GSE97258, GSE115554 and GSE225299 describe no tropism (24 of the 63 samples); README, Limitation 12]} (Earlier versions also listed GSE8300, a \textit{Haemophilus influenzae} genomic hybridization series, and GSE111555, a human exercise study; neither is an \Arabidopsis tropism series.)
 
 \subsubsection*{Harmonization}
 All 1,163 samples were annotated in a unified schema with 19 fields: sample\_id, source\_repo, source\_accession, organism, tissue, organ, ecotype, developmental\_stage, spaceflight\_condition, gravity, light\_regime, tropism\_type, hardware, mission, growth\_temperature, genotype, assay\_type, raw\_file and processed\_file. The light\_regime column is empty, OSDR rows have no tissue entry, and 135 samples have no hardware entry.
@@ -152,7 +152,7 @@ Volcano plots (meta-analysis), heatmaps (cell-type fractions, stimulus activatio
 
 \subsection*{Dataset Composition}
 
-The harmonized dataset comprises 1,163 distinct samples: 1,100 from \OSDR (18 RNA-seq + 6 microarray studies) and 63 from \GEO. Tropism distribution (figure \ref{fig:dataset_summary}): gravitropism (901 samples), phototropism (198), mixed gravitropism + phototropism (46), mechanotropism (12), hydrotropism (6). Spaceflight vs ground control: 787 spaceflight, 376 ground control samples. The metadata has 1,205 rows because 42 samples are listed under two \OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as mixed.
+The harmonized dataset comprises 1,163 distinct samples: 1,100 from \OSDR (18 RNA-seq + 6 microarray studies) and 63 from \GEO. Tropism distribution (figure \ref{fig:dataset_summary}): gravitropism (901 samples), phototropism (198), mixed gravitropism + phototropism (46), mechanotropism (12), hydrotropism (6). \textbf{[TODO: the hydrotropism and mechanotropism samples, and 6 of the gravitropism samples, carry GEO labels their records do not support; README, Limitation 12]} Spaceflight vs ground control: 787 spaceflight, 376 ground control samples. The metadata has 1,205 rows because 42 samples are listed under two \OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as mixed.
 
 \subsection*{Auto-decoder Performance}
 
@@ -202,7 +202,7 @@ The perfect F1 = 1.0 for tropism-type classification between gravitropism and ph
 \begin{enumerate}
   \item \textbf{GPU Unavailability}: The auto-decoder was trained on CPU with a 60k-cell subsample. While this subset covers all 183 clusters, training on the full 432k-nucleus atlas with GPU acceleration could improve latent representations and enable larger validation sets.
   
-  \item \textbf{Tropism Data Asymmetry}: Gravitropism and phototropism dominate the dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are severely underrepresented. Chemotropism and oxytropism have no dedicated spaceflight transcriptomics in the public record.
+  \item \textbf{Tropism Data Asymmetry}: Gravitropism and phototropism dominate the dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are severely underrepresented \textbf{[TODO: labels not supported by the GEO records; README, Limitation 12]}. Chemotropism and oxytropism have no dedicated spaceflight transcriptomics in the public record.
   
   \item \textbf{Metadata Matching}: Only 124 of the 397 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set and confounding analysis.
   
@@ -285,7 +285,7 @@ DerSimonian, R. \& Laird, N. Meta-analysis in clinical trials. \textit{Control C
 \centering
 \includegraphics[width=0.95\textwidth]{../Figures/dataset_summary.png}
 \caption{\textbf{Dataset Composition.}
-Distinct samples (1,163) by tropism type, spaceflight condition and assay type. The meta-analysis volcano plot is figure \ref{fig:volcano}.
+Distinct samples (1,163) by tropism type, spaceflight condition and assay type. \textbf{[TODO: the hydrotropism, mechanotropism and 6 gravitropism labels are not supported by their GEO records; README, Limitation 12]} The meta-analysis volcano plot is figure \ref{fig:volcano}.
 }\label{fig:dataset_summary}
 \end{figure}
 

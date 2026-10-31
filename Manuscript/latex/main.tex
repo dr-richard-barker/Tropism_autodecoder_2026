@@ -89,7 +89,8 @@ obtained through direct file download. \textbf{[TODO: no committed log of these 
 
 \textbf{GEO:} We identified 5 tropism-focused GEO series: GSE3847
 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299
-(mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). Supplementary
+(mechanotropism/RALF1 signaling), and GSE115554 (gravitropism).
+\textbf{[TODO: the GEO records of GSE97258, GSE115554 and GSE225299 describe no tropism; README, Limitation 12]} Supplementary
 files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq
 data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
@@ -181,7 +182,8 @@ fractions, stimulus activation), forest plot (top gene across studies), bar plot
 The harmonized dataset comprises 1{,}163 distinct samples: 1{,}100 from OSDR and 63
 from GEO (Fig.~\ref{fig:dataset}). Tropism distribution: gravitropism (901),
 phototropism (198), gravitropism+phototropism (46), mechanotropism (12),
-hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control.
+hydrotropism (6). \textbf{[TODO: the hydrotropism and mechanotropism samples, and 6 of the gravitropism samples, carry GEO labels their records do not support; README, Limitation 12]}
+Spaceflight conditions: 787 Space Flight, 376 Ground Control.
 Assay types: 1{,}046 RNA-seq (12 of them pseudo-bulk from single-cell
 RNA-seq, GSE225299), 117 microarray. The metadata has 1{,}205 rows because
 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of
@@ -194,7 +196,8 @@ on 28 Oct 2026, and 48 exact duplicate rows on 30 Oct 2026.)
 \centering
 \includegraphics[width=\textwidth]{dataset_summary.png}
 \caption{\textbf{Dataset composition.} Harmonized dataset of 1{,}163 distinct samples by tropism
-type, spaceflight condition and assay type.}
+type, spaceflight condition and assay type. \textbf{[TODO: the hydrotropism, mechanotropism and 6
+gravitropism labels are not supported by their GEO records; README, Limitation 12]}}
 \label{fig:dataset}
 \end{figure}
 
@@ -378,7 +381,7 @@ noise that inflates meta-analysis heterogeneity.
     with GPU acceleration could improve latent representations.
   \item \textbf{Tropism data asymmetry:} gravitropism and phototropism dominate the
     dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are
-    underrepresented. Chemotropism and oxytropism have no dedicated Arabidopsis
+    underrepresented \textbf{[TODO: labels not supported by the GEO records; README, Limitation 12]}. Chemotropism and oxytropism have no dedicated Arabidopsis
     transcriptomics data.
   \item \textbf{Metadata matching:} only 124 of the 397 deconvolved samples could be
     matched to tropism labels via GSM identifiers, limiting the classifier training

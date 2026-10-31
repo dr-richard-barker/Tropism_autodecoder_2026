@@ -85,6 +85,8 @@ result file now comes from.
   tropism-labelling heuristic, the 50 markers per cluster, the 60,792-cell subsample, the retrain's run time and
   study count, the OSDR API timeouts, the ggkegg failure, the PCA separation claim, and Phase 2 reproducing the
   manuscript's fractions.
+- GEO tropism labels marked TODO (README, Limitation 12): the GEO records of GSE97258 (hydrotropism),
+  GSE115554 (gravitropism) and GSE225299 (mechanotropism) describe no tropism.
 
 ## [1.1.0] — 2026-07-21
 

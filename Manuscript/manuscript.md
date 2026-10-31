@@ -26,7 +26,7 @@ Here we present a complete pipeline that: (1) systematically acquires and harmon
 
 **OSDR**: We queried the NASA GeneLab OSDR metadata API (`https://visualization.osdr.nasa.gov/biodata/api/v2/query/metadata/`) to identify all Arabidopsis thaliana transcriptomics studies, yielding 24 studies (18 RNA-seq, 6 microarray) with 1,100 distinct samples (42 of them listed under two studies). Count matrices were downloaded via direct file access (`https://osdr.nasa.gov/geode-py/ws/studies/OSD-{id}/download`). Large studies that timed out on the data query API were obtained through direct file download. [TODO: no committed log of these timeouts; README, Limitation 11]
 
-**GEO**: We identified 5 tropism-focused GEO series: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). (GSE8300, listed here before 28 Oct 2026, is a *Haemophilus influenzae* genomic hybridization series; its 84 rows were removed from `Data/harmonized_metadata.tsv`.) Supplementary files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq data (12 samples) was aggregated to pseudo-bulk counts per sample.
+**GEO**: We identified 5 tropism-focused GEO series: GSE3847 (gravitropism), GSE143760 (phototropism), GSE97258 (hydrotropism), GSE225299 (mechanotropism/RALF1 signaling), and GSE115554 (gravitropism). [TODO: the GEO records of GSE97258, GSE115554 and GSE225299 describe no tropism; README, Limitation 12] (GSE8300, listed here before 28 Oct 2026, is a *Haemophilus influenzae* genomic hybridization series; its 84 rows were removed from `Data/harmonized_metadata.tsv`.) Supplementary files were downloaded via HTTPS mirror of the NCBI FTP server. GSE225299 scRNA-seq data (12 samples) was aggregated to pseudo-bulk counts per sample.
 
 **Harmonization**: Samples were annotated with tropism type (gravitropism, phototropism, mechanotropism, hydrotropism), spaceflight condition (Space Flight, Ground Control), assay type and, where the source gives it, hardware (135 samples have none; OSDR rows have no tissue entry). Tropism labels were inferred heuristically from tissue type, hardware configuration (EMCS→gravitropism, Veggie/LED→phototropism), light regime, and study-specific overrides. [TODO: no committed code performs this labelling; README, Limitation 11]
 
@@ -83,7 +83,7 @@ We trained an elastic-net logistic regression classifier to distinguish:
 
 ### Dataset Composition
 
-The harmonized dataset comprises 1,163 distinct samples: 1,100 from OSDR and 63 from GEO. Tropism distribution: gravitropism (901), phototropism (198), gravitropism+phototropism (46), mechanotropism (12), hydrotropism (6). Spaceflight conditions: 787 Space Flight, 376 Ground Control. Assay types: 1,046 RNA-seq (12 of them pseudo-bulk from single-cell RNA-seq, GSE225299), 117 microarray. The metadata has 1,205 rows because 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as gravitropism+phototropism.
+The harmonized dataset comprises 1,163 distinct samples: 1,100 from OSDR and 63 from GEO. Tropism distribution: gravitropism (901), phototropism (198), gravitropism+phototropism (46), mechanotropism (12), hydrotropism (6). [TODO: the hydrotropism and mechanotropism samples, and 6 of the gravitropism samples, carry GEO labels their records do not support; README, Limitation 12] Spaceflight conditions: 787 Space Flight, 376 Ground Control. Assay types: 1,046 RNA-seq (12 of them pseudo-bulk from single-cell RNA-seq, GSE225299), 117 microarray. The metadata has 1,205 rows because 42 samples are listed under two OSDR studies (OSD-218/OSD-219, OSD-147/OSD-205); 10 of them are annotated gravitropism in OSD-147 and phototropism in OSD-205 and are counted as gravitropism+phototropism.
 
 ### Auto-decoder Performance
 
@@ -123,7 +123,7 @@ The meta-analysis found 248 significant genes out of 26,527, with high heterogen
 
 1. **GPU unavailability**: The auto-decoder was trained on CPU with a 60k-cell subsample. While this covers all 183 clusters, a larger training set with GPU acceleration could improve latent representations.
 
-2. **Tropism data asymmetry**: Gravitropism and phototropism dominate the dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are underrepresented. Chemotropism and oxytropism have no dedicated Arabidopsis transcriptomics data.
+2. **Tropism data asymmetry**: Gravitropism and phototropism dominate the dataset; hydrotropism (6 samples) and mechanotropism (12 samples) are underrepresented [TODO: labels not supported by the GEO records; README, Limitation 12]. Chemotropism and oxytropism have no dedicated Arabidopsis transcriptomics data.
 
 3. **Metadata matching**: Only 124 of the 397 deconvolved samples could be matched to tropism labels via GSM identifiers, limiting the classifier training set.
 
