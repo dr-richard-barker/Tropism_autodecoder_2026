@@ -1,15 +1,16 @@
 # Phase 3 scope — cross-species functional conservation of the spaceflight/tropism signature
 
-Companion to `WEB_TOOL_PLAN.md`. Goal, per the request: for genes altered in the Arabidopsis
+**Status:** ✅ **COMPLETED & LIVE (2026-11)** — Precomputed static artifacts shipped in `docs/assets/ortho/` and interactive Phase 3 Explorer live on the portal.
+
+Companion to `WEB_TOOL_PLAN.md`. Goal: for genes altered in the Arabidopsis
 tropism/spaceflight signature, reveal which **orthologs are conserved across species** and which
 **protein functional regions/functions** are being altered — moving from "which genes overlap" to
 "which conserved protein functions are perturbed across kingdoms."
 
-**Decisions (locked):**
-- **Functional layer = both** — GO molecular-function/pathway enrichment first, then Pfam/InterPro protein
-  **domains** (the literal "functional regions within conserved regions"). See §3 options B + A.
-- **Deliverable = precompute + interactive tool view** — static JSON artifacts + a new Phase 3 panel in the
-  web tool (§4).
+**Implemented Decisions:**
+- **Functional layer = both** — GO molecular-function/pathway enrichment (Option B) AND Pfam/InterPro protein
+  **domains** (Option A — the literal "functional regions within conserved regions").
+- **Deliverable = precompute + interactive tool view** — static JSON artifacts in `docs/assets/ortho/` + interactive Phase 3 panel in the web tool and Section 05 of the site.
 
 ## 1. What already exists (your `OSDR_X-species` bundle — reuse, don't rebuild)
 Grounded inventory of `zenodo_repo/`:

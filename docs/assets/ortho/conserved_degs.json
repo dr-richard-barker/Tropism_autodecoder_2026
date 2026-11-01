@@ -1,0 +1,809 @@
+[
+  {
+    "og_id": "OG_HSP70",
+    "category": "Proteostasis & Chaperones",
+    "description": "Heat shock 70kDa protein chaperone family",
+    "at_locus": "AT3G12580",
+    "at_symbol": "HSP70-1",
+    "at_log2FC": 1.45,
+    "at_padj": 1e-12,
+    "hs_symbol": "HSPA1A",
+    "hs_log2FC": 1.62,
+    "mm_symbol": "Hspa1a",
+    "mm_log2FC": 1.38,
+    "dm_symbol": "Hsp70Aa",
+    "dm_log2FC": 1.74,
+    "ce_symbol": "hsp-70",
+    "ce_log2FC": 1.25,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Hsp70 protein"
+    ],
+    "domain_ids": [
+      "PF00012"
+    ],
+    "functions": [
+      "Chaperone-mediated protein folding",
+      "ATP binding",
+      "Cellular response to heat/stress"
+    ]
+  },
+  {
+    "og_id": "OG_HSP90",
+    "category": "Proteostasis & Chaperones",
+    "description": "Heat shock 90kDa protein family",
+    "at_locus": "AT5G52640",
+    "at_symbol": "HSP90.1",
+    "at_log2FC": 1.18,
+    "at_padj": 2e-08,
+    "hs_symbol": "HSP90AA1",
+    "hs_log2FC": 0.95,
+    "mm_symbol": "Hsp90aa1",
+    "mm_log2FC": 0.88,
+    "dm_symbol": "Hsp83",
+    "dm_log2FC": 1.1,
+    "ce_symbol": "daf-21",
+    "ce_log2FC": 0.76,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "HSP90 protein"
+    ],
+    "domain_ids": [
+      "PF00183"
+    ],
+    "functions": [
+      "Protein folding chaperone",
+      "ATP hydrolysis activity",
+      "Signal transduction regulation"
+    ]
+  },
+  {
+    "og_id": "OG_DNAJ",
+    "category": "Proteostasis & Chaperones",
+    "description": "DnaJ / Hsp40 co-chaperone family",
+    "at_locus": "AT2G22360",
+    "at_symbol": "DNAJ-1",
+    "at_log2FC": 0.82,
+    "at_padj": 4e-06,
+    "hs_symbol": "DNAJA1",
+    "hs_log2FC": 0.91,
+    "mm_symbol": "Dnaja1",
+    "mm_log2FC": 0.79,
+    "dm_symbol": "DnaJ-1",
+    "dm_log2FC": 0.85,
+    "ce_symbol": "dnj-13",
+    "ce_log2FC": 0.64,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "DnaJ domain"
+    ],
+    "domain_ids": [
+      "PF00226"
+    ],
+    "functions": [
+      "Hsp70 co-chaperone activity",
+      "Unfolded protein binding"
+    ]
+  },
+  {
+    "og_id": "OG_CPN60",
+    "category": "Proteostasis & Chaperones",
+    "description": "Chaperonin 60 / GroEL / Hsp60 mitochondrial/chloroplast chaperone",
+    "at_locus": "AT2G28000",
+    "at_symbol": "CPN60A",
+    "at_log2FC": 0.65,
+    "at_padj": 0.0001,
+    "hs_symbol": "HSPD1",
+    "hs_log2FC": 0.72,
+    "mm_symbol": "Hspd1",
+    "mm_log2FC": 0.69,
+    "dm_symbol": "Hsp60A",
+    "dm_log2FC": 0.81,
+    "ce_symbol": "hsp-60",
+    "ce_log2FC": 0.58,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "TCP-1/cpn60 chaperonin"
+    ],
+    "domain_ids": [
+      "PF00118"
+    ],
+    "functions": [
+      "Mitochondrial protein folding",
+      "ATP-dependent protein folding chaperone"
+    ]
+  },
+  {
+    "og_id": "OG_PRDX",
+    "category": "Redox Homeostasis",
+    "description": "Peroxiredoxin / Alkyl hydroperoxide reductase family",
+    "at_locus": "AT1G60740",
+    "at_symbol": "PRXIIB",
+    "at_log2FC": 1.22,
+    "at_padj": 3e-10,
+    "hs_symbol": "PRDX1",
+    "hs_log2FC": 1.15,
+    "mm_symbol": "Prdx1",
+    "mm_log2FC": 1.08,
+    "dm_symbol": "Jafrac1",
+    "dm_log2FC": 1.34,
+    "ce_symbol": "prdx-2",
+    "ce_log2FC": 0.92,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "AhpC/TSA peroxiredoxin"
+    ],
+    "domain_ids": [
+      "PF00578"
+    ],
+    "functions": [
+      "Peroxidase activity",
+      "Cell redox homeostasis",
+      "Hydrogen peroxide catabolic process"
+    ]
+  },
+  {
+    "og_id": "OG_SOD1",
+    "category": "Redox Homeostasis",
+    "description": "Superoxide dismutase [Cu-Zn] family",
+    "at_locus": "AT1G08830",
+    "at_symbol": "CSD1",
+    "at_log2FC": 0.78,
+    "at_padj": 5e-07,
+    "hs_symbol": "SOD1",
+    "hs_log2FC": 0.84,
+    "mm_symbol": "Sod1",
+    "mm_log2FC": 0.76,
+    "dm_symbol": "Sod1",
+    "dm_log2FC": 0.91,
+    "ce_symbol": "sod-1",
+    "ce_log2FC": 0.7,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Copper/zinc superoxide dismutase"
+    ],
+    "domain_ids": [
+      "PF00080"
+    ],
+    "functions": [
+      "Superoxide dismutase activity",
+      "Removal of superoxide radicals",
+      "Copper ion binding"
+    ]
+  },
+  {
+    "og_id": "OG_TRX",
+    "category": "Redox Homeostasis",
+    "description": "Thioredoxin superfamily oxidoreductase",
+    "at_locus": "AT1G45145",
+    "at_symbol": "TRX-H5",
+    "at_log2FC": 0.94,
+    "at_padj": 1e-08,
+    "hs_symbol": "TXN",
+    "hs_log2FC": 1.02,
+    "mm_symbol": "Txn1",
+    "mm_log2FC": 0.89,
+    "dm_symbol": "Trx-2",
+    "dm_log2FC": 0.96,
+    "ce_symbol": "trx-1",
+    "ce_log2FC": 0.73,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Thioredoxin"
+    ],
+    "domain_ids": [
+      "PF00085"
+    ],
+    "functions": [
+      "Disulfide oxidoreductase activity",
+      "Redox signaling",
+      "Electron carrier activity"
+    ]
+  },
+  {
+    "og_id": "OG_CAT",
+    "category": "Redox Homeostasis",
+    "description": "Catalase antioxidant heme enzyme",
+    "at_locus": "AT4G35090",
+    "at_symbol": "CAT2",
+    "at_log2FC": -0.43,
+    "at_padj": 0.0003,
+    "hs_symbol": "CAT",
+    "hs_log2FC": -0.52,
+    "mm_symbol": "Cat",
+    "mm_log2FC": -0.48,
+    "dm_symbol": "Cat",
+    "dm_log2FC": -0.61,
+    "ce_symbol": "ctl-1",
+    "ce_log2FC": -0.39,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Catalase core domain"
+    ],
+    "domain_ids": [
+      "PF00199"
+    ],
+    "functions": [
+      "Catalase activity",
+      "Hydrogen peroxide catabolic process",
+      "Heme binding"
+    ]
+  },
+  {
+    "og_id": "OG_ACTIN",
+    "category": "Cytoskeleton & Mechano",
+    "description": "Actin microfilament core structural subunit",
+    "at_locus": "AT3G18780",
+    "at_symbol": "ACT2",
+    "at_log2FC": -0.58,
+    "at_padj": 1e-05,
+    "hs_symbol": "ACTB",
+    "hs_log2FC": -0.65,
+    "mm_symbol": "Actb",
+    "mm_log2FC": -0.62,
+    "dm_symbol": "Act5C",
+    "dm_log2FC": -0.71,
+    "ce_symbol": "act-1",
+    "ce_log2FC": -0.54,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Actin family"
+    ],
+    "domain_ids": [
+      "PF00022"
+    ],
+    "functions": [
+      "Structural constituent of cytoskeleton",
+      "ATP binding",
+      "Mechanical tension transduction"
+    ]
+  },
+  {
+    "og_id": "OG_TUBULIN",
+    "category": "Cytoskeleton & Mechano",
+    "description": "Beta-tubulin microtubule structural component",
+    "at_locus": "AT1G75780",
+    "at_symbol": "TUBB1",
+    "at_log2FC": -0.49,
+    "at_padj": 0.0002,
+    "hs_symbol": "TUBB",
+    "hs_log2FC": -0.55,
+    "mm_symbol": "Tubb5",
+    "mm_log2FC": -0.51,
+    "dm_symbol": "betaTub56D",
+    "dm_log2FC": -0.63,
+    "ce_symbol": "tbb-1",
+    "ce_log2FC": -0.44,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Tubulin/FtsZ family"
+    ],
+    "domain_ids": [
+      "PF00091"
+    ],
+    "functions": [
+      "GTP binding",
+      "Microtubule-based movement",
+      "Mitotic spindle organization"
+    ]
+  },
+  {
+    "og_id": "OG_MYOSIN",
+    "category": "Cytoskeleton & Mechano",
+    "description": "Myosin heavy chain motor protein",
+    "at_locus": "AT1G17580",
+    "at_symbol": "MYA1",
+    "at_log2FC": -0.67,
+    "at_padj": 8e-06,
+    "hs_symbol": "MYH9",
+    "hs_log2FC": -0.73,
+    "mm_symbol": "Myh9",
+    "mm_log2FC": -0.68,
+    "dm_symbol": "zip",
+    "dm_log2FC": -0.8,
+    "ce_symbol": "nmy-2",
+    "ce_log2FC": -0.59,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Myosin head motor domain"
+    ],
+    "domain_ids": [
+      "PF00063"
+    ],
+    "functions": [
+      "Actin-dependent ATPase activity",
+      "Microfilament motor activity",
+      "Cytokinesis"
+    ]
+  },
+  {
+    "og_id": "OG_EFHAND_CALCIUM",
+    "category": "Cytoskeleton & Mechano",
+    "description": "Calmodulin / EF-hand calcium sensor for touch & gravitropic tilt",
+    "at_locus": "AT5G37780",
+    "at_symbol": "TCH1/CAM2",
+    "at_log2FC": 1.28,
+    "at_padj": 1e-09,
+    "hs_symbol": "CALM1",
+    "hs_log2FC": 0.88,
+    "mm_symbol": "Calm1",
+    "mm_log2FC": 0.81,
+    "dm_symbol": "Cam",
+    "dm_log2FC": 0.94,
+    "ce_symbol": "cmd-1",
+    "ce_log2FC": 0.72,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "EF-hand calcium-binding domain"
+    ],
+    "domain_ids": [
+      "PF00036"
+    ],
+    "functions": [
+      "Calcium ion binding",
+      "Mechanotransduction signaling",
+      "Calmodulin-dependent kinase activator"
+    ]
+  },
+  {
+    "og_id": "OG_RPS3",
+    "category": "Translation & Ribosome",
+    "description": "Small ribosomal subunit protein S3",
+    "at_locus": "AT1G34430",
+    "at_symbol": "RPS3",
+    "at_log2FC": -0.52,
+    "at_padj": 6e-05,
+    "hs_symbol": "RPS3",
+    "hs_log2FC": -0.61,
+    "mm_symbol": "Rps3",
+    "mm_log2FC": -0.58,
+    "dm_symbol": "RpS3",
+    "dm_log2FC": -0.67,
+    "ce_symbol": "rps-3",
+    "ce_log2FC": -0.49,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Ribosomal protein S3"
+    ],
+    "domain_ids": [
+      "PF00189"
+    ],
+    "functions": [
+      "Structural constituent of ribosome",
+      "mRNA translation",
+      "rRNA binding"
+    ]
+  },
+  {
+    "og_id": "OG_RPL5",
+    "category": "Translation & Ribosome",
+    "description": "Large ribosomal subunit protein L5",
+    "at_locus": "AT3G25520",
+    "at_symbol": "RPL5A",
+    "at_log2FC": -0.46,
+    "at_padj": 0.0003,
+    "hs_symbol": "RPL5",
+    "hs_log2FC": -0.54,
+    "mm_symbol": "Rpl5",
+    "mm_log2FC": -0.5,
+    "dm_symbol": "RpL5",
+    "dm_log2FC": -0.62,
+    "ce_symbol": "rpl-5",
+    "ce_log2FC": -0.41,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Ribosomal protein L5"
+    ],
+    "domain_ids": [
+      "PF00281"
+    ],
+    "functions": [
+      "5S rRNA binding",
+      "Translation elongation",
+      "Structural constituent of ribosome"
+    ]
+  },
+  {
+    "og_id": "OG_EIF4A",
+    "category": "Translation & Ribosome",
+    "description": "Eukaryotic initiation factor 4A DEAD-box RNA helicase",
+    "at_locus": "AT3G13920",
+    "at_symbol": "EIF4A1",
+    "at_log2FC": -0.41,
+    "at_padj": 0.0008,
+    "hs_symbol": "EIF4A1",
+    "hs_log2FC": -0.48,
+    "mm_symbol": "Eif4a1",
+    "mm_log2FC": -0.45,
+    "dm_symbol": "eIF4A",
+    "dm_log2FC": -0.55,
+    "ce_symbol": "inf-1",
+    "ce_log2FC": -0.37,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "DEAD/DEAH box helicase",
+      "RNA recognition motif"
+    ],
+    "domain_ids": [
+      "PF00270",
+      "PF00076"
+    ],
+    "functions": [
+      "ATP-dependent RNA helicase activity",
+      "Translation initiation factor activity"
+    ]
+  },
+  {
+    "og_id": "OG_ATP_SYNTH_ALPHA",
+    "category": "Bioenergetics & ATP",
+    "description": "Mitochondrial ATP synthase subunit alpha / F1 complex",
+    "at_locus": "AT2G07698",
+    "at_symbol": "ATPA",
+    "at_log2FC": 0.72,
+    "at_padj": 2e-07,
+    "hs_symbol": "ATP5F1A",
+    "hs_log2FC": 0.79,
+    "mm_symbol": "Atp5f1a",
+    "mm_log2FC": 0.74,
+    "dm_symbol": "ATPsynalpha",
+    "dm_log2FC": 0.85,
+    "ce_symbol": "atp-1",
+    "ce_log2FC": 0.68,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "ATP synthase alpha/beta family",
+      "P-loop NTPase hydrolase"
+    ],
+    "domain_ids": [
+      "PF00006",
+      "IPR027417"
+    ],
+    "functions": [
+      "Proton-transporting ATP synthase activity",
+      "ATP metabolic process",
+      "Cristae remodeling"
+    ]
+  },
+  {
+    "og_id": "OG_GAPDH",
+    "category": "Bioenergetics & ATP",
+    "description": "Glyceraldehyde-3-phosphate dehydrogenase central glycolytic hub",
+    "at_locus": "AT3G04120",
+    "at_symbol": "GAPC1",
+    "at_log2FC": 0.92,
+    "at_padj": 1e-09,
+    "hs_symbol": "GAPDH",
+    "hs_log2FC": 1.05,
+    "mm_symbol": "Gapdh",
+    "mm_log2FC": 0.98,
+    "dm_symbol": "Gapdh1",
+    "dm_log2FC": 1.12,
+    "ce_symbol": "gpd-1",
+    "ce_log2FC": 0.84,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Glyceraldehyde 3-phosphate dehydrogenase"
+    ],
+    "domain_ids": [
+      "PF00044"
+    ],
+    "functions": [
+      "Glycolysis",
+      "NAD+ binding",
+      "Glyceraldehyde-3-phosphate dehydrogenase (phosphorylating) activity"
+    ]
+  },
+  {
+    "og_id": "OG_MDH",
+    "category": "Bioenergetics & ATP",
+    "description": "Malate dehydrogenase TCA cycle & malate-aspartate shuttle",
+    "at_locus": "AT1G53240",
+    "at_symbol": "MDH1",
+    "at_log2FC": 0.63,
+    "at_padj": 5e-05,
+    "hs_symbol": "MDH1",
+    "hs_log2FC": 0.69,
+    "mm_symbol": "Mdh1",
+    "mm_log2FC": 0.64,
+    "dm_symbol": "Mdh1",
+    "dm_log2FC": 0.75,
+    "ce_symbol": "mdh-1",
+    "ce_log2FC": 0.58,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Lactate/malate dehydrogenase"
+    ],
+    "domain_ids": [
+      "PF00056"
+    ],
+    "functions": [
+      "Malate dehydrogenase activity",
+      "TCA cycle",
+      "Oxidoreductase activity"
+    ]
+  },
+  {
+    "og_id": "OG_RAB11",
+    "category": "Vesicle Trafficking",
+    "description": "Rab11 / RABA small GTPase endosomal recycling machinery",
+    "at_locus": "AT1G06400",
+    "at_symbol": "RABA1A",
+    "at_log2FC": 0.74,
+    "at_padj": 4e-06,
+    "hs_symbol": "RAB11A",
+    "hs_log2FC": 0.81,
+    "mm_symbol": "Rab11a",
+    "mm_log2FC": 0.77,
+    "dm_symbol": "Rab11",
+    "dm_log2FC": 0.86,
+    "ce_symbol": "rab-11.1",
+    "ce_log2FC": 0.69,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Small GTPase (Ras family)"
+    ],
+    "domain_ids": [
+      "PF00071"
+    ],
+    "functions": [
+      "Endosome recycling",
+      "GTPase activity",
+      "PIN auxin efflux carrier trafficking"
+    ]
+  },
+  {
+    "og_id": "OG_ARF1",
+    "category": "Vesicle Trafficking",
+    "description": "ADP-ribosylation factor 1 vesicle budding regulator",
+    "at_locus": "AT1G23490",
+    "at_symbol": "ARF1A1C",
+    "at_log2FC": 0.59,
+    "at_padj": 0.0001,
+    "hs_symbol": "ARF1",
+    "hs_log2FC": 0.65,
+    "mm_symbol": "Arf1",
+    "mm_log2FC": 0.62,
+    "dm_symbol": "Arf79F",
+    "dm_log2FC": 0.7,
+    "ce_symbol": "arf-1.1",
+    "ce_log2FC": 0.53,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Arf family"
+    ],
+    "domain_ids": [
+      "PF00025"
+    ],
+    "functions": [
+      "Golgi vesicle transport",
+      "GTP binding",
+      "Coated vesicle membrane assembly"
+    ]
+  },
+  {
+    "og_id": "OG_MAPK",
+    "category": "Signal Transduction",
+    "description": "Mitogen-activated protein kinase cascade core",
+    "at_locus": "AT3G45640",
+    "at_symbol": "MPK3",
+    "at_log2FC": 0.88,
+    "at_padj": 2e-07,
+    "hs_symbol": "MAPK3",
+    "hs_log2FC": 0.94,
+    "mm_symbol": "Mapk3",
+    "mm_log2FC": 0.89,
+    "dm_symbol": "rl",
+    "dm_log2FC": 1.01,
+    "ce_symbol": "mpk-1",
+    "ce_log2FC": 0.77,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Protein kinase domain"
+    ],
+    "domain_ids": [
+      "PF00069"
+    ],
+    "functions": [
+      "MAP kinase activity",
+      "Phosphorylation",
+      "Cellular response to mechanical / microgravity stress"
+    ]
+  },
+  {
+    "og_id": "OG_CDK1",
+    "category": "Signal Transduction",
+    "description": "Cyclin-dependent kinase 1 cell cycle pace-maker",
+    "at_locus": "AT3G48750",
+    "at_symbol": "CDKA1",
+    "at_log2FC": -0.63,
+    "at_padj": 4e-05,
+    "hs_symbol": "CDK1",
+    "hs_log2FC": -0.71,
+    "mm_symbol": "Cdk1",
+    "mm_log2FC": -0.66,
+    "dm_symbol": "Cdk1",
+    "dm_log2FC": -0.76,
+    "ce_symbol": "cdk-1",
+    "ce_log2FC": -0.57,
+    "concordance": "concordant_down",
+    "n_species": 5,
+    "domains": [
+      "Protein kinase domain"
+    ],
+    "domain_ids": [
+      "PF00069"
+    ],
+    "functions": [
+      "G2/M transition of mitotic cell cycle",
+      "Protein serine/threonine kinase activity"
+    ]
+  },
+  {
+    "og_id": "OG_PP2A",
+    "category": "Signal Transduction",
+    "description": "Protein phosphatase 2A catalytic subunit",
+    "at_locus": "AT1G13320",
+    "at_symbol": "PP2A-1",
+    "at_log2FC": 0.54,
+    "at_padj": 0.0003,
+    "hs_symbol": "PPP2CA",
+    "hs_log2FC": 0.61,
+    "mm_symbol": "Ppp2ca",
+    "mm_log2FC": 0.57,
+    "dm_symbol": "Mts",
+    "dm_log2FC": 0.66,
+    "ce_symbol": "let-92",
+    "ce_log2FC": 0.49,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Protein phosphatase 2A"
+    ],
+    "domain_ids": [
+      "PF00149"
+    ],
+    "functions": [
+      "Protein serine/threonine phosphatase activity",
+      "PIN dephosphorylation & apical polarity"
+    ]
+  },
+  {
+    "og_id": "OG_UBC",
+    "category": "Proteostasis & Chaperones",
+    "description": "Ubiquitin-conjugating enzyme E2 family",
+    "at_locus": "AT1G14400",
+    "at_symbol": "UBC1",
+    "at_log2FC": 0.77,
+    "at_padj": 1e-06,
+    "hs_symbol": "UBE2D1",
+    "hs_log2FC": 0.83,
+    "mm_symbol": "Ube2d1",
+    "mm_log2FC": 0.79,
+    "dm_symbol": "UbcD1",
+    "dm_log2FC": 0.88,
+    "ce_symbol": "ubc-2",
+    "ce_log2FC": 0.71,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Ubiquitin-conjugating enzyme"
+    ],
+    "domain_ids": [
+      "PF00179"
+    ],
+    "functions": [
+      "Ubiquitin-protein transferase activity",
+      "Ubiquitin-dependent protein catabolic process"
+    ]
+  },
+  {
+    "og_id": "OG_PSMA",
+    "category": "Proteostasis & Chaperones",
+    "description": "20S proteasome core subunit alpha",
+    "at_locus": "AT1G53850",
+    "at_symbol": "PAA1",
+    "at_log2FC": 0.66,
+    "at_padj": 8e-05,
+    "hs_symbol": "PSMA1",
+    "hs_log2FC": 0.73,
+    "mm_symbol": "Psma1",
+    "mm_log2FC": 0.69,
+    "dm_symbol": "Prosalpha1",
+    "dm_log2FC": 0.78,
+    "ce_symbol": "pas-1",
+    "ce_log2FC": 0.6,
+    "concordance": "concordant_up",
+    "n_species": 5,
+    "domains": [
+      "Proteasome subunit"
+    ],
+    "domain_ids": [
+      "PF00227"
+    ],
+    "functions": [
+      "Endopeptidase activity",
+      "Proteasomal protein catabolic process"
+    ]
+  },
+  {
+    "og_id": "OG_CYP450",
+    "category": "Metabolism & Detox",
+    "description": "Cytochrome P450 monooxygenase xenobiotic metabolism",
+    "at_locus": "AT4G31500",
+    "at_symbol": "CYP71B15",
+    "at_log2FC": 0.95,
+    "at_padj": 1e-08,
+    "hs_symbol": "CYP1A1",
+    "hs_log2FC": -0.45,
+    "mm_symbol": "Cyp1a1",
+    "mm_log2FC": -0.38,
+    "dm_symbol": "Cyp6a2",
+    "dm_log2FC": 0.82,
+    "ce_symbol": "cyp-35A2",
+    "ce_log2FC": 0.51,
+    "concordance": "divergent",
+    "n_species": 5,
+    "domains": [
+      "Cytochrome P450"
+    ],
+    "domain_ids": [
+      "PF00067"
+    ],
+    "functions": [
+      "Iron ion binding",
+      "Oxidoreductase activity, acting on paired donors",
+      "Heme binding"
+    ]
+  },
+  {
+    "og_id": "OG_ABC_TRANSPORTER",
+    "category": "Metabolism & Detox",
+    "description": "ATP-binding cassette (ABC) transporter multidrug resistance family",
+    "at_locus": "AT1G02520",
+    "at_symbol": "ABCB1",
+    "at_log2FC": -0.58,
+    "at_padj": 7e-05,
+    "hs_symbol": "ABCB1",
+    "hs_log2FC": 0.62,
+    "mm_symbol": "Abcb1a",
+    "mm_log2FC": 0.58,
+    "dm_symbol": "Mdr49",
+    "dm_log2FC": -0.42,
+    "ce_symbol": "pgp-1",
+    "ce_log2FC": 0.35,
+    "concordance": "divergent",
+    "n_species": 5,
+    "domains": [
+      "ABC transporter"
+    ],
+    "domain_ids": [
+      "PF00005"
+    ],
+    "functions": [
+      "ATP binding",
+      "Active transmembrane transporter activity",
+      "Auxin transport regulation"
+    ]
+  }
+]

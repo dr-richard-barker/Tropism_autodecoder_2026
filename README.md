@@ -23,8 +23,9 @@ An interactive, browser-based companion tool lets reviewers and readers upload t
 - **Live URL** (after enabling **Settings → Pages → Deploy from branch → `main` / `/docs`**): `https://dr-richard-barker.github.io/Tropism_autodecoder_2026/`
 - **Method (Phase 1)**: rank-based single-sample enrichment (singscore) against curated, literature-verified tropism marker gene sets. These are marker-enrichment scores, **not** the auto-decoder output.
 - **Phase 2 (live)**: a browser NNLS deconvolution + stimulus projection + elastic-net classifier reproduces the manuscript's cell-type fractions, stimulus scores, and Flight-vs-Ground-Control probability (AUC ≈ 0.915) directly in the page, using the full-atlas retrained model artifacts in `docs/assets/model/`. Select the **Full auto-decoder** method in the tool to use it.
+- **Phase 3 (live)**: cross-species functional conservation across 5 model organisms (*Arabidopsis thaliana*, *Homo sapiens*, *Mus musculus*, *Drosophila melanogaster*, *Caenorhabditis elegans*). Ingests non-plant expression matrices, translates orthologs via `docs/assets/ortho/orthomap.json`, and visualizes conserved protein domain (Pfam/InterPro) and GO molecular function enrichment in an interactive dashboard. Select the **Cross-species functional conservation** method to explore.
 
-See `WEB_TOOL_PLAN.md` for the full design, accessibility spec, and roadmap (including a Phase 3 orthology network for non-*Arabidopsis* data).
+See `WEB_TOOL_PLAN.md` and `docs/PHASE3_PLAN.md` for the full design, accessibility spec, and biological findings.
 
 ## Repository Structure
 

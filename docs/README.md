@@ -16,11 +16,17 @@ no server, no data leaves the visitor's machine.**
 
 | File | Purpose |
 |---|---|
-| `index.html` | Landing page + embedded tool (single shareable URL) |
-| `assets/style.css` | Accessible white/black theme, red–white–blue (RdBu) data scale |
+| `index.html` | Research portal, draft manuscript reader, publication figure gallery & interactive decoder |
+| `Tropism_autodecoder_2026.pdf` | Compiled 12-page draft research manuscript in Springer Nature (`sn-jnl`) format |
+| `assets/style.css` | Accessible theme with RdBu accents, responsive PDF reader, figure gallery & CoSE integration |
 | `assets/app.js` | Parse → singscore → composed SVG figure → legend → SVG/PNG/CSV export |
+| `assets/model.js` | Phase 2 full auto-decoder (NNLS deconvolution + 32-D stimulus projection + classifier) |
+| `assets/ortho.js` | Phase 3 cross-species engine (translation, UpSet conservation tiers, domain heatmap & search) |
+| `assets/viewer.js` | PDF fullscreen toggle, publication figure gallery lightbox modal & 1-click BibTeX copy |
 | `assets/signatures.js` | Curated tropism signature gene sets + symbol→AGI aliases (replaceable) |
 | `assets/sample_data.csv` | **Synthetic** demo matrix for the "Load example" button (not experimental data) |
+| `assets/figures/` | High-resolution publication figures (pipeline, deconvolution, volcano, ggPlantMap, etc.) |
+| `assets/ortho/` | Phase 3 precomputed JSON data (orthomap, conserved DEGs, function/domain enrichment, demo matrices) |
 | `.nojekyll` | Serve `assets/` verbatim |
 
 ## Local preview

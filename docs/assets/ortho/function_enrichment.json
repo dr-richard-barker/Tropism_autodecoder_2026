@@ -1,0 +1,323 @@
+{
+  "species": [
+    "Arabidopsis",
+    "Human",
+    "Mouse",
+    "Fruit fly",
+    "Worm"
+  ],
+  "domains": [
+    {
+      "id": "PF00012",
+      "name": "Hsp70 Chaperone",
+      "category": "Proteostasis",
+      "at_enrichment": 4.8,
+      "hs_enrichment": 5.2,
+      "mm_enrichment": 4.6,
+      "dm_enrichment": 5.8,
+      "ce_enrichment": 4.1,
+      "p_val": 1.2e-09,
+      "dir": "up"
+    },
+    {
+      "id": "PF00183",
+      "name": "Hsp90 Chaperone",
+      "category": "Proteostasis",
+      "at_enrichment": 3.9,
+      "hs_enrichment": 3.4,
+      "mm_enrichment": 3.2,
+      "dm_enrichment": 4.0,
+      "ce_enrichment": 2.9,
+      "p_val": 4.5e-07,
+      "dir": "up"
+    },
+    {
+      "id": "PF00226",
+      "name": "DnaJ Co-Chaperone",
+      "category": "Proteostasis",
+      "at_enrichment": 3.1,
+      "hs_enrichment": 3.5,
+      "mm_enrichment": 3.0,
+      "dm_enrichment": 3.3,
+      "ce_enrichment": 2.5,
+      "p_val": 2.8e-06,
+      "dir": "up"
+    },
+    {
+      "id": "PF00578",
+      "name": "Peroxiredoxin (AhpC/TSA)",
+      "category": "Redox",
+      "at_enrichment": 4.2,
+      "hs_enrichment": 4.0,
+      "mm_enrichment": 3.8,
+      "dm_enrichment": 4.5,
+      "ce_enrichment": 3.4,
+      "p_val": 6.1e-08,
+      "dir": "up"
+    },
+    {
+      "id": "PF00085",
+      "name": "Thioredoxin",
+      "category": "Redox",
+      "at_enrichment": 3.6,
+      "hs_enrichment": 3.9,
+      "mm_enrichment": 3.4,
+      "dm_enrichment": 3.7,
+      "ce_enrichment": 2.8,
+      "p_val": 1.4e-06,
+      "dir": "up"
+    },
+    {
+      "id": "PF00080",
+      "name": "Cu/Zn Superoxide Dismutase",
+      "category": "Redox",
+      "at_enrichment": 2.9,
+      "hs_enrichment": 3.2,
+      "mm_enrichment": 2.8,
+      "dm_enrichment": 3.4,
+      "ce_enrichment": 2.6,
+      "p_val": 8.7e-05,
+      "dir": "up"
+    },
+    {
+      "id": "PF00199",
+      "name": "Catalase Core",
+      "category": "Redox",
+      "at_enrichment": -2.4,
+      "hs_enrichment": -2.8,
+      "mm_enrichment": -2.6,
+      "dm_enrichment": -3.2,
+      "ce_enrichment": -2.1,
+      "p_val": 0.00032,
+      "dir": "down"
+    },
+    {
+      "id": "PF00022",
+      "name": "Actin Microfilament",
+      "category": "Cytoskeleton",
+      "at_enrichment": -3.5,
+      "hs_enrichment": -4.0,
+      "mm_enrichment": -3.8,
+      "dm_enrichment": -4.2,
+      "ce_enrichment": -3.1,
+      "p_val": 9.4e-08,
+      "dir": "down"
+    },
+    {
+      "id": "PF00091",
+      "name": "Tubulin / FtsZ",
+      "category": "Cytoskeleton",
+      "at_enrichment": -3.1,
+      "hs_enrichment": -3.4,
+      "mm_enrichment": -3.2,
+      "dm_enrichment": -3.8,
+      "ce_enrichment": -2.7,
+      "p_val": 5.2e-06,
+      "dir": "down"
+    },
+    {
+      "id": "PF00063",
+      "name": "Myosin Motor Head",
+      "category": "Cytoskeleton",
+      "at_enrichment": -3.8,
+      "hs_enrichment": -4.2,
+      "mm_enrichment": -3.9,
+      "dm_enrichment": -4.5,
+      "ce_enrichment": -3.3,
+      "p_val": 2.1e-07,
+      "dir": "down"
+    },
+    {
+      "id": "PF00036",
+      "name": "EF-Hand Calcium Sensor",
+      "category": "Cytoskeleton",
+      "at_enrichment": 4.5,
+      "hs_enrichment": 3.2,
+      "mm_enrichment": 3.0,
+      "dm_enrichment": 3.5,
+      "ce_enrichment": 2.7,
+      "p_val": 7.4e-08,
+      "dir": "up"
+    },
+    {
+      "id": "PF00189",
+      "name": "Ribosomal Protein S3",
+      "category": "Translation",
+      "at_enrichment": -3.2,
+      "hs_enrichment": -3.7,
+      "mm_enrichment": -3.5,
+      "dm_enrichment": -3.9,
+      "ce_enrichment": -2.9,
+      "p_val": 4.1e-06,
+      "dir": "down"
+    },
+    {
+      "id": "PF00281",
+      "name": "Ribosomal Protein L5",
+      "category": "Translation",
+      "at_enrichment": -2.8,
+      "hs_enrichment": -3.3,
+      "mm_enrichment": -3.0,
+      "dm_enrichment": -3.6,
+      "ce_enrichment": -2.4,
+      "p_val": 1.9e-05,
+      "dir": "down"
+    },
+    {
+      "id": "PF00006",
+      "name": "ATP Synthase Alpha/Beta",
+      "category": "Bioenergetics",
+      "at_enrichment": 3.8,
+      "hs_enrichment": 4.1,
+      "mm_enrichment": 3.9,
+      "dm_enrichment": 4.3,
+      "ce_enrichment": 3.5,
+      "p_val": 3.2e-07,
+      "dir": "up"
+    },
+    {
+      "id": "PF00044",
+      "name": "GAPDH Glycolytic Hub",
+      "category": "Bioenergetics",
+      "at_enrichment": 4.3,
+      "hs_enrichment": 4.7,
+      "mm_enrichment": 4.4,
+      "dm_enrichment": 4.9,
+      "ce_enrichment": 3.8,
+      "p_val": 8.5e-09,
+      "dir": "up"
+    },
+    {
+      "id": "PF00071",
+      "name": "Small GTPase (Rab/Arf)",
+      "category": "Vesicle Trafficking",
+      "at_enrichment": 3.4,
+      "hs_enrichment": 3.8,
+      "mm_enrichment": 3.5,
+      "dm_enrichment": 4.0,
+      "ce_enrichment": 3.1,
+      "p_val": 6.8e-06,
+      "dir": "up"
+    },
+    {
+      "id": "PF00069",
+      "name": "Protein Kinase (MAPK/CDK)",
+      "category": "Signal Transduction",
+      "at_enrichment": 3.7,
+      "hs_enrichment": 4.0,
+      "mm_enrichment": 3.6,
+      "dm_enrichment": 4.2,
+      "ce_enrichment": 3.2,
+      "p_val": 1.8e-07,
+      "dir": "up"
+    },
+    {
+      "id": "PF00179",
+      "name": "Ubiquitin Conjugating E2",
+      "category": "Proteostasis",
+      "at_enrichment": 3.5,
+      "hs_enrichment": 3.8,
+      "mm_enrichment": 3.6,
+      "dm_enrichment": 4.1,
+      "ce_enrichment": 3.2,
+      "p_val": 4.2e-06,
+      "dir": "up"
+    }
+  ],
+  "functions": [
+    {
+      "term": "Chaperone-mediated protein folding",
+      "go_id": "GO:0061077",
+      "category": "Proteostasis",
+      "at_z": 3.6,
+      "hs_z": 3.8,
+      "mm_z": 3.4,
+      "dm_z": 4.1,
+      "ce_z": 3.0,
+      "dir": "up"
+    },
+    {
+      "term": "Peroxidase / Antioxidant activity",
+      "go_id": "GO:0004601",
+      "category": "Redox",
+      "at_z": 3.4,
+      "hs_z": 3.3,
+      "mm_z": 3.1,
+      "dm_z": 3.6,
+      "ce_z": 2.8,
+      "dir": "up"
+    },
+    {
+      "term": "Structural constituent of cytoskeleton",
+      "go_id": "GO:0005200",
+      "category": "Cytoskeleton",
+      "at_z": -3.2,
+      "hs_z": -3.5,
+      "mm_z": -3.3,
+      "dm_z": -3.7,
+      "ce_z": -2.8,
+      "dir": "down"
+    },
+    {
+      "term": "Structural constituent of ribosome",
+      "go_id": "GO:0003735",
+      "category": "Translation",
+      "at_z": -3.0,
+      "hs_z": -3.4,
+      "mm_z": -3.2,
+      "dm_z": -3.6,
+      "ce_z": -2.6,
+      "dir": "down"
+    },
+    {
+      "term": "Proton-transporting ATP synthase activity",
+      "go_id": "GO:0046933",
+      "category": "Bioenergetics",
+      "at_z": 3.1,
+      "hs_z": 3.4,
+      "mm_z": 3.2,
+      "dm_z": 3.5,
+      "ce_z": 2.9,
+      "dir": "up"
+    },
+    {
+      "term": "Small GTPase binding / Rab recycling",
+      "go_id": "GO:0031267",
+      "category": "Vesicle Trafficking",
+      "at_z": 2.8,
+      "hs_z": 3.1,
+      "mm_z": 2.9,
+      "dm_z": 3.3,
+      "ce_z": 2.5,
+      "dir": "up"
+    },
+    {
+      "term": "MAP kinase activity / stress signaling",
+      "go_id": "GO:0004707",
+      "category": "Signal Transduction",
+      "at_z": 3.0,
+      "hs_z": 3.3,
+      "mm_z": 3.0,
+      "dm_z": 3.5,
+      "ce_z": 2.7,
+      "dir": "up"
+    },
+    {
+      "term": "Endopeptidase / Proteasomal degradation",
+      "go_id": "GO:0004175",
+      "category": "Proteostasis",
+      "at_z": 2.9,
+      "hs_z": 3.2,
+      "mm_z": 3.0,
+      "dm_z": 3.4,
+      "ce_z": 2.6,
+      "dir": "up"
+    }
+  ],
+  "summary": {
+    "total_ortholog_groups": 27,
+    "concordant_up": 17,
+    "concordant_down": 8,
+    "divergent": 2
+  }
+}

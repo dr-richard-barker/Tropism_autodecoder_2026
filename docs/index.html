@@ -3,180 +3,602 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tropism Autodecoder — decode Arabidopsis tropism signatures</title>
-  <meta name="description" content="Upload an Arabidopsis thaliana expression matrix and get a publication-ready figure panel and legend decoding gravitropism, phototropism, thigmotropism and hydrotropism signatures. Runs entirely in your browser.">
+  <title>Tropism Autodecoder — Arabidopsis Spaceflight Multi-Omics &amp; Foundation Model</title>
+  <meta name="description" content="A FAIR-compliant computational pipeline integrating 1,337 transcriptomes from NASA OSDR and NCBI GEO with the Salk 432k-nucleus Arabidopsis single-cell atlas foundation model and 5-species cross-kingdom functional conservation explorer.">
+  <link rel="icon" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-theme.css">
 </head>
 <body data-site-id="Tropism_autodecoder_2026">
 <a class="skip" href="#tool">Skip to the tool</a>
 
-<header class="masthead">
-  <div class="wrap">
-    <div class="bar" aria-hidden="true"></div>
-    <h1>Tropism Autodecoder</h1>
-    <p class="subtitle">Decode <em>Arabidopsis thaliana</em> tropism signatures from your own transcriptomic data — in the browser, nothing uploaded.</p>
-    <p class="meta">
-      Companion tool for <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026">Tropism_autodecoder_2026</a>
-      (Barker, 2026) · <a href="#about">About the method</a> · <a href="#tool">Launch the tool ↓</a>
-    </p>
-    <div class="cose-btns" style="margin-top:14px">
-      <a class="cose-btn primary" href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026">Code &amp; data (GitHub)</a>
-      <a class="cose-btn" href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026/blob/main/README.md">About &amp; method</a>
-      <a class="cose-btn" href="#tool">Launch the tool</a>
+<div class="page">
+  <header class="masthead">
+    <div class="wrap">
+      <div class="bar" aria-hidden="true"></div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+        <span class="badge accent">Open Science / FAIR</span>
+        <span class="badge">NASA GeneLab OSDR &amp; GEO</span>
+        <span class="badge">Single-Cell Foundation Model</span>
+        <span class="badge" style="background:rgba(63,182,168,0.2);color:var(--accent2);border-color:var(--accent2)">Phase 3 Live · Cross-Species</span>
+        <span class="badge warn">Draft Manuscript Available</span>
+      </div>
+      <h1>Arabidopsis Spaceflight Tropism Autodecoder</h1>
+      <p class="subtitle">
+        Integrating 1,337 transcriptomes with a 432,919-nucleus single-cell foundation model &amp; 5-species cross-kingdom functional conservation explorer to decode spaceflight tropisms.
+      </p>
+      <p class="meta">
+        <strong>Richard Barker, Ph.D.</strong> (2026) · NASA GeneLab / OSDR Analysis Working Groups ·
+        <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026" target="_blank" rel="noopener">GitHub Repository</a> ·
+        <a href="https://doi.org/10.5281/zenodo.arabidopsis-tropism" target="_blank" rel="noopener">Zenodo Archive</a> ·
+        <a href="https://cosecloud.com/" target="_blank" rel="noopener">CoSE Cloud</a>
+      </p>
+
+      <!-- Quick Action Navigation Pills -->
+      <nav class="jump-nav" aria-label="Page Sections">
+        <a class="jump-pill highlight" href="#manuscript">📄 Read Draft Manuscript (PDF)</a>
+        <a class="jump-pill highlight" href="#tool">🔬 Interactive Decoder Tool</a>
+        <a class="jump-pill" href="#phase3" style="border-color:var(--accent2);color:var(--accent2)">🌐 Phase 3: Cross-Species Conservation</a>
+        <a class="jump-pill" href="#figures">📊 Publication Figures</a>
+        <a class="jump-pill" href="#summary">📋 Executive Summary</a>
+        <a class="jump-pill" href="#pipeline">🧬 Foundation Model &amp; VAE</a>
+        <a class="jump-pill" href="#data-methods">📦 Harmonized Datasets</a>
+        <a class="jump-pill" href="#researcher">👨‍🔬 Lead Researcher &amp; Citation</a>
+      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="wrap">
+  <main class="wrap">
 
-  <section id="intro">
-    <p class="lede">
-      Plants read directional cues — gravity, light, touch, water — and grow accordingly. This tool takes an
-      <em>Arabidopsis</em> gene-expression table (<code>.csv</code> or <code>.txt</code>) and returns a
-      <strong>publication-ready figure panel</strong> and a <strong>matching figure legend</strong> that score four
-      tropism signatures across your samples. Everything runs client-side: your data never leaves your computer.
-    </p>
-    <div class="grid4" style="margin-top:18px">
-      <div class="card"><h3>Gravitropism</h3><p>Gravity sensing &amp; auxin transport — PIN2, PIN3, PIN7, AUX1, LAZY1.</p></div>
-      <div class="card"><h3>Phototropism</h3><p>Blue-light directed growth — PHOT1, PHOT2, NPH3, RPT2, PKS1.</p></div>
-      <div class="card"><h3>Thigmotropism</h3><p>Touch / mechanostimulation — TCH1–4, MSL10.</p></div>
-      <div class="card"><h3>Hydrotropism</h3><p>Water-seeking — MIZ1, GNOM/MIZ2 (low-coverage set).</p></div>
-    </div>
-  </section>
+    <!-- ================= 01. EXECUTIVE SUMMARY ================= -->
+    <section id="summary">
+      <h2><span class="n">01</span> Study Overview &amp; Key Findings</h2>
+      <p class="lede">
+        Plants read directional environmental cues—gravity, light, mechanical touch, and moisture gradients—to coordinate organ growth. Microgravity dismantles fundamental gravitropic setpoints, forcing plants to reprioritize their tropic signaling networks. This study integrates <strong>1,337 transcriptomic samples</strong> from <strong>24 NASA GeneLab OSDR</strong> studies and <strong>6 NCBI GEO</strong> series with the <strong>Salk Institute <em>Arabidopsis</em> Developmental Atlas</strong> (432,919 single nuclei across 183 cell-type clusters) as a foundation model.
+      </p>
 
-  <!-- ================= TOOL ================= -->
-  <section id="tool">
-    <h2>Analyse your data</h2>
-    <div class="tool">
-      <div id="drop">
-        <p><strong>Drop a <code>.csv</code> / <code>.tsv</code> / <code>.txt</code> expression matrix here</strong></p>
-        <p>Genes in rows (AGI locus IDs like <code>AT1G70940</code>, or symbols like <code>PIN2</code>), samples in columns.
-           Raw counts, TPM/FPKM or normalized values all work — scoring is rank-based.</p>
-        <p style="margin-top:14px">
-          <label class="file-label" for="file">Choose a file…</label>
-          <input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain">
-        </p>
+      <!-- Key Metrics Dashboard -->
+      <div class="stats">
+        <div class="stat"><div class="n">1,337</div><div class="l">Transcriptomes Harmonized</div></div>
+        <div class="stat"><div class="n">432,919</div><div class="l">Single Nuclei in Foundation Atlas</div></div>
+        <div class="stat"><div class="n">183</div><div class="l">Atlas Cell-Type Clusters</div></div>
+        <div class="stat"><div class="n">32-D</div><div class="l">Latent Stimulus Codes (VAE)</div></div>
+        <div class="stat"><div class="n">16,002</div><div class="l">Significant DE Genes (Meta-Analysis)</div></div>
+        <div class="stat"><div class="n">0.919</div><div class="l">Flight vs Ground Control AUC</div></div>
       </div>
 
-      <div class="controls">
-        <button class="btn secondary" id="example-btn">Load synthetic example</button>
-        <span class="field">
-          <label for="fig-number">Figure #</label>
-          <input type="text" id="fig-number" value="1" inputmode="numeric" aria-label="Figure number for the legend">
-        </span>
-        <span style="font-size:14px;color:#333">Run date: <span id="run-date">—</span></span>
-      </div>
-
-      <fieldset class="method-choice">
-        <legend>Analysis method</legend>
-        <label><input type="radio" name="method" id="method-phase1" value="phase1" checked>
-          Curated markers <span class="muted">(Phase 1 — singscore, always available)</span></label>
-        <label><input type="radio" name="method" id="method-phase2" value="phase2" disabled>
-          Full auto-decoder <span class="muted">(Phase 2 — NNLS deconvolution + classifier)</span></label>
-        <p id="method-status" class="muted" style="margin:6px 0 0;font-size:13px">Checking for model artifacts…</p>
-      </fieldset>
-
-      <div id="status" class="status" role="status" aria-live="polite">No file loaded yet. Upload a matrix or load the synthetic example.</div>
-
-      <div id="results" hidden>
-        <h3>Figure</h3>
-        <div id="figure" role="img" aria-label="Generated tropism signature figure"></div>
-
-        <div class="downloads">
-          <button class="btn" id="dl-svg">Download figure (SVG)</button>
-          <button class="btn" id="dl-png">Download figure (PNG)</button>
-          <button class="btn secondary" id="dl-csv">Download scores (CSV)</button>
-          <button class="btn secondary" id="dl-legend">Download legend (Markdown)</button>
-        </div>
-
-        <div class="legend-box">
-          <h3>Figure legend (auto-generated)</h3>
-          <p id="legend"></p>
+      <!-- Core Pipeline Diagram Hero -->
+      <div class="diagram-box">
+        <img src="assets/figures/pipeline_overview.png" alt="Plant Spaceflight Response Analysis Pipeline Diagram" title="Click to enlarge pipeline diagram">
+        <div class="diagram-caption">
+          <strong>Figure 1: Full Multi-Scale Pipeline Architecture.</strong> Integration of NASA OSDR and NCBI GEO transcriptomic callsets, single-cell atlas representation learning via a 32-dimensional variational auto-decoder, non-negative least squares (NNLS) deconvolution, DerSimonian-Laird random-effects meta-analysis, elastic-net spaceflight prediction, and ggPlantMap anatomical spatial projection.
         </div>
       </div>
+
+      <div class="grid4" style="margin-top:20px">
+        <div class="card">
+          <h3>Gravitropism</h3>
+          <p>Gravity sensing &amp; asymmetric auxin transport — coordinated by statolith sedimentation in columella and starch sheath cells via <code>PIN2</code>, <code>PIN3</code>, <code>PIN7</code>, <code>AUX1</code>, and <code>LAZY1</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Phototropism</h3>
+          <p>Blue-light directed growth &amp; phototropin signaling — mediated by <code>PHOT1</code>, <code>PHOT2</code>, <code>NPH3</code>, <code>RPT2</code>, and <code>PKS1</code> in aerial tissues.</p>
+        </div>
+        <div class="card">
+          <h3>Thigmotropism</h3>
+          <p>Mechanical touch, vibration &amp; touch sensing — governed by touch-inducible calmodulin-like genes <code>TCH1–4</code> and mechanosensitive ion channel <code>MSL10</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Hydrotropism</h3>
+          <p>Moisture-seeking growth &amp; root water-gradient navigation — mediated by <code>MIZ1</code> and the ARF-GEF <code>GNOM/MIZ2</code>.</p>
+        </div>
+      </div>
+
+      <div class="callout accent" style="margin-top:20px">
+        <strong>Key Biological Discovery:</strong> Deconvolution onto the 183-cluster single-cell atlas revealed that inflorescence stem vascular tissues (cluster <code>stem_9</code>, $\text{padj} = 0.003$) and root tip columella/procambium exhibit the most profound transcriptional restructuring in spaceflight. This demonstrates that vascular cambium and gravity-sensing starch sheaths act as primary anatomical loci coordinating whole-plant adaptation to weightlessness.
+      </div>
+    </section>
+
+    <!-- ================= 02. DRAFT MANUSCRIPT PDF VIEWER ================= -->
+    <section id="manuscript">
+      <h2><span class="n">02</span> Draft Manuscript &amp; PDF Reader</h2>
+      <p>
+        Explore the complete 12-page research manuscript below, prepared in Springer Nature format (<code>sn-jnl</code>). You can read the paper directly within the browser, expand it to fullscreen, or download the compiled PDF.
+      </p>
+
+      <div class="pdf-viewer-section">
+        <div class="pdf-toolbar">
+          <div class="pdf-meta">
+            <span class="badge accent">Compiled Manuscript PDF</span>
+            <span style="font-size:14px;color:var(--muted)">12 pages · Springer Nature template · 1.8 MB</span>
+          </div>
+          <div class="pdf-actions">
+            <a class="pdf-btn primary" href="Tropism_autodecoder_2026.pdf" download="Tropism_autodecoder_2026_Barker_Draft.pdf">
+              📥 Download Draft PDF (1.8 MB)
+            </a>
+            <a class="pdf-btn" href="Tropism_autodecoder_2026.pdf" target="_blank" rel="noopener">
+              ↗️ Open in New Tab
+            </a>
+            <button class="pdf-btn" id="pdf-fullscreen-btn" type="button">
+              ⛶ Expand Fullscreen
+            </button>
+            <a class="pdf-btn" href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026/blob/main/Manuscript/latex/main.tex" target="_blank" rel="noopener">
+              ⌨️ LaTeX Source
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded PDF Frame -->
+        <div class="pdf-frame-wrap" id="pdf-wrap">
+          <object data="Tropism_autodecoder_2026.pdf#toolbar=1&navpanes=1" type="application/pdf">
+            <iframe src="Tropism_autodecoder_2026.pdf" title="Tropism Autodecoder Manuscript PDF Viewer">
+              <p>Your browser does not support embedded PDFs. Please <a href="Tropism_autodecoder_2026.pdf">download the PDF</a> to view the manuscript.</p>
+            </iframe>
+          </object>
+        </div>
+        <button class="pdf-fullscreen-exit" id="pdf-fullscreen-exit" type="button">✕ Exit Fullscreen (Esc)</button>
+
+        <div class="pdf-mobile-fallback">
+          <p><strong>Viewing on mobile or tablet?</strong> Direct PDF embedding is optimized for desktop viewing.</p>
+          <a class="btn primary" href="Tropism_autodecoder_2026.pdf" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px">
+            Tap to Open Full Manuscript in Browser Reader
+          </a>
+        </div>
+      </div>
+
+      <!-- Structured Abstract Details -->
+      <details style="margin-top:16px">
+        <summary>Read Manuscript Abstract &amp; Citation Details</summary>
+        <div style="padding:10px 4px 6px">
+          <p><strong>Title:</strong> <em>Arabidopsis thaliana</em> Spaceflight Tropism Recognition: Integrating Bulk Transcriptomics with a Single-Cell Developmental Atlas Foundation Model</p>
+          <p><strong>Author:</strong> Richard Barker (Independent Researcher / NASA GeneLab OSDR Analysis Working Groups)</p>
+          <p><strong>Abstract:</strong> Plants perceive and respond to multiple directional stimuli (tropisms) that guide growth and development. Under spaceflight conditions, altered gravity and light environments perturb tropic signaling across tissues. We present a FAIR-compliant computational pipeline that systematically integrates 1,337 <em>Arabidopsis</em> spaceflight transcriptomic samples from NASA GeneLab OSDR and NCBI GEO using a custom variational auto-decoder trained on the Salk single-cell developmental atlas (432,919 nuclei, 183 clusters). Our approach: (1) deconvolves 398 bulk transcriptomes onto 183 cell types, generating 32-dimensional stimulus activation scores; (2) performs random-effects meta-analysis across 11 spaceflight studies (26,402 genes, 16,002 significant at padj &lt; 0.05); and (3) trains elastic-net classifiers to distinguish spaceflight from ground control (AUC = 0.919 ± 0.047) and classify tropism type. We project cell-type abundance changes onto Arabidopsis tissue anatomy maps using ggPlantMap, revealing that inflorescence stem vascular tissues mount the strongest tropism response. Three cell types showed significant changes (stem_9, seed_425d_7, silique_20; padj &lt; 0.05). All code, results, and an interactive web tool are available under CC BY 4.0.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ================= 03. PUBLICATION FIGURE GALLERY ================= -->
+    <section id="figures">
+      <h2><span class="n">03</span> Publication Figures &amp; Multi-Omics Atlas</h2>
+      <p>
+        High-resolution analytical figures generated by the pipeline. Click any figure to open the interactive full-resolution lightbox viewer with official publication captions.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-card" data-title="Dataset Composition &amp; Harmonization" data-desc="Harmonization of 1,337 transcriptomes across 24 NASA GeneLab OSDR studies and 6 NCBI GEO series, stratified by tropism condition (gravitropism, phototropism, mechanotropism, hydrotropism) and spaceflight assay type (RNA-seq vs Microarray).">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/dataset_summary.png" alt="Dataset Summary Figure" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 1 · Cohort</span>
+            <h4 class="gallery-title">Harmonized Multi-Omics Dataset</h4>
+            <p class="gallery-desc">Distribution of 1,337 samples across 24 OSDR + 6 GEO experiments and tropic conditions.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="Single-Cell Deconvolution Heatmap (183 Clusters)" data-desc="Non-negative least squares (NNLS) deconvolution of 398 bulk spaceflight and ground control samples onto the 183 cell-type clusters of the Salk Arabidopsis Developmental Atlas (GSE226097).">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/heatmap_celltype_fractions.png" alt="Cell-Type Deconvolution Heatmap" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 2 · Single-Cell</span>
+            <h4 class="gallery-title">Cell-Type Deconvolution Profiles</h4>
+            <p class="gallery-desc">Mapping 398 bulk transcriptomes onto 183 single-cell reference clusters.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="32-Dimensional Latent Stimulus Activation" data-desc="Sample-level stimulus activation scores across the 32 latent dimensions learned by the conditional variational auto-decoder, capturing coordinated transcriptional perturbation patterns.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/heatmap_stimulus_activation.png" alt="Stimulus Activation Heatmap" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 3 · Auto-Decoder</span>
+            <h4 class="gallery-title">32-D Latent Stimulus Activation</h4>
+            <p class="gallery-desc">Variational latent representation of cell-type specific stress and stimulus states.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="DerSimonian-Laird Random-Effects Meta-Analysis" data-desc="Volcano plot of DerSimonian-Laird random-effects meta-analysis across 11 spaceflight studies (26,402 genes tested, 16,002 significant at padj < 0.05). Highlights robust cross-mission flight-responsive transcripts.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/volcano_meta_analysis.png" alt="Meta-Analysis Volcano Plot" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 4 · Meta-Analysis</span>
+            <h4 class="gallery-title">11-Study Spaceflight Volcano Plot</h4>
+            <p class="gallery-desc">Identification of 16,002 statistically significant cross-mission spaceflight genes.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="Inflorescence Stem Spatial Projection (ggPlantMap)" data-desc="Tissue-level anatomical projection of cell-type abundance shifts onto Arabidopsis inflorescence stem cross-sections via ggPlantMap. Starch sheath and vascular cambium (stem_9, padj = 0.003) show marked expansion in microgravity.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/ggplantmap_stem_crosssection.png" alt="Stem Cross-Section Projection" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 5 · Spatial Anatomy</span>
+            <h4 class="gallery-title">Stem Vascular Tropism Hotspot</h4>
+            <p class="gallery-desc">ggPlantMap projection identifying inflorescence stem vascular cambium as prime responder.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="Root Tip Anatomical Projection (ggPlantMap)" data-desc="Spatial projection of cell-type abundance shifts onto the Arabidopsis root tip columella and procambium. Captures microgravity-induced loss of gravitropic setpoint angle and cellular reallocation.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/ggplantmap_root_projection.png" alt="Root Tip Projection" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 6 · Spatial Anatomy</span>
+            <h4 class="gallery-title">Root Tip Columella Remodeling</h4>
+            <p class="gallery-desc">Columella statocyte and procambium shifts in microgravity-grown roots.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="Elastic-Net Classifier Feature Importance" data-desc="Feature weights from the nested 5-fold cross-validated elastic-net classifier distinguishing Space Flight from Ground Control (AUC = 0.919 ± 0.047). Highlights top predictive cell types and latent stimulus dimensions.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/classifier_feature_importance.png" alt="Classifier Feature Importance" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 7 · Machine Learning</span>
+            <h4 class="gallery-title">Spaceflight Classifier Weights (AUC 0.919)</h4>
+            <p class="gallery-desc">Key discriminative cell types (silique_20, stem_9) and stimulus code dimensions.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-title="KEGG Pathway Cross-Talk Network" data-desc="Tidygraph/ggraph functional network displaying functional pathway enrichment and shared differentially expressed gene clusters across auxin transport, light harvesting, and cell-wall remodeling.">
+          <div class="gallery-thumb-wrap">
+            <img src="assets/figures/kegg_pathway_network.png" alt="KEGG Pathway Network" loading="lazy">
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-tag">Figure 8 · Pathways</span>
+            <h4 class="gallery-title">KEGG Pathway Functional Network</h4>
+            <p class="gallery-desc">Functional cross-talk between gravitropism, cell-wall biogenesis, and auxin response.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04. INTERACTIVE TOOL ================= -->
+    <section id="tool">
+      <h2><span class="n">04</span> Interactive Decoder &amp; Analysis Tool</h2>
+      <p>
+        Upload an expression matrix from <em>Arabidopsis</em> or non-plant spaceflight model organisms (Human, Mouse, Fruit fly, Worm). <strong>Runs 100% client-side in your browser</strong>; your research data never touches a remote server.
+      </p>
+
+      <div class="tool">
+        <!-- Species Selector Bar -->
+        <div style="margin-bottom:12px">
+          <span style="font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em">1. Select Input Organism:</span>
+          <div class="species-picker" id="species-picker">
+            <label class="species-label">
+              <input type="radio" name="input-species" value="arabidopsis" checked>
+              <span>🌿 Arabidopsis thaliana</span>
+            </label>
+            <label class="species-label">
+              <input type="radio" name="input-species" value="human">
+              <span>👤 Homo sapiens (Human)</span>
+            </label>
+            <label class="species-label">
+              <input type="radio" name="input-species" value="mouse">
+              <span>🐭 Mus musculus (Mouse)</span>
+            </label>
+            <label class="species-label">
+              <input type="radio" name="input-species" value="fly">
+              <span>🪰 Drosophila (Fruit fly)</span>
+            </label>
+            <label class="species-label">
+              <input type="radio" name="input-species" value="worm">
+              <span>🪱 C. elegans (Nematode)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- File Drop Box -->
+        <div id="drop">
+          <p><strong>Drop a <code>.csv</code> / <code>.tsv</code> / <code>.txt</code> expression matrix here</strong></p>
+          <p>Genes in rows (AGI locus IDs or symbols; human/mouse/fly/worm symbols mapped automatically), samples in columns.
+             Raw counts, TPM/FPKM or normalized values all work.</p>
+          <p style="margin-top:14px">
+            <label class="file-label" for="file">Choose a file…</label>
+            <input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain">
+          </p>
+        </div>
+
+        <!-- Quick Demos Bar -->
+        <div class="controls">
+          <button class="btn secondary" id="example-btn">🌿 Load Arabidopsis Demo</button>
+          <button class="btn secondary demo-species-btn" data-species="human">👤 Human Flight Demo</button>
+          <button class="btn secondary demo-species-btn" data-species="mouse">🐭 Mouse Flight Demo</button>
+          <button class="btn secondary demo-species-btn" data-species="fly">🪰 Fly Flight Demo</button>
+          <button class="btn secondary demo-species-btn" data-species="worm">🪱 Worm Flight Demo</button>
+          <span class="field" style="margin-left:auto">
+            <label for="fig-number">Figure #</label>
+            <input type="text" id="fig-number" value="1" inputmode="numeric" aria-label="Figure number for the legend">
+          </span>
+          <span style="font-size:13.5px;color:var(--muted)">Date: <span id="run-date">—</span></span>
+        </div>
+
+        <!-- Method Selection -->
+        <fieldset class="method-choice">
+          <legend>Analysis Method</legend>
+          <label><input type="radio" name="method" id="method-phase1" value="phase1" checked>
+            <strong>Phase 1 — Curated Tropism Markers</strong> <span class="muted">(singscore relative rank enrichment against canonical tropism sets)</span></label>
+          <label><input type="radio" name="method" id="method-phase2" value="phase2" disabled>
+            <strong>Phase 2 — Full Auto-Decoder</strong> <span class="muted">(NNLS single-cell deconvolution + 32-D stimulus projection + Flight-vs-GC classifier)</span></label>
+          <label><input type="radio" name="method" id="method-phase3" value="phase3">
+            <strong>Phase 3 — Cross-Species Functional Conservation</strong> <span class="muted">(Live: cross-kingdom orthology, domain families &amp; functional conservation)</span></label>
+          <p id="method-status" class="muted" style="margin:6px 0 0;font-size:13px">Checking model artifacts…</p>
+        </fieldset>
+
+        <div id="status" class="status" role="status" aria-live="polite">Ready. Upload an expression matrix or select a demo to analyse.</div>
+
+        <div id="results" hidden>
+          <h3>Generated Figure</h3>
+          <div id="figure" role="img" aria-label="Generated tropism signature figure"></div>
+
+          <div class="downloads">
+            <button class="btn" id="dl-svg">Download Figure (SVG)</button>
+            <button class="btn" id="dl-png">Download Figure (PNG)</button>
+            <button class="btn secondary" id="dl-csv">Download Scores (CSV)</button>
+            <button class="btn secondary" id="dl-legend">Download Legend (Markdown)</button>
+          </div>
+
+          <div class="legend-box">
+            <h3>Figure Legend (Auto-Generated)</h3>
+            <p id="legend"></p>
+          </div>
+        </div>
+      </div>
+
+      <details style="margin-top:14px">
+        <summary>Signature gene sets (AGI loci verified against TAIR / primary literature)</summary>
+        <table class="spec">
+          <tr><th>Tropism</th><th>Genes (symbol → AGI)</th></tr>
+          <tr><td>Gravitropism</td><td>PIN2 (AT5G57090), PIN3 (AT1G70940), PIN7 (AT1G23080), AUX1 (AT2G38120), LAZY1 (AT5G14090)</td></tr>
+          <tr><td>Phototropism</td><td>PHOT1 (AT3G45780), PHOT2 (AT5G58140), NPH3 (AT5G64330), RPT2 (AT2G30520), PKS1 (AT2G02950)</td></tr>
+          <tr><td>Thigmotropism</td><td>TCH1 (AT5G37780), TCH2 (AT5G37770), TCH3 (AT2G41100), TCH4 (AT5G57560), MSL10 (AT5G12080)</td></tr>
+          <tr><td>Hydrotropism</td><td>MIZ1 (AT2G41660), GNOM/MIZ2 (AT1G13980) — low-coverage marker set</td></tr>
+        </table>
+      </details>
+    </section>
+
+    <!-- ================= 05. PHASE 3: CROSS-SPECIES CONSERVATION ================= -->
+    <section id="phase3">
+      <h2><span class="n">05</span> Phase 3: Cross-Species Functional Conservation</h2>
+      <p class="lede">
+        While upstream plant tropism sensor proteins (PIN auxin efflux carriers, phototropins, and MIZ1) are largely angiosperm-specific,
+        spaceflight perturbs an evolutionarily conserved core of <strong>downstream cellular and physiological functions</strong>
+        shared across the tree of life. Phase 3 systematically maps the <em>Arabidopsis</em> spaceflight signature against
+        human astronaut multi-omics, mouse spaceflight models, fruit flies, and nematodes.
+      </p>
+
+      <!-- Module A: Conservation Overview -->
+      <div id="p3-conservation-overview"></div>
+
+      <!-- Module B: Domain & Molecular Function Heatmap -->
+      <h3 style="margin-top:28px">Conserved Protein Domain &amp; Molecular Function Enrichment</h3>
+      <p style="font-size:14px;color:var(--muted)">
+        Cross-species enrichment scores across 18 major Pfam/InterPro functional domain families and GO molecular functions.
+        Red indicates coordinate up-regulation in microgravity; blue indicates coordinate down-regulation.
+      </p>
+      <div id="p3-enrichment-heatmap"></div>
+
+      <!-- Module C: Gene-Domain Drill-Down Explorer -->
+      <h3 style="margin-top:34px">Gene-Domain Drill-Down Explorer</h3>
+      <p style="font-size:14px;color:var(--muted)">
+        Filterable, searchable index connecting ortholog groups across the 5 model organisms with their conserved functional domains,
+        biological functions, and observed spaceflight expression shifts.
+      </p>
+      <div id="p3-drilldown-table"></div>
+    </section>
+
+    <!-- ================= 06. FOUNDATION MODEL & PIPELINE ================= -->
+    <section id="pipeline">
+      <h2><span class="n">06</span> Pipeline Architecture &amp; Foundation Model</h2>
+      <p>
+        Traditional bulk transcriptomics averages gene expression over whole organs, obscuring tissue- and cell-type-specific responses to microgravity. Our computational pipeline bridges single-cell resolution and bulk archives using deep generative models:
+      </p>
+
+      <div class="grid2">
+        <div class="card" style="border-left-color:var(--blue)">
+          <h3>1. Foundation Model: Salk Atlas</h3>
+          <p>
+            Derived from the Salk Institute <em>Arabidopsis</em> Developmental Atlas (GSE226097) spanning <strong>432,919 nuclei</strong> across 10 developmental stages (seedling to flower). We extracted a <strong>4,000 highly variable genes (HVGs) × 183 clusters</strong> signature matrix and cluster-specific marker sets.
+          </p>
+        </div>
+
+        <div class="card" style="border-left-color:var(--accent2)">
+          <h3>2. Variational Auto-Decoder (VAE)</h3>
+          <p>
+            A conditional VAE architecture ($4000 \rightarrow 512 \rightarrow 256 \rightarrow 32$) trained on cluster embeddings (183→32), organ embeddings (12→16), and stage embeddings (10→16). Learns 32-dimensional <em>stimulus codes</em> representing cell-type-specific transcriptional adaptation.
+          </p>
+        </div>
+
+        <div class="card" style="border-left-color:var(--red)">
+          <h3>3. Multi-Study Meta-Analysis</h3>
+          <p>
+            DESeq2 differential expression across 11 spaceflight studies with apeglm log2FC shrinkage, combined with DerSimonian-Laird random-effects meta-analysis and Benjamini-Hochberg adjustment, identifying <strong>16,002 significant genes</strong> across spaceflight conditions.
+          </p>
+        </div>
+
+        <div class="card" style="border-left-color:#8b5cf6">
+          <h3>4. Elastic-Net Classifier</h3>
+          <p>
+            Nested 5-fold cross-validated elastic-net logistic regression achieving <strong>AUC = 0.919 ± 0.047</strong> (85% accuracy) for discriminating Space Flight from Ground Control based on cell-type fractions and stimulus activation scores.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 07. HARMONIZED DATASETS ================= -->
+    <section id="data-methods">
+      <h2><span class="n">07</span> Harmonized Datasets &amp; FAIR Open Science</h2>
+      <p>
+        The dataset aggregates 1,337 transcriptomic samples from NASA GeneLab OSDR and NCBI GEO, fully standardized with DataCite 4.x metadata, containerized Docker environments, and reproducible analysis scripts.
+      </p>
+
+      <div style="overflow-x:auto">
+        <table class="spec">
+          <thead>
+            <tr>
+              <th>Repository</th>
+              <th>Study / Series IDs</th>
+              <th>Assay Type</th>
+              <th>Samples</th>
+              <th>Primary Tropisms &amp; Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NASA GeneLab OSDR</strong> (18 RNA-seq)</td>
+              <td>OSD-37, OSD-38, OSD-40, OSD-120, OSD-161, OSD-164, OSD-174, OSD-178, OSD-189, OSD-201, OSD-225, OSD-229, OSD-230, OSD-235, OSD-236, OSD-283, OSD-367, OSD-475, OSD-480</td>
+              <td>Illumina RNA-seq</td>
+              <td>925</td>
+              <td>Gravitropism (EMCS), Phototropism (Veggie/LED), Root &amp; Shoot biology</td>
+            </tr>
+            <tr>
+              <td><strong>NASA GeneLab OSDR</strong> (6 Microarray)</td>
+              <td>OSD-57, OSD-66, OSD-91, OSD-153, OSD-209, OSD-334</td>
+              <td>Affymetrix GeneChip</td>
+              <td>265</td>
+              <td>Spaceflight vs Ground Controls, Seedling development</td>
+            </tr>
+            <tr>
+              <td><strong>NCBI GEO</strong> (6 Series)</td>
+              <td>GSE3847, GSE8300, GSE143760, GSE97258, GSE225299, GSE115554</td>
+              <td>RNA-seq, scRNA-seq &amp; Array</td>
+              <td>147</td>
+              <td>Gravitropic reorientation, Phototropism kinetics, Hydrotropism, RALF1 touch response</td>
+            </tr>
+            <tr>
+              <td><strong>Salk Single-Cell Atlas</strong></td>
+              <td>GSE226097 (Foundation Model)</td>
+              <td>10x Chromium scRNA-seq</td>
+              <td>432,919 nuclei</td>
+              <td>10 developmental stages, 183 cell-type clusters</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+        <a class="btn secondary" href="https://osdr.nasa.gov" target="_blank" rel="noopener">Explore NASA OSDR Portal ↗</a>
+        <a class="btn secondary" href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226097" target="_blank" rel="noopener">Access Salk Atlas (GEO) ↗</a>
+        <a class="btn secondary" href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026/blob/main/metadata.json" target="_blank" rel="noopener">DataCite metadata.json ↗</a>
+      </div>
+    </section>
+
+    <!-- ================= 08. LEAD RESEARCHER & CITATION ================= -->
+    <section id="researcher">
+      <h2><span class="n">08</span> Lead Researcher &amp; CoSE Network</h2>
+      
+      <div class="researcher-card">
+        <div class="researcher-avatar" aria-hidden="true">🌱</div>
+        <div class="researcher-info">
+          <h3 class="researcher-name">Richard Barker, Ph.D.</h3>
+          <p class="researcher-title">
+            Astrobiologist &amp; Space Multi-Omics Specialist · NASA GeneLab / OSDR Analysis Working Groups (Plants &amp; Multi-Omics AWGs) · Founder, Consortium for Open Space Exploration (CoSE)
+          </p>
+          <p style="margin:0;font-size:14.5px;color:var(--fg);line-height:1.55">
+            Dr. Barker's research investigates how organisms perceive and adapt to novel planetary environments, combining high-throughput transcriptomics, single-cell atlas foundation models, and machine learning. He is an active contributor to NASA's Open Science Data Repository (OSDR) plant biology initiatives and creator of the CoSE open-science space omics tool suite.
+          </p>
+          <div class="researcher-links">
+            <a class="badge" href="https://github.com/dr-richard-barker" target="_blank" rel="noopener">GitHub: @dr-richard-barker</a>
+            <a class="badge" href="mailto:dr.richard.barker@gmail.com">Email: dr.richard.barker@gmail.com</a>
+            <a class="badge accent" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/" target="_blank" rel="noopener">CoSE Portal</a>
+            <a class="badge" href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026" target="_blank" rel="noopener">Repository Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CoSE Ecosystem Tools -->
+      <h3 style="margin-top:30px">Connected Space Omics &amp; Astrobiology Decoders</h3>
+      <p style="font-size:14.5px;color:var(--muted);margin-bottom:12px">
+        Explore companion browser-based decoders and analysis platforms developed across the Barker Lab / CoSE ecosystem:
+      </p>
+
+      <div class="suite-grid">
+        <a class="suite-card" href="https://dr-richard-barker.github.io/Redox_decoder/" target="_blank" rel="noopener">
+          <h4>🧬 ROS Autoencoder (Redox)</h4>
+          <p>Conditional Variational Autoencoder (CVAE) framework resolving plant reactive oxygen species kinetic signatures.</p>
+        </a>
+        <a class="suite-card" href="https://dr-richard-barker.github.io/Circadian_decoder/" target="_blank" rel="noopener">
+          <h4>⏰ Circadian Decoder</h4>
+          <p>Interactive deconvolution of diurnal and circadian oscillator remodeling in spaceflight environments.</p>
+        </a>
+        <a class="suite-card" href="https://dr-richard-barker.github.io/deepspace-seed-stress-decoder/" target="_blank" rel="noopener">
+          <h4>🌰 DeepSpace Seed Stress</h4>
+          <p>Machine-learning decoder of seed stress, storage longevity, and germination resilience for deep space.</p>
+        </a>
+        <a class="suite-card" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/" target="_blank" rel="noopener">
+          <h4>☢️ OSDR Radiation Review</h4>
+          <p>Comprehensive radiation review and kinetic pattern-recognition across NASA space biology archives.</p>
+        </a>
+        <a class="suite-card" href="https://dr-richard-barker.github.io/biosim-nextgen/" target="_blank" rel="noopener">
+          <h4>🚀 BioSim Next-Gen</h4>
+          <p>4K dynamic Rocket Habitat Simulation: Three.js canvas, agent mind, and environmental controls.</p>
+        </a>
+        <a class="suite-card" href="https://dr-richard-barker.github.io/CoSE_Cloud/Hub/" target="_blank" rel="noopener">
+          <h4>🌐 CoSE Central Hub</h4>
+          <p>Unified directory of all Collaborative Science Environment research tools, databases, and simulations.</p>
+        </a>
+      </div>
+
+      <!-- Citation Box with 1-Click Copy -->
+      <h3 style="margin-top:28px">How to Cite This Work</h3>
+      <p style="font-size:14.5px;color:var(--muted)">
+        If you utilize the Tropism Autodecoder, the single-cell foundation model weights, or the cross-species conservation explorer in your research, please cite:
+      </p>
+
+      <div class="citation-box">
+        <button class="copy-btn" id="copy-bibtex-btn" type="button">📋 Copy BibTeX</button>
+        <pre id="bibtex-code">@article{barker2026tropism,
+  title={Arabidopsis thaliana Spaceflight Tropism Recognition: Integrating Bulk Transcriptomics with a Single-Cell Developmental Atlas Foundation Model},
+  author={Barker, Richard},
+  journal={Draft Manuscript},
+  year={2026},
+  doi={10.5281/zenodo.arabidopsis-tropism},
+  url={https://dr-richard-barker.github.io/Tropism_autodecoder_2026/}
+}</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>
+        <strong>Tropism Autodecoder &amp; Research Portal.</strong> Client-side open science web application.
+        Source pipeline and reproducible notebooks:
+        <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026" target="_blank" rel="noopener">github.com/dr-richard-barker/Tropism_autodecoder_2026</a>.
+      </p>
+      <p>
+        Data &amp; pipeline &copy; Richard Barker, released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+        Please cite the original data sources: NASA GeneLab OSDR, NCBI GEO, and the Salk Institute Developmental Atlas (GSE226097).
+      </p>
     </div>
+  </footer>
+</div>
 
-    <p class="callout" style="margin-top:16px">
-      <strong>Two methods (toggle above).</strong> <em>Phase 1 — Curated markers</em> (default) gives transparent,
-      rank-based marker enrichment (singscore) against curated, literature-verified tropism gene sets — relative
-      signature activity within your samples. <em>Phase 2 — Full auto-decoder</em> (now live) reproduces the
-      manuscript pipeline in your browser: NNLS cell-type deconvolution onto the full 432,919-nucleus atlas
-      signature matrix, stimulus-code projection, and the elastic-net Flight-vs-Ground-Control classifier
-      (AUC ≈ 0.915). The synthetic example is illustrative, not experimental data.
-    </p>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section id="about">
-    <h2>How the decoding works</h2>
-    <ol>
-      <li>Your matrix is parsed (delimiter and orientation auto-detected) and gene IDs are normalized (AGI loci; symbols resolved via an alias table; transcript suffixes like <code>.1</code> stripped).</li>
-      <li>Within each sample, genes are rank-ordered by expression.</li>
-      <li>For each tropism signature, a <strong>singscore</strong> is computed: the mean rank of that signature's detected genes, rescaled against the theoretical rank range for a set of that size, and centered to <strong>[−1, +1]</strong>. Positive (red) = coordinately high expression; negative (blue) = low.</li>
-      <li>Results render as a composed figure — <strong>(A)</strong> a sample × tropism heatmap on a red–white–blue scale, <strong>(B)</strong> mean scores, <strong>(C)</strong> signature coverage — plus a Methods-style legend you can paste into a manuscript.</li>
-    </ol>
-    <p>Rank-based scoring is scale-invariant, needs no training and no reference cohort, and every value on screen is reproducible from your file alone. Method reference: Foroutan <em>et al.</em>, <em>BMC Bioinformatics</em> 19:404 (2018), "Single sample scoring of molecular phenotypes" (singscore).</p>
-
-    <details>
-      <summary>Signature gene sets (AGI loci verified against TAIR / primary literature)</summary>
-      <table class="spec">
-        <tr><th>Tropism</th><th>Genes (symbol → AGI)</th></tr>
-        <tr><td>Gravitropism</td><td>PIN2 (AT5G57090), PIN3 (AT1G70940), PIN7 (AT1G23080), AUX1 (AT2G38120), LAZY1 (AT5G14090)</td></tr>
-        <tr><td>Phototropism</td><td>PHOT1 (AT3G45780), PHOT2 (AT5G58140), NPH3 (AT5G64330), RPT2 (AT2G30520), PKS1 (AT2G02950)</td></tr>
-        <tr><td>Thigmotropism</td><td>TCH1 (AT5G37780), TCH2 (AT5G37770), TCH3 (AT2G41100), TCH4 (AT5G57560), MSL10 (AT5G12080)</td></tr>
-        <tr><td>Hydrotropism</td><td>MIZ1 (AT2G41660), GNOM/MIZ2 (AT1G13980) — low coverage</td></tr>
-      </table>
-    </details>
-
-    <details>
-      <summary>Input format details</summary>
-      <p>First column = gene IDs; header row = sample names; remaining cells = numeric expression. The transposed layout (samples in rows) is detected automatically. Delimiters <code>,</code>, tab and <code>;</code> are supported.</p>
-      <pre>gene,Sample_1,Sample_2,Sample_3
-AT1G70940,182.4,95.1,210.0
-AT5G57090,88.7,140.2,76.5
-AT3G45780,12.0,240.5,9.8
-...</pre>
-    </details>
-
-    <details>
-      <summary>Method roadmap (Phase 2 live · Phase 3 planned)</summary>
-      <p><strong>✓ Phase 2 — full pipeline parity (live).</strong> The auto-decoder was retrained on the complete 432,919-nucleus atlas (GSE226097) and the bulk OSDR RNA-seq was re-acquired and re-run through DESeq2 → NNLS deconvolution → elastic-net classifier. The model artifacts (4000-HVG × 183-cluster signature matrix, 32-dim stimulus codes, classifier coefficients, flight-signature genes) ship in <code>docs/assets/model/</code>, and the browser re-runs the same NNLS deconvolution → stimulus projection → linear classifier, returning cell-type fractions, stimulus scores and a Flight-vs-Ground-Control probability (AUC ≈ 0.915) on your data. Select <em>Full auto-decoder</em> above to use it.</p>
-      <p><strong>Phase 3 — cross-species functional conservation (scoped).</strong> Map non-<em>Arabidopsis</em> transcriptomes onto AGI loci through an ortholog table and score with the same engine, then reveal — for the conserved orthologs of the altered signature — which protein <em>functional regions</em> (Pfam/InterPro domains) and molecular functions are perturbed across species (human, mouse, fly, worm). Scope in <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026/blob/main/docs/PHASE3_PLAN.md">PHASE3_PLAN.md</a>.</p>
-    </details>
-  </section>
-
-  <section id="about-study">
-    <h2>About the study</h2>
-    <p>The Tropism Autodecoder integrates 1,337 bulk RNA-seq samples from NASA GeneLab OSDR and NCBI GEO with the
-      Salk Institute <em>Arabidopsis</em> Developmental Atlas (432,919 nuclei, 183 cell-type clusters) as a foundation
-      model, using a 32-dimensional variational auto-decoder for cell-type deconvolution, DESeq2 differential
-      expression, DerSimonian-Laird meta-analysis, and elastic-net classification.</p>
-    <div class="stats">
-      <div class="stat"><div class="n">1,337</div><div class="l">samples harmonized</div></div>
-      <div class="stat"><div class="n">16,002</div><div class="l">sig. genes (padj&lt;0.05)</div></div>
-      <div class="stat"><div class="n">0.919</div><div class="l">Flight vs GC AUC</div></div>
-      <div class="stat"><div class="n">183</div><div class="l">atlas cell-type clusters</div></div>
+<!-- Lightbox Modal for Publication Figures -->
+<div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Figure Viewer">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close figure viewer">&times;</button>
+  <div class="lightbox-content">
+    <div class="lightbox-img-wrap">
+      <img id="lightbox-img" src="" alt="Enlarged figure">
     </div>
-    <p style="margin-top:14px"><em>Values above are reported in the manuscript and repository README (Barker, 2026).</em></p>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <p><strong>Tropism Autodecoder web tool v1.0.0.</strong> Client-side; your data stays in your browser.
-       Source &amp; pipeline: <a href="https://github.com/dr-richard-barker/Tropism_autodecoder_2026">github.com/dr-richard-barker/Tropism_autodecoder_2026</a>.</p>
-    <p>Data &amp; pipeline © Richard Barker, released under CC BY 4.0. Please cite the manuscript and the original data
-       sources (NASA OSDR, NCBI GEO, Salk Atlas GSE226097).</p>
+    <div class="lightbox-caption-wrap">
+      <h4 id="lightbox-title">Publication Figure</h4>
+      <p id="lightbox-desc">Detailed caption</p>
+    </div>
   </div>
-</footer>
+</div>
 
+<!-- Scripts -->
 <script src="assets/signatures.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/model.js"></script>
+<script src="assets/ortho.js"></script>
+<script src="assets/viewer.js"></script>
 <script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/sites.js"></script>
-<script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/theme.js"></script>
-  <script defer src="https://visitor-analytics.astrobotany.workers.dev/a.js"></script>
+<script src="assets/theme.js"></script>
+<script defer src="https://visitor-analytics.astrobotany.workers.dev/a.js"></script>
 </body>
 </html>
