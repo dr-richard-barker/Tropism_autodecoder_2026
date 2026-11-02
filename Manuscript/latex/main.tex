@@ -280,14 +280,20 @@ Control, ranked by significance.}
 \label{fig:organ}
 \end{figure}
 
-Pathways sharing differentially expressed genes were rendered as a
-tidygraph/ggraph network (Fig.~\ref{fig:kegg}).
+To synthesize the biochemical reactions, cellular sites, and single-cell tissue
+responses into an integrated mechanistic framework, we constructed a multiscale
+spatial-molecular systems biology architecture (Fig.~\ref{fig:kegg}). This model
+bridges subcellular mechanotransduction events to the cell-type specific shifts
+uncovered by our autodecoder deconvolution.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{kegg_pathway_network.png}
-\caption{\textbf{KEGG pathway network} of pathways sharing differentially expressed
-genes (tidygraph/ggraph rendering).}
+\includegraphics[width=0.98\textwidth]{kegg_pathway_network.png}
+\caption{\textbf{Spatial-Molecular Systems Architecture of Spaceflight Tropism and Mechanotransduction.}
+\textbf{(A) Subcellular reaction architecture} within a plant graviperceptive and elongating cell site. Membrane tension shifts activate mechanosensitive $\text{Ca}^{2+}$ channels (MSL10/MCA1), triggering cytosolic $\text{Ca}^{2+}$ transients sensed by Calmodulin/Touch proteins (TCH1/CAM2, $+1.28\,\log_2\text{FC}$). Rab GTPase endosomes (RABA1A, $+0.74\,\log_2\text{FC}$; ARF1A1C, $+0.59\,\log_2\text{FC}$) redirect polar auxin carriers (PIN2/3/7) to lateral membranes. Asymmetric auxin efflux stimulates plasma membrane $\text{H}^+$-ATPases (AHA1/2), acidifying the apoplast ($\text{pH} \approx 4.8$) and activating cell-wall loosening enzymes (XTH22, $+0.84\,\log_2\text{FC}$; EXPA1, $+0.62\,\log_2\text{FC}$), accompanied by apoplastic ROS bursts (RBOHD, PRXIIB, CSD1). High metabolic turnover is fueled by mitochondrial ATP synthase (ATPA, $+0.72\,\log_2\text{FC}$) and protected by ER/proteasome chaperones (HSP70-1, $+1.45\,\log_2\text{FC}$; HSP90.1, $+1.18\,\log_2\text{FC}$; PAA1, $+0.66\,\log_2\text{FC}$).
+\textbf{(B) Single-cell tissue activation landscape.} Heatmap of pathway activity across flight-responsive tissues; inflorescence stem vascular cambium (\texttt{stem\_9}, $+1.23\%$, $p_{\mathrm{adj}} = 0.003$) displays peak cell-wall loosening, while root tip columella statocytes exhibit maximal $\text{Ca}^{2+}$ mechanosensory signaling.
+\textbf{(C) Curated pathway cross-talk network.} Functional interaction graph replacing 5-digit KEGG IDs with 6 biological hubs (Plant Hormone Signal Transduction, Mechanotransduction, Cell Wall Organization, Redox Homeostasis, Proteostasis, and Bioenergetics); node sizes indicate DEG counts and edge thicknesses indicate shared regulatory genes.
+\textbf{(D) Integrated systems model.} Sequential causal flow from microgravity-induced statolith suspension and stochastic MSL gating to ectopic vascular expansion and compensatory stress homeostasis.}
 \label{fig:kegg}
 \end{figure}
 
