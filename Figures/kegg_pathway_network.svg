@@ -1,1044 +1,1028 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200" style="background-color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1260" width="1800" height="1260" style="background-color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
 <defs>
 
       <marker id="arrow-auxin" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#15803D" />
       </marker>
-      <marker id="arrow-ca" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <marker id="arrow-mechano" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
         <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
       </marker>
       <marker id="arrow-wall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1 L 10 5 L 0 9 z" fill="#D97706" />
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#B45309" />
       </marker>
       <marker id="arrow-redox" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1 L 10 5 L 0 9 z" fill="#E11D48" />
-      </marker>
-      <marker id="arrow-chaperone" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1 L 10 5 L 0 9 z" fill="#7C3AED" />
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#BE123C" />
       </marker>
       <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569" />
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#6B7280" />
       </marker>
-      <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="110%">
-        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.06)" />
-      </filter>
     
 </defs>
 
-    <!-- Main Title Banner -->
-    <rect x="25" y="16" width="1550" height="74" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
-    <text x="45" y="46" font-size="22" font-weight="700" fill="#0F172A">
-      FIGURE 8 · Spatial-Molecular Systems Architecture of Spaceflight Tropism &amp; Mechanotransduction
+    <!-- Title & Metadata Header -->
+    <text x="30" y="38" font-size="20" font-weight="700" fill="#111827">
+      Fig. 8 | Spatial-molecular systems architecture of spaceflight tropism and mechanotransduction.
     </text>
-    <text x="45" y="70" font-size="13.5" font-weight="400" fill="#475569">
-      Multiscale integration of subcellular mechanosensation, single-cell tissue activation (inflorescence stem_9 &amp; root columella), and functional pathway cross-talk under microgravity
+    <text x="30" y="58" font-size="12.5" font-weight="400" fill="#6B7280">
+      Multiscale integration of subcellular mechanoperception, single-cell tissue activation (inflorescence stem_9 &amp; root columella), and functional pathway cross-talk in Arabidopsis thaliana.
     </text>
-    <rect x="1380" y="32" width="175" height="30" rx="6" fill="#E2E8F0" />
-    <text x="1467" y="52" font-size="11.5" font-weight="700" fill="#1E293B" text-anchor="middle">
-      TROPISM AUTODECODER
+    <rect x="1590" y="22" width="180" height="26" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="1680" y="39" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">
+      npj Microgravity · Research
     </text>
+    <line x1="30" y1="68" x2="1770" y2="68" stroke="#E5E7EB" stroke-width="1" />
     
 
-    <!-- PANEL A CONTAINER -->
-    <rect x="25" y="105" width="960" height="645" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
-    <rect x="41" y="119" width="76" height="22" rx="4" fill="#0284C7" />
-    <text x="79" y="134" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">PANEL A</text>
-    <text x="127" y="135" font-size="16" font-weight="700" fill="#0F172A">
-      Subcellular Mechanotransduction &amp; Biochemical Reaction Architecture
-    </text>
-    <text x="680" y="135" font-size="12" font-weight="500" fill="#475569">
-      Plant Statocyte &amp; Vascular Cambium Cell Site
+    <!-- PANEL a CONTAINER -->
+    <rect x="30" y="80" width="1030" height="635" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    
+    <!-- Panel Header: a | Subcellular mechanotransduction -->
+    <text x="46" y="106" font-size="16" font-weight="800" fill="#111827">a</text>
+    <text x="66" y="106" font-size="14" font-weight="700" fill="#111827">| Subcellular mechanotransduction &amp; biochemical reaction cascade</text>
+    <text x="580" y="106" font-size="11.5" font-weight="500" fill="#6B7280">Plant statocyte &amp; elongating vascular cambium site</text>
+    
+    <!-- Microgravity Vector Badge -->
+    <rect x="880" y="92" width="165" height="22" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="963" y="107" font-size="10.5" font-weight="700" fill="#BE123C" text-anchor="middle">
+      State: μg (0–10⁻³ g) vs 1g
     </text>
     
 
     <!-- Cell Wall & Apoplast -->
-    <rect x="45" y="150" width="920" height="105" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6,3" />
-    <rect x="57" y="160" width="190" height="20" rx="4" fill="#D97706" />
-    <text x="152" y="174" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <rect x="46" y="120" width="998" height="105" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1.2" stroke-dasharray="6,3" />
+    
+    <!-- Label Badge -->
+    <rect x="58" y="130" width="200" height="20" rx="3" fill="#B45309" />
+    <text x="158" y="144" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       CELL WALL &amp; APOPLAST (pH ~ 4.8)
     </text>
 
-    <!-- Cell Wall fibers pattern -->
-    <line x1="65" y1="190" x2="445" y2="190" stroke="#D97706" stroke-width="1.5" opacity="0.6" stroke-dasharray="15,6" />
-    <line x1="95" y1="205" x2="475" y2="205" stroke="#D97706" stroke-width="1.5" opacity="0.6" stroke-dasharray="12,5" />
-    <line x1="75" y1="220" x2="425" y2="220" stroke="#D97706" stroke-width="1.5" opacity="0.6" stroke-dasharray="18,7" />
+    <!-- Microfibrils lines -->
+    <line x1="66" y1="162" x2="426" y2="162" stroke="#B45309" stroke-width="1.5" opacity="0.4" stroke-dasharray="14,6" />
+    <line x1="86" y1="176" x2="466" y2="176" stroke="#B45309" stroke-width="1.5" opacity="0.4" stroke-dasharray="12,5" />
+    <line x1="71" y1="190" x2="436" y2="190" stroke="#B45309" stroke-width="1.5" opacity="0.4" stroke-dasharray="16,7" />
 
-    <!-- Reaction 1: Acid Growth & Expansins -->
-    <rect x="265" y="160" width="340" height="85" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="277" y="178" font-size="12" font-weight="700" fill="#D97706">
-      Acid Growth &amp; Wall Loosening Cascade
+    <!-- Acid Growth & Expansins Sub-box -->
+    <rect x="276" y="130" width="365" height="85" rx="5" fill="#FFFFFF" stroke="#FCD34D" stroke-width="1" />
+    <text x="288" y="148" font-size="12" font-weight="700" fill="#B45309">
+      Acid Growth &amp; Cell Wall Loosening
     </text>
-    <text x="277" y="196" font-size="11.5" fill="#0F172A">
-      • H⁺ extrusion by AHA1/2 lowers apoplastic pH
+    <text x="288" y="166" font-size="11" fill="#374151">
+      • H⁺ extrusion by AHA1/2 lowers apoplast pH to ~4.8
     </text>
-    <text x="277" y="214" font-size="11.5" fill="#0F172A">
-      • Acid activates Expansins (EXPA1/8) &amp; XTHs
+    <text x="288" y="183" font-size="11" fill="#374151">
+      • Low pH activates expansins (EXPA1/8) &amp; XTH xyloglucanases
     </text>
-    <text x="277" y="232" font-size="11" font-weight="600" fill="#166534">
-      XTH22 (+0.84 log₂FC) · EXPA1 (+0.62 log₂FC)
+    <text x="288" y="201" font-size="10.5" font-weight="600" fill="#15803D">
+      Key DEGs: XTH22 (+0.84 log₂FC, padj=1e-8) · EXPA1 (+0.62)
     </text>
 
-    <!-- Reaction 2: Apoplastic ROS Burst -->
-    <rect x="620" y="160" width="330" height="85" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="632" y="178" font-size="12" font-weight="700" fill="#E11D48">
+    <!-- Apoplastic Redox Burst Sub-box -->
+    <rect x="656" y="130" width="370" height="85" rx="5" fill="#FFFFFF" stroke="#FDA4AF" stroke-width="1" />
+    <text x="668" y="148" font-size="12" font-weight="700" fill="#BE123C">
       Apoplastic ROS &amp; Redox Signaling
     </text>
-    <text x="632" y="196" font-size="11.5" fill="#0F172A">
-      • RBOHD generates O₂•⁻ → SOD converts to H₂O₂
+    <text x="668" y="166" font-size="11" fill="#374151">
+      • RBOHD generates O₂•⁻ → CSD1 dismutates to H₂O₂
     </text>
-    <text x="632" y="214" font-size="11.5" fill="#0F172A">
-      • Peroxidases modulate cross-linking &amp; defense
+    <text x="668" y="183" font-size="11" fill="#374151">
+      • Peroxidases regulate wall cross-linking &amp; microgravity stress
     </text>
-    <text x="632" y="232" font-size="11" font-weight="600" fill="#166534">
-      PRXIIB (+1.22 log₂FC) · CSD1 (+0.78 log₂FC)
+    <text x="668" y="201" font-size="10.5" font-weight="600" fill="#BE123C">
+      Key DEGs: PRXIIB (+1.22 log₂FC) · CSD1 (+0.78) · CAT2 (-0.43)
     </text>
     
 
     <!-- Plasma Membrane Bilayer -->
-    <rect x="45" y="263" width="920" height="48" rx="6" fill="#93C5FD" stroke="#2563EB" stroke-width="2" />
-    <text x="57" y="291" font-size="11.5" font-weight="700" fill="#FFFFFF">PLASMA MEMBRANE</text>
+    <rect x="46" y="233" width="998" height="48" rx="5" fill="#BAE6FD" stroke="#0284C7" stroke-width="1.8" />
+    <text x="58" y="262" font-size="11" font-weight="700" fill="#0284C7">PLASMA MEMBRANE</text>
 
-    <!-- Transporter: MSL10 (Mechanosensitive channel) -->
-    <rect x="205" y="269" width="105" height="36" rx="5" fill="#0284C7" stroke="#FFFFFF" stroke-width="1" />
-    <text x="257" y="286" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">MSL10 / MCA1</text>
-    <text x="257" y="299" font-size="9" fill="#FFFFFF" text-anchor="middle">Ca²⁺ Stretch Channel</text>
+    <!-- Transporters -->
+    <!-- MSL10 / MCA1 (Mechanosensitive channel) -->
+    <rect x="206" y="239" width="125" height="36" rx="4" fill="#0284C7" />
+    <text x="268" y="255" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">MSL10 / MCA1</text>
+    <text x="268" y="268" font-size="9" fill="#FFFFFF" text-anchor="middle">Stretch Ca²⁺ Channel</text>
 
-    <!-- Transporter: AHA1 (H+ ATPase) -->
-    <rect x="345" y="269" width="100" height="36" rx="5" fill="#D97706" stroke="#FFFFFF" stroke-width="1" />
-    <text x="395" y="286" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">AHA1 / AHA2</text>
-    <text x="395" y="299" font-size="9" fill="#FFFFFF" text-anchor="middle">PM H⁺-ATPase Pump</text>
+    <!-- AHA1 / AHA2 (H+ ATPase) -->
+    <rect x="361" y="239" width="120" height="36" rx="4" fill="#B45309" />
+    <text x="421" y="255" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AHA1 / AHA2</text>
+    <text x="421" y="268" font-size="9" fill="#FFFFFF" text-anchor="middle">PM H⁺-ATPase Pump</text>
 
-    <!-- Transporter: PIN2/PIN3/PIN7 (Auxin Efflux) -->
-    <rect x="485" y="269" width="120" height="36" rx="5" fill="#059669" stroke="#FFFFFF" stroke-width="1" />
-    <text x="545" y="286" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">PIN2 / PIN3 / PIN7</text>
-    <text x="545" y="299" font-size="9" fill="#FFFFFF" text-anchor="middle">Polar Auxin Efflux</text>
+    <!-- PIN2 / PIN3 / PIN7 (Auxin Efflux) -->
+    <rect x="511" y="239" width="140" height="36" rx="4" fill="#15803D" />
+    <text x="581" y="255" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">PIN2 / PIN3 / PIN7</text>
+    <text x="581" y="268" font-size="9" fill="#FFFFFF" text-anchor="middle">Polar Auxin Efflux</text>
 
-    <!-- Transporter: AUX1 / ABCB1 -->
-    <rect x="640" y="269" width="115" height="36" rx="5" fill="#059669" stroke="#FFFFFF" stroke-width="1" />
-    <text x="697" y="286" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">AUX1 / ABCB1</text>
-    <text x="697" y="299" font-size="9" fill="#FFFFFF" text-anchor="middle">Auxin Influx &amp; ABC</text>
+    <!-- AUX1 / ABCB1 -->
+    <rect x="681" y="239" width="135" height="36" rx="4" fill="#15803D" />
+    <text x="748" y="255" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AUX1 / ABCB1</text>
+    <text x="748" y="268" font-size="9" fill="#FFFFFF" text-anchor="middle">Auxin Influx &amp; ABC</text>
 
-    <!-- Transporter: RBOHD (NADPH Oxidase) -->
-    <rect x="790" y="269" width="115" height="36" rx="5" fill="#E11D48" stroke="#FFFFFF" stroke-width="1" />
-    <text x="847" y="286" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">RBOHD / RBOHF</text>
-    <text x="847" y="299" font-size="9" fill="#FFFFFF" text-anchor="middle">ROS Generator</text>
+    <!-- RBOHD (NADPH Oxidase) -->
+    <rect x="846" y="239" width="135" height="36" rx="4" fill="#BE123C" />
+    <text x="913" y="255" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">RBOHD / RBOHF</text>
+    <text x="913" y="268" font-size="9" fill="#FFFFFF" text-anchor="middle">NADPH Oxidase ROS</text>
+
+    <!-- Transmembrane Reaction Arrows -->
+    <!-- Ca2+ Influx -->
+    <path d="M 268 225 L 268 237" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-mechano)" />
+    <text x="280" y="230" font-size="10" font-weight="700" fill="#0284C7">Ca²⁺ Influx</text>
+
+    <!-- H+ Pumping -->
+    <path d="M 421 281 L 421 227" stroke="#B45309" stroke-width="2.5" marker-end="url(#arrow-wall)" />
+    <text x="432" y="230" font-size="10" font-weight="700" fill="#B45309">H⁺ Pumping</text>
+
+    <!-- Auxin Efflux -->
+    <path d="M 581 281 L 581 227" stroke="#15803D" stroke-width="2.5" marker-end="url(#arrow-auxin)" />
+    <text x="592" y="230" font-size="10" font-weight="700" fill="#15803D">IAA⁻ Efflux</text>
     
 
-    <!-- Ca2+ Influx Arrow -->
-    <path d="M 257 255 L 257 269" stroke="#0284C7" stroke-width="3" marker-end="url(#arrow-ca)" />
-    <text x="270" y="259" font-size="10.5" font-weight="700" fill="#0284C7">Ca²⁺ Influx</text>
-
-    <!-- H+ Efflux Arrow -->
-    <path d="M 395 311 L 395 257" stroke="#D97706" stroke-width="3" marker-end="url(#arrow-wall)" />
-    <text x="407" y="259" font-size="10.5" font-weight="700" fill="#D97706">H⁺ Pumping</text>
-
-    <!-- Auxin Efflux Arrow -->
-    <path d="M 545 311 L 545 257" stroke="#059669" stroke-width="3" marker-end="url(#arrow-auxin)" />
-    <text x="557" y="259" font-size="10.5" font-weight="700" fill="#059669">IAA⁻ Efflux</text>
-    
-
-    <!-- Statoliths / Amyloplasts -->
-    <rect x="45" y="321" width="250" height="210" rx="8" fill="#FEF9C3" stroke="#CA8A04" stroke-width="1.5" />
-    <rect x="55" y="331" width="165" height="20" rx="4" fill="#CA8A04" />
-    <text x="137" y="345" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <!-- Amyloplasts / Statoliths -->
+    <rect x="46" y="291" width="255" height="215" rx="5" fill="#F9FAFB" stroke="#CA8A04" stroke-width="1.2" />
+    <rect x="56" y="301" width="180" height="20" rx="3" fill="#CA8A04" />
+    <text x="146" y="315" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       STATOLITHS / AMYLOPLASTS
     </text>
 
-    <!-- Dense Starch Granules -->
-    <ellipse cx="115" cy="396" rx="32" ry="24" fill="#D97706" opacity="0.8" />
-    <text x="115" y="399" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">Starch 1</text>
+    <!-- Starch Granules suspended in microgravity -->
+    <ellipse cx="121" cy="366" rx="36" ry="26" fill="#FEF08A" stroke="#CA8A04" stroke-width="1.5" />
+    <text x="121" y="369" font-size="10" font-weight="700" fill="#111827" text-anchor="middle">Statolith 1</text>
+    <text x="121" y="382" font-size="8.5" fill="#6B7280" text-anchor="middle">Starch Core</text>
 
-    <ellipse cx="205" cy="411" rx="38" ry="28" fill="#D97706" opacity="0.8" />
-    <text x="205" y="414" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">Starch 2</text>
+    <ellipse cx="221" cy="381" rx="42" ry="30" fill="#FEF08A" stroke="#CA8A04" stroke-width="1.5" />
+    <text x="221" y="384" font-size="10" font-weight="700" fill="#111827" text-anchor="middle">Statolith 2</text>
+    <text x="221" y="397" font-size="8.5" fill="#6B7280" text-anchor="middle">Sedimentation loss</text>
 
-    <ellipse cx="150" cy="466" rx="30" ry="22" fill="#D97706" opacity="0.8" />
-    <text x="150" y="469" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">Starch 3</text>
+    <ellipse cx="161" cy="441" rx="34" ry="24" fill="#FEF08A" stroke="#CA8A04" stroke-width="1.5" />
+    <text x="161" y="444" font-size="10" font-weight="700" fill="#111827" text-anchor="middle">Statolith 3</text>
 
-    <!-- Statolith text & genes -->
-    <rect x="55" y="496" width="230" height="28" rx="4" fill="#F1F5F9" />
-    <text x="63" y="514" font-size="10.5" font-weight="600" fill="#0F172A">
-      CPN60A (+0.65) · BAM3 (Starch turnover)
+    <!-- Statolith annotation -->
+    <rect x="56" y="471" width="235" height="26" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="64" y="488" font-size="10" font-weight="600" fill="#374151">
+      CPN60A (+0.65 log₂FC) · BAM3 starch turnover
     </text>
     
 
-    <!-- Cytosolic Signaling & Endosomes -->
-    <rect x="307" y="321" width="355" height="210" rx="8" fill="#F0FDF4" stroke="#059669" stroke-width="1.3" />
-    <rect x="317" y="331" width="220" height="20" rx="4" fill="#059669" />
-    <text x="427" y="345" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <!-- Cytosol, Cytoskeleton & Vesicles -->
+    <rect x="313" y="291" width="400" height="215" rx="5" fill="#F9FAFB" stroke="#86EFAC" stroke-width="1.2" />
+    <rect x="323" y="301" width="240" height="20" rx="3" fill="#15803D" />
+    <text x="443" y="315" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       CYTOSOL · VESICLES · CYTOSKELETON
     </text>
 
-    <!-- Actin filaments & Microtubules lines -->
-    <line x1="322" y1="369" x2="647" y2="381" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4,2" />
-    <line x1="322" y1="389" x2="647" y2="401" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="8,3" />
-    <text x="322" y="365" font-size="10" font-weight="600" fill="#475569">
-      Cytoskeleton: ACT2 (-0.58) · TUBB1 (-0.49) · MYA1 (-0.67)
+    <!-- Cytoskeleton filaments -->
+    <line x1="328" y1="336" x2="693" y2="346" stroke="#B45309" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="328" y1="356" x2="693" y2="366" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="8,3" />
+    <text x="328" y="333" font-size="9.5" font-weight="600" fill="#6B7280">
+      Cytoskeleton remodeling: ACT2 (-0.58) · TUBB1 (-0.49) · MYA1 (-0.67)
     </text>
 
     <!-- Ca2+ Sensor Hub -->
-    <rect x="319" y="407" width="155" height="58" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="329" y="425" font-size="11" font-weight="700" fill="#0284C7">Ca²⁺ Sensors (Touch)</text>
-    <text x="329" y="441" font-size="10" fill="#0F172A">TCH1 / CAM2 (+1.28 log₂)</text>
-    <text x="329" y="455" font-size="10" fill="#0F172A">CPK / CDPK Kinases</text>
+    <rect x="325" y="376" width="180" height="60" rx="4" fill="#FFFFFF" stroke="#7DD3FC" stroke-width="1" />
+    <text x="333" y="393" font-size="11" font-weight="700" fill="#0284C7">Ca²⁺ Sensors (Touch)</text>
+    <text x="333" y="409" font-size="10" fill="#374151">TCH1 / CAM2 (+1.28 log₂FC)</text>
+    <text x="333" y="424" font-size="10" fill="#374151">CPK1 / CDPK Kinases</text>
 
-    <!-- PIN Vesicle Recycling Endosomes -->
-    <rect x="487" y="407" width="162" height="58" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="497" y="425" font-size="11" font-weight="700" fill="#059669">PIN Polar Recycling</text>
-    <text x="497" y="441" font-size="10" fill="#0F172A">RABA1A GTPase (+0.74)</text>
-    <text x="497" y="455" font-size="10" fill="#0F172A">ARF1A1C Endosome (+0.59)</text>
+    <!-- PIN Vesicle Recycling -->
+    <rect x="517" y="376" width="184" height="60" rx="4" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1" />
+    <text x="525" y="393" font-size="11" font-weight="700" fill="#15803D">PIN Polar Recycling</text>
+    <text x="525" y="409" font-size="10" fill="#374151">RABA1A GTPase (+0.74 log₂)</text>
+    <text x="525" y="424" font-size="10" fill="#374151">ARF1A1C Endosome (+0.59 log₂)</text>
 
     <!-- Signal integration text -->
-    <rect x="319" y="473" width="331" height="48" rx="5" fill="#F1F5F9" />
-    <text x="327" y="491" font-size="10.5" font-weight="600" fill="#0F172A">
-      • Ca²⁺ wave directs RABA1A/ARF1A1C polar targeting
+    <rect x="325" y="445" width="376" height="50" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="333" y="463" font-size="10" font-weight="600" fill="#111827">
+      • Cytosolic Ca²⁺ transients direct RABA1A/ARF1A1C polar targeting
     </text>
-    <text x="327" y="509" font-size="10.5" font-weight="600" fill="#0F172A">
-      • MPK3 (+0.88 log₂FC) coordinates touch/stress cascade
+    <text x="333" y="481" font-size="10" font-weight="600" fill="#111827">
+      • MPK3 (+0.88 log₂FC) coordinates the downstream stress cascade
     </text>
     
 
     <!-- Nucleus -->
-    <rect x="674" y="321" width="300" height="210" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5" />
-    <rect x="684" y="331" width="195" height="20" rx="4" fill="#7C3AED" />
-    <text x="781" y="345" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <rect x="725" y="291" width="319" height="215" rx="5" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.2" />
+    <rect x="735" y="301" width="200" height="20" rx="3" fill="#8B5CF6" />
+    <text x="835" y="315" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       NUCLEUS &amp; TRANSCRIPTION
     </text>
 
-    <!-- DNA Double Helix Representation -->
-    <path d="M 694 376 Q 754 361 814 376 T 934 376" fill="none" stroke="#7C3AED" stroke-width="2" />
-    <path d="M 694 386 Q 754 401 814 386 T 934 386" fill="none" stroke="#7C3AED" stroke-width="2" />
+    <!-- DNA wave -->
+    <path d="M 745 346 Q 805 333 865 346 T 995 346" fill="none" stroke="#8B5CF6" stroke-width="1.8" />
+    <path d="M 745 356 Q 805 369 865 356 T 995 356" fill="none" stroke="#8B5CF6" stroke-width="1.8" />
 
-    <!-- Transcriptional Hubs -->
-    <rect x="686" y="401" width="276" height="55" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="696" y="419" font-size="11" font-weight="700" fill="#059669">Auxin Gene Regulation</text>
-    <text x="696" y="435" font-size="10" fill="#0F172A">TIR1/AFB Auxin Receptors → Aux/IAA Degradation</text>
-    <text x="696" y="448" font-size="10" fill="#0F172A">ARF19/ARF7 activate SAURs &amp; EXPAs</text>
+    <!-- Auxin Gene Regulation Subcard -->
+    <rect x="735" y="371" width="299" height="58" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="743" y="389" font-size="11" font-weight="700" fill="#15803D">Auxin Transcriptional Cascade</text>
+    <text x="743" y="405" font-size="10" fill="#374151">TIR1/AFB receptors → Aux/IAA repressor degradation</text>
+    <text x="743" y="419" font-size="10" fill="#374151">ARF19 / ARF7 activate SAUR expansion genes</text>
 
-    <rect x="686" y="463" width="276" height="58" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="696" y="481" font-size="11" font-weight="700" fill="#7C3AED">Stress &amp; HSF Transcriptome</text>
-    <text x="696" y="497" font-size="10" fill="#0F172A">Heat Shock Factors (HSFs) trigger chaperones</text>
-    <text x="696" y="511" font-size="10" fill="#0F172A">MAPK cascade: MPK3 / MPK6 activation</text>
+    <!-- Stress & HSF Transcriptome -->
+    <rect x="735" y="437" width="299" height="58" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="743" y="455" font-size="11" font-weight="700" fill="#6D28D9">Stress &amp; HSF Transcriptome</text>
+    <text x="743" y="471" font-size="10" fill="#374151">Heat Shock Factors (HSFs) trigger chaperone network</text>
+    <text x="743" y="485" font-size="10" fill="#374151">MPK3 / MPK6 MAP kinase regulatory pathway</text>
     
 
     <!-- Mitochondria & Bioenergetics -->
-    <rect x="45" y="600" width="450" height="135" rx="8" fill="#FFEDD5" stroke="#EA580C" stroke-width="1.5" />
-    <rect x="55" y="610" width="250" height="20" rx="4" fill="#EA580C" />
-    <text x="180" y="624" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <rect x="46" y="516" width="485" height="135" rx="5" fill="#FFF7ED" stroke="#F97316" stroke-width="1.2" />
+    <rect x="56" y="526" width="260" height="20" rx="3" fill="#F97316" />
+    <text x="186" y="540" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       MITOCHONDRIA · BIOENERGETICS &amp; ATP
     </text>
 
-    <!-- Cristae membrane drawing -->
-    <path d="M 65 660 C 105 640, 85 690, 125 665 C 165 640, 145 700, 195 670" fill="none" stroke="#EA580C" stroke-width="2" opacity="0.6" />
+    <!-- Cristae line art -->
+    <path d="M 66 576 C 106 556, 86 606, 126 581 C 166 556, 146 616, 196 586" fill="none" stroke="#F97316" stroke-width="2" opacity="0.6" />
 
-    <rect x="220" y="638" width="265" height="88" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="230" y="656" font-size="11" font-weight="700" fill="#0D9488">ATP Generation &amp; Metabolic Shift</text>
-    <text x="230" y="674" font-size="10.5" fill="#0F172A">• ATPA (+0.72 log₂) ATP Synthase F1 α</text>
-    <text x="230" y="692" font-size="10.5" fill="#0F172A">• GAPC1 (+0.92 log₂) Cytosolic Glycolysis</text>
-    <text x="230" y="710" font-size="10.5" fill="#0F172A">• MDH1 (+0.63 log₂) Malate Dehydrogenase</text>
+    <rect x="221" y="554" width="300" height="88" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="231" y="572" font-size="11" font-weight="700" fill="#0F766E">ATP Synthesis &amp; Metabolic Shift</text>
+    <text x="231" y="590" font-size="10.5" fill="#374151">• ATPA (+0.72 log₂FC) Proton-transporting ATP synthase</text>
+    <text x="231" y="608" font-size="10.5" fill="#374151">• GAPC1 (+0.92 log₂FC) Cytosolic glycolysis enzyme</text>
+    <text x="231" y="626" font-size="10.5" fill="#374151">• MDH1 (+0.63 log₂FC) Malate dehydrogenase TCA cycle</text>
     
 
     <!-- ER & Proteostasis -->
-    <rect x="507" y="600" width="458" height="135" rx="8" fill="#FCE7F3" stroke="#DB2777" stroke-width="1.5" />
-    <rect x="517" y="610" width="250" height="20" rx="4" fill="#DB2777" />
-    <text x="642" y="624" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <rect x="546" y="516" width="498" height="135" rx="5" fill="#FDF2F8" stroke="#EC4899" stroke-width="1.2" />
+    <rect x="556" y="526" width="260" height="20" rx="3" fill="#EC4899" />
+    <text x="686" y="540" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">
       ER &amp; 26S PROTEASOME · CHAPERONES
     </text>
 
-    <!-- Ribosome dots on ER -->
-    <circle cx="542" cy="655" r="3" fill="#DB2777" />
-    <circle cx="562" cy="665" r="3" fill="#DB2777" />
-    <circle cx="537" cy="680" r="3" fill="#DB2777" />
-    <circle cx="567" cy="695" r="3" fill="#DB2777" />
+    <!-- Ribosome dots -->
+    <circle cx="566" cy="576" r="3" fill="#EC4899" />
+    <circle cx="586" cy="586" r="3" fill="#EC4899" />
+    <circle cx="561" cy="601" r="3" fill="#EC4899" />
+    <circle cx="591" cy="616" r="3" fill="#EC4899" />
 
-    <rect x="592" y="638" width="363" height="88" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="602" y="656" font-size="11" font-weight="700" fill="#7C3AED">Proteostasis Machinery</text>
-    <text x="602" y="674" font-size="10.5" fill="#0F172A">• HSP70-1 (+1.45 log₂) · HSP90.1 (+1.18)</text>
-    <text x="602" y="692" font-size="10.5" fill="#0F172A">• DNAJ-1 (+0.82) · CPN60A (+0.65)</text>
-    <text x="602" y="710" font-size="10.5" fill="#0F172A">• UBC1 (+0.77 log₂) · PAA1 (+0.66, 26S Core)</text>
+    <rect x="626" y="554" width="393" height="88" rx="4" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    <text x="636" y="572" font-size="11" font-weight="700" fill="#6D28D9">Proteostasis Machinery</text>
+    <text x="636" y="590" font-size="10.5" fill="#374151">• HSP70-1 (+1.45 log₂FC) · HSP90.1 (+1.18 log₂FC)</text>
+    <text x="636" y="608" font-size="10.5" fill="#374151">• DNAJ-1 (+0.82) · CPN60A (+0.65) molecular chaperones</text>
+    <text x="636" y="626" font-size="10.5" fill="#374151">• UBC1 (+0.77 log₂FC) · PAA1 (+0.66, 26S proteasome core)</text>
     
 
-    <!-- Causal flow line connecting Panel A steps -->
-    <path d="M 205 371 Q 257 301 257 311 " fill="none" stroke="#0284C7" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-ca)" />
-    <circle cx="205" cy="361" r="11" fill="#0284C7" />
-    <text x="205" y="365" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+    <!-- Step Markers (1, 2, 3, 4) -->
+    <circle cx="221" cy="336" r="11" fill="#0284C7" />
+    <text x="221" y="340" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
 
-    <path d="M 310 308 Q 387 401 487 426" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-auxin)" />
-    <circle cx="315" cy="313" r="11" fill="#059669" />
-    <text x="315" y="317" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+    <circle cx="316" cy="281" r="11" fill="#15803D" />
+    <text x="316" y="285" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
 
-    <path d="M 567 407 Q 545 351 545 311" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-auxin)" />
-    <circle cx="572" cy="391" r="11" fill="#059669" />
-    <text x="572" y="395" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+    <circle cx="608" cy="359" r="11" fill="#15803D" />
+    <text x="608" y="363" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
 
-    <path d="M 545 263 Q 445 230 395 263" fill="none" stroke="#D97706" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-wall)" />
-    <circle cx="465" cy="230" r="11" fill="#D97706" />
-    <text x="465" y="234" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+    <circle cx="491" cy="195" r="11" fill="#B45309" />
+    <text x="491" y="199" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
     
 
-    <!-- PANEL B CONTAINER -->
-    <rect x="1000" y="105" width="575" height="475" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
-    <rect x="1016" y="119" width="76" height="22" rx="4" fill="#059669" />
-    <text x="1054" y="134" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">PANEL B</text>
-    <text x="1102" y="135" font-size="16" font-weight="700" fill="#0F172A">
-      Organ &amp; Single-Cell Tissue Activation Landscape
-    </text>
-    <text x="1016" y="160" font-size="12" fill="#475569">
-      Single-cell deconvolution and pathway activity scores across flight-responsive tissues
+    <!-- PANEL b CONTAINER -->
+    <rect x="1085" y="80" width="685" height="430" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    
+    <!-- Panel Header: b | Single-cell tissue activation -->
+    <text x="1101" y="106" font-size="16" font-weight="800" fill="#111827">b</text>
+    <text x="1121" y="106" font-size="14" font-weight="700" fill="#111827">| Organ &amp; single-cell tissue activation landscape</text>
+    <text x="1101" y="126" font-size="11.5" font-weight="400" fill="#6B7280">
+      Single-cell deconvolution across Salk developmental atlas clusters (GSE226097)
     </text>
     
 
-        <g transform="translate(1261, 192) rotate(-35)">
-          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#059669" text-anchor="start">
+        <g transform="translate(1400, 164) rotate(-32)">
+          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#15803D" text-anchor="start">
             Auxin Polarity
           </text>
         </g>
         
 
-        <g transform="translate(1313, 192) rotate(-35)">
+        <g transform="translate(1460, 164) rotate(-32)">
           <text x="0" y="0" font-size="10.5" font-weight="700" fill="#0284C7" text-anchor="start">
             Ca²⁺ Signaling
           </text>
         </g>
         
 
-        <g transform="translate(1365, 192) rotate(-35)">
-          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#D97706" text-anchor="start">
+        <g transform="translate(1520, 164) rotate(-32)">
+          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#B45309" text-anchor="start">
             Cell Wall Loosen
           </text>
         </g>
         
 
-        <g transform="translate(1417, 192) rotate(-35)">
-          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#E11D48" text-anchor="start">
+        <g transform="translate(1580, 164) rotate(-32)">
+          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#BE123C" text-anchor="start">
             Redox Defense
           </text>
         </g>
         
 
-        <g transform="translate(1469, 192) rotate(-35)">
-          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#7C3AED" text-anchor="start">
+        <g transform="translate(1640, 164) rotate(-32)">
+          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#6D28D9" text-anchor="start">
             Chaperones
           </text>
         </g>
         
 
-        <g transform="translate(1521, 192) rotate(-35)">
-          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#0D9488" text-anchor="start">
+        <g transform="translate(1700, 164) rotate(-32)">
+          <text x="0" y="0" font-size="10.5" font-weight="700" fill="#0F766E" text-anchor="start">
             Bioenergetics
           </text>
         </g>
         
 
-        <rect x="1014" y="200" width="215" height="48" rx="5" fill="#DCFCE7" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="220" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="170" width="265" height="42" rx="4" fill="#DCFCE7" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="188" font-size="10.5" font-weight="700" fill="#111827">
           Stem: Vascular Cambium (stem_9)
         </text>
-        <text x="1022" y="236" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="202" font-size="9" font-weight="500" fill="#6B7280">
           +1.23% (padj=0.003) ***
         </text>
         
 
-            <rect x="1235" y="200" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.78" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="170" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.78" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.4
             </text>
-            <text x="1259" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="200" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="0.61" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="170" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="0.61" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.1
             </text>
-            <text x="1311" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="200" width="48" height="48" rx="5" fill="#D97706" fill-opacity="1.00" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="170" width="56" height="42" rx="4" fill="#B45309" fill-opacity="1.00" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.8
             </text>
-            <text x="1363" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="200" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.50" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="170" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.50" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.9
             </text>
-            <text x="1415" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="200" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.67" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="170" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.67" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.2
             </text>
-            <text x="1467" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="200" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.44" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="224" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="170" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.44" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="192" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.8
             </text>
-            <text x="1519" y="238" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="204" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-        <rect x="1014" y="252" width="215" height="48" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="272" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="216" width="265" height="42" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="234" font-size="10.5" font-weight="700" fill="#111827">
           Root Tip: Columella Statocytes
         </text>
-        <text x="1022" y="288" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="248" font-size="9" font-weight="500" fill="#6B7280">
           Primary Graviperception **
         </text>
         
 
-            <rect x="1235" y="252" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.89" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="216" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.89" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.6
             </text>
-            <text x="1259" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="252" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="1.00" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="216" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="1.00" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.9
             </text>
-            <text x="1311" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="252" width="48" height="48" rx="5" fill="#D97706" fill-opacity="0.22" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="216" width="56" height="42" rx="4" fill="#B45309" fill-opacity="0.22" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.4
             </text>
-            <text x="1363" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="252" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.39" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="216" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.39" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.7
             </text>
-            <text x="1415" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="252" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.50" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="216" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.50" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.9
             </text>
-            <text x="1467" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="252" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.33" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="276" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="216" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.33" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="238" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.6
             </text>
-            <text x="1519" y="290" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="250" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-        <rect x="1014" y="304" width="215" height="48" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="324" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="262" width="265" height="42" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="280" font-size="10.5" font-weight="700" fill="#111827">
           Root Tip: Procambium / Stele
         </text>
-        <text x="1022" y="340" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="294" font-size="9" font-weight="500" fill="#6B7280">
           Auxin Transport Axis **
         </text>
         
 
-            <rect x="1235" y="304" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.61" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="262" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.61" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.1
             </text>
-            <text x="1259" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="304" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="0.44" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="262" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="0.44" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.8
             </text>
-            <text x="1311" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="304" width="48" height="48" rx="5" fill="#D97706" fill-opacity="0.50" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="262" width="56" height="42" rx="4" fill="#B45309" fill-opacity="0.50" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.9
             </text>
-            <text x="1363" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="304" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.28" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="262" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.28" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.5
             </text>
-            <text x="1415" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="304" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.39" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="262" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.39" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.7
             </text>
-            <text x="1467" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="304" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.28" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="328" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="262" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.28" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="284" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.5
             </text>
-            <text x="1519" y="342" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="296" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-        <rect x="1014" y="356" width="215" height="48" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="376" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="308" width="265" height="42" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="326" font-size="10.5" font-weight="700" fill="#111827">
           Shoot Apex: Meristematic Zone
         </text>
-        <text x="1022" y="392" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="340" font-size="9" font-weight="500" fill="#6B7280">
           Organogenesis / Morphogen *
         </text>
         
 
-            <rect x="1235" y="356" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.44" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="308" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.44" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.8
             </text>
-            <text x="1259" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="356" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="0.28" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="308" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="0.28" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.5
             </text>
-            <text x="1311" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="356" width="48" height="48" rx="5" fill="#D97706" fill-opacity="0.33" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="308" width="56" height="42" rx="4" fill="#B45309" fill-opacity="0.33" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.6
             </text>
-            <text x="1363" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="356" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.44" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="308" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.44" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.8
             </text>
-            <text x="1415" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="356" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.50" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="308" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.50" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.9
             </text>
-            <text x="1467" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="356" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.61" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="380" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="308" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.61" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="330" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.1
             </text>
-            <text x="1519" y="394" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="342" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-        <rect x="1014" y="408" width="215" height="48" rx="5" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="428" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="354" width="265" height="42" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="372" font-size="10.5" font-weight="700" fill="#111827">
           Rosette Leaf: Vascular Bundles
         </text>
-        <text x="1022" y="444" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="386" font-size="9" font-weight="500" fill="#6B7280">
           Redox &amp; Photosynthetic shift
         </text>
         
 
-            <rect x="1235" y="408" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.20" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="354" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.20" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.2
             </text>
-            <text x="1259" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="408" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="0.20" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="354" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="0.20" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.1
             </text>
-            <text x="1311" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="408" width="48" height="48" rx="5" fill="#D97706" fill-opacity="0.20" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="354" width="56" height="42" rx="4" fill="#B45309" fill-opacity="0.20" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.3
             </text>
-            <text x="1363" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="408" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.78" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="354" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.78" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.4
             </text>
-            <text x="1415" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="408" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.44" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="354" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.44" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.8
             </text>
-            <text x="1467" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="408" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.39" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="432" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="354" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.39" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="376" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.7
             </text>
-            <text x="1519" y="446" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="388" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-        <rect x="1014" y="460" width="215" height="48" rx="5" fill="#DCFCE7" stroke="#E2E8F0" stroke-width="1" />
-        <text x="1022" y="480" font-size="11" font-weight="700" fill="#0F172A">
+        <rect x="1099" y="400" width="265" height="42" rx="4" fill="#DCFCE7" stroke="#E5E7EB" stroke-width="1" />
+        <text x="1107" y="418" font-size="10.5" font-weight="700" fill="#111827">
           Silique &amp; Seed: Coat (silique_20)
         </text>
-        <text x="1022" y="496" font-size="9.5" font-weight="500" fill="#475569">
+        <text x="1107" y="432" font-size="9" font-weight="500" fill="#6B7280">
           +0.73% (padj=0.030) **
         </text>
         
 
-            <rect x="1235" y="460" width="48" height="48" rx="5" fill="#059669" fill-opacity="0.33" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1259" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1370" y="400" width="56" height="42" rx="4" fill="#15803D" fill-opacity="0.33" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1398" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.6
             </text>
-            <text x="1259" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1398" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1287" y="460" width="48" height="48" rx="5" fill="#0284C7" fill-opacity="0.20" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1311" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1430" y="400" width="56" height="42" rx="4" fill="#0284C7" fill-opacity="0.20" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1458" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.3
             </text>
-            <text x="1311" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1458" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1339" y="460" width="48" height="48" rx="5" fill="#D97706" fill-opacity="0.61" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1363" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1490" y="400" width="56" height="42" rx="4" fill="#B45309" fill-opacity="0.61" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1518" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.1
             </text>
-            <text x="1363" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1518" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1391" y="460" width="48" height="48" rx="5" fill="#E11D48" fill-opacity="0.33" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1415" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1550" y="400" width="56" height="42" rx="4" fill="#BE123C" fill-opacity="0.33" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1578" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               1.6
             </text>
-            <text x="1415" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1578" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1443" y="460" width="48" height="48" rx="5" fill="#7C3AED" fill-opacity="0.83" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1467" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1610" y="400" width="56" height="42" rx="4" fill="#6D28D9" fill-opacity="0.83" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1638" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.5
             </text>
-            <text x="1467" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1638" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-            <rect x="1495" y="460" width="48" height="48" rx="5" fill="#0D9488" fill-opacity="0.67" stroke="#CBD5E1" stroke-width="1" />
-            <text x="1519" y="484" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+            <rect x="1670" y="400" width="56" height="42" rx="4" fill="#0F766E" fill-opacity="0.67" stroke="#E5E7EB" stroke-width="1" />
+            <text x="1698" y="422" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">
               2.2
             </text>
-            <text x="1519" y="498" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">
+            <text x="1698" y="434" font-size="8" font-weight="600" fill="#6B7280" text-anchor="middle">
               z-score
             </text>
             
 
-    <rect x="1014" y="520" width="547" height="46" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-    <text x="1024" y="538" font-size="11" font-weight="700" fill="#D97706">
-      Key Insight: Inflorescence stem vascular cambium (stem_9) exhibits peak cell-wall loosening
+    <rect x="1099" y="454" width="657" height="42" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="1107" y="470" font-size="10.5" font-weight="700" fill="#B45309">
+      Key Insight: Inflorescence stem vascular cambium (stem_9) mounts peak cell-wall loosening
     </text>
-    <text x="1024" y="554" font-size="10.5" fill="#475569">
-      Coupled with root tip columella Ca²⁺ signaling, defining the primary axis of microgravity gravitropic disruption.
-    </text>
-    
-
-    <!-- PANEL D CONTAINER -->
-    <rect x="1000" y="595" width="575" height="580" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
-    <rect x="1016" y="609" width="76" height="22" rx="4" fill="#E11D48" />
-    <text x="1054" y="624" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">PANEL D</text>
-    <text x="1102" y="625" font-size="16" font-weight="700" fill="#0F172A">
-      Integrated Mechanistic Systems Model
-    </text>
-    <text x="1016" y="649" font-size="12" fill="#475569">
-      Chronological cascade of microgravity perception to cellular physiological adaptation
+    <text x="1107" y="484" font-size="10" fill="#6B7280">
+      Coupled with root tip columella Ca²⁺ signaling, defining the primary axis of microgravity gravitropic remodeling.
     </text>
     
 
-        <rect x="1016" y="667" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="675" width="6" height="41" rx="3" fill="#D97706" />
-        <text x="1036" y="691" font-size="12" font-weight="700" fill="#D97706">
-          1. Loss of 1g Gravity Vector
+    <!-- PANEL d CONTAINER -->
+    <rect x="1085" y="525" width="685" height="710" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    
+    <!-- Panel Header: d | Integrated systems model -->
+    <text x="1101" y="551" font-size="16" font-weight="800" fill="#111827">d</text>
+    <text x="1121" y="551" font-size="14" font-weight="700" fill="#111827">| Integrated systems mechanistic model</text>
+    <text x="1101" y="571" font-size="11.5" font-weight="400" fill="#6B7280">
+      Sequential cascade: physical microgravity perception to cellular stress adaptation
+    </text>
+    
+
+        <rect x="1101" y="585" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1107" y="593" width="5" height="66" rx="2.5" fill="#CA8A04" />
+        <text x="1119" y="609" font-size="11" font-weight="700" fill="#CA8A04">
+          1. Loss of Gravitational Sedimentation
         </text>
-        <text x="1036" y="711" font-size="11" fill="#0F172A">
-          Statoliths lose sedimentation force; suspended in cytosol
+        <text x="1119" y="629" font-size="10" fill="#374151">
+          Amyloplasts lose buoyant weight; freely float in statocytes
         </text>
         
 
-            <line x1="1287" y1="724" x2="1287" y2="731" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-muted)" />
-            
+                <line x1="1262" y1="667" x2="1262" y2="678" stroke="#6B7280" stroke-width="1.2" marker-end="url(#arrow-muted)" />
+                
 
-        <rect x="1016" y="732" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="740" width="6" height="41" rx="3" fill="#0284C7" />
-        <text x="1036" y="756" font-size="12" font-weight="700" fill="#0284C7">
+        <rect x="1101" y="679" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1107" y="687" width="5" height="66" rx="2.5" fill="#0284C7" />
+        <text x="1119" y="703" font-size="11" font-weight="700" fill="#0284C7">
           2. Stochastic MSL Channel Gating
         </text>
-        <text x="1036" y="776" font-size="11" fill="#0F172A">
-          Membrane tension fluctuations cause persistent Ca²⁺ spikes
+        <text x="1119" y="723" font-size="10" fill="#374151">
+          Membrane tension shifts induce repetitive cytosolic Ca²⁺ pulses
         </text>
         
 
-            <line x1="1287" y1="789" x2="1287" y2="796" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-muted)" />
-            
+                <line x1="1262" y1="761" x2="1262" y2="772" stroke="#6B7280" stroke-width="1.2" marker-end="url(#arrow-muted)" />
+                
 
-        <rect x="1016" y="797" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="805" width="6" height="41" rx="3" fill="#059669" />
-        <text x="1036" y="821" font-size="12" font-weight="700" fill="#059669">
-          3. Ectopic PIN Auxin Relocalization
+        <rect x="1101" y="773" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1107" y="781" width="5" height="66" rx="2.5" fill="#15803D" />
+        <text x="1119" y="797" font-size="11" font-weight="700" fill="#15803D">
+          3. Ectopic PIN Carrier Relocalization
         </text>
-        <text x="1036" y="841" font-size="11" fill="#0F172A">
-          RABA1A/ARF1A1C misdirect PIN carriers to lateral flanks
+        <text x="1119" y="817" font-size="10" fill="#374151">
+          RABA1A/ARF1A1C endosomes redirect PIN2/3/7 to lateral flanks
         </text>
         
 
-            <line x1="1287" y1="854" x2="1287" y2="861" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-muted)" />
-            
-
-        <rect x="1016" y="862" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="870" width="6" height="41" rx="3" fill="#059669" />
-        <text x="1036" y="886" font-size="12" font-weight="700" fill="#059669">
+        <rect x="1431" y="585" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1437" y="593" width="5" height="66" rx="2.5" fill="#15803D" />
+        <text x="1449" y="609" font-size="11" font-weight="700" fill="#15803D">
           4. Vascular Tissue Ectopic Expansion
         </text>
-        <text x="1036" y="906" font-size="11" fill="#0F172A">
+        <text x="1449" y="629" font-size="10" fill="#374151">
           Auxin accumulates in stem cambium (stem_9) &amp; root stele
         </text>
         
 
-            <line x1="1287" y1="919" x2="1287" y2="926" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-muted)" />
-            
+                <line x1="1592" y1="667" x2="1592" y2="678" stroke="#6B7280" stroke-width="1.2" marker-end="url(#arrow-muted)" />
+                
 
-        <rect x="1016" y="927" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="935" width="6" height="41" rx="3" fill="#D97706" />
-        <text x="1036" y="951" font-size="12" font-weight="700" fill="#D97706">
+        <rect x="1431" y="679" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1437" y="687" width="5" height="66" rx="2.5" fill="#B45309" />
+        <text x="1449" y="703" font-size="11" font-weight="700" fill="#B45309">
           5. Apoplast Acidification &amp; Loosening
         </text>
-        <text x="1036" y="971" font-size="11" fill="#0F172A">
+        <text x="1449" y="723" font-size="10" fill="#374151">
           PM H⁺-ATPase pumping activates XTH22 &amp; EXPA1 expansins
         </text>
         
 
-            <line x1="1287" y1="984" x2="1287" y2="991" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-muted)" />
-            
+                <line x1="1592" y1="761" x2="1592" y2="772" stroke="#6B7280" stroke-width="1.2" marker-end="url(#arrow-muted)" />
+                
 
-        <rect x="1016" y="992" width="543" height="57" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
-        <rect x="1022" y="1000" width="6" height="41" rx="3" fill="#7C3AED" />
-        <text x="1036" y="1016" font-size="12" font-weight="700" fill="#7C3AED">
+        <rect x="1431" y="773" width="322" height="82" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+        <rect x="1437" y="781" width="5" height="66" rx="2.5" fill="#6D28D9" />
+        <text x="1449" y="797" font-size="11" font-weight="700" fill="#6D28D9">
           6. Compensatory Stress Homeostasis
         </text>
-        <text x="1036" y="1036" font-size="11" fill="#0F172A">
-          ROS burst (RBOHD) mitigated by HSP70 &amp; PRXIIB chaperones
+        <text x="1449" y="817" font-size="10" fill="#374151">
+          Apoplastic ROS (RBOHD) mitigated by HSP70 &amp; PRXIIB chaperones
         </text>
         
 
-    <!-- PANEL C CONTAINER -->
-    <rect x="25" y="765" width="960" height="410" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#card-shadow)" />
-    <rect x="41" y="779" width="76" height="22" rx="4" fill="#7C3AED" />
-    <text x="79" y="794" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">PANEL C</text>
-    <text x="127" y="795" font-size="16" font-weight="700" fill="#0F172A">
-      Curated Molecular Pathway Cross-Talk Network
-    </text>
-    <text x="505" y="795" font-size="12" font-weight="500" fill="#475569">
-      Replacing cryptic 5-digit KEGG IDs with biologically annotated functional hubs
+    <!-- PANEL c CONTAINER -->
+    <rect x="30" y="730" width="1030" height="505" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+    
+    <!-- Panel Header: c | Curated molecular pathway cross-talk -->
+    <text x="46" y="756" font-size="16" font-weight="800" fill="#111827">c</text>
+    <text x="66" y="756" font-size="14" font-weight="700" fill="#111827">| Curated molecular pathway cross-talk network</text>
+    <text x="510" y="756" font-size="11.5" font-weight="500" fill="#6B7280">
+      6 core functional hubs with spaceflight DEG counts and regulatory cross-talk
     </text>
     
 
-        <line x1="185" y1="895" x2="505" y2="870" stroke="#CBD5E1" stroke-width="6.0" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="275.0" y="872.5" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="345.0" y="885.5" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="205" y1="890" x2="545" y2="860" stroke="#E5E7EB" stroke-width="6.0" stroke-linecap="round" />
+        <rect x="303.0" y="865.0" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="375.0" y="878.0" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           TCH1 / PIN polarity
         </text>
         
 
-        <line x1="505" y1="870" x2="825" y2="895" stroke="#CBD5E1" stroke-width="4.5" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="595.0" y="872.5" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="665.0" y="885.5" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="545" y1="860" x2="885" y2="890" stroke="#E5E7EB" stroke-width="4.5" stroke-linecap="round" />
+        <rect x="643.0" y="865.0" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="715.0" y="878.0" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           Ca²⁺ / AHA1 H⁺ activation
         </text>
         
 
-        <line x1="185" y1="895" x2="825" y2="895" stroke="#CBD5E1" stroke-width="7.5" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="435.0" y="885.0" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="505.0" y="898.0" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="205" y1="890" x2="885" y2="890" stroke="#E5E7EB" stroke-width="7.5" stroke-linecap="round" />
+        <rect x="473.0" y="880.0" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="545.0" y="893.0" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           XTH22 / EXPA1 acid growth
         </text>
         
 
-        <line x1="505" y1="870" x2="205" y2="1060" stroke="#CBD5E1" stroke-width="5.25" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="285.0" y="955.0" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="355.0" y="968.0" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="545" y1="860" x2="225" y2="1095" stroke="#E5E7EB" stroke-width="5.25" stroke-linecap="round" />
+        <rect x="313.0" y="967.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="385.0" y="980.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           RBOHD ROS burst
         </text>
         
 
-        <line x1="825" y1="895" x2="205" y2="1060" stroke="#CBD5E1" stroke-width="5.25" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="445.0" y="967.5" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="515.0" y="980.5" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="885" y1="890" x2="225" y2="1095" stroke="#E5E7EB" stroke-width="5.25" stroke-linecap="round" />
+        <rect x="483.0" y="982.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="555.0" y="995.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           Peroxidase wall crosslinking
         </text>
         
 
-        <line x1="205" y1="1060" x2="525" y2="1080" stroke="#CBD5E1" stroke-width="6.75" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="295.0" y="1060.0" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="365.0" y="1073.0" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="225" y1="1095" x2="555" y2="1110" stroke="#E5E7EB" stroke-width="6.75" stroke-linecap="round" />
+        <rect x="318.0" y="1092.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="390.0" y="1105.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           Redox stress chaperone induction
         </text>
         
 
-        <line x1="525" y1="1080" x2="835" y2="1060" stroke="#CBD5E1" stroke-width="6.0" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="610.0" y="1060.0" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="680.0" y="1073.0" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="555" y1="1110" x2="895" y2="1095" stroke="#E5E7EB" stroke-width="6.0" stroke-linecap="round" />
+        <rect x="653.0" y="1092.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="725.0" y="1105.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           ATP-dependent folding
         </text>
         
 
-        <line x1="185" y1="895" x2="835" y2="1060" stroke="#CBD5E1" stroke-width="4.5" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="440.0" y="967.5" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="510.0" y="980.5" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="205" y1="890" x2="895" y2="1095" stroke="#E5E7EB" stroke-width="4.5" stroke-linecap="round" />
+        <rect x="478.0" y="982.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="550.0" y="995.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           ATP fueling active pumps
         </text>
         
 
-        <line x1="185" y1="895" x2="205" y2="1060" stroke="#CBD5E1" stroke-width="3.75" stroke-linecap="round" opacity="0.7" />
-        <!-- Edge label badge -->
-        <rect x="125.0" y="967.5" width="140" height="20" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="195.0" y="980.5" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">
+        <line x1="205" y1="890" x2="225" y2="1095" stroke="#E5E7EB" stroke-width="3.75" stroke-linecap="round" />
+        <rect x="143.0" y="982.5" width="144" height="20" rx="3" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="215.0" y="995.5" font-size="9" font-weight="600" fill="#6B7280" text-anchor="middle">
           Auxin-induced ROS signaling
         </text>
         
 
         <!-- Hub Node AUXIN -->
-        <circle cx="185" cy="895" r="52" fill="#059669" fill-opacity="0.15" />
-        <circle cx="185" cy="895" r="46" fill="#F8FAFC" stroke="#059669" stroke-width="2.5" />
-        <text x="185" y="881" font-size="10.5" font-weight="700" fill="#059669" text-anchor="middle">
+        <circle cx="205" cy="890" r="56" fill="#DCFCE7" />
+        <circle cx="205" cy="890" r="50" fill="#FFFFFF" stroke="#15803D" stroke-width="2.5" />
+        <text x="205" y="874" font-size="10.5" font-weight="700" fill="#15803D" text-anchor="middle">
           ath04075
         </text>
-        <text x="185" y="898" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="205" y="893" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           84 DEGs
         </text>
-        <rect x="153" y="907" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="185" y="919" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="171" y="902" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="205" y="914" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +0.68 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="185" y="839" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="205" y="830" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Plant Hormone Signal Transduction
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="90" y="949" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="185" y="963" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="100" y="948" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="205" y="962" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: PIN2, AUX1, ABCB1, IAA19
         </text>
         
 
         <!-- Hub Node MECHANO -->
-        <circle cx="505" cy="870" r="52" fill="#0284C7" fill-opacity="0.15" />
-        <circle cx="505" cy="870" r="46" fill="#F8FAFC" stroke="#0284C7" stroke-width="2.5" />
-        <text x="505" y="856" font-size="10.5" font-weight="700" fill="#0284C7" text-anchor="middle">
+        <circle cx="545" cy="860" r="56" fill="#E0F2FE" />
+        <circle cx="545" cy="860" r="50" fill="#FFFFFF" stroke="#0284C7" stroke-width="2.5" />
+        <text x="545" y="844" font-size="10.5" font-weight="700" fill="#0284C7" text-anchor="middle">
           ath04070
         </text>
-        <text x="505" y="873" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="545" y="863" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           42 DEGs
         </text>
-        <rect x="473" y="882" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="505" y="894" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="511" y="872" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="545" y="884" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +0.89 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="505" y="814" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="545" y="800" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Mechanotransduction &amp; Ca²⁺ Flux
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="410" y="924" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="505" y="938" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="440" y="918" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="545" y="932" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: MSL10, MCA1, TCH1, CPK1
         </text>
         
 
         <!-- Hub Node WALL -->
-        <circle cx="825" cy="895" r="52" fill="#D97706" fill-opacity="0.15" />
-        <circle cx="825" cy="895" r="46" fill="#F8FAFC" stroke="#D97706" stroke-width="2.5" />
-        <text x="825" y="881" font-size="10.5" font-weight="700" fill="#D97706" text-anchor="middle">
+        <circle cx="885" cy="890" r="56" fill="#FEF3C7" />
+        <circle cx="885" cy="890" r="50" fill="#FFFFFF" stroke="#B45309" stroke-width="2.5" />
+        <text x="885" y="874" font-size="10.5" font-weight="700" fill="#B45309" text-anchor="middle">
           ath00500
         </text>
-        <text x="825" y="898" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="885" y="893" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           67 DEGs
         </text>
-        <rect x="793" y="907" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="825" y="919" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="851" y="902" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="885" y="914" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +0.76 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="825" y="839" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="885" y="830" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Cell Wall Organization &amp; Loosening
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="730" y="949" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="825" y="963" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="780" y="948" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="885" y="962" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: XTH22, EXPA1, CESA3, AHA1
         </text>
         
 
         <!-- Hub Node REDOX -->
-        <circle cx="205" cy="1060" r="52" fill="#E11D48" fill-opacity="0.15" />
-        <circle cx="205" cy="1060" r="46" fill="#F8FAFC" stroke="#E11D48" stroke-width="2.5" />
-        <text x="205" y="1046" font-size="10.5" font-weight="700" fill="#E11D48" text-anchor="middle">
+        <circle cx="225" cy="1095" r="56" fill="#FFE4E6" />
+        <circle cx="225" cy="1095" r="50" fill="#FFFFFF" stroke="#BE123C" stroke-width="2.5" />
+        <text x="225" y="1079" font-size="10.5" font-weight="700" fill="#BE123C" text-anchor="middle">
           ath00480
         </text>
-        <text x="205" y="1063" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="225" y="1098" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           58 DEGs
         </text>
-        <rect x="173" y="1072" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="205" y="1084" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="191" y="1107" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="225" y="1119" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +0.81 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="205" y="1004" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="225" y="1035" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Redox Homeostasis &amp; ROS Defense
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="110" y="1114" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="205" y="1128" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="120" y="1153" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="225" y="1167" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: PRXIIB, CSD1, TRX-H5, RBOHD
         </text>
         
 
         <!-- Hub Node CHAPERONE -->
-        <circle cx="525" cy="1080" r="52" fill="#7C3AED" fill-opacity="0.15" />
-        <circle cx="525" cy="1080" r="46" fill="#F8FAFC" stroke="#7C3AED" stroke-width="2.5" />
-        <text x="525" y="1066" font-size="10.5" font-weight="700" fill="#7C3AED" text-anchor="middle">
+        <circle cx="555" cy="1110" r="56" fill="#EDE9FE" />
+        <circle cx="555" cy="1110" r="50" fill="#FFFFFF" stroke="#6D28D9" stroke-width="2.5" />
+        <text x="555" y="1094" font-size="10.5" font-weight="700" fill="#6D28D9" text-anchor="middle">
           ath04141
         </text>
-        <text x="525" y="1083" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="555" y="1113" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           79 DEGs
         </text>
-        <rect x="493" y="1092" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="525" y="1104" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="521" y="1122" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="555" y="1134" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +1.12 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="525" y="1024" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="555" y="1050" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Protein Processing in ER &amp; Chaperones
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="430" y="1134" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="525" y="1148" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="450" y="1168" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="555" y="1182" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: HSP70-1, HSP90.1, DNAJ-1, PAA1
         </text>
         
 
         <!-- Hub Node ATP -->
-        <circle cx="835" cy="1060" r="52" fill="#0D9488" fill-opacity="0.15" />
-        <circle cx="835" cy="1060" r="46" fill="#F8FAFC" stroke="#0D9488" stroke-width="2.5" />
-        <text x="835" y="1046" font-size="10.5" font-weight="700" fill="#0D9488" text-anchor="middle">
+        <circle cx="895" cy="1095" r="56" fill="#CCFBF1" />
+        <circle cx="895" cy="1095" r="50" fill="#FFFFFF" stroke="#0F766E" stroke-width="2.5" />
+        <text x="895" y="1079" font-size="10.5" font-weight="700" fill="#0F766E" text-anchor="middle">
           ath00710
         </text>
-        <text x="835" y="1063" font-size="11.5" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <text x="895" y="1098" font-size="12" font-weight="700" fill="#111827" text-anchor="middle">
           93 DEGs
         </text>
-        <rect x="803" y="1072" width="64" height="18" rx="3" fill="#DCFCE7" />
-        <text x="835" y="1084" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">
+        <rect x="861" y="1107" width="68" height="18" rx="3" fill="#DCFCE7" />
+        <text x="895" y="1119" font-size="9.5" font-weight="700" fill="#15803D" text-anchor="middle">
           +0.74 log₂FC
         </text>
 
-        <!-- Hub Title outside circle -->
-        <text x="835" y="1004" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">
+        <!-- Hub Title -->
+        <text x="895" y="1035" font-size="11.5" font-weight="700" fill="#111827" text-anchor="middle">
           Bioenergetics &amp; Carbon Fixation
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="740" y="1114" width="190" height="20" rx="4" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="0.8" />
-        <text x="835" y="1128" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">
+        <rect x="790" y="1153" width="210" height="20" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="0.8" />
+        <text x="895" y="1167" font-size="9.5" font-weight="600" fill="#374151" text-anchor="middle">
           Hubs: ATPA, GAPC1, MDH1, ATP5F1
         </text>
         
