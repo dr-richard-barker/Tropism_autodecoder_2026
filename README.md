@@ -64,16 +64,19 @@ See `WEB_TOOL_PLAN.md` and `docs/PHASE3_PLAN.md` for the full design, accessibil
 │   ├── ggplantmap_shootapex_projection.* # Shoot apex tissue map
 │   ├── ggplantmap_leaf_crosssection.* # Leaf cross-section map
 │   ├── ggplantmap_stem_crosssection.* # Stem cross-section map
-│   ├── kegg_pathway_network.*     # KEGG pathway network
+│   ├── kegg_pathway_network.*     # Spatial-molecular systems architecture (Figure 8)
 │   ├── forest_plot_top_gene.*     # Forest plot (top meta-analysis gene)
 │   ├── classifier_feature_importance.* # Classifier feature importance
 │   ├── organ_level_diff_barplot.* # Organ-level abundance changes
 │   └── dataset_summary.*          # Dataset composition summary
 ├── Manuscript/                    # Scientific manuscript
+│   ├── latex/main.tex             # Springer Nature sn-jnl LaTeX source
+│   ├── latex/main.pdf             # Compiled publication draft PDF
 │   └── manuscript.md
-├── docs/                          # Interactive web tool (GitHub Pages) — see "Web Tool" above
-│   ├── index.html                 # Upload-and-decode tool + landing page
-│   └── assets/                    # app.js, model.js (Phase 2), style.css, signatures.js, sample_data.csv, model/
+├── docs/                          # Interactive web tool & CoSE portal (GitHub Pages)
+│   ├── index.html                 # Upload-and-decode tool, gallery & PDF reader
+│   ├── Tropism_autodecoder_2026.pdf # Embedded manuscript PDF
+│   └── assets/                    # app.js, ortho.js (Phase 3), model.js (Phase 2), style.css, ortho/, model/
 ├── environment.yml                # Conda environment specification
 ├── environment.gpu.yml            # CUDA conda environment (full-atlas GPU training)
 ├── environment.mps.yml            # Apple Silicon / Metal (MPS) conda environment

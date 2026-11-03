@@ -273,9 +273,9 @@
     let tbody = '';
     filtered.forEach(row => {
       const dirBadge = row.concordance === 'concordant_up'
-        ? '<span class="badge" style="background:#fee2e2;color:#991b1b;font-weight:700">↑ Concordant Up</span>'
+        ? '<span class="badge" style="background:var(--red-pale);color:var(--red);font-weight:700">↑ Concordant Up</span>'
         : (row.concordance === 'concordant_down'
-          ? '<span class="badge" style="background:#dbeafe;color:#1e40af;font-weight:700">↓ Concordant Down</span>'
+          ? '<span class="badge" style="background:var(--blue-pale);color:var(--blue);font-weight:700">↓ Concordant Down</span>'
           : '<span class="badge warn" style="font-weight:700">⇋ Divergent</span>');
 
       tbody += `

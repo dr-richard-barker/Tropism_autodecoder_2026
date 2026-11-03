@@ -28,6 +28,7 @@
   const modalImg = document.getElementById('lightbox-img');
   const modalTitle = document.getElementById('lightbox-title');
   const modalDesc = document.getElementById('lightbox-desc');
+  const modalOpenBtn = document.getElementById('lightbox-open-btn');
   const modalClose = document.getElementById('lightbox-close');
 
   if (modal && modalImg) {
@@ -41,6 +42,7 @@
         modalImg.alt = title;
         if (modalTitle) modalTitle.textContent = title;
         if (modalDesc) modalDesc.textContent = desc;
+        if (modalOpenBtn) modalOpenBtn.href = img.src;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });

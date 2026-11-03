@@ -3,6 +3,32 @@
 All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/); this project uses semantic versioning.
 
+## [2.0.0] — 2026-11-02
+
+Major release: completes Phase 3 Cross-Species Functional Conservation across 5 kingdoms/models,
+overhauls the web portal to flagship CoSE styling with an embedded PDF reader, and completely
+revamps Figure 8 into an integrated spatial-molecular systems biology architecture.
+
+### Added
+- **Figure 8 Spatial-Molecular Systems Architecture**:
+  - Re-engineered `Figures/kegg_pathway_network.*` into a 4-panel systems biology model:
+    - **Panel A**: Subcellular mechanotransduction & biochemical reaction cascade across cell wall (pH ~4.8 acid growth via `AHA1/2`, `XTH22`, `EXPA1`), plasma membrane (`MSL10`/`MCA1`, `PIN2/3/7`, `AUX1`), statoliths (`CPN60A`), cytosol (`TCH1/CAM2`, `RABA1A`, `ARF1A1C`), nucleus, mitochondria (`ATPA`), and ER/26S proteasome (`HSP70-1`, `HSP90.1`, `PAA1`).
+    - **Panel B**: Single-cell tissue activation landscape mapping pathways against the 183 single-cell clusters, highlighting peak cell-wall loosening in inflorescence stem vascular cambium (`stem_9`, $p_{\mathrm{adj}} = 0.003$) and $\text{Ca}^{2+}$ signaling in root tip columella statocytes.
+    - **Panel C**: Curated pathway cross-talk network replacing cryptic 5-digit KEGG IDs with 6 annotated biological hubs.
+    - **Panel D**: Chronological systems model tracing the microgravity perception cascade.
+  - Python generator script: `Code/generate_figure8_revamped.py` producing 300 DPI publication PNGs and valid vector SVGs in both print (light) and web (obsidian dark) palettes.
+- **Phase 3 Cross-Species Functional Conservation**:
+  - Multi-species orthology mapping engine supporting *Arabidopsis*, *Homo sapiens*, *Mus musculus*, *Drosophila melanogaster*, and *Caenorhabditis elegans*.
+  - Precomputed static data bundles in `docs/assets/ortho/` (`orthomap.json`, `conserved_degs.json`, `function_enrichment.json`, `demo_cross_species.json`).
+  - Interactive client-side conservation dashboard in Section 05 featuring an UpSet conservation breakdown, 5-species Pfam domain/function enrichment heatmap, and searchable gene-domain drill-down explorer.
+- **Flagship CoSE Theme & Portal Upgrades**:
+  - Obsidian dark palette with smooth OS auto-detection and manual toggle.
+  - Interactive embedded PDF reader in Section 02 with fullscreen mode and direct draft download.
+  - Figure gallery lightbox with full-resolution image links.
+  - Left navigation document map and ecosystem integration with companion CoSE decoders.
+- **Updated Manuscript**:
+  - Recompiled Springer Nature `sn-jnl` manuscript (`Manuscript/latex/main.pdf`, 13 pages) and synchronized with `docs/Tropism_autodecoder_2026.pdf`.
+
 ## [1.1.0] — 2026-07-21
 
 Tooling release: adds an interactive web tool and a GPU / full-atlas training workflow.
