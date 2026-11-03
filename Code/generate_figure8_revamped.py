@@ -5,9 +5,11 @@ generate_figure8_revamped.py
 Generates Figure 8 formatted to npj Microgravity (Springer Nature) publication standards:
 - 100% Crisp Neutral White Background (#FFFFFF)
 - Standard Nature typography & panel indicators (a, b, c, d)
-- Astrobotany & single-cell deconvolution fidelity
-- Zero right-edge truncation: 1800x1260 canvas with ample margins and internal padding
-- High-resolution uncropped PNG rendering via headless Google Chrome (2400x1680 px)
+- Optimized Y-Axis layout: expanded to 1800x1440 (5:4 aspect ratio)
+- Ample vertical separation between cell wall, membrane, and organelles in Panel a
+- 174 px vertical inter-row window in Panel c cross-talk network, completely deconflicted
+- Single-column vertical cascade in Panel d (6 steps spanning full height)
+- High-resolution uncropped PNG rendering via headless Google Chrome (2400x1920 px at 300 DPI)
 
 Outputs:
   - Figures/kegg_pathway_network.svg (Publication Vector SVG)
@@ -22,7 +24,7 @@ import subprocess
 import shutil
 
 WIDTH = 1800
-HEIGHT = 1260
+HEIGHT = 1440
 
 # npj Microgravity (Springer Nature) Color Palette
 COLOR = {
@@ -120,16 +122,16 @@ def generate_figure8_svg():
     <line x1="30" y1="68" x2="{WIDTH - 30}" y2="68" stroke="{COLOR["panel_border"]}" stroke-width="1" />
     ''')
 
-    # Coordinates & Grid Layout
+    # Coordinates & Grid Layout (1800 x 1440)
     left_x = 30
     left_w = 1030
     right_x = 1085
     right_w = 685
     
-    row1_y = 80
-    row1_h = 635
-    row2_y = 730
-    row2_h = 505
+    row1_y = 85
+    row1_h = 690
+    row2_y = 795
+    row2_h = 615
 
     # =========================================================================
     # PANEL a: Subcellular Mechanotransduction & Biochemical Cascade
@@ -151,7 +153,7 @@ def generate_figure8_svg():
     ''')
 
     # A1. Cell Wall & Apoplast Zone
-    cw_x, cw_y, cw_w, cw_h = left_x + 16, row1_y + 40, left_w - 32, 105
+    cw_x, cw_y, cw_w, cw_h = left_x + 16, row1_y + 40, left_w - 32, 115
     svg.append(f'''
     <!-- Cell Wall & Apoplast -->
     <rect x="{cw_x}" y="{cw_y}" width="{cw_w}" height="{cw_h}" rx="5" fill="{COLOR["wall_light"]}" stroke="{COLOR["wall_border"]}" stroke-width="1.2" stroke-dasharray="6,3" />
@@ -163,93 +165,100 @@ def generate_figure8_svg():
     </text>
 
     <!-- Microfibrils lines -->
-    <line x1="{cw_x + 20}" y1="{cw_y + 42}" x2="{cw_x + 380}" y2="{cw_y + 42}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="14,6" />
-    <line x1="{cw_x + 40}" y1="{cw_y + 56}" x2="{cw_x + 420}" y2="{cw_y + 56}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="12,5" />
-    <line x1="{cw_x + 25}" y1="{cw_y + 70}" x2="{cw_x + 390}" y2="{cw_y + 70}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="16,7" />
+    <line x1="{cw_x + 20}" y1="{cw_y + 45}" x2="{cw_x + 380}" y2="{cw_y + 45}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="14,6" />
+    <line x1="{cw_x + 40}" y1="{cw_y + 60}" x2="{cw_x + 420}" y2="{cw_y + 60}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="12,5" />
+    <line x1="{cw_x + 25}" y1="{cw_y + 75}" x2="{cw_x + 390}" y2="{cw_y + 75}" stroke="{COLOR["wall"]}" stroke-width="1.5" opacity="0.4" stroke-dasharray="16,7" />
 
     <!-- Acid Growth & Expansins Sub-box -->
-    <rect x="{cw_x + 230}" y="{cw_y + 10}" width="365" height="85" rx="5" fill="#FFFFFF" stroke="{COLOR["wall_border"]}" stroke-width="1" />
+    <rect x="{cw_x + 230}" y="{cw_y + 10}" width="365" height="95" rx="5" fill="#FFFFFF" stroke="{COLOR["wall_border"]}" stroke-width="1" />
     <text x="{cw_x + 242}" y="{cw_y + 28}" font-size="12" font-weight="700" fill="{COLOR["wall"]}">
       Acid Growth &amp; Cell Wall Loosening
     </text>
-    <text x="{cw_x + 242}" y="{cw_y + 46}" font-size="11" fill="{COLOR["text_body"]}">
+    <text x="{cw_x + 242}" y="{cw_y + 48}" font-size="11" fill="{COLOR["text_body"]}">
       • H⁺ extrusion by AHA1/2 lowers apoplast pH to ~4.8
     </text>
-    <text x="{cw_x + 242}" y="{cw_y + 63}" font-size="11" fill="{COLOR["text_body"]}">
+    <text x="{cw_x + 242}" y="{cw_y + 67}" font-size="11" fill="{COLOR["text_body"]}">
       • Low pH activates expansins (EXPA1/8) &amp; XTH xyloglucanases
     </text>
-    <text x="{cw_x + 242}" y="{cw_y + 81}" font-size="10.5" font-weight="600" fill="{COLOR["auxin"]}">
+    <text x="{cw_x + 242}" y="{cw_y + 88}" font-size="10.5" font-weight="600" fill="{COLOR["auxin"]}">
       Key DEGs: XTH22 (+0.84 log₂FC, padj=1e-8) · EXPA1 (+0.62)
     </text>
 
     <!-- Apoplastic Redox Burst Sub-box -->
-    <rect x="{cw_x + 610}" y="{cw_y + 10}" width="370" height="85" rx="5" fill="#FFFFFF" stroke="{COLOR["redox_border"]}" stroke-width="1" />
+    <rect x="{cw_x + 610}" y="{cw_y + 10}" width="370" height="95" rx="5" fill="#FFFFFF" stroke="{COLOR["redox_border"]}" stroke-width="1" />
     <text x="{cw_x + 622}" y="{cw_y + 28}" font-size="12" font-weight="700" fill="{COLOR["redox"]}">
       Apoplastic ROS &amp; Redox Signaling
     </text>
-    <text x="{cw_x + 622}" y="{cw_y + 46}" font-size="11" fill="{COLOR["text_body"]}">
+    <text x="{cw_x + 622}" y="{cw_y + 48}" font-size="11" fill="{COLOR["text_body"]}">
       • RBOHD generates O₂•⁻ → CSD1 dismutates to H₂O₂
     </text>
-    <text x="{cw_x + 622}" y="{cw_y + 63}" font-size="11" fill="{COLOR["text_body"]}">
+    <text x="{cw_x + 622}" y="{cw_y + 67}" font-size="11" fill="{COLOR["text_body"]}">
       • Peroxidases regulate wall cross-linking &amp; microgravity stress
     </text>
-    <text x="{cw_x + 622}" y="{cw_y + 81}" font-size="10.5" font-weight="600" fill="{COLOR["redox"]}">
+    <text x="{cw_x + 622}" y="{cw_y + 88}" font-size="10.5" font-weight="600" fill="{COLOR["redox"]}">
       Key DEGs: PRXIIB (+1.22 log₂FC) · CSD1 (+0.78) · CAT2 (-0.43)
     </text>
     ''')
 
-    # A2. Plasma Membrane Bilayer
-    pm_x, pm_y, pm_w, pm_h = cw_x, cw_y + cw_h + 8, cw_w, 48
+    # A2. Transmembrane Zone (with 22 px vertical clearance!)
+    pm_y = cw_y + cw_h + 22
+    pm_h = 54
+    pm_w = cw_w
+    pm_x = cw_x
+
     svg.append(f'''
+    <!-- Transmembrane Transport Arrows (Ample 22 px vertical gap) -->
+    <!-- Ca2+ Influx Arrow -->
+    <path d="M {pm_x + 222} {cw_y + cw_h} L {pm_x + 222} {pm_y - 2}" stroke="{COLOR["mechano"]}" stroke-width="2.5" marker-end="url(#arrow-mechano)" />
+    <rect x="{pm_x + 232}" y="{cw_y + cw_h + 2}" width="72" height="16" rx="3" fill="#FFFFFF" stroke="{COLOR["mechano_border"]}" stroke-width="0.8" />
+    <text x="{pm_x + 268}" y="{cw_y + cw_h + 14}" font-size="9.5" font-weight="700" fill="{COLOR["mechano"]}" text-anchor="middle">Ca²⁺ Influx</text>
+
+    <!-- H+ Pumping Arrow -->
+    <path d="M {pm_x + 375} {pm_y} L {pm_x + 375} {cw_y + cw_h + 4}" stroke="{COLOR["wall"]}" stroke-width="2.5" marker-end="url(#arrow-wall)" />
+    <rect x="{pm_x + 385}" y="{cw_y + cw_h + 2}" width="78" height="16" rx="3" fill="#FFFFFF" stroke="{COLOR["wall_border"]}" stroke-width="0.8" />
+    <text x="{pm_x + 424}" y="{cw_y + cw_h + 14}" font-size="9.5" font-weight="700" fill="{COLOR["wall"]}" text-anchor="middle">H⁺ Pumping</text>
+
+    <!-- Auxin Efflux Arrow -->
+    <path d="M {pm_x + 535} {pm_y} L {pm_x + 535} {cw_y + cw_h + 4}" stroke="{COLOR["auxin"]}" stroke-width="2.5" marker-end="url(#arrow-auxin)" />
+    <rect x="{pm_x + 545}" y="{cw_y + cw_h + 2}" width="78" height="16" rx="3" fill="#FFFFFF" stroke="{COLOR["auxin_border"]}" stroke-width="0.8" />
+    <text x="{pm_x + 584}" y="{cw_y + cw_h + 14}" font-size="9.5" font-weight="700" fill="{COLOR["auxin"]}" text-anchor="middle">IAA⁻ Efflux</text>
+
     <!-- Plasma Membrane Bilayer -->
     <rect x="{pm_x}" y="{pm_y}" width="{pm_w}" height="{pm_h}" rx="5" fill="{COLOR["membrane_bilayer"]}" stroke="{COLOR["membrane"]}" stroke-width="1.8" />
-    <text x="{pm_x + 12}" y="{pm_y + 29}" font-size="11" font-weight="700" fill="{COLOR["mechano"]}">PLASMA MEMBRANE</text>
+    <text x="{pm_x + 12}" y="{pm_y + 32}" font-size="11" font-weight="700" fill="{COLOR["mechano"]}">PLASMA MEMBRANE</text>
 
-    <!-- Transporters -->
-    <!-- MSL10 / MCA1 (Mechanosensitive channel) -->
-    <rect x="{pm_x + 160}" y="{pm_y + 6}" width="125" height="36" rx="4" fill="{COLOR["mechano"]}" />
-    <text x="{pm_x + 222}" y="{pm_y + 22}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">MSL10 / MCA1</text>
-    <text x="{pm_x + 222}" y="{pm_y + 35}" font-size="9" fill="#FFFFFF" text-anchor="middle">Stretch Ca²⁺ Channel</text>
+    <!-- Transporters (40 px height) -->
+    <!-- MSL10 / MCA1 -->
+    <rect x="{pm_x + 160}" y="{pm_y + 7}" width="125" height="40" rx="4" fill="{COLOR["mechano"]}" />
+    <text x="{pm_x + 222}" y="{pm_y + 24}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">MSL10 / MCA1</text>
+    <text x="{pm_x + 222}" y="{pm_y + 38}" font-size="9" fill="#FFFFFF" text-anchor="middle">Stretch Ca²⁺ Channel</text>
 
-    <!-- AHA1 / AHA2 (H+ ATPase) -->
-    <rect x="{pm_x + 315}" y="{pm_y + 6}" width="120" height="36" rx="4" fill="{COLOR["wall"]}" />
-    <text x="{pm_x + 375}" y="{pm_y + 22}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AHA1 / AHA2</text>
-    <text x="{pm_x + 375}" y="{pm_y + 35}" font-size="9" fill="#FFFFFF" text-anchor="middle">PM H⁺-ATPase Pump</text>
+    <!-- AHA1 / AHA2 -->
+    <rect x="{pm_x + 315}" y="{pm_y + 7}" width="120" height="40" rx="4" fill="{COLOR["wall"]}" />
+    <text x="{pm_x + 375}" y="{pm_y + 24}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AHA1 / AHA2</text>
+    <text x="{pm_x + 375}" y="{pm_y + 38}" font-size="9" fill="#FFFFFF" text-anchor="middle">PM H⁺-ATPase Pump</text>
 
-    <!-- PIN2 / PIN3 / PIN7 (Auxin Efflux) -->
-    <rect x="{pm_x + 465}" y="{pm_y + 6}" width="140" height="36" rx="4" fill="{COLOR["auxin"]}" />
-    <text x="{pm_x + 535}" y="{pm_y + 22}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">PIN2 / PIN3 / PIN7</text>
-    <text x="{pm_x + 535}" y="{pm_y + 35}" font-size="9" fill="#FFFFFF" text-anchor="middle">Polar Auxin Efflux</text>
+    <!-- PIN2 / PIN3 / PIN7 -->
+    <rect x="{pm_x + 465}" y="{pm_y + 7}" width="140" height="40" rx="4" fill="{COLOR["auxin"]}" />
+    <text x="{pm_x + 535}" y="{pm_y + 24}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">PIN2 / PIN3 / PIN7</text>
+    <text x="{pm_x + 535}" y="{pm_y + 38}" font-size="9" fill="#FFFFFF" text-anchor="middle">Polar Auxin Efflux</text>
 
     <!-- AUX1 / ABCB1 -->
-    <rect x="{pm_x + 635}" y="{pm_y + 6}" width="135" height="36" rx="4" fill="{COLOR["auxin"]}" />
-    <text x="{pm_x + 702}" y="{pm_y + 22}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AUX1 / ABCB1</text>
-    <text x="{pm_x + 702}" y="{pm_y + 35}" font-size="9" fill="#FFFFFF" text-anchor="middle">Auxin Influx &amp; ABC</text>
+    <rect x="{pm_x + 635}" y="{pm_y + 7}" width="135" height="40" rx="4" fill="{COLOR["auxin"]}" />
+    <text x="{pm_x + 702}" y="{pm_y + 24}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">AUX1 / ABCB1</text>
+    <text x="{pm_x + 702}" y="{pm_y + 38}" font-size="9" fill="#FFFFFF" text-anchor="middle">Auxin Influx &amp; ABC</text>
 
-    <!-- RBOHD (NADPH Oxidase) -->
-    <rect x="{pm_x + 800}" y="{pm_y + 6}" width="135" height="36" rx="4" fill="{COLOR["redox"]}" />
-    <text x="{pm_x + 867}" y="{pm_y + 22}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">RBOHD / RBOHF</text>
-    <text x="{pm_x + 867}" y="{pm_y + 35}" font-size="9" fill="#FFFFFF" text-anchor="middle">NADPH Oxidase ROS</text>
-
-    <!-- Transmembrane Reaction Arrows -->
-    <!-- Ca2+ Influx -->
-    <path d="M {pm_x + 222} {cw_y + cw_h} L {pm_x + 222} {pm_y + 4}" stroke="{COLOR["mechano"]}" stroke-width="2.5" marker-end="url(#arrow-mechano)" />
-    <text x="{pm_x + 234}" y="{pm_y - 3}" font-size="10" font-weight="700" fill="{COLOR["mechano"]}">Ca²⁺ Influx</text>
-
-    <!-- H+ Pumping -->
-    <path d="M {pm_x + 375} {pm_y + pm_h} L {pm_x + 375} {cw_y + cw_h + 2}" stroke="{COLOR["wall"]}" stroke-width="2.5" marker-end="url(#arrow-wall)" />
-    <text x="{pm_x + 386}" y="{pm_y - 3}" font-size="10" font-weight="700" fill="{COLOR["wall"]}">H⁺ Pumping</text>
-
-    <!-- Auxin Efflux -->
-    <path d="M {pm_x + 535} {pm_y + pm_h} L {pm_x + 535} {cw_y + cw_h + 2}" stroke="{COLOR["auxin"]}" stroke-width="2.5" marker-end="url(#arrow-auxin)" />
-    <text x="{pm_x + 546}" y="{pm_y - 3}" font-size="10" font-weight="700" fill="{COLOR["auxin"]}">IAA⁻ Efflux</text>
+    <!-- RBOHD -->
+    <rect x="{pm_x + 800}" y="{pm_y + 7}" width="135" height="40" rx="4" fill="{COLOR["redox"]}" />
+    <text x="{pm_x + 867}" y="{pm_y + 24}" font-size="10.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">RBOHD / RBOHF</text>
+    <text x="{pm_x + 867}" y="{pm_y + 38}" font-size="9" fill="#FFFFFF" text-anchor="middle">NADPH Oxidase ROS</text>
     ''')
 
-    # A3. Cytoplasm & Organelles
-    cy_y = pm_y + pm_h + 10
-    
-    # Amyloplasts / Statoliths (Left)
-    st_x, st_y, st_w, st_h = cw_x, cy_y, 255, 215
+    # A3. Middle Organelle Row (Statoliths, Cytosol/Vesicles, Nucleus)
+    # Height increased to 235 px with 18 px top gap!
+    cy_y = pm_y + pm_h + 18
+    cy_h = 235
+    st_x, st_y, st_w, st_h = cw_x, cy_y, 255, cy_h
     svg.append(f'''
     <!-- Amyloplasts / Statoliths -->
     <rect x="{st_x}" y="{st_y}" width="{st_w}" height="{st_h}" rx="5" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["statolith"]}" stroke-width="1.2" />
@@ -259,26 +268,26 @@ def generate_figure8_svg():
     </text>
 
     <!-- Starch Granules suspended in microgravity -->
-    <ellipse cx="{st_x + 75}" cy="{st_y + 75}" rx="36" ry="26" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
-    <text x="{st_x + 75}" y="{st_y + 78}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 1</text>
-    <text x="{st_x + 75}" y="{st_y + 91}" font-size="8.5" fill="{COLOR["text_muted"]}" text-anchor="middle">Starch Core</text>
+    <ellipse cx="{st_x + 75}" cy="{st_y + 80}" rx="36" ry="26" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
+    <text x="{st_x + 75}" y="{st_y + 83}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 1</text>
+    <text x="{st_x + 75}" y="{st_y + 96}" font-size="8.5" fill="{COLOR["text_muted"]}" text-anchor="middle">Starch Core</text>
 
-    <ellipse cx="{st_x + 175}" cy="{st_y + 90}" rx="42" ry="30" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
-    <text x="{st_x + 175}" y="{st_y + 93}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 2</text>
-    <text x="{st_x + 175}" y="{st_y + 106}" font-size="8.5" fill="{COLOR["text_muted"]}" text-anchor="middle">Sedimentation loss</text>
+    <ellipse cx="{st_x + 175}" cy="{st_y + 98}" rx="42" ry="30" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
+    <text x="{st_x + 175}" y="{st_y + 101}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 2</text>
+    <text x="{st_x + 175}" y="{st_y + 114}" font-size="8.5" fill="{COLOR["text_muted"]}" text-anchor="middle">Sedimentation loss</text>
 
-    <ellipse cx="{st_x + 115}" cy="{st_y + 150}" rx="34" ry="24" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
-    <text x="{st_x + 115}" y="{st_y + 153}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 3</text>
+    <ellipse cx="{st_x + 115}" cy="{st_y + 162}" rx="34" ry="24" fill="{COLOR["statolith_body"]}" stroke="{COLOR["statolith"]}" stroke-width="1.5" />
+    <text x="{st_x + 115}" y="{st_y + 165}" font-size="10" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">Statolith 3</text>
 
     <!-- Statolith annotation -->
-    <rect x="{st_x + 10}" y="{st_y + 180}" width="{st_w - 20}" height="26" rx="3" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{st_x + 18}" y="{st_y + 197}" font-size="10" font-weight="600" fill="{COLOR["text_body"]}">
+    <rect x="{st_x + 10}" y="{st_y + 196}" width="{st_w - 20}" height="28" rx="3" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{st_x + 18}" y="{st_y + 214}" font-size="10" font-weight="600" fill="{COLOR["text_body"]}">
       CPN60A (+0.65 log₂FC) · BAM3 starch turnover
     </text>
     ''')
 
     # Cytosol, Cytoskeleton & Vesicle Trafficking (Center)
-    cs_x, cs_y, cs_w, cs_h = st_x + st_w + 12, cy_y, 400, 215
+    cs_x, cs_y, cs_w, cs_h = st_x + st_w + 12, cy_y, 400, 235
     svg.append(f'''
     <!-- Cytosol, Cytoskeleton & Vesicles -->
     <rect x="{cs_x}" y="{cs_y}" width="{cs_w}" height="{cs_h}" rx="5" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["auxin_border"]}" stroke-width="1.2" />
@@ -288,36 +297,36 @@ def generate_figure8_svg():
     </text>
 
     <!-- Cytoskeleton filaments -->
-    <line x1="{cs_x + 15}" y1="{cs_y + 45}" x2="{cs_x + 380}" y2="{cs_y + 55}" stroke="{COLOR["wall"]}" stroke-width="1.5" stroke-dasharray="4,2" />
-    <line x1="{cs_x + 15}" y1="{cs_y + 65}" x2="{cs_x + 380}" y2="{cs_y + 75}" stroke="{COLOR["mechano"]}" stroke-width="1.5" stroke-dasharray="8,3" />
-    <text x="{cs_x + 15}" y="{cs_y + 42}" font-size="9.5" font-weight="600" fill="{COLOR["text_muted"]}">
+    <line x1="{cs_x + 15}" y1="{cs_y + 48}" x2="{cs_x + 380}" y2="{cs_y + 58}" stroke="{COLOR["wall"]}" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="{cs_x + 15}" y1="{cs_y + 70}" x2="{cs_x + 380}" y2="{cs_y + 80}" stroke="{COLOR["mechano"]}" stroke-width="1.5" stroke-dasharray="8,3" />
+    <text x="{cs_x + 15}" y="{cs_y + 44}" font-size="9.5" font-weight="600" fill="{COLOR["text_muted"]}">
       Cytoskeleton remodeling: ACT2 (-0.58) · TUBB1 (-0.49) · MYA1 (-0.67)
     </text>
 
     <!-- Ca2+ Sensor Hub -->
-    <rect x="{cs_x + 12}" y="{cs_y + 85}" width="180" height="60" rx="4" fill="#FFFFFF" stroke="{COLOR["mechano_border"]}" stroke-width="1" />
-    <text x="{cs_x + 20}" y="{cs_y + 102}" font-size="11" font-weight="700" fill="{COLOR["mechano"]}">Ca²⁺ Sensors (Touch)</text>
-    <text x="{cs_x + 20}" y="{cs_y + 118}" font-size="10" fill="{COLOR["text_body"]}">TCH1 / CAM2 (+1.28 log₂FC)</text>
-    <text x="{cs_x + 20}" y="{cs_y + 133}" font-size="10" fill="{COLOR["text_body"]}">CPK1 / CDPK Kinases</text>
+    <rect x="{cs_x + 12}" y="{cs_y + 92}" width="180" height="66" rx="4" fill="#FFFFFF" stroke="{COLOR["mechano_border"]}" stroke-width="1" />
+    <text x="{cs_x + 20}" y="{cs_y + 111}" font-size="11" font-weight="700" fill="{COLOR["mechano"]}">Ca²⁺ Sensors (Touch)</text>
+    <text x="{cs_x + 20}" y="{cs_y + 129}" font-size="10" fill="{COLOR["text_body"]}">TCH1 / CAM2 (+1.28 log₂FC)</text>
+    <text x="{cs_x + 20}" y="{cs_y + 146}" font-size="10" fill="{COLOR["text_body"]}">CPK1 / CDPK Kinases</text>
 
     <!-- PIN Vesicle Recycling -->
-    <rect x="{cs_x + 204}" y="{cs_y + 85}" width="184" height="60" rx="4" fill="#FFFFFF" stroke="{COLOR["auxin_border"]}" stroke-width="1" />
-    <text x="{cs_x + 212}" y="{cs_y + 102}" font-size="11" font-weight="700" fill="{COLOR["auxin"]}">PIN Polar Recycling</text>
-    <text x="{cs_x + 212}" y="{cs_y + 118}" font-size="10" fill="{COLOR["text_body"]}">RABA1A GTPase (+0.74 log₂)</text>
-    <text x="{cs_x + 212}" y="{cs_y + 133}" font-size="10" fill="{COLOR["text_body"]}">ARF1A1C Endosome (+0.59 log₂)</text>
+    <rect x="{cs_x + 204}" y="{cs_y + 92}" width="184" height="66" rx="4" fill="#FFFFFF" stroke="{COLOR["auxin_border"]}" stroke-width="1" />
+    <text x="{cs_x + 212}" y="{cs_y + 111}" font-size="11" font-weight="700" fill="{COLOR["auxin"]}">PIN Polar Recycling</text>
+    <text x="{cs_x + 212}" y="{cs_y + 129}" font-size="10" fill="{COLOR["text_body"]}">RABA1A GTPase (+0.74 log₂)</text>
+    <text x="{cs_x + 212}" y="{cs_y + 146}" font-size="10" fill="{COLOR["text_body"]}">ARF1A1C Endosome (+0.59 log₂)</text>
 
     <!-- Signal integration text -->
-    <rect x="{cs_x + 12}" y="{cs_y + 154}" width="{cs_w - 24}" height="50" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{cs_x + 20}" y="{cs_y + 172}" font-size="10" font-weight="600" fill="{COLOR["text_dark"]}">
+    <rect x="{cs_x + 12}" y="{cs_y + 168}" width="{cs_w - 24}" height="54" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{cs_x + 20}" y="{cs_y + 189}" font-size="10" font-weight="600" fill="{COLOR["text_dark"]}">
       • Cytosolic Ca²⁺ transients direct RABA1A/ARF1A1C polar targeting
     </text>
-    <text x="{cs_x + 20}" y="{cs_y + 190}" font-size="10" font-weight="600" fill="{COLOR["text_dark"]}">
+    <text x="{cs_x + 20}" y="{cs_y + 209}" font-size="10" font-weight="600" fill="{COLOR["text_dark"]}">
       • MPK3 (+0.88 log₂FC) coordinates the downstream stress cascade
     </text>
     ''')
 
     # Nucleus & Transcriptional Response (Right)
-    nu_x, nu_y, nu_w, nu_h = cs_x + cs_w + 12, cy_y, cw_w - (st_w + cs_w + 24), 215
+    nu_x, nu_y, nu_w, nu_h = cs_x + cs_w + 12, cy_y, cw_w - (st_w + cs_w + 24), 235
     svg.append(f'''
     <!-- Nucleus -->
     <rect x="{nu_x}" y="{nu_y}" width="{nu_w}" height="{nu_h}" rx="5" fill="{COLOR["nucleus"]}" stroke="{COLOR["nucleus_border"]}" stroke-width="1.2" />
@@ -327,25 +336,26 @@ def generate_figure8_svg():
     </text>
 
     <!-- DNA wave -->
-    <path d="M {nu_x + 20} {nu_y + 55} Q {nu_x + 80} {nu_y + 42} {nu_x + 140} {nu_y + 55} T {nu_x + 270} {nu_y + 55}" fill="none" stroke="{COLOR["nucleus_border"]}" stroke-width="1.8" />
-    <path d="M {nu_x + 20} {nu_y + 65} Q {nu_x + 80} {nu_y + 78} {nu_x + 140} {nu_y + 65} T {nu_x + 270} {nu_y + 65}" fill="none" stroke="{COLOR["nucleus_border"]}" stroke-width="1.8" />
+    <path d="M {nu_x + 20} {nu_y + 58} Q {nu_x + 80} {nu_y + 44} {nu_x + 140} {nu_y + 58} T {nu_x + 270} {nu_y + 58}" fill="none" stroke="{COLOR["nucleus_border"]}" stroke-width="1.8" />
+    <path d="M {nu_x + 20} {nu_y + 68} Q {nu_x + 80} {nu_y + 82} {nu_x + 140} {nu_y + 68} T {nu_x + 270} {nu_y + 68}" fill="none" stroke="{COLOR["nucleus_border"]}" stroke-width="1.8" />
 
     <!-- Auxin Gene Regulation Subcard -->
-    <rect x="{nu_x + 10}" y="{nu_y + 80}" width="{nu_w - 20}" height="58" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{nu_x + 18}" y="{nu_y + 98}" font-size="11" font-weight="700" fill="{COLOR["auxin"]}">Auxin Transcriptional Cascade</text>
-    <text x="{nu_x + 18}" y="{nu_y + 114}" font-size="10" fill="{COLOR["text_body"]}">TIR1/AFB receptors → Aux/IAA repressor degradation</text>
-    <text x="{nu_x + 18}" y="{nu_y + 128}" font-size="10" fill="{COLOR["text_body"]}">ARF19 / ARF7 activate SAUR expansion genes</text>
+    <rect x="{nu_x + 10}" y="{nu_y + 86}" width="{nu_w - 20}" height="65" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{nu_x + 18}" y="{nu_y + 105}" font-size="11" font-weight="700" fill="{COLOR["auxin"]}">Auxin Transcriptional Cascade</text>
+    <text x="{nu_x + 18}" y="{nu_y + 123}" font-size="10" fill="{COLOR["text_body"]}">TIR1/AFB receptors → Aux/IAA repressor degradation</text>
+    <text x="{nu_x + 18}" y="{nu_y + 139}" font-size="10" fill="{COLOR["text_body"]}">ARF19 / ARF7 activate SAUR expansion genes</text>
 
     <!-- Stress & HSF Transcriptome -->
-    <rect x="{nu_x + 10}" y="{nu_y + 146}" width="{nu_w - 20}" height="58" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{nu_x + 18}" y="{nu_y + 164}" font-size="11" font-weight="700" fill="{COLOR["chaperone"]}">Stress &amp; HSF Transcriptome</text>
-    <text x="{nu_x + 18}" y="{nu_y + 180}" font-size="10" fill="{COLOR["text_body"]}">Heat Shock Factors (HSFs) trigger chaperone network</text>
-    <text x="{nu_x + 18}" y="{nu_y + 194}" font-size="10" fill="{COLOR["text_body"]}">MPK3 / MPK6 MAP kinase regulatory pathway</text>
+    <rect x="{nu_x + 10}" y="{nu_y + 158}" width="{nu_w - 20}" height="65" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{nu_x + 18}" y="{nu_y + 177}" font-size="11" font-weight="700" fill="{COLOR["chaperone"]}">Stress &amp; HSF Transcriptome</text>
+    <text x="{nu_x + 18}" y="{nu_y + 195}" font-size="10" fill="{COLOR["text_body"]}">Heat Shock Factors (HSFs) trigger chaperone network</text>
+    <text x="{nu_x + 18}" y="{nu_y + 211}" font-size="10" fill="{COLOR["text_body"]}">MPK3 / MPK6 MAP kinase regulatory pathway</text>
     ''')
 
-    # Mitochondria & ER / Proteasome (Bottom row of panel a)
-    bo_y = cy_y + 225
-    bo_h = 135
+    # A4. Mitochondria & ER / Proteasome (Bottom row of panel a)
+    # Height increased to 150 px with 16 px top gap!
+    bo_y = cy_y + cy_h + 16
+    bo_h = 150
     mi_w = 485
     pr_w = cw_w - mi_w - 15
 
@@ -359,13 +369,13 @@ def generate_figure8_svg():
     </text>
 
     <!-- Cristae line art -->
-    <path d="M {cw_x + 20} {bo_y + 60} C {cw_x + 60} {bo_y + 40}, {cw_x + 40} {bo_y + 90}, {cw_x + 80} {bo_y + 65} C {cw_x + 120} {bo_y + 40}, {cw_x + 100} {bo_y + 100}, {cw_x + 150} {bo_y + 70}" fill="none" stroke="{COLOR["mito_border"]}" stroke-width="2" opacity="0.6" />
+    <path d="M {cw_x + 20} {bo_y + 68} C {cw_x + 60} {bo_y + 45}, {cw_x + 40} {bo_y + 100}, {cw_x + 80} {bo_y + 75} C {cw_x + 120} {bo_y + 45}, {cw_x + 100} {bo_y + 115}, {cw_x + 150} {bo_y + 80}" fill="none" stroke="{COLOR["mito_border"]}" stroke-width="2" opacity="0.6" />
 
-    <rect x="{cw_x + 175}" y="{bo_y + 38}" width="{mi_w - 185}" height="88" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{cw_x + 185}" y="{bo_y + 56}" font-size="11" font-weight="700" fill="{COLOR["atp"]}">ATP Synthesis &amp; Metabolic Shift</text>
-    <text x="{cw_x + 185}" y="{bo_y + 74}" font-size="10.5" fill="{COLOR["text_body"]}">• ATPA (+0.72 log₂FC) Proton-transporting ATP synthase</text>
-    <text x="{cw_x + 185}" y="{bo_y + 92}" font-size="10.5" fill="{COLOR["text_body"]}">• GAPC1 (+0.92 log₂FC) Cytosolic glycolysis enzyme</text>
-    <text x="{cw_x + 185}" y="{bo_y + 110}" font-size="10.5" fill="{COLOR["text_body"]}">• MDH1 (+0.63 log₂FC) Malate dehydrogenase TCA cycle</text>
+    <rect x="{cw_x + 175}" y="{bo_y + 38}" width="{mi_w - 185}" height="100" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{cw_x + 185}" y="{bo_y + 58}" font-size="11" font-weight="700" fill="{COLOR["atp"]}">ATP Synthesis &amp; Metabolic Shift</text>
+    <text x="{cw_x + 185}" y="{bo_y + 78}" font-size="10.5" fill="{COLOR["text_body"]}">• ATPA (+0.72 log₂FC) Proton-transporting ATP synthase</text>
+    <text x="{cw_x + 185}" y="{bo_y + 98}" font-size="10.5" fill="{COLOR["text_body"]}">• GAPC1 (+0.92 log₂FC) Cytosolic glycolysis enzyme</text>
+    <text x="{cw_x + 185}" y="{bo_y + 118}" font-size="10.5" fill="{COLOR["text_body"]}">• MDH1 (+0.63 log₂FC) Malate dehydrogenase TCA cycle</text>
     ''')
 
     # ER & Proteostasis
@@ -378,39 +388,39 @@ def generate_figure8_svg():
     </text>
 
     <!-- Ribosome dots -->
-    <circle cx="{cw_x + mi_w + 35}" cy="{bo_y + 60}" r="3" fill="{COLOR["er_border"]}" />
-    <circle cx="{cw_x + mi_w + 55}" cy="{bo_y + 70}" r="3" fill="{COLOR["er_border"]}" />
-    <circle cx="{cw_x + mi_w + 30}" cy="{bo_y + 85}" r="3" fill="{COLOR["er_border"]}" />
-    <circle cx="{cw_x + mi_w + 60}" cy="{bo_y + 100}" r="3" fill="{COLOR["er_border"]}" />
+    <circle cx="{cw_x + mi_w + 35}" cy="{bo_y + 68}" r="3" fill="{COLOR["er_border"]}" />
+    <circle cx="{cw_x + mi_w + 55}" cy="{bo_y + 80}" r="3" fill="{COLOR["er_border"]}" />
+    <circle cx="{cw_x + mi_w + 30}" cy="{bo_y + 96}" r="3" fill="{COLOR["er_border"]}" />
+    <circle cx="{cw_x + mi_w + 60}" cy="{bo_y + 112}" r="3" fill="{COLOR["er_border"]}" />
 
-    <rect x="{cw_x + mi_w + 95}" y="{bo_y + 38}" width="{pr_w - 105}" height="88" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{cw_x + mi_w + 105}" y="{bo_y + 56}" font-size="11" font-weight="700" fill="{COLOR["chaperone"]}">Proteostasis Machinery</text>
-    <text x="{cw_x + mi_w + 105}" y="{bo_y + 74}" font-size="10.5" fill="{COLOR["text_body"]}">• HSP70-1 (+1.45 log₂FC) · HSP90.1 (+1.18 log₂FC)</text>
-    <text x="{cw_x + mi_w + 105}" y="{bo_y + 92}" font-size="10.5" fill="{COLOR["text_body"]}">• DNAJ-1 (+0.82) · CPN60A (+0.65) molecular chaperones</text>
-    <text x="{cw_x + mi_w + 105}" y="{bo_y + 110}" font-size="10.5" fill="{COLOR["text_body"]}">• UBC1 (+0.77 log₂FC) · PAA1 (+0.66, 26S proteasome core)</text>
+    <rect x="{cw_x + mi_w + 95}" y="{bo_y + 38}" width="{pr_w - 105}" height="100" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{cw_x + mi_w + 105}" y="{bo_y + 58}" font-size="11" font-weight="700" fill="{COLOR["chaperone"]}">Proteostasis Machinery</text>
+    <text x="{cw_x + mi_w + 105}" y="{bo_y + 78}" font-size="10.5" fill="{COLOR["text_body"]}">• HSP70-1 (+1.45 log₂FC) · HSP90.1 (+1.18 log₂FC)</text>
+    <text x="{cw_x + mi_w + 105}" y="{bo_y + 98}" font-size="10.5" fill="{COLOR["text_body"]}">• DNAJ-1 (+0.82) · CPN60A (+0.65) molecular chaperones</text>
+    <text x="{cw_x + mi_w + 105}" y="{bo_y + 118}" font-size="10.5" fill="{COLOR["text_body"]}">• UBC1 (+0.77 log₂FC) · PAA1 (+0.66, 26S proteasome core)</text>
     ''')
 
     # Reaction Step Markers
     svg.append(f'''
     <!-- Step Markers (1, 2, 3, 4) -->
-    <circle cx="{st_x + 175}" cy="{st_y + 45}" r="11" fill="{COLOR["mechano"]}" />
-    <text x="{st_x + 175}" y="{st_y + 49}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+    <circle cx="{st_x + 175}" cy="{st_y + 48}" r="11" fill="{COLOR["mechano"]}" />
+    <text x="{st_x + 175}" y="{st_y + 52}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
 
-    <circle cx="{pm_x + 270}" cy="{pm_y + 48}" r="11" fill="{COLOR["auxin"]}" />
-    <text x="{pm_x + 270}" y="{pm_y + 52}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+    <circle cx="{pm_x + 270}" cy="{pm_y + 50}" r="11" fill="{COLOR["auxin"]}" />
+    <text x="{pm_x + 270}" y="{pm_y + 54}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
 
-    <circle cx="{cs_x + 295}" cy="{cs_y + 68}" r="11" fill="{COLOR["auxin"]}" />
-    <text x="{cs_x + 295}" y="{cs_y + 72}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+    <circle cx="{cs_x + 295}" cy="{cs_y + 72}" r="11" fill="{COLOR["auxin"]}" />
+    <text x="{cs_x + 295}" y="{cs_y + 76}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
 
-    <circle cx="{pm_x + 445}" cy="{cw_y + 75}" r="11" fill="{COLOR["wall"]}" />
-    <text x="{pm_x + 445}" y="{cw_y + 79}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+    <circle cx="{pm_x + 445}" cy="{cw_y + 82}" r="11" fill="{COLOR["wall"]}" />
+    <text x="{pm_x + 445}" y="{cw_y + 86}" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
     ''')
 
     # =========================================================================
     # PANEL b: Organ & Single-Cell Tissue Activation Landscape
     # =========================================================================
     pb_y = row1_y
-    pb_h = 430
+    pb_h = 470
     svg.append(f'''
     <!-- PANEL b CONTAINER -->
     <rect x="{right_x}" y="{pb_y}" width="{right_w}" height="{pb_h}" rx="6" fill="{COLOR["panel_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
@@ -418,12 +428,12 @@ def generate_figure8_svg():
     <!-- Panel Header: b | Single-cell tissue activation -->
     <text x="{right_x + 16}" y="{pb_y + 26}" font-size="16" font-weight="800" fill="{COLOR["text_dark"]}">b</text>
     <text x="{right_x + 36}" y="{pb_y + 26}" font-size="14" font-weight="700" fill="{COLOR["text_dark"]}">| Organ &amp; single-cell tissue activation landscape</text>
-    <text x="{right_x + 16}" y="{pb_y + 46}" font-size="11.5" font-weight="400" fill="{COLOR["text_muted"]}">
+    <text x="{right_x + 16}" y="{pb_y + 48}" font-size="11.5" font-weight="400" fill="{COLOR["text_muted"]}">
       Single-cell deconvolution across Salk developmental atlas clusters (GSE226097)
     </text>
     ''')
 
-    # Heatmap Grid Layout with Ample Right Margin
+    # Heatmap Grid Layout with Ample Right Margin & Headroom
     hm_cols = [
         ("Auxin Polarity", COLOR["auxin"]),
         ("Ca²⁺ Signaling", COLOR["mechano"]),
@@ -442,15 +452,15 @@ def generate_figure8_svg():
     ]
 
     grid_x0 = right_x + 285
-    grid_y0 = pb_y + 90
+    grid_y0 = pb_y + 105
     col_w = 60
-    row_h = 46
+    row_h = 50
 
-    # Column Headers (Rotated)
+    # Column Headers (Rotated with 20 px clearance below subtitle)
     for c_idx, (col_name, col_color) in enumerate(hm_cols):
         cx = grid_x0 + c_idx * col_w
         svg.append(f'''
-        <g transform="translate({cx + col_w//2}, {grid_y0 - 6}) rotate(-32)">
+        <g transform="translate({cx + col_w//2}, {grid_y0 - 8}) rotate(-32)">
           <text x="0" y="0" font-size="10.5" font-weight="700" fill="{col_color}" text-anchor="start">
             {col_name}
           </text>
@@ -464,10 +474,10 @@ def generate_figure8_svg():
         
         svg.append(f'''
         <rect x="{right_x + 14}" y="{ry}" width="265" height="{row_h - 4}" rx="4" fill="{row_bg}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-        <text x="{right_x + 22}" y="{ry + 18}" font-size="10.5" font-weight="700" fill="{COLOR["text_dark"]}">
+        <text x="{right_x + 22}" y="{ry + 20}" font-size="10.5" font-weight="700" fill="{COLOR["text_dark"]}">
           {row_label}
         </text>
-        <text x="{right_x + 22}" y="{ry + 32}" font-size="9" font-weight="500" fill="{COLOR["text_muted"]}">
+        <text x="{right_x + 22}" y="{ry + 36}" font-size="9" font-weight="500" fill="{COLOR["text_muted"]}">
           {row_sub}
         </text>
         ''')
@@ -480,30 +490,30 @@ def generate_figure8_svg():
             
             svg.append(f'''
             <rect x="{cx}" y="{ry}" width="{col_w - 4}" height="{row_h - 4}" rx="4" fill="{base_col}" fill-opacity="{intensity:.2f}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-            <text x="{cx + col_w//2 - 2}" y="{ry + 22}" font-size="11" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">
+            <text x="{cx + col_w//2 - 2}" y="{ry + 24}" font-size="11" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">
               {score:.1f}
             </text>
-            <text x="{cx + col_w//2 - 2}" y="{ry + 34}" font-size="8" font-weight="600" fill="{COLOR["text_muted"]}" text-anchor="middle">
+            <text x="{cx + col_w//2 - 2}" y="{ry + 38}" font-size="8.5" font-weight="600" fill="{COLOR["text_muted"]}" text-anchor="middle">
               z-score
             </text>
             ''')
 
     # Marginal summary in panel b
     svg.append(f'''
-    <rect x="{right_x + 14}" y="{grid_y0 + len(hm_rows) * row_h + 8}" width="{right_w - 28}" height="42" rx="4" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-    <text x="{right_x + 22}" y="{grid_y0 + len(hm_rows) * row_h + 24}" font-size="10.5" font-weight="700" fill="{COLOR["wall"]}">
+    <rect x="{right_x + 14}" y="{grid_y0 + len(hm_rows) * row_h + 10}" width="{right_w - 28}" height="42" rx="4" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+    <text x="{right_x + 22}" y="{grid_y0 + len(hm_rows) * row_h + 26}" font-size="10.5" font-weight="700" fill="{COLOR["wall"]}">
       Key Insight: Inflorescence stem vascular cambium (stem_9) mounts peak cell-wall loosening
     </text>
-    <text x="{right_x + 22}" y="{grid_y0 + len(hm_rows) * row_h + 38}" font-size="10" fill="{COLOR["text_muted"]}">
+    <text x="{right_x + 22}" y="{grid_y0 + len(hm_rows) * row_h + 40}" font-size="10" fill="{COLOR["text_muted"]}">
       Coupled with root tip columella Ca²⁺ signaling, defining the primary axis of microgravity gravitropic remodeling.
     </text>
     ''')
 
     # =========================================================================
-    # PANEL d: Integrated Systems Mechanistic Model
+    # PANEL d: Integrated Systems Mechanistic Model (Single-Column Vertical Cascade)
     # =========================================================================
-    pd_y = pb_y + pb_h + 15
-    pd_h = HEIGHT - pd_y - 25
+    pd_y = pb_y + pb_h + 20
+    pd_h = HEIGHT - pd_y - 30  # 835 px height
     svg.append(f'''
     <!-- PANEL d CONTAINER -->
     <rect x="{right_x}" y="{pd_y}" width="{right_w}" height="{pd_h}" rx="6" fill="{COLOR["panel_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
@@ -512,48 +522,76 @@ def generate_figure8_svg():
     <text x="{right_x + 16}" y="{pd_y + 26}" font-size="16" font-weight="800" fill="{COLOR["text_dark"]}">d</text>
     <text x="{right_x + 36}" y="{pd_y + 26}" font-size="14" font-weight="700" fill="{COLOR["text_dark"]}">| Integrated systems mechanistic model</text>
     <text x="{right_x + 16}" y="{pd_y + 46}" font-size="11.5" font-weight="400" fill="{COLOR["text_muted"]}">
-      Sequential cascade: physical microgravity perception to cellular stress adaptation
+      Sequential chronological cascade: microgravity perception to cellular stress adaptation
     </text>
     ''')
 
+    # 6 Sequential Step Cards spanning the full 835 px height!
     steps = [
-        ("1. Loss of Gravitational Sedimentation", "Amyloplasts lose buoyant weight; freely float in statocytes", COLOR["statolith"]),
-        ("2. Stochastic MSL Channel Gating", "Membrane tension shifts induce repetitive cytosolic Ca²⁺ pulses", COLOR["mechano"]),
-        ("3. Ectopic PIN Carrier Relocalization", "RABA1A/ARF1A1C endosomes redirect PIN2/3/7 to lateral flanks", COLOR["auxin"]),
-        ("4. Vascular Tissue Ectopic Expansion", "Auxin accumulates in stem cambium (stem_9) &amp; root stele", COLOR["auxin"]),
-        ("5. Apoplast Acidification &amp; Loosening", "PM H⁺-ATPase pumping activates XTH22 &amp; EXPA1 expansins", COLOR["wall"]),
-        ("6. Compensatory Stress Homeostasis", "Apoplastic ROS (RBOHD) mitigated by HSP70 &amp; PRXIIB chaperones", COLOR["chaperone"]),
+        ("1. Loss of Gravitational Sedimentation Force", 
+         "Amyloplasts lose 1g buoyant weight; freely float in statocytes without directional resting vector",
+         "Statolith displacement · Amyloplast Brownian motion · Loss of steady pressure on distal ER",
+         COLOR["statolith"]),
+        ("2. Stochastic MSL Channel Gating &amp; Ca²⁺ Flux", 
+         "Membrane tension fluctuations induce repetitive cytosolic Ca²⁺ pulses sensed by touch proteins",
+         "MSL10 / MCA1 stretch-activated channels · TCH1/CAM2 (+1.28 log₂FC) · CPK1 phosphorylation",
+         COLOR["mechano"]),
+        ("3. Ectopic PIN Auxin Carrier Relocalization", 
+         "Endosomal vesicle recycling directs PIN carriers to lateral flanks instead of strict polar axes",
+         "RABA1A (+0.74 log₂FC) &amp; ARF1A1C (+0.59) endosomes · PIN2/3/7 lateralized redistribution",
+         COLOR["auxin"]),
+        ("4. Vascular Tissue Ectopic Expansion", 
+         "Asymmetric auxin accumulates in inflorescence stem cambium (stem_9) &amp; root procambium",
+         "stem_9 (+1.23% fraction, padj=0.003) · TIR1/AFB signalling · ARF19 transcriptional activation",
+         COLOR["auxin"]),
+        ("5. Apoplast Acidification &amp; Cell Wall Loosening", 
+         "PM H⁺-ATPase extrusion drops apoplast pH to ~4.8, triggering acid-growth enzyme cleavage",
+         "AHA1/2 proton pumping · XTH22 (+0.84 log₂FC) · EXPA1 (+0.62 log₂FC) xyloglucan cleavage",
+         COLOR["wall"]),
+        ("6. Compensatory Stress &amp; Redox Homeostasis", 
+         "Apoplastic ROS generation mitigated by mitochondrial bioenergetics and chaperone folding",
+         "RBOHD ROS burst · PRXIIB (+1.22 log₂FC) · HSP70-1 (+1.45) · HSP90.1 (+1.18) · ATPA (+0.72)",
+         COLOR["chaperone"]),
     ]
 
-    card_step_h = 82
-    for s_idx, (s_title, s_desc, s_col) in enumerate(steps):
-        # 2 columns of 3 cards each in Panel d
-        col_idx = s_idx // 3  # 0 or 1
-        row_in_col = s_idx % 3 # 0, 1, 2
-        card_w = (right_w - 40) // 2
-        card_x = right_x + 16 + col_idx * (card_w + 8)
-        card_y = pd_y + 60 + row_in_col * (card_step_h + 12)
-        
+    card_step_h = 106
+    card_gap = 18
+    for s_idx, (s_title, s_desc, s_eff, s_col) in enumerate(steps):
+        sy = pd_y + 60 + s_idx * (card_step_h + card_gap)
+        card_w = right_w - 32
+        card_x = right_x + 16
+
         svg.append(f'''
-        <rect x="{card_x}" y="{card_y}" width="{card_w}" height="{card_step_h}" rx="5" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
-        <rect x="{card_x + 6}" y="{card_y + 8}" width="5" height="{card_step_h - 16}" rx="2.5" fill="{s_col}" />
-        <text x="{card_x + 18}" y="{card_y + 24}" font-size="11" font-weight="700" fill="{s_col}">
+        <rect x="{card_x}" y="{sy}" width="{card_w}" height="{card_step_h}" rx="5" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="1" />
+        <rect x="{card_x + 6}" y="{sy + 8}" width="6" height="{card_step_h - 16}" rx="3" fill="{s_col}" />
+        
+        <!-- Step Title -->
+        <text x="{card_x + 22}" y="{sy + 26}" font-size="12" font-weight="700" fill="{s_col}">
           {s_title}
         </text>
-        <text x="{card_x + 18}" y="{card_y + 44}" font-size="10" fill="{COLOR["text_body"]}">
+        
+        <!-- Step Description -->
+        <text x="{card_x + 22}" y="{sy + 48}" font-size="11" fill="{COLOR["text_dark"]}">
           {s_desc}
         </text>
+        
+        <!-- Molecular Effectors & Gene Loci Pill -->
+        <rect x="{card_x + 22}" y="{sy + 64}" width="{card_w - 36}" height="28" rx="4" fill="#FFFFFF" stroke="{COLOR["panel_border"]}" stroke-width="0.8" />
+        <text x="{card_x + 32}" y="{sy + 82}" font-size="10" font-weight="600" fill="{COLOR["text_muted"]}">
+          Effectors: {s_eff}
+        </text>
         ''')
-        # Connector line
+
+        # Directional Downward Connector Arrow between steps
         if s_idx < len(steps) - 1:
-            next_col = (s_idx + 1) // 3
-            if next_col == col_idx:
-                svg.append(f'''
-                <line x1="{card_x + card_w//2}" y1="{card_y + card_step_h}" x2="{card_x + card_w//2}" y2="{card_y + card_step_h + 11}" stroke="{COLOR["text_muted"]}" stroke-width="1.2" marker-end="url(#arrow-muted)" />
-                ''')
+            arr_y1 = sy + card_step_h
+            arr_y2 = arr_y1 + card_gap
+            svg.append(f'''
+            <line x1="{card_x + card_w//2}" y1="{arr_y1}" x2="{card_x + card_w//2}" y2="{arr_y2 - 2}" stroke="{COLOR["text_muted"]}" stroke-width="1.8" marker-end="url(#arrow-muted)" />
+            ''')
 
     # =========================================================================
-    # PANEL c: Curated Molecular Pathway Cross-Talk Network
+    # PANEL c: Curated Molecular Pathway Cross-Talk Network (Deconflicted Y-Axis)
     # =========================================================================
     pc_y = row2_y
     pc_h = row2_h
@@ -569,32 +607,34 @@ def generate_figure8_svg():
     </text>
     ''')
 
+    # Row 1 Hubs at y = 925, Row 2 Hubs at y = 1250 (175 px vertical gap between pill and title!)
     hubs = [
         # (id, name, kegg_id, degs, pooled_fc, x, y, color, light_bg, hub_genes)
-        ("AUXIN", "Plant Hormone Signal Transduction", "ath04075", 84, "+0.68", left_x + 175, pc_y + 160, COLOR["auxin"], COLOR["auxin_light"], ["PIN2", "AUX1", "ABCB1", "IAA19"]),
-        ("MECHANO", "Mechanotransduction &amp; Ca²⁺ Flux", "ath04070", 42, "+0.89", left_x + 515, pc_y + 130, COLOR["mechano"], COLOR["mechano_light"], ["MSL10", "MCA1", "TCH1", "CPK1"]),
-        ("WALL", "Cell Wall Organization &amp; Loosening", "ath00500", 67, "+0.76", left_x + 855, pc_y + 160, COLOR["wall"], COLOR["wall_light"], ["XTH22", "EXPA1", "CESA3", "AHA1"]),
-        ("REDOX", "Redox Homeostasis &amp; ROS Defense", "ath00480", 58, "+0.81", left_x + 195, pc_y + 365, COLOR["redox"], COLOR["redox_light"], ["PRXIIB", "CSD1", "TRX-H5", "RBOHD"]),
-        ("CHAPERONE", "Protein Processing in ER &amp; Chaperones", "ath04141", 79, "+1.12", left_x + 525, pc_y + 380, COLOR["chaperone"], COLOR["chaperone_light"], ["HSP70-1", "HSP90.1", "DNAJ-1", "PAA1"]),
-        ("ATP", "Bioenergetics &amp; Carbon Fixation", "ath00710", 93, "+0.74", left_x + 865, pc_y + 365, COLOR["atp"], COLOR["atp_light"], ["ATPA", "GAPC1", "MDH1", "ATP5F1"]),
+        ("AUXIN", "Plant Hormone Signal Transduction", "ath04075", 84, "+0.68", left_x + 175, pc_y + 130, COLOR["auxin"], COLOR["auxin_light"], ["PIN2", "AUX1", "ABCB1", "IAA19"]),
+        ("MECHANO", "Mechanotransduction &amp; Ca²⁺ Flux", "ath04070", 42, "+0.89", left_x + 515, pc_y + 105, COLOR["mechano"], COLOR["mechano_light"], ["MSL10", "MCA1", "TCH1", "CPK1"]),
+        ("WALL", "Cell Wall Organization &amp; Loosening", "ath00500", 67, "+0.76", left_x + 855, pc_y + 130, COLOR["wall"], COLOR["wall_light"], ["XTH22", "EXPA1", "CESA3", "AHA1"]),
+        ("REDOX", "Redox Homeostasis &amp; ROS Defense", "ath00480", 58, "+0.81", left_x + 195, pc_y + 455, COLOR["redox"], COLOR["redox_light"], ["PRXIIB", "CSD1", "TRX-H5", "RBOHD"]),
+        ("CHAPERONE", "Protein Processing in ER &amp; Chaperones", "ath04141", 79, "+1.12", left_x + 525, pc_y + 475, COLOR["chaperone"], COLOR["chaperone_light"], ["HSP70-1", "HSP90.1", "DNAJ-1", "PAA1"]),
+        ("ATP", "Bioenergetics &amp; Carbon Fixation", "ath00710", 93, "+0.74", left_x + 865, pc_y + 455, COLOR["atp"], COLOR["atp_light"], ["ATPA", "GAPC1", "MDH1", "ATP5F1"]),
     ]
 
     edges = [
-        (0, 1, "TCH1 / PIN polarity", 4),
-        (1, 2, "Ca²⁺ / AHA1 H⁺ activation", 3),
-        (0, 2, "XTH22 / EXPA1 acid growth", 5),
-        (1, 3, "RBOHD ROS burst", 3.5),
-        (2, 3, "Peroxidase wall crosslinking", 3.5),
-        (3, 4, "Redox stress chaperone induction", 4.5),
-        (4, 5, "ATP-dependent folding", 4),
-        (0, 5, "ATP fueling active pumps", 3),
-        (0, 3, "Auxin-induced ROS signaling", 2.5),
+        (0, 1, "TCH1 / PIN polarity", 4, 0.5, 0),
+        (1, 2, "Ca²⁺ / AHA1 H⁺ activation", 3, 0.5, 0),
+        (0, 2, "XTH22 / EXPA1 acid growth", 5, 0.5, -30),
+        (1, 3, "RBOHD ROS burst", 3.5, 0.45, 10),
+        (2, 3, "Peroxidase wall crosslinking", 3.5, 0.5, 0),
+        (3, 4, "Redox stress chaperone induction", 4.5, 0.5, 0),
+        (4, 5, "ATP-dependent folding", 4, 0.5, 0),
+        (0, 5, "ATP fueling active pumps", 3, 0.55, 0),
+        (0, 3, "Auxin-induced ROS signaling", 2.5, 0.5, 0),
     ]
 
-    for (src, dst, edge_lbl, edge_w) in edges:
+    for (src, dst, edge_lbl, edge_w, t_param, y_offset) in edges:
         x1, y1 = hubs[src][5], hubs[src][6]
         x2, y2 = hubs[dst][5], hubs[dst][6]
-        mid_x, mid_y = (x1 + x2) / 2, (y1 + y2) / 2
+        mid_x = x1 + (x2 - x1) * t_param
+        mid_y = y1 + (y2 - y1) * t_param + y_offset
         
         svg.append(f'''
         <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{COLOR["panel_border"]}" stroke-width="{edge_w * 1.5}" stroke-linecap="round" />
@@ -622,13 +662,13 @@ def generate_figure8_svg():
         </text>
 
         <!-- Hub Title -->
-        <text x="{hx}" y="{hy - node_r - 10}" font-size="11.5" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">
+        <text x="{hx}" y="{hy - node_r - 12}" font-size="11.5" font-weight="700" fill="{COLOR["text_dark"]}" text-anchor="middle">
           {hname}
         </text>
 
         <!-- Hub Key Genes Pill -->
-        <rect x="{hx - 105}" y="{hy + node_r + 8}" width="210" height="20" rx="4" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="0.8" />
-        <text x="{hx}" y="{hy + node_r + 22}" font-size="9.5" font-weight="600" fill="{COLOR["text_body"]}" text-anchor="middle">
+        <rect x="{hx - 105}" y="{hy + node_r + 8}" width="210" height="22" rx="4" fill="{COLOR["subcard_bg"]}" stroke="{COLOR["panel_border"]}" stroke-width="0.8" />
+        <text x="{hx}" y="{hy + node_r + 23}" font-size="9.5" font-weight="600" fill="{COLOR["text_body"]}" text-anchor="middle">
           Hubs: {", ".join(hgenes)}
         </text>
         ''')
@@ -644,7 +684,7 @@ def main():
     os.makedirs(figures_dir, exist_ok=True)
     os.makedirs(docs_figures_dir, exist_ok=True)
 
-    print("Generating Figure 8 (npj Microgravity Springer Nature Publication Style)...")
+    print("Generating Figure 8 (Y-Axis Optimized 1800x1440 npj Microgravity Publication Style)...")
 
     svg_content = generate_figure8_svg()
     
@@ -667,19 +707,19 @@ def main():
     target_png_web = os.path.join(docs_figures_dir, "kegg_pathway_network.png")
 
     if os.path.exists(chrome_bin):
-        # Window size 2400 x 1680 (exact 1800:1260 aspect ratio = 10:7)
+        # Window size 2400 x 1920 (exact 1800:1440 aspect ratio = 5:4)
         cmd = [
             chrome_bin,
             "--headless",
             "--disable-gpu",
             "--default-background-color=ffffffff",
             f"--screenshot={target_png_pub}",
-            "--window-size=2400,1680",
+            "--window-size=2400,1920",
             f"file://{pub_svg_path}"
         ]
         subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         shutil.copyfile(target_png_pub, target_png_web)
-        print(f"  ✓ Rendered Publication PNG (2400x1680): {target_png_pub}")
+        print(f"  ✓ Rendered Publication PNG (2400x1920): {target_png_pub}")
         print(f"  ✓ Copied Web Portal PNG: {target_png_web}")
     else:
         print("  ⚠ Google Chrome binary not found; falling back to QuickLook...")
@@ -689,7 +729,7 @@ def main():
             shutil.copyfile(rendered, target_png_pub)
             shutil.copyfile(rendered, target_png_web)
 
-    print("\nFigure 8 npj Microgravity overhaul complete!")
+    print("\nFigure 8 Y-Axis optimization complete!")
 
 if __name__ == "__main__":
     main()
