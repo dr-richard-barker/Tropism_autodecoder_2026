@@ -680,9 +680,11 @@ def main():
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     figures_dir = os.path.join(repo_root, "Figures")
     docs_figures_dir = os.path.join(repo_root, "docs", "assets", "figures")
+    ms_figures_dir = os.path.join(repo_root, "Manuscript", "latex", "figures")
 
     os.makedirs(figures_dir, exist_ok=True)
     os.makedirs(docs_figures_dir, exist_ok=True)
+    os.makedirs(ms_figures_dir, exist_ok=True)
 
     print("Generating Figure 8 (Y-Axis Optimized 1800x1440 npj Microgravity Publication Style)...")
 
@@ -700,11 +702,18 @@ def main():
         f.write(svg_content)
     print(f"  ✓ Saved Web Portal SVG: {web_svg_path}")
 
+    # Save Manuscript/latex/figures/kegg_pathway_network.svg
+    ms_svg_path = os.path.join(ms_figures_dir, "kegg_pathway_network.svg")
+    with open(ms_svg_path, "w", encoding="utf-8") as f:
+        f.write(svg_content)
+    print(f"  ✓ Saved Manuscript LaTeX SVG: {ms_svg_path}")
+
     # Render 300 DPI high-resolution PNG using Headless Google Chrome
     print("\nRendering Publication-Quality 300 DPI PNG via Headless Google Chrome...")
     chrome_bin = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     target_png_pub = os.path.join(figures_dir, "kegg_pathway_network.png")
     target_png_web = os.path.join(docs_figures_dir, "kegg_pathway_network.png")
+    target_png_ms = os.path.join(ms_figures_dir, "kegg_pathway_network.png")
 
     if os.path.exists(chrome_bin):
         # Window size 2400 x 1920 (exact 1800:1440 aspect ratio = 5:4)
@@ -719,8 +728,10 @@ def main():
         ]
         subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         shutil.copyfile(target_png_pub, target_png_web)
+        shutil.copyfile(target_png_pub, target_png_ms)
         print(f"  ✓ Rendered Publication PNG (2400x1920): {target_png_pub}")
         print(f"  ✓ Copied Web Portal PNG: {target_png_web}")
+        print(f"  ✓ Copied Manuscript LaTeX PNG: {target_png_ms}")
     else:
         print("  ⚠ Google Chrome binary not found; falling back to QuickLook...")
         subprocess.run(["qlmanage", "-t", "-s", "2400", "-o", "/tmp", pub_svg_path], check=True)
@@ -728,6 +739,7 @@ def main():
         if os.path.exists(rendered):
             shutil.copyfile(rendered, target_png_pub)
             shutil.copyfile(rendered, target_png_web)
+            shutil.copyfile(rendered, target_png_ms)
 
     print("\nFigure 8 Y-Axis optimization complete!")
 
